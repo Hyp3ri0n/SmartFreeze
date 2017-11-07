@@ -1,0 +1,10 @@
+<div class="app-container flex-container flex-container-column">
+    <app-header class="app-container flex-container flex-fix-height header"></app-header>
+    <div class="app-container flex-container flex-shrink-height flex-container-row">
+        <app-sidebar  class="app-container flex-container flex-shrink-height flex-fix-width flex-container-row sidebar"></app-sidebar>
+        <div class="app-container flex-container flex-shrink-height flex-container-column content">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+    <app-footer class="app-container flex-container flex-fix-height footer"></app-footer>
+</div>

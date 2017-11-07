@@ -1,0 +1,46 @@
+
+/*...*/
+
+
+// COLORS
+
+/* Materials colors */
+
+$mc-red         :    rgb(244, 67, 54);
+$mc-pink        :    rgb(233, 30, 99);
+$mc-purple      :    rgb(156, 39, 176);
+$mc-deep_purple :    rgb(103, 58, 183);
+$mc-indigo      :    rgb(63, 81, 181);
+$mc-blue        :    rgb(33, 150, 243);
+$mc-light_blue  :    rgb(3, 169, 244);
+$mc-cyan        :    rgb(0, 188, 212);
+$mc-teal        :    rgb(0, 150, 136);
+$mc-green       :    rgb(76, 175, 80);
+$mc-light_green :    rgb(139, 195, 74);
+$mc-lime        :    rgb(205, 220, 57);
+$mc-yellow      :    rgb(255, 235, 59);
+$mc-amber       :    rgb(255, 193, 7);
+$mc-orange      :    rgb(255, 152, 0);
+$mc-deep_orange :    rgb(255, 87, 34);
+$mc-brown       :    rgb(121, 85, 72);
+$mc-grey        :    rgb(158, 158, 158);
+$mc-blue_grey   :    rgb(96, 125, 139);
+
+/* Grey colors */
+
+$grey-darker    :   rgb(20, 20, 20);
+$grey-dark      :   rgb(45, 45, 45);
+$grey-base      :   rgb(136, 136, 136);
+$grey-light     :   rgb(210, 210, 210);
+$grey-lighter   :   rgb(250, 250, 250);
+
+/* Primarys colors */
+
+$app-primary : #26a69a;
+$app-primary_lighter    :   lighten($app-primary, 30%);
+$app-primary_light      :   lighten($app-primary, 15%);
+$app-primary_dark       :   darken($app-primary, 15%);
+$app-primary_darker     :   darken($app-primary, 30%);
+
+
+// SIZES

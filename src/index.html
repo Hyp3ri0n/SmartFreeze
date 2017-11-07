@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		
+		<!-- css -->
+		<link rel="stylesheet" href="assets/styles/bootstrap.min.css" type="text/css" media="all">
+		<link rel="stylesheet" href="assets/styles/font-awesome.min.css" type="text/css" media="all">
+		<link rel="stylesheet" href="assets/styles/styleFont.css" type="text/css" media="all">
+		<link rel="stylesheet" href="assets/styles/style.css" type="text/css" media="all">
+
+		<!-- js -->
+	    <script type="text/javascript" src="assets/vendors/jquery-3.1.1.min.js"></script>
+	    <!-- libs from npm -->
+	    <script type="text/javascript" src="assets/vendors/libs/core-js/client/shim.min.js"></script>
+	    <script type="text/javascript" src="assets/vendors/libs/zone.js/dist/zone.min.js"></script>
+	    <script type="text/javascript" src="assets/vendors/libs/reflect-metadata/Reflect.js"></script>
+	    <script type="text/javascript" src="assets/vendors/libs/systemjs/dist/system.src.js"></script>
+	    <script type="text/javascript" src="assets/vendors/libs/hammerjs/hammer.min.js"></script>
+	    <script type="text/javascript" src="assets/vendors/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+	    <!-- SystemJS configuration -->
+	    <script type="text/javascript" src="assets/vendors/systemjs.config.js"></script>
+	    <script type="text/javascript">
+	        System.import('app').catch(function(err) { console.error(err); });
+    	</script>
+
+	</head>
+	<body>
+		<app-root></app-root>
+	</body>
+</html>
