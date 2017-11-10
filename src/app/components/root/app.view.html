@@ -1,4 +1,5 @@
-<div class="app-container flex-container flex-container-column">
+<app-splashscreen *ngIf="!endSplashScreen" [model]="splashScreenModel"></app-splashscreen>
+<div *ngIf="endSplashScreen" class="app-container flex-container flex-container-column">
     <app-header class="app-container flex-container flex-fix-height header"></app-header>
     <div class="app-container flex-container flex-shrink-height flex-container-row">
         <app-sidebar  class="app-container flex-container flex-shrink-height flex-fix-width flex-container-row sidebar"></app-sidebar>

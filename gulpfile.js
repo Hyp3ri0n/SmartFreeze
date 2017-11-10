@@ -36,6 +36,9 @@ gulp.task('clean-cordova', function (cb) {
 gulp.task('clean-electron', function (cb) {
     return del(['dist/electron'], cb);
 });
+gulp.task('clean-libs-scss-bootstrap', function (cb) {
+    return del(['src/assets/styles/bootstrap'], cb);
+});
 
 /**
  * Copy all resources for electron/cordova.
@@ -65,7 +68,7 @@ gulp.task('resources', function () {
  * Copy all themes "*.scss" after compiling them.
  */
 gulp.task('scss', function () {
-    return gulp.src('src/**/*.scss')
+    return gulp.src('src/assets/styles/**/*.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(concat('style.css'))
         .pipe(cleanCSS())
@@ -76,9 +79,9 @@ gulp.task('scss', function () {
  * Copy all ".css" files and minify them.
  */
 gulp.task('style', ['scss'], function () {
-    return gulp.src('src/**/*.css')
+    return gulp.src('src/assets/styles/**/*.css')
         .pipe(cleanCSS())
-        .pipe(gulp.dest('dist/www'));
+        .pipe(gulp.dest('dist/www/assets/styles'));
 });
 
 /**
@@ -107,19 +110,50 @@ gulp.task('compile', ['tslint'], function () {
 /**
  * Copy all required libraries into build directory.
  */
-gulp.task("libs_js", function () {
+gulp.task("libs_js", ["libs_ng", "libs_rxjs"], function () {
     return gulp.src([
         'core-js/client/shim.min.js',
         'systemjs/dist/system-polyfills.js',
         'systemjs/dist/system.src.js',
         'reflect-metadata/Reflect.js',
-        'rxjs/**/*.js',
-        'zone.js/dist/**',
-        '@angular/**/bundles/**',
+        'zone.js/dist/zone.min.js',
+        '@angular/common/bundles/common.umd.min.js',
+        '@angular/compiler/bundles/compiler.umd.min.js',
+        '@angular/core/bundles/core.umd.min.js',
+        '@angular/forms/bundles/forms.umd.min.js',
+        '@angular/http/bundles/http.umd.min.js',
+        '@angular/platform-browser/bundles/platform-browser.umd.min.js',
+        '@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.min.js',
+        '@angular/router/bundles/router.umd.min.js',
+        '@angular/upgrade/bundles/upgrade.umd.min.js',
         'hammerjs/hammer.min.js',
         'bootstrap/dist/js/bootstrap.bundle.min.js'
     ], {cwd: "node_modules/**"}) /* Glob required here. */
-        .pipe(gulp.dest("dist/www/assets/vendors/libs/"));
+        .pipe(rename({dirname:''}))
+        .pipe(gulp.dest("dist/www/assets/vendors/libs"));
+});
+
+gulp.task("libs_ng", function () {
+    return gulp.src([
+        '@angular/common/bundles/common.umd.min.js',
+        '@angular/compiler/bundles/compiler.umd.min.js',
+        '@angular/core/bundles/core.umd.min.js',
+        '@angular/forms/bundles/forms.umd.min.js',
+        '@angular/http/bundles/http.umd.min.js',
+        '@angular/platform-browser/bundles/platform-browser.umd.min.js',
+        '@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.min.js',
+        '@angular/router/bundles/router.umd.min.js',
+        '@angular/upgrade/bundles/upgrade.umd.min.js',
+    ], {cwd: "node_modules/**"}) /* Glob required here. */
+        .pipe(rename({dirname:''}))
+        .pipe(gulp.dest("dist/www/assets/vendors/libs/@angular"));
+});
+
+gulp.task("libs_rxjs", function () {
+    return gulp.src([
+        'rxjs/**/*.js'
+    ], {cwd: "node_modules/**"}) /* Glob required here. */
+        .pipe(gulp.dest("dist/www/assets/vendors/libs"));
 });
 
 /**
@@ -127,11 +161,20 @@ gulp.task("libs_js", function () {
  */
 gulp.task("libs_css", function () {
     return gulp.src([
-        'bootstrap/dist/css/bootstrap.min.css',
         'font-awesome/css/**/*.min.css'
     ], {cwd: "node_modules/**"}) /* Glob required here. */
         .pipe(rename({dirname:''}))
         .pipe(gulp.dest("dist/www/assets/styles/"));
+});
+
+/**
+ * Copy all required libraries into build directory.
+ */
+gulp.task("libs_scss_bootstrap", function () {
+    return gulp.src([
+        '_*.scss'
+    ], {cwd: "node_modules/bootstrap/scss/**"}) /* Glob required here. */
+        .pipe(gulp.dest("src/assets/styles/bootstrap")); /* copy in src to melt it in our own scss file */
 });
 
 /**
@@ -144,7 +187,7 @@ gulp.task('watchers', function () {
     gulp.watch(['src/**/*.html', 'src/**/*.js'], ['resources']).on('change', function (e) {
         console.log('Resource file ' + e.path + ' has been changed. Updating.');
     });
-    gulp.watch(['src/**/*.css', 'src/**/*.scss'], ['style']).on('change', function (e) {
+    gulp.watch(['src/assets/styles/**/*.css', 'src/assets/styles/**/*.scss'], ['style']).on('change', function (e) {
         console.log('Style file ' + e.path + ' has been changed. Updating.');
     });
 });
@@ -154,10 +197,12 @@ gulp.task('watchers', function () {
  */
 gulp.task('build-web', function (callback) {
     runSequence('clean-web', 
+                'clean-libs-scss-bootstrap',
+                'libs_scss_bootstrap', 
                 'resources', 
                 'style', 
                 'compile', 
-                'libs_js', 
+                'libs_js',
                 'libs_css',
                 callback);
     console.log('Project web built.');
