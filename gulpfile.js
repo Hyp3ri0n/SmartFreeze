@@ -110,22 +110,13 @@ gulp.task('compile', ['tslint'], function () {
 /**
  * Copy all required libraries into build directory.
  */
-gulp.task("libs_js", ["libs_ng", "libs_rxjs"], function () {
+gulp.task("libs_js", ["libs_ng", "libs_rxjs", "libs_agm"], function () {
     return gulp.src([
         'core-js/client/shim.min.js',
         'systemjs/dist/system-polyfills.js',
         'systemjs/dist/system.src.js',
         'reflect-metadata/Reflect.js',
         'zone.js/dist/zone.min.js',
-        '@angular/common/bundles/common.umd.min.js',
-        '@angular/compiler/bundles/compiler.umd.min.js',
-        '@angular/core/bundles/core.umd.min.js',
-        '@angular/forms/bundles/forms.umd.min.js',
-        '@angular/http/bundles/http.umd.min.js',
-        '@angular/platform-browser/bundles/platform-browser.umd.min.js',
-        '@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.min.js',
-        '@angular/router/bundles/router.umd.min.js',
-        '@angular/upgrade/bundles/upgrade.umd.min.js',
         'hammerjs/hammer.min.js',
         'bootstrap/dist/js/bootstrap.bundle.min.js'
     ], {cwd: "node_modules/**"}) /* Glob required here. */
@@ -154,6 +145,14 @@ gulp.task("libs_rxjs", function () {
         'rxjs/**/*.js'
     ], {cwd: "node_modules/**"}) /* Glob required here. */
         .pipe(gulp.dest("dist/www/assets/vendors/libs"));
+});
+
+gulp.task("libs_agm", function () {
+    return gulp.src([
+        '@agm/core/core.umd.js'
+    ], {cwd: "node_modules/**"}) /* Glob required here. */
+        .pipe(rename({dirname:''}))
+        .pipe(gulp.dest("dist/www/assets/vendors/libs/@agm"));
 });
 
 /**

@@ -7,7 +7,7 @@ import { SplashScreenModel } from './splashScreen/splashScreen.model';
 })
 export class AppComponent {
 
-    private splashScreenModel : SplashScreenModel = new SplashScreenModel(4242, () => this.endTimeSplashScreen());
+    private splashScreenModel : SplashScreenModel = new SplashScreenModel(1000, () => this.endTimeSplashScreen());
     private endSplashScreen : boolean = false;
 
     constructor() { /**/ }

@@ -18,7 +18,8 @@
             '@angular/router': 'npm:@angular/router.umd.min.js',
             '@angular/forms': 'npm:@angular/forms.umd.min.js',
             // other libraries
-            'rxjs': 'npm:rxjs'
+            'rxjs': 'npm:rxjs',
+            '@agm/core': 'npm:@agm/core.umd.js'
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {

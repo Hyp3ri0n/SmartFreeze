@@ -1,7 +1,8 @@
 import { BrowserModule }  from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { AgmCoreModule } from '@agm/core';
 import { appRoutes } from './app.routes';
 import { AppComponent } from './components/root/app.component';
 import { HeaderComponent } from './components/root/header/header.component';
@@ -9,9 +10,15 @@ import { SidebarComponent } from './components/root/sidebar/sidebar.component';
 import { FooterComponent } from './components/root/footer/footer.component';
 import { SplashScreenComponent } from './components/root/splashScreen/splashScreen.component';
 import { HomeComponent } from './components/home/home.component';
+import { MapComponent } from './components/home/map/map.component';
+
 
 @NgModule({
-  imports: [BrowserModule, RouterModule.forRoot(appRoutes)],
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot(appRoutes),
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyCJVLgZMjujdJhvWfcV12kxSZu01ZL8MHw'})
+  ],
   providers: [{provide: APP_BASE_HREF, useValue: '#'}],
   declarations: [
     AppComponent,
@@ -19,8 +26,10 @@ import { HomeComponent } from './components/home/home.component';
     SidebarComponent,
     FooterComponent,
     SplashScreenComponent,
-    HomeComponent
+    HomeComponent,
+    MapComponent
   ],
+  schemas:  [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
