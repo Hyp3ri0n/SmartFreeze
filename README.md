@@ -1,4 +1,4 @@
-# MultiApp-BaseProject
+# SmartFreeze
 
 ## Description
 
@@ -79,7 +79,7 @@ To launch watchers on sources :
 > npm run app:watch-web
 
 To start lite-server :
-> npm run ltserve:start
+> npm run ltserver:start
 
 To start Electron to debug project :
 > npm run electron:start
