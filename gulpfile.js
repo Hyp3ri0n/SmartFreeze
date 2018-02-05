@@ -21,6 +21,7 @@ var sass            = require('gulp-sass');
 var rename          = require('gulp-rename');
 var autoprefixer    = require('autoprefixer');
 var postcss         = require('gulp-postcss');
+var insert          = require('gulp-insert');
 
 
 /**
@@ -69,17 +70,29 @@ gulp.task('resources', function () {
 /**
  * Copy all themes "*.scss" after compiling them.
  */
-gulp.task('scss', function () {
-    return gulp.src('src/assets/styles/**/*.scss')
+gulp.task('theme-refuge', ['theme-agriculture'], function () {
+    return gulp.src('src/assets/styles/base.scss')
+        .pipe(insert.prepend('@import "theme-refuge";'))
         .pipe(sass().on('error', sass.logError))
-        .pipe(concat('style.css'))
+        .pipe(concat('style.refuge.css'))
+        .pipe(gulp.dest('dist/www/assets/styles/'));
+});
+
+/**
+ * Copy all themes "*.scss" after compiling them.
+ */
+gulp.task('theme-agriculture', function () {
+    return gulp.src('src/assets/styles/base.scss')
+        .pipe(insert.prepend('@import "theme-agriculture";'))
+        .pipe(sass().on('error', sass.logError))
+        .pipe(concat('style.agriculture.css'))
         .pipe(gulp.dest('dist/www/assets/styles/'));
 });
 
 /**
  * Copy all ".css" files and minify them.
  */
-gulp.task('style', ['scss'], function () {
+gulp.task('style', ['theme-refuge'], function () {
     return gulp.src('src/assets/styles/**/*.css')
         .pipe(postcss([ autoprefixer() ]))
         //.pipe(cleanCSS())

@@ -35,14 +35,6 @@ $grey-base      :   rgb(136, 136, 136);
 $grey-light     :   rgb(210, 210, 210);
 $grey-lighter   :   rgb(250, 250, 250);
 
-/* Primarys colors */
-
-$app-primary : #26a69a;
-$app-primary_lighter    :   lighten($app-primary, 30%);
-$app-primary_light      :   lighten($app-primary, 15%);
-$app-primary_dark       :   darken($app-primary, 15%);
-$app-primary_darker     :   darken($app-primary, 30%);
-
 
 // SIZES
 $size-header  : 3.5rem;
