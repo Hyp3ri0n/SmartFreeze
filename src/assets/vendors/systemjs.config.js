@@ -19,7 +19,8 @@
             '@angular/forms': 'npm:@angular/forms.umd.min.js',
             // other libraries
             'rxjs': 'npm:rxjs',
-            '@agm/core': 'npm:@agm/core.umd.js'
+            '@agm/core': 'npm:@agm/core.umd.js',
+            'chart.js': 'npm:Chart.bundle.min.js'
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
