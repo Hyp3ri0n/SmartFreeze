@@ -6,7 +6,7 @@
     [zoomControl]="false"
     (mapClick)="mapClicked($event)">
 
-    <agm-map-marker 
+    <agm-marker 
         *ngFor="let m of markers; let i = index"
         (markerClick)="clickedMarker(m.label, i)"
         [latitude]="m.lat"
@@ -15,20 +15,21 @@
         [markerDraggable]="m.draggable"
         (dragEnd)="markerDragEnd(m, $event)">
         
-    <agm-map-info-window>
+    <agm-info-window>
         <strong>{{ m.site }}</strong>
+        <!-- link vers le site via id -->
         <a [href]="m.link">
             <strong>{{ m.sensor }}</strong>
         </a>
-    </agm-map-info-window>
+    </agm-info-window>
     
-    </agm-map-marker>
+    </agm-marker>
     
-    <agm-map-circle [latitude]="lat + 0.3" [longitude]="lng" 
+    <agm-circle [latitude]="lat" [longitude]="lng" 
         [radius]="5000"
         [fillColor]="'red'"
-        [circleDraggable]="true"
-        [editable]="true">
-    </agm-map-circle>
+        [circleDraggable]="false"
+        [editable]="false">
+    </agm-circle>
 
 </agm-map>
