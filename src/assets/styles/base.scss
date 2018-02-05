@@ -31,6 +31,10 @@ html, body, .app-container {
 	padding: 0;
 }
 
+body {
+	min-height: 100%;
+}
+
 
 /********************************************/
 /*											*/
@@ -114,6 +118,10 @@ html, body, .app-container {
 .flex-container-row {
 	display: flex;
 	flex-direction: row;
+}
+
+.no-padding-right {
+	padding-right: 0!important;
 }
 
 

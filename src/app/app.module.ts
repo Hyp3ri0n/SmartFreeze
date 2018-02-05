@@ -11,6 +11,9 @@ import { FooterComponent } from './components/root/footer/footer.component';
 import { SplashScreenComponent } from './components/root/splashScreen/splashScreen.component';
 import { HomeComponent } from './components/home/home.component';
 import { MapComponent } from './components/home/map/map.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { SearchComponent } from './components/search/search.component';
+import { AlertsComponent } from './components/alerts/alerts.component';
 
 
 @NgModule({
@@ -27,7 +30,10 @@ import { MapComponent } from './components/home/map/map.component';
     FooterComponent,
     SplashScreenComponent,
     HomeComponent,
-    MapComponent
+    MapComponent,
+    AdminComponent,
+    SearchComponent,
+    AlertsComponent
   ],
   schemas:  [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]
