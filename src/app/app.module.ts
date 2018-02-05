@@ -14,7 +14,7 @@ import { MapComponent } from './components/home/map/map.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { SearchComponent } from './components/search/search.component';
 import { AlertsComponent } from './components/alerts/alerts.component';
-import { TestComponent } from './components/test/test.component';
+import { TestComponent } from './components/test-chart/test.component';
 
 
 @NgModule({
