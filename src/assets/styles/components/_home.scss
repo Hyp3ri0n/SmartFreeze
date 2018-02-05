@@ -1,3 +1,18 @@
+home {
+    display: flex;
+    flex: 1;
+    .full-height {
+      display: flex;
+      flex: 1;
+      .row {
+        flex: 1;
+        & > div {
+          flex: 1;
+        }
+      }
+    }
+}
+
 agm-map {
  height: 100%;
 }

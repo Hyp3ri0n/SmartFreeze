@@ -11,6 +11,9 @@ import { FooterComponent } from './components/root/footer/footer.component';
 import { SplashScreenComponent } from './components/root/splashScreen/splashScreen.component';
 import { HomeComponent } from './components/home/home.component';
 import { MapComponent } from './components/home/map/map.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { SearchComponent } from './components/search/search.component';
+import { AlertsComponent } from './components/alerts/alerts.component';
 import { TestComponent } from './components/test/test.component';
 
 
@@ -29,6 +32,9 @@ import { TestComponent } from './components/test/test.component';
     SplashScreenComponent,
     HomeComponent,
     MapComponent,
+    AdminComponent,
+    SearchComponent,
+    AlertsComponent
     TestComponent
   ],
   schemas:  [ CUSTOM_ELEMENTS_SCHEMA ],

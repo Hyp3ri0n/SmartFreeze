@@ -1,4 +1,30 @@
 .sidebar {
     width: $size-sidebar;
     background-color: $grey-dark;
+  
+  .side-wrapper {
+    padding: 5px;
+    text-align: center;
+    overflow-wrap: break-word;
+    font-size: 14px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+
+    .side-icon {
+      font-size: 36px;
+    }
+
+    .side-text {
+      font-size: 18px;
+      display: none;
+    }
   }
+
+  &.sidebar-deployed {
+    width: $size-sidebar-deployed;
+    .side-text {
+      display: block;
+    }
+  }
+}
+

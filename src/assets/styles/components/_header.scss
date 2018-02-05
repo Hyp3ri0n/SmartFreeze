@@ -1,4 +1,33 @@
 .header {
     height: $size-header;
     background-color: $grey-dark;
+    display: flex;
+    flex-flow: row nowrap;
+  
+  .logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: $size-sidebar;
+    color: $app-primary;
+    padding: 0 5px;
+  } 
+  .search-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    input {
+      display: flex;
+      margin: auto;
+    }
   }
+  .alerts {
+    font-size: 24px;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    color: $mc-yellow;
+  }
+}
