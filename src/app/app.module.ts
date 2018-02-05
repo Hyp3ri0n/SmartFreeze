@@ -15,6 +15,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { SearchComponent } from './components/search/search.component';
 import { AlertsComponent } from './components/alerts/alerts.component';
 import { TestComponent } from './components/test-chart/test.component';
+import { LoginService } from './components/root/login/login.service';
 
 
 @NgModule({
@@ -23,7 +24,10 @@ import { TestComponent } from './components/test-chart/test.component';
     RouterModule.forRoot(appRoutes),
     AgmCoreModule.forRoot({apiKey: 'AIzaSyCJVLgZMjujdJhvWfcV12kxSZu01ZL8MHw'})
   ],
-  providers: [{provide: APP_BASE_HREF, useValue: '#'}],
+  providers: [
+    {provide: APP_BASE_HREF, useValue: '#'},
+    LoginService
+  ],
   declarations: [
     AppComponent,
     HeaderComponent,

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SplashScreenModel } from './splashScreen/splashScreen.model';
+import { LoginService } from './login/login.service';
 
 @Component({
     selector: 'app-root',
@@ -10,7 +11,7 @@ export class AppComponent {
     private splashScreenModel : SplashScreenModel = new SplashScreenModel(1000, () => this.endTimeSplashScreen());
     private endSplashScreen : boolean = false;
 
-    constructor() { /**/ }
+    constructor(private loginService : LoginService) { /**/ }
 
     public endTimeSplashScreen() : void {
         this.endSplashScreen = true;
