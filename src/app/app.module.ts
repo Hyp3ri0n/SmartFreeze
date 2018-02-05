@@ -11,6 +11,7 @@ import { FooterComponent } from './components/root/footer/footer.component';
 import { SplashScreenComponent } from './components/root/splashScreen/splashScreen.component';
 import { HomeComponent } from './components/home/home.component';
 import { MapComponent } from './components/home/map/map.component';
+import { TestComponent } from './components/test/test.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { MapComponent } from './components/home/map/map.component';
     FooterComponent,
     SplashScreenComponent,
     HomeComponent,
-    MapComponent
+    MapComponent,
+    TestComponent
   ],
   schemas:  [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]

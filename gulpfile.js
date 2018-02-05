@@ -7,18 +7,20 @@
 /*                                          */
 /********************************************/
 
-var gulp = require('gulp');
-var concat = require('gulp-concat');
-var del = require('del');
-var tsc = require('gulp-typescript');
-var sourcemaps = require('gulp-sourcemaps');
-var runSequence = require('run-sequence');
-var uglify = require('gulp-uglify');
-var cleanCSS = require('gulp-clean-css');
-var tsProject = tsc.createProject('tsconfig.json');
-var tslint = require('gulp-tslint');
-var sass = require('gulp-sass');
-var rename = require('gulp-rename');
+var gulp            = require('gulp');
+var concat          = require('gulp-concat');
+var del             = require('del');
+var tsc             = require('gulp-typescript');
+var sourcemaps      = require('gulp-sourcemaps');
+var runSequence     = require('run-sequence');
+var uglify          = require('gulp-uglify');
+var cleanCSS        = require('gulp-clean-css');
+var tsProject       = tsc.createProject('tsconfig.json');
+var tslint          = require('gulp-tslint');
+var sass            = require('gulp-sass');
+var rename          = require('gulp-rename');
+var autoprefixer    = require('autoprefixer');
+var postcss         = require('gulp-postcss');
 
 
 /**
@@ -71,7 +73,6 @@ gulp.task('scss', function () {
     return gulp.src('src/assets/styles/**/*.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(concat('style.css'))
-        .pipe(cleanCSS())
         .pipe(gulp.dest('dist/www/assets/styles/'));
 });
 
@@ -80,7 +81,8 @@ gulp.task('scss', function () {
  */
 gulp.task('style', ['scss'], function () {
     return gulp.src('src/assets/styles/**/*.css')
-        .pipe(cleanCSS())
+        .pipe(postcss([ autoprefixer() ]))
+        //.pipe(cleanCSS())
         .pipe(gulp.dest('dist/www/assets/styles'));
 });
 
@@ -118,7 +120,8 @@ gulp.task("libs_js", ["libs_ng", "libs_rxjs", "libs_agm"], function () {
         'reflect-metadata/Reflect.js',
         'zone.js/dist/zone.min.js',
         'hammerjs/hammer.min.js',
-        'bootstrap/dist/js/bootstrap.bundle.min.js'
+        'bootstrap/dist/js/bootstrap.bundle.min.js',
+        'chart.js/dist/Chart.bundle.min.js'
     ], {cwd: "node_modules/**"}) /* Glob required here. */
         .pipe(rename({dirname:''}))
         .pipe(gulp.dest("dist/www/assets/vendors/libs"));
