@@ -34,7 +34,7 @@ import { TestComponent } from './components/test-chart/test.component';
     MapComponent,
     AdminComponent,
     SearchComponent,
-    AlertsComponent
+    AlertsComponent,
     TestComponent
   ],
   schemas:  [ CUSTOM_ELEMENTS_SCHEMA ],
