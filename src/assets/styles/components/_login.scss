@@ -1,6 +1,10 @@
 .login{
-    //background-color: $grey-dark;
+    //background-image: url('https://upload.wikimedia.org/wikipedia/commons/8/8e/Ice_road_in_the_Northwest_Territories_-a.jpg');
     height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     h1 {
         color : $grey-light;
@@ -24,17 +28,23 @@
         background-color : $grey-lighter;
         padding : 10px;
         margin : 10px;
-        border: $grey-base;
-        border-style: solid;
-        border-width: 1px;
+        background-clip: border-box;
+        border: 1px solid rgba(0, 0, 0, .125);
+        border-radius: 20px;
         color: $grey-dark;
-        border-radius : 20px 20px 20px;
-        width : 180px;
-        height : 220px;
+        width : 45%;
+        box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+        display: inline-block;
 
         h5{
-            padding: 3px;
-            margin-top : 5px;
+            padding: .75rem 1.25rem;
+            margin: -10px;
+            background-color: rgba(0, 0, 0, .03);
+            border-bottom: 1px solid rgba(0, 0, 0, .125)
+        }
+
+        h5:first-child {
+            border-radius: 20px 20px 0 0
         }
 
         input[type="radio"]{
@@ -48,17 +58,21 @@
          .label-checkbox:after{
             content : '';
             display : block;
-            width : 24px;
-            height : 24px;
+            width : 26px;
+            height : 26px;
             border-radius : 3px;
             border : 1px solid $grey-base;
             margin-left: 60px;
-            margin-top:20px;
+            margin-top:25px;
          }
 
          input[type="radio"]:checked+.label-checkbox:after{
-            border : 4px solid $grey-dark;
-            background-color: $mc-blue;
+            content : ' ';
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Blue_check.svg/500px-Blue_check.svg.png');
+            background-size: 24px;
+            width:26px;
+            height: 26px;
+            border : 1px solid $mc-blue;
          }
 
 
@@ -71,8 +85,9 @@
 
     
     button {
-        background-color: $mc-blue;
+        background-color: rgba(0, 0, 0, .03);
         padding : 10px;
+        border: 1px solid rgba(0, 0, 0, .125);
 
         .round{
             padding : 5px;
@@ -82,6 +97,10 @@
             margin-left:5px;
         }
         
+    }
+
+    button:hover{
+        background-color: $mc-blue;
     }
 
 
