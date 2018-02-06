@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
+import { HttpService, MethodRequest } from '../../services/http/http.service';
 
 @Component({
     selector: 'sf-test',
@@ -14,7 +15,7 @@ import { Chart } from 'chart.js';
 })
 export class TestComponent implements OnInit {
 
-    constructor() { /**/ }
+    constructor(private http : HttpService) { /**/ }
 
     public ngOnInit(): void {
         let ctx = document.getElementById("test-chart");
@@ -54,5 +55,13 @@ export class TestComponent implements OnInit {
                 }
             }
         });
+
+        let params = {
+            'deviceId' : '123'
+        };
+
+        this.http.request(MethodRequest.GET, '/api/Devices', params).subscribe(
+            () => { /**/ }
+        );
     }
 }
