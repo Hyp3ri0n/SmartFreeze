@@ -20,6 +20,9 @@
     @include media-max("phone-down") {
      width: auto; 
     }
+    @include media-max("little-phone") {
+      display: none;
+    }
   } 
   .search-wrapper {
     background-color: $mc-white;
@@ -32,23 +35,20 @@
       
     }
 
-    // @include media-min("phone-down") {
-    //   margin: auto;
-    // }
-
     .fa-search {
       font-size: 24px;
       padding: 8px;
       color: $grey-dark;
-
-      @include media-max("phone-down") {
+      @include media-max("little-phone") {
         display: none;
       }
     }
 
     input {
-      display: flex;
-      flex: 1;
+      @include media-min("phone-down") {
+        display: flex;
+        flex: 1;
+      }
       font-size: 16px;
       padding: 8px;
       border: none;
