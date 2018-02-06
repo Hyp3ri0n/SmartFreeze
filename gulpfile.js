@@ -165,7 +165,8 @@ gulp.task("libs_rxjs", function () {
 
 gulp.task("libs_agm", function () {
     return gulp.src([
-        '@agm/core/core.umd.js'
+        '@agm/core/core.umd.js',
+        '@agm/snazzy-info-window/snazzy-info-window.umd.js'
     ], {cwd: "node_modules/**"}) /* Glob required here. */
         .pipe(rename({dirname:''}))
         .pipe(gulp.dest("dist/www/assets/vendors/libs/@agm"));

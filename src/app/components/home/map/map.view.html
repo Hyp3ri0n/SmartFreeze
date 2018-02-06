@@ -15,13 +15,23 @@
         [markerDraggable]="m.draggable"
         (dragEnd)="markerDragEnd(m, $event)">
         
-    <agm-info-window>
+    <!-- <agm-info-window>
         <strong>{{ m.site }}</strong>
-        <!-- link vers le site via id -->
+        link vers le site via id
         <a [href]="m.link">
             <strong>{{ m.sensor }}</strong>
         </a>
-    </agm-info-window>
+    </agm-info-window> -->
+    <!-- <agm-snazzy-info-window [closeWhenOthersOpen]="true" [placement]="'bottom'" [maxWidth]="400" #infoWindow>
+        <ng-template>
+            My first Snazzy Info                     
+        </ng-template>
+    </agm-snazzy-info-window> -->
+    <agm-snazzy-info-window [maxWidth]="200" [closeWhenOthersOpen]="true">
+    <ng-template>
+        My first Snazzy Info Window!
+    </ng-template>
+    </agm-snazzy-info-window>
     
     </agm-marker>
     
