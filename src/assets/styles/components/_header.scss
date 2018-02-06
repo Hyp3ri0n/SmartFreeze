@@ -18,9 +18,26 @@
     flex-direction: column;
     justify-content: center;
 
-    input {
+    .wrapper-for-icon {
+      background-color: $mc-white;
+      width: 33%;
       display: flex;
       margin: auto;
+
+      .fa-search {
+        font-size: 24px;
+        padding: 8px;
+        color: $grey-dark;
+      }
+
+      input {
+        display: flex;
+        flex: 1;
+        font-size: 16px;
+        padding: 8px;
+        border: none;
+        color: $grey-dark;
+      }
     }
   }
   .alerts {
