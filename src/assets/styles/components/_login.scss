@@ -1,5 +1,4 @@
 .login{
-    //background-image: url('https://upload.wikimedia.org/wikipedia/commons/8/8e/Ice_road_in_the_Northwest_Territories_-a.jpg');
     height: 100%;
 
     display: flex;
@@ -7,32 +6,30 @@
     justify-content: center;
 
     h1 {
-        color : $grey-light;
+        color: $mc-blue_grey; 
+        font-family: 'Rouge Script', cursive; 
+        font-size: 50px; 
+        font-weight: normal; 
+        line-height: 48px; 
+        margin: 0 0 20px; 
+        text-align: center; 
+        text-shadow: 1px 1px 2px $grey-base ;
     }
 
     h3 {
         color : $grey-light;
         font-style: italic;
-        font-size: 15px;
+        font-size: 17px;
     }
 
-    .loginZone{
-
-    }
-    
-    .formZone {
-    
-    }
-    
     .label {
         background-color : $grey-lighter;
         padding : 10px;
-        margin : 10px;
+        width : 100%;
         background-clip: border-box;
         border: 1px solid rgba(0, 0, 0, .125);
         border-radius: 20px;
         color: $grey-dark;
-        width : 45%;
         box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
         display: inline-block;
 
@@ -53,6 +50,7 @@
 
         .label-checkbox{
             position : relative;
+            padding-bottom: 6px;
          }
 
          .label-checkbox:after{
@@ -62,25 +60,29 @@
             height : 26px;
             border-radius : 3px;
             border : 1px solid $grey-base;
-            margin-left: 60px;
             margin-top:25px;
+            margin-left: 30px;
          }
 
          input[type="radio"]:checked+.label-checkbox:after{
             content : ' ';
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Blue_check.svg/500px-Blue_check.svg.png');
-            background-size: 24px;
-            width:26px;
-            height: 26px;
-            border : 1px solid $mc-blue;
+            background-image: url('../../assets/images/checkmark.png');
+            background-size: 42px;
+            width:35px;
+            height: 34px;
+            border : 0px solid $mc-blue;
+            margin-left:25px;
+            margin-top:21px;
          }
 
-
+         input[type="radio"]:checked+.label-checkbox{
+            padding-bottom: 2px;
+         }
         
     }
 
     .label:hover{
-        background-color : $mc-blue; 
+        box-shadow: 0 .25rem .75rem $mc-blue_grey;
     }
 
     
@@ -88,7 +90,7 @@
         background-color: rgba(0, 0, 0, .03);
         padding : 10px;
         border: 1px solid rgba(0, 0, 0, .125);
-
+        margin-top: 20px;
         .round{
             padding : 5px;
         }

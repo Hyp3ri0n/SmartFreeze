@@ -8,7 +8,7 @@ import { LoginService } from './login/login.service';
 })
 export class AppComponent {
 
-    private splashScreenModel : SplashScreenModel = new SplashScreenModel(1000, () => this.endTimeSplashScreen());
+    private splashScreenModel : SplashScreenModel = new SplashScreenModel(2000, () => this.endTimeSplashScreen());
     private endSplashScreen : boolean = false;
 
     constructor(private loginService : LoginService) { /**/ }
