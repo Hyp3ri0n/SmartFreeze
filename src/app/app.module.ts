@@ -16,6 +16,7 @@ import { SearchComponent } from './components/search/search.component';
 import { AlertsComponent } from './components/alerts/alerts.component';
 import { TestComponent } from './components/test-chart/test.component';
 import { LoginService } from './components/root/login/login.service';
+import { LoginComponent } from './components/root/login/login.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { LoginService } from './components/root/login/login.service';
     AdminComponent,
     SearchComponent,
     AlertsComponent,
-    TestComponent
+    TestComponent,
+    LoginComponent
   ],
   schemas:  [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]

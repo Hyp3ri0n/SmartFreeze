@@ -1,0 +1,37 @@
+.login{
+    background-color: $grey-dark;
+    height: 100%;
+
+    h1 {
+        color : $grey-light;
+    }
+
+    h3 {
+        color : $grey-lighter;
+        font-style: italic;
+        font-size: 15px;
+    }
+
+    .loginZone{
+
+    }
+    
+    .formZone {
+    
+    }
+    
+    .label {
+        background-color : $grey-lighter;
+        padding : 5px;
+        border: $grey-base;
+        color: $grey-base;
+
+    
+    }
+    
+    .submitButton{
+        background-color : $grey-light;
+        
+    }
+}
+
