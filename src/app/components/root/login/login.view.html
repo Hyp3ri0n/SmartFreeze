@@ -1,5 +1,5 @@
-<div class="login">
-    <div class="container text-center loginZone">
+<div class="login container">
+    <div class=" text-center loginZone">
 
         <h1> Bienvenue sur SmartFreeze </h1>
 
@@ -7,17 +7,39 @@
 
         <form class="formZone">
 
-            <label class="label">
-                <input type="radio" name="appType" id="refuge" checked> Refuges
-            </label>
+            <div class="row">
+                <div class="label col-md-3">
+                    <input type="radio" name="appType" id="refuge" checked>
+                    <label class="label-checkbox" for="refuge">
+                        <img style="height:90px" src="https://image.flaticon.com/icons/svg/189/189078.svg" />
+                        <br/>
+                        <h5>SmartRefuges</h5>
+                    </label>
+                </div>
 
-            <label class="label">
-                <input type="radio" name="appType" id="agri"> SmartAgriculture
-            </label>
 
-            <button type="submit" class="submitButton">GO</button>
+                <div class="label col-md-3">
+                    <input type="radio" name="appType" id="agri">
+                    <label class="label-checkbox" for="agri">
+                        <img style="height:100px" src="https://image.flaticon.com/icons/svg/713/713359.svg" />
+                        <h5 style="margin-top:-7px;">SmartAgriculture</h5>
+                    </label>
+                </div>
+
+            </div>
+
+
+
+            <button type="submit" class="btn btn-1">
+                <span class="txt">Let's go</span>
+                <span class="round">
+                    <i class="fa fa-chevron-right"></i>
+                </span>
+            </button>
+
+
 
         </form>
-        
+
     </div>
 </div>

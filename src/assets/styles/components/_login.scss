@@ -1,5 +1,5 @@
 .login{
-    background-color: $grey-dark;
+    //background-color: $grey-dark;
     height: 100%;
 
     h1 {
@@ -7,7 +7,7 @@
     }
 
     h3 {
-        color : $grey-lighter;
+        color : $grey-light;
         font-style: italic;
         font-size: 15px;
     }
@@ -22,16 +22,71 @@
     
     .label {
         background-color : $grey-lighter;
-        padding : 5px;
+        padding : 10px;
+        margin : 10px;
         border: $grey-base;
-        color: $grey-base;
+        border-style: solid;
+        border-width: 1px;
+        color: $grey-dark;
+        border-radius : 20px 20px 20px;
+        width : 180px;
+        height : 220px;
 
-    
-    }
-    
-    .submitButton{
-        background-color : $grey-light;
+        h5{
+            padding: 3px;
+            margin-top : 5px;
+        }
+
+        input[type="radio"]{
+            display : none;
+         }
+
+        .label-checkbox{
+            position : relative;
+         }
+
+         .label-checkbox:after{
+            content : '';
+            display : block;
+            width : 24px;
+            height : 24px;
+            border-radius : 3px;
+            border : 1px solid $grey-base;
+            margin-left: 60px;
+            margin-top:20px;
+         }
+
+         input[type="radio"]:checked+.label-checkbox:after{
+            border : 4px solid $grey-dark;
+            background-color: $mc-blue;
+         }
+
+
         
     }
+
+    .label:hover{
+        background-color : $mc-blue; 
+    }
+
+    
+    button {
+        background-color: $mc-blue;
+        padding : 10px;
+
+        .round{
+            padding : 5px;
+        }
+
+        .txt{
+            margin-left:5px;
+        }
+        
+    }
+
+
 }
+
+
+
 
