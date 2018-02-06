@@ -18,6 +18,8 @@ import { SiteComponent } from './components/site/site.component';
 import { SensorComponent } from './components/sensor/sensor.component';
 import { AgmCoreModule } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
+import { LoginService } from './components/root/login/login.service';
+import { LoginComponent } from './components/root/login/login.component';
 
 
 @NgModule({
@@ -27,7 +29,10 @@ import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
     AgmCoreModule.forRoot({apiKey: 'AIzaSyCJVLgZMjujdJhvWfcV12kxSZu01ZL8MHw'}),
     AgmSnazzyInfoWindowModule
   ],
-  providers: [{provide: APP_BASE_HREF, useValue: '#'}],
+  providers: [
+    {provide: APP_BASE_HREF, useValue: '#'},
+    LoginService
+  ],
   declarations: [
     AppComponent,
     HeaderComponent,
@@ -41,7 +46,8 @@ import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
     AlertsComponent,
     TestComponent,
     SiteComponent,
-    SensorComponent
+    SensorComponent,
+    LoginComponent
   ],
   schemas:  [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]
