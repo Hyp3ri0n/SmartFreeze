@@ -1,3 +1,10 @@
 .content {
   background-color: $grey-lighter;
 }
+
+.main {
+  position: relative;
+  @include media-max("phone-down") {
+    flex-direction: column-reverse;
+  }
+}

@@ -1,4 +1,8 @@
 .footer {
     height: $size-footer;
     background-color: $app-primary;
+
+    @include media-max("phone-down") {
+        display: none;
+    }
 }

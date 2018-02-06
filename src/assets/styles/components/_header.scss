@@ -3,6 +3,11 @@
     background-color: $grey-dark;
     display: flex;
     flex-flow: row nowrap;
+
+    @include media-max("phone-down") {
+      width: 100%;
+     }
+   
   
   .logo {
     display: flex;
@@ -11,40 +16,56 @@
     width: $size-sidebar;
     color: $app-primary;
     padding: 0 5px;
+
+    @include media-max("phone-down") {
+     width: auto; 
+    }
   } 
   .search-wrapper {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    background-color: $mc-white;
+    position: relative;
+    margin: auto;
 
-    .wrapper-for-icon {
-      background-color: $mc-white;
-      width: 33%;
+    @include media-min("phone-down") {
       display: flex;
-      margin: auto;
+      width: 33%;
+      
+    }
 
-      .fa-search {
-        font-size: 24px;
-        padding: 8px;
-        color: $grey-dark;
-      }
+    // @include media-min("phone-down") {
+    //   margin: auto;
+    // }
 
-      input {
-        display: flex;
-        flex: 1;
-        font-size: 16px;
-        padding: 8px;
-        border: none;
-        color: $grey-dark;
+    .fa-search {
+      font-size: 24px;
+      padding: 8px;
+      color: $grey-dark;
+
+      @include media-max("phone-down") {
+        display: none;
       }
+    }
+
+    input {
+      display: flex;
+      flex: 1;
+      font-size: 16px;
+      padding: 8px;
+      border: none;
+      color: $grey-dark;
     }
   }
   .alerts {
+    margin: auto 0;
+    padding-right: 5px;
     font-size: 24px;
-    position: absolute;
-    right: 20px;
-    top: 10px;
+    position: relative;
     color: $mc-yellow;
+
+    @include media-min("phone-down") {
+      position: absolute;
+      right: 20px;
+      top: 10px;
+    }
   }
 }

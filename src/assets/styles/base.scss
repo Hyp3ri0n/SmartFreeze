@@ -5,6 +5,7 @@
 /********************************************/
 
 // App variables
+@import "mixins";
 @import "variables";			// Insert our variables here to force the change of brand-primary in bootstrap
 $primary: $app-primary;
 //--------------------------------
