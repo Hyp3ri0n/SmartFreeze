@@ -15,6 +15,8 @@ import { AdminComponent } from './components/admin/admin.component';
 import { SearchComponent } from './components/search/search.component';
 import { AlertsComponent } from './components/alerts/alerts.component';
 import { TestComponent } from './components/test-chart/test.component';
+import { SiteComponent } from './components/site/site.component';
+import { SensorComponent } from './components/sensor/sensor.component';
 
 
 @NgModule({
@@ -35,7 +37,9 @@ import { TestComponent } from './components/test-chart/test.component';
     AdminComponent,
     SearchComponent,
     AlertsComponent,
-    TestComponent
+    TestComponent,
+    SiteComponent,
+    SensorComponent
   ],
   schemas:  [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]
