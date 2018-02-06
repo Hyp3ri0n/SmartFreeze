@@ -132,6 +132,7 @@ gulp.task("libs_js", ["libs_ng", "libs_rxjs", "libs_agm"], function () {
         'systemjs/dist/system.src.js',
         'reflect-metadata/Reflect.js',
         'zone.js/dist/zone.min.js',
+        'tslib/tslib.js',
         'hammerjs/hammer.min.js',
         'bootstrap/dist/js/bootstrap.bundle.min.js',
         'chart.js/dist/Chart.bundle.min.js',
@@ -144,6 +145,7 @@ gulp.task("libs_js", ["libs_ng", "libs_rxjs", "libs_agm"], function () {
 gulp.task("libs_ng", function () {
     return gulp.src([
         '@angular/common/bundles/common.umd.min.js',
+        '@angular/common/bundles/common-http.umd.min.js',
         '@angular/compiler/bundles/compiler.umd.min.js',
         '@angular/core/bundles/core.umd.min.js',
         '@angular/forms/bundles/forms.umd.min.js',
