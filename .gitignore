@@ -2,3 +2,4 @@
 node_modules/
 dist/
 src/assets/styles/bootstrap/
+.DS_Store
