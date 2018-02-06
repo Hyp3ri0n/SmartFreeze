@@ -15,31 +15,25 @@
         [markerDraggable]="m.draggable"
         (dragEnd)="markerDragEnd(m, $event)">
         
-    <!-- <agm-info-window>
-        <strong>{{ m.site }}</strong>
-        link vers le site via id
-        <a [href]="m.link">
-            <strong>{{ m.sensor }}</strong>
-        </a>
-    </agm-info-window> -->
-    <!-- <agm-snazzy-info-window [closeWhenOthersOpen]="true" [placement]="'bottom'" [maxWidth]="400" #infoWindow>
-        <ng-template>
-            My first Snazzy Info                     
-        </ng-template>
-    </agm-snazzy-info-window> -->
-    <agm-snazzy-info-window [maxWidth]="200" [closeWhenOthersOpen]="true">
-    <ng-template>
-        My first Snazzy Info Window!
-    </ng-template>
-    </agm-snazzy-info-window>
+        <agm-snazzy-info-window [isOpen]="true" #infoWindow>
+            <ng-template>
+                    <div>{{ m.site }}</div>
+                    <!-- link vers le site via id m.id-->
+                    <a [routerLink]="'/site'">
+                        {{ m.sensor }}
+                    </a>
+            </ng-template>
+        </agm-snazzy-info-window>
     
-    </agm-marker>
-    
-    <agm-circle [latitude]="lat" [longitude]="lng" 
+        <agm-circle [latitude]="lat" [longitude]="lng" 
         [radius]="5000"
         [fillColor]="'red'"
         [circleDraggable]="false"
         [editable]="false">
     </agm-circle>
+
+    </agm-marker>
+    
+    
 
 </agm-map>

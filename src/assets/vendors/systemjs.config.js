@@ -21,6 +21,7 @@
             'rxjs': 'npm:rxjs',
             '@agm/core': 'npm:@agm/core.umd.js',
             '@agm/snazzy-info-window': 'npm:@agm/snazzy-info-window.umd.js',
+            'snazzy-info-window':'npm:snazzy-info-window.min.js',
             'chart.js': 'npm:Chart.bundle.min.js'
         },
         // packages tells the System loader how to load when no filename and/or no extension

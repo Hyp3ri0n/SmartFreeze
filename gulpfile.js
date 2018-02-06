@@ -134,7 +134,8 @@ gulp.task("libs_js", ["libs_ng", "libs_rxjs", "libs_agm"], function () {
         'zone.js/dist/zone.min.js',
         'hammerjs/hammer.min.js',
         'bootstrap/dist/js/bootstrap.bundle.min.js',
-        'chart.js/dist/Chart.bundle.min.js'
+        'chart.js/dist/Chart.bundle.min.js',
+        'snazzy-info-window/dist/snazzy-info-window.min.js'
     ], {cwd: "node_modules/**"}) /* Glob required here. */
         .pipe(rename({dirname:''}))
         .pipe(gulp.dest("dist/www/assets/vendors/libs"));
@@ -177,7 +178,8 @@ gulp.task("libs_agm", function () {
  */
 gulp.task("libs_css", function () {
     return gulp.src([
-        'font-awesome/css/**/*.min.css'
+        'font-awesome/css/**/*.min.css',
+        'snazzy-info-window/dist/snazzy-info-window.min.css'
     ], {cwd: "node_modules/**"}) /* Glob required here. */
         .pipe(rename({dirname:''}))
         .pipe(gulp.dest("dist/www/assets/styles/"));
