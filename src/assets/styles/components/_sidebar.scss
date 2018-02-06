@@ -5,39 +5,36 @@
     @include media-max("phone-down") {
       width: 100%;
       flex-direction: row;
-      position: fixed;
-      bottom: 0;
-      left:0;
-      z-index: 2;
+      flex:none;
     }
   
-  .side-wrapper {
-    padding: 5px;
-    text-align: center;
-    overflow-wrap: break-word;
-    font-size: 14px;
-    margin: 15px 0 20px;
+    .side-wrapper {
+      padding: 5px;
+      text-align: center;
+      overflow-wrap: break-word;
+      font-size: 14px;
+      margin: 15px 0 20px;
 
-    @include media-max("phone-down") {
-      margin: auto;
+      @include media-max("phone-down") {
+        margin: auto;
+      }
+
+      .side-icon {
+        font-size: 36px;
+      }
+
+      .side-text {
+        font-size: 18px;
+        display: none;
+      }
     }
 
-    .side-icon {
-      font-size: 36px;
+    &.sidebar-deployed {
+      width: $size-sidebar-deployed;
+      .side-text {
+        display: block;
+      }
     }
-
-    .side-text {
-      font-size: 18px;
-      display: none;
-    }
-  }
-
-  &.sidebar-deployed {
-    width: $size-sidebar-deployed;
-    .side-text {
-      display: block;
-    }
-  }
 }
 
 //SWITCH ENV

@@ -1,16 +1,15 @@
 home {
-    display: flex;
-    flex: 1;
-    .full-height {
-      display: flex;
-      flex: 1;
-      .row {
-        flex: 1;
-        & > div {
-          flex: 1;
-        }
-      }
-    }
+  @extend .fill;    
+}
+
+.map-wrapper {
+  @include media-max("phone-down") {
+    padding-left: 0;
+  }
+}
+
+.home-summary {
+  overflow: auto;
 }
 
 agm-map {
