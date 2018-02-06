@@ -5,6 +5,7 @@
 /********************************************/
 
 // App variables
+@import "mixins";
 @import "variables";			// Insert our variables here to force the change of brand-primary in bootstrap
 $primary: $app-primary;
 //--------------------------------
@@ -170,5 +171,8 @@ body {
 @import "components/header";
 @import "components/sidebar";
 @import "components/splashScreen";
+@import "components/login";
 /* home */
 @import "components/home";
+@import "components/search";
+@import "components/site";

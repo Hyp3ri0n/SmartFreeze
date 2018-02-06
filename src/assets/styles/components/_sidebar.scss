@@ -1,14 +1,26 @@
 .sidebar {
     width: $size-sidebar;
     background-color: $grey-dark;
+
+    @include media-max("phone-down") {
+      width: 100%;
+      flex-direction: row;
+      position: fixed;
+      bottom: 0;
+      left:0;
+      z-index: 2;
+    }
   
   .side-wrapper {
     padding: 5px;
     text-align: center;
     overflow-wrap: break-word;
     font-size: 14px;
-    margin-top: 15px;
-    margin-bottom: 20px;
+    margin: 15px 0 20px;
+
+    @include media-max("phone-down") {
+      margin: auto;
+    }
 
     .side-icon {
       font-size: 36px;
@@ -33,6 +45,10 @@
   display: flex;
   margin-top: auto;
   height: 70px;
+
+  @include media-max("phone-down") {
+    height: 60px;
+  }
 }
 
 .switch-label {
@@ -43,6 +59,10 @@
   font-weight: 500;
   text-align: left;
   margin: 10px 10px 20px 10px;
+
+  @include media-max("phone-down") {
+    margin: 0 10px 20px;
+  }
 
   .toggle--on {
     display: none;

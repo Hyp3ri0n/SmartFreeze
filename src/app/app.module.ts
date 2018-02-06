@@ -20,7 +20,8 @@ import { SensorComponent } from './components/sensor/sensor.component';
 import { AgmCoreModule } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { HttpService } from './services/http/http.service';
-
+import { LoginService } from './components/root/login/login.service';
+import { LoginComponent } from './components/root/login/login.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { HttpService } from './services/http/http.service';
   ],
   providers: [
     {provide: APP_BASE_HREF, useValue: '#'},
-    HttpService
+    HttpService,
+    LoginService
   ],
   declarations: [
     AppComponent,
@@ -48,7 +50,8 @@ import { HttpService } from './services/http/http.service';
     AlertsComponent,
     TestComponent,
     SiteComponent,
-    SensorComponent
+    SensorComponent,
+    LoginComponent
   ],
   schemas:  [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]

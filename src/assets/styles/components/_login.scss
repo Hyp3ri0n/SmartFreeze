@@ -1,0 +1,113 @@
+.login{
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    h1 {
+        color: $mc-blue_grey; 
+        font-family: 'Rouge Script', cursive; 
+        font-size: 50px; 
+        font-weight: normal; 
+        line-height: 48px; 
+        margin: 0 0 20px; 
+        text-align: center; 
+        text-shadow: 1px 1px 2px $grey-base ;
+    }
+
+    h3 {
+        color : $grey-light;
+        font-style: italic;
+        font-size: 17px;
+    }
+
+    .label {
+        background-color : $grey-lighter;
+        padding : 10px;
+        width : 100%;
+        background-clip: border-box;
+        border: 1px solid rgba(0, 0, 0, .125);
+        border-radius: 20px;
+        color: $grey-dark;
+        box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+        display: inline-block;
+
+        h5{
+            padding: .75rem 1.25rem;
+            margin: -10px;
+            background-color: rgba(0, 0, 0, .03);
+            border-bottom: 1px solid rgba(0, 0, 0, .125)
+        }
+
+        h5:first-child {
+            border-radius: 20px 20px 0 0
+        }
+
+        input[type="radio"]{
+            display : none;
+         }
+
+        .label-checkbox{
+            position : relative;
+            padding-bottom: 6px;
+         }
+
+         .label-checkbox:after{
+            content : '';
+            display : block;
+            width : 26px;
+            height : 26px;
+            border-radius : 3px;
+            border : 1px solid $grey-base;
+            margin-top:25px;
+            margin-left: 30px;
+         }
+
+         input[type="radio"]:checked+.label-checkbox:after{
+            content : ' ';
+            background-image: url('../../assets/images/checkmark.png');
+            background-size: 42px;
+            width:35px;
+            height: 34px;
+            border : 0px solid $mc-blue;
+            margin-left:25px;
+            margin-top:21px;
+         }
+
+         input[type="radio"]:checked+.label-checkbox{
+            padding-bottom: 2px;
+         }
+        
+    }
+
+    .label:hover{
+        box-shadow: 0 .25rem .75rem $mc-blue_grey;
+    }
+
+    
+    button {
+        background-color: rgba(0, 0, 0, .03);
+        padding : 10px;
+        border: 1px solid rgba(0, 0, 0, .125);
+        margin-top: 20px;
+        .round{
+            padding : 5px;
+        }
+
+        .txt{
+            margin-left:5px;
+        }
+        
+    }
+
+    button:hover{
+        background-color: $mc-blue;
+    }
+
+
+}
+
+
+
+
