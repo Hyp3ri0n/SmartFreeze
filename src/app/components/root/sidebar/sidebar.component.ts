@@ -8,5 +8,12 @@ import { LoginService } from '../login/login.service';
 
 export class SidebarComponent {
 
-    constructor(private login : LoginService) { /**/ }
+    private activeOffset:number;
+
+    constructor(private login : LoginService) {
+        this.activeOffset = 0;
+     }
+    private go_clicked(offset) : void {
+        this.activeOffset = offset;
+    }
 }
