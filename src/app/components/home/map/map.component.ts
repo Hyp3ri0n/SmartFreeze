@@ -32,13 +32,13 @@ export class MapComponent {
         // console.log(`clicked the marker: ${label || index}`);
     }
 
-    // public mapClicked($event: any) : void {
-    //     this.markers.push({
-    //         lat: $event.coords.lat,
-    //         lng: $event.coords.lng,
-    //         site: 'site',
-    //         sensor: 'sensor',
-    //         link: '#'
-    //     });
-    // }
+    public mapClicked($event: any) : void {
+        // this.markers.push({
+        //     lat: $event.coords.lat,
+        //     lng: $event.coords.lng,
+        //     site: 'site',
+        //     sensor: 'sensor',
+        //     link: '#'
+        // });
+    }
 }

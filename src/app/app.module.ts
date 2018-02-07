@@ -26,6 +26,7 @@ import { AdminSensorFormComponent } from './components/admin/sensor/form.compone
 import { AdminSensorListComponent } from './components/admin/sensor/list.component';
 import { AdminSiteFormComponent } from './components/admin/site/form.component';
 import { AdminSiteListComponent } from './components/admin/site/list.component';
+import { ClickOutsideDirective } from './directives/clickOutside.directive';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { AdminSiteListComponent } from './components/admin/site/list.component';
     AdminSensorFormComponent,
     AdminSensorListComponent,
     AdminSiteFormComponent,
-    AdminSiteListComponent
+    AdminSiteListComponent,
+    ClickOutsideDirective
   ],
   schemas:  [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]

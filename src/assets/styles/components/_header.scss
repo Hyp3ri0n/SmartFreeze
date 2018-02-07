@@ -28,11 +28,17 @@
     background-color: $mc-white;
     position: relative;
     margin: auto;
+    transition: width 1s;
 
     @include media-min("phone-down") {
       display: flex;
       width: 33%;
-      
+      &:hover {
+        width: 50%;
+      }
+      &:focus {
+        width: 50%;
+      }
     }
 
     .fa-search {
@@ -49,6 +55,8 @@
         display: flex;
         flex: 1;
       }
+
+      
       font-size: 16px;
       padding: 8px;
       border: none;
@@ -61,11 +69,89 @@
     font-size: 24px;
     position: relative;
     color: $mc-yellow;
+    background: none;
+    border: none;
 
     @include media-min("phone-down") {
       position: absolute;
       right: 20px;
       top: 10px;
+    }
+  }
+
+  .alerts-pane {
+    display: none;
+    list-style: none;
+    padding: 5px 10px;
+    border: 1px solid $grey-dark;
+    z-index: 3;
+    background-color: $mc-white;
+    position: absolute;
+    right: 5px;
+    top: 55px;
+    @include media-max("phone-down") {
+      right: 0px;
+    }
+    &:after {
+      bottom: 100%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      border-color: $grey-dark;
+      border-bottom-color: $mc-white;
+      border-width: 7px;
+      right: 24px;
+      @include media-max("phone-down") {
+        right: 10px;
+      }
+    }
+
+    li {
+      font-size: 16px;
+      padding: 5px;
+      border-bottom: 1px solid $grey-base;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      span {
+        margin: auto 0;
+      }
+
+      .alert-text {
+        flex: 1;
+        display: flex;
+        max-width: 300px;
+
+        a {
+          margin: 0 5px;
+        }
+      }
+
+      .alert-timestamp {
+        padding-left: 5px;
+        color: $grey-base;
+        font-size: 12px;
+        align-self: flex-end;
+        display: flex;
+        flex: none;
+      }
+
+      &.gravity-1 {
+        color: $gravity1;
+      }
+      &.gravity-2 {
+        color: $gravity2;
+      }
+      &.gravity-3 {
+        color: $gravity3;
+      }
+      &:last-of-type {
+        border-bottom: none;
+      }
     }
   }
 }
