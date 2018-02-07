@@ -29,6 +29,13 @@
       }
     }
 
+    .side-space {
+      flex : 1 1 0;
+      @include media-max("phone-down") {
+        display: none;
+      }
+    }
+
     &.sidebar-deployed {
       width: $size-sidebar-deployed;
       .side-text {

@@ -23,9 +23,16 @@
         Administration
     </div>
 </a>
-<div class="switch-env">
-    <input type="checkbox" id="env" name="env" class="switch-input">
+<div class="side-space"></div>
+<a routerLink="#" class="side-wrapper" (click)="login.reset()" title="Déconnexion">
+    <i class="side-icon fa fa-sign-out"></i>
+    <div class="side-text">
+        Déconnexion
+    </div>
+</a>
+<!--<div class="switch-env">
+    <input type="checkbox" id="env" name="env" class="switch-input" (change)="login.switch()">
     <label for="env" class="switch-label">
         <span class="toggle toggle--on">Agri</span><span class="toggle toggle--off">Refuge</span>
     </label>
-</div>
+</div>-->
