@@ -4,9 +4,9 @@
     display: flex;
     flex-flow: row nowrap;
 
-    @include media-max("phone-down") {
+    @include media-breakpoint-down(md) {
       width: 100%;
-     }
+    }
    
   
   .logo {
@@ -17,10 +17,10 @@
     color: $app-primary;
     padding: 0 5px;
 
-    @include media-max("phone-down") {
+    @include media-breakpoint-down(md) {
      width: auto; 
     }
-    @include media-max("little-phone") {
+    @include media-breakpoint-down(sm) {
       display: none;
     }
   } 
@@ -30,7 +30,7 @@
     margin: auto;
     transition: width 1s;
 
-    @include media-min("phone-down") {
+    @include media-breakpoint-up(sm) {
       display: flex;
       width: 33%;
       &:hover {
@@ -45,13 +45,13 @@
       font-size: 24px;
       padding: 8px;
       color: $grey-dark;
-      @include media-max("little-phone") {
+      @include media-breakpoint-down(sm) {
         display: none;
       }
     }
 
     input {
-      @include media-min("phone-down") {
+      @include media-breakpoint-up(sm) {
         display: flex;
         flex: 1;
       }
@@ -72,7 +72,11 @@
     background: none;
     border: none;
 
-    @include media-min("phone-down") {
+    &:focus {
+      outline: none;
+    }
+
+    @include media-breakpoint-up(sm) {
       position: absolute;
       right: 20px;
       top: 10px;
@@ -89,7 +93,7 @@
     position: absolute;
     right: 5px;
     top: 55px;
-    @include media-max("phone-down") {
+    @include media-breakpoint-down(md) {
       right: 0px;
     }
     &:after {
@@ -104,7 +108,7 @@
       border-bottom-color: $mc-white;
       border-width: 7px;
       right: 24px;
-      @include media-max("phone-down") {
+      @include media-breakpoint-down(md) {
         right: 10px;
       }
     }

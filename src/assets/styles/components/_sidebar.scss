@@ -2,7 +2,7 @@
     width: $size-sidebar;
     background-color: $grey-dark;
 
-    @include media-max("phone-down") {
+    @include media-breakpoint-down(md) {
       width: 100%;
       flex-direction: row;
       flex:none;
@@ -15,7 +15,7 @@
       font-size: 14px;
       margin: 15px 0 20px;
 
-      @include media-max("phone-down") {
+      @include media-breakpoint-down(md) {
         margin: auto;
       }
 
@@ -31,7 +31,7 @@
 
     .side-space {
       flex : 1 1 0;
-      @include media-max("phone-down") {
+      @include media-breakpoint-down(md) {
         display: none;
       }
     }
@@ -50,7 +50,7 @@
   margin-top: auto;
   height: 70px;
 
-  @include media-max("phone-down") {
+  @include media-breakpoint-down(md) {
     height: 60px;
   }
 }
@@ -64,7 +64,7 @@
   text-align: left;
   margin: 10px 10px 20px 10px;
 
-  @include media-max("phone-down") {
+  @include media-breakpoint-down(md) {
     margin: 0 10px 20px;
   }
 
@@ -100,16 +100,16 @@
     left: 1px;
     width: 34px;
     height: 14px;
-    background-color: #9E9E9E;
+    background-color: $grey-base;
     border-radius: 8px;
   }
   &:after {
     left: 0;
     width: 20px;
     height: 20px;
-    background-color: #FAFAFA;
+    background-color: $mc-white;
     border-radius: 50%;
-    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.14), 0 2px 2px 0 rgba(0, 0, 0, 0.098), 0 1px 5px 0 rgba(0, 0, 0, 0.084);
+    box-shadow: 0 3px 1px -2px $black-transparency-low, 0 2px 2px 0 $black-transparency-low, 0 1px 5px 0 $black-transparency-low;
   }
 }
 
@@ -118,10 +118,10 @@
 }
 
 .switch-input:checked + .switch-label:before {
-  background-color: #A5D6A7;
+  background-color: $mc-white;
 }
 .switch-input:checked + .switch-label:after {
-  background-color: #4CAF50;
+  background-color: $app-primary;
   -ms-transform: translate(80%, -50%);
   -webkit-transform: translate(80%, -50%);
   transform: translate(80%, -50%);

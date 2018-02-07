@@ -35,7 +35,6 @@ $grey-base      :   rgb(136, 136, 136);
 $grey-light     :   rgb(210, 210, 210);
 $grey-lighter   :   rgb(250, 250, 250);
 
-
 // SIZES
 $size-header  : 3.5rem;
 $size-sidebar : 4rem;
@@ -46,3 +45,7 @@ $size-footer  : 1.5rem;
 $gravity1: rgb(244, 67, 54);
 $gravity2: rgb(255, 87, 34);
 $gravity3: rgb(255, 152, 0);
+
+//TRANSPARENCY
+$black-transparency     :   rgba(0, 0, 0, .125);
+$black-transparency-low :     rgba(0, 0, 0, .03);

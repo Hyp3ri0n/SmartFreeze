@@ -27,17 +27,17 @@
         padding : 10px;
         width : 100%;
         background-clip: border-box;
-        border: 1px solid rgba(0, 0, 0, .125);
+        border: 1px solid $black-transparency;
         border-radius: 20px;
         color: $grey-dark;
-        box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+        box-shadow: 0 .25rem .75rem $black-transparency-low;
         display: inline-block;
 
         h5{
             padding: .75rem 1.25rem;
             margin: -10px;
-            background-color: rgba(0, 0, 0, .03);
-            border-bottom: 1px solid rgba(0, 0, 0, .125)
+            background-color: $black-transparency-low;
+            border-bottom: 1px solid $black-transparency
         }
 
         h5:first-child {
@@ -87,9 +87,9 @@
 
     
     button {
-        background-color: rgba(0, 0, 0, .03);
+        background-color: $black-transparency-low;
         padding : 10px;
-        border: 1px solid rgba(0, 0, 0, .125);
+        border: 1px solid $black-transparency;
         margin-top: 20px;
         .round{
             padding : 5px;

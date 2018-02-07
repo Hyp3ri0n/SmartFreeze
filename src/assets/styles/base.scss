@@ -5,7 +5,6 @@
 /********************************************/
 
 // App variables
-@import "mixins";
 @import "variables";			// Insert our variables here to force the change of brand-primary in bootstrap
 $primary: $app-primary;
 //--------------------------------
@@ -119,6 +118,11 @@ body {
 .flex-container-row {
 	display: flex;
 	flex-direction: row;
+}
+
+.no-padding-x {
+	padding-right: 0!important;
+	padding-left: 0!important;
 }
 
 .no-padding-right {
