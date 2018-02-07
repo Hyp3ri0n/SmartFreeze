@@ -3,10 +3,28 @@
         <div class="col-sm-12 col-md-12 col-lg-12">
             <h1>Admin</h1>
         </div>
-        <a routerLink="site/form" class="col-sm-6 col-md-6 col-lg-6">Form Site</a>
-        <a routerLink="site/list" class="col-sm-6 col-md-6 col-lg-6">List Site</a>
-        <a routerLink="sensor/form" class="col-sm-6 col-md-6 col-lg-6">Form Sensor</a>
-        <a routerLink="sensor/list" class="col-sm-6 col-md-6 col-lg-6">List Sensor</a>
+
+     <a routerLink="site/form" class="col-sm-6 col-md-6 col-lg-6">Form Site</a>
+    <a routerLink="site/list" class="col-sm-6 col-md-6 col-lg-6">List Site</a>
+    <a routerLink="sensor/form" class="col-sm-6 col-md-6 col-lg-6">Form Sensor</a>
+    <a routerLink="sensor/list" class="col-sm-6 col-md-6 col-lg-6">List Sensor</a>
+
+
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                Site
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="#">Site1</a></li>
+                <li><a href="#">Site2</a></li>
+                <li><a href="#">Site3</a></li>
+            </ul>
+        </div>
+
+
+
+
     </div>
     <router-outlet></router-outlet>
 </div>

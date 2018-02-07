@@ -1,7 +1,95 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12">
-            Admin Form Site
+<div class="container">
+
+
+    <form>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-info-circle"></i>
+                ID
+            </span>
+            <input id="id" type="text" class="form-control" name="ID" placeholder="ID" disabled>
         </div>
-    </div>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-tag"></i>
+                Nom
+            </span>
+            <input id="name" type="text" class="form-control" name="Nom" placeholder="Nom">
+        </div>
+
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-globe"></i>
+                Departement
+            </span>
+            <input id="department" type="text" class="form-control" name="Departement" placeholder="Departement">
+
+            <span class="input-group-addon" style="margin-left:10px;">
+                <i class="fa fa-home"></i>
+                Region
+            </span>
+            <input id="region" type="text" class="form-control" name="Region" placeholder="Region">
+        </div>
+
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-file"></i>
+                Description
+            </span>
+            <textarea id="description" rows="3" class="form-control"></textarea>
+        </div>
+
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-chart-area"></i>
+                Surface
+            </span>
+            <input id="surfaceArea" type="text" class="form-control" name="Surface" placeholder="Surface">
+        </div>
+
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-image"></i>
+                Image
+            </span>
+            <input id="image" type="text" class="form-control" name="Image" placeholder="Image">
+        </div>
+
+        <div class="input-group">
+
+            <span class="input-group-addon">
+                <i class="fa fa-map-marker"></i>
+                Zones <br/>
+                <i class="plusicon fa fa-plus-circle"></i>
+            </span>
+            <select multiple class="form-control" id="zones">
+                <option selected>
+                    Zones
+                </option>
+                <option value="1">Zone1</option>
+                <option value="2">Zone2</option>
+                <option value="3">Zone3</option>
+                <option value="3">Zone4</option>
+                <option value="3">Zone5</option>
+            </select>
+        </div>
+
+        <div class="row">
+            <div class="col zoneCheckBox">
+
+                <i class="fa fa-trash"></i>
+                <span> Supprimer</span>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+        <div class="btn-form-admin">
+            <button type="button" class="btn btn-primary">Enregistrer les modifications <i class="fa fa-floppy-o"></i></button>
+        </div>
+    </form>
+
+
+
 </div>

@@ -1,7 +1,74 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12">
-            Admin Form Sensor
-        </div>
-    </div>
+<div class="container">
+
+   
+        <form>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-info-circle"></i>
+                    ID
+                </span>
+                <input id="id" type="text" class="form-control" name="ID" placeholder="ID" disabled>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-tag"></i>
+                    Nom
+                </span>
+                <input id="name" type="text" class="form-control" name="Nom" placeholder="Nom">
+            </div>
+
+            <div class="input-group">
+
+                <span class="input-group-addon">
+                    <i class="fa fa-map-marker"></i>
+                    Site
+                </span>
+                <select class="form-control" id="site">
+                    <option selected>
+                        Site
+                    </option>
+                    <option value="1">Site1 machin bidule</option>
+                    <option value="2">Site2</option>
+                    <option value="3">Site3</option>
+                </select>
+
+                <i class="plusicon fa fa-plus-circle"></i>
+            </div>
+
+
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-commenting"></i>
+                    Derniere communication
+                </span>
+                <input id="lastCommunication" type="text" class="form-control" name="derniere communication" placeholder="derniere communication" disabled>
+            </div>
+
+            <div class="row">
+
+                <div class="col zoneCheckBox">
+                    <i class="fa fa-heart"></i>
+                    <span>Favoris</span>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="col zoneCheckBox">
+
+                    <i class="fa fa-trash"></i>
+                    <span> Supprimer</span>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="btn-form-admin">
+                <button type="button" class="btn btn-primary">Enregistrer les modifications <i class="fa fa-floppy-o"></i></button>
+            </div>
+        </form>
+
+
+    
 </div>
