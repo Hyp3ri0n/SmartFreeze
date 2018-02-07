@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoginService } from '../login/login.service';
 
 @Component({
     selector: 'app-sidebar',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
 
 export class SidebarComponent {
 
-    constructor() { /**/ }
+    constructor(private login : LoginService) { /**/ }
 }
