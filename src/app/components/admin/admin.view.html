@@ -1,53 +1,34 @@
-<div class="adminZone">
+<div class="container adminZone">
 
-    <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-            Sites
-            <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu">
-            <li>
-                <a routerLink="site/form">Site1</a>
-            </li>
-            <li>
-                <a routerLink="site/form">Site2</a>
-            </li>
-            <li>
-                <a routerLink="site/form">Site3</a>
-            </li>
-        </ul>
+    <div class="row">
+
+        <div class="col">
+            <div>
+                <input [(ngModel)]="querySite" (keyup)="filterSites()" class="form-control" type="text" placeholder="Recherche d'un site">
+            </div>
+            <div class="form-control autocompleteList" *ngIf="filteredListSites.length > 0">
+                <div *ngFor="let item of filteredListSites">
+                    <a routerLink="sensor/form" (click)="selectSite(item)">{{item}}</a>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="col">
+            <div>
+                <input [(ngModel)]="querySensor" (keyup)="filterSensors()" class="form-control" type="text" placeholder="Recherche d'un capteur">
+            </div>
+            <div class="form-control autocompleteList" *ngIf="filteredListSensors.length > 0">
+                <div *ngFor="let item of filteredListSensors">
+                    <a routerLink="site/form" (click)="selectSensor(item)">{{item}}</a>
+                </div>
+            </div>
+        </div>
+
+
+
+
     </div>
-
-    <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-            Capteurs
-            <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu">
-            <li>
-                <a routerLink="sensor/form">Capteur1</a>
-            </li>
-            <li>
-                <a routerLink="sensor/form">Capteur2</a>
-            </li>
-            <li>
-                <a routerLink="sensor/form">Capteur3</a>
-            </li>
-        </ul>
-    </div>
-
-
-    <div id="the-basics">
-        <input [(ngModel)]="querySite" (keyup)="filter()" class="typeahead" type="text" placeholder="States of USA">
-    </div>
-    <div class="suggestions" *ngIf="filteredListSites.length > 0">
-        <ul *ngFor="let item of filteredListSites" >
-            <li >
-                <a (click)="select(item)">{{item}}</a>
-            </li>
-        </ul>
-    </div>
-
     <router-outlet></router-outlet>
 
 </div>

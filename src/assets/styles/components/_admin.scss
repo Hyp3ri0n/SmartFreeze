@@ -1,7 +1,8 @@
 .adminZone{
-    border : 2px solid $grey-base;
+    padding : 10px;
 }
 
-.dropdown{
-    margin-left: 10px;
+.autocompleteList{
+    position : absolute;
+    z-index: 5;
 }
