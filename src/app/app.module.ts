@@ -26,12 +26,14 @@ import { AdminSensorFormComponent } from './components/admin/sensor/form.compone
 import { AdminSensorListComponent } from './components/admin/sensor/list.component';
 import { AdminSiteFormComponent } from './components/admin/site/form.component';
 import { AdminSiteListComponent } from './components/admin/site/list.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     RouterModule.forRoot(appRoutes),
     AgmCoreModule.forRoot({apiKey: 'AIzaSyCJVLgZMjujdJhvWfcV12kxSZu01ZL8MHw'}),
     AgmSnazzyInfoWindowModule

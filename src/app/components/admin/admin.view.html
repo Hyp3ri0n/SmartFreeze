@@ -1,30 +1,53 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12">
-            <h1>Admin</h1>
-        </div>
+<div class="adminZone">
 
-     <a routerLink="site/form" class="col-sm-6 col-md-6 col-lg-6">Form Site</a>
-    <a routerLink="site/list" class="col-sm-6 col-md-6 col-lg-6">List Site</a>
-    <a routerLink="sensor/form" class="col-sm-6 col-md-6 col-lg-6">Form Sensor</a>
-    <a routerLink="sensor/list" class="col-sm-6 col-md-6 col-lg-6">List Sensor</a>
-
-
-        <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                Site
-                <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-                <li><a href="#">Site1</a></li>
-                <li><a href="#">Site2</a></li>
-                <li><a href="#">Site3</a></li>
-            </ul>
-        </div>
-
-
-
-
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+            Sites
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li>
+                <a routerLink="site/form">Site1</a>
+            </li>
+            <li>
+                <a routerLink="site/form">Site2</a>
+            </li>
+            <li>
+                <a routerLink="site/form">Site3</a>
+            </li>
+        </ul>
     </div>
+
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+            Capteurs
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li>
+                <a routerLink="sensor/form">Capteur1</a>
+            </li>
+            <li>
+                <a routerLink="sensor/form">Capteur2</a>
+            </li>
+            <li>
+                <a routerLink="sensor/form">Capteur3</a>
+            </li>
+        </ul>
+    </div>
+
+
+    <div id="the-basics">
+        <input [(ngModel)]="querySite" (keyup)="filter()" class="typeahead" type="text" placeholder="States of USA">
+    </div>
+    <div class="suggestions" *ngIf="filteredListSites.length > 0">
+        <ul *ngFor="let item of filteredListSites" >
+            <li >
+                <a (click)="select(item)">{{item}}</a>
+            </li>
+        </ul>
+    </div>
+
     <router-outlet></router-outlet>
+
 </div>

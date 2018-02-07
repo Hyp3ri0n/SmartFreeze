@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 
 @Component({
     selector: 'search',
@@ -7,5 +7,31 @@ import { Component } from '@angular/core';
 
 export class AdminComponent {
 
-    constructor() { /**/ }
+    public querySite : string = '';
+
+    public sites : string[] = ["Corbier", "Apprieu", "Rives", "Grenoble"];
+
+    public filteredListSites : string[] = [];
+
+
+    constructor(private elementRef: ElementRef) { /**/ }
+
+    private autocomplete_module() : void {
+        console.log('TEST');
+    }
+
+    private filter() : void {
+        if (this.querySite !== "") {
+            this.filteredListSites = this.sites.filter(function(el){
+                return el.toLowerCase().indexOf(this.querySite.toLowerCase()) > -1;
+            }.bind(this));
+        } else {
+            this.filteredListSites = [];
+        }
+    }
+
+    private select(item : string) : void {
+        this.querySite = item;
+        this.filteredListSites = [];
+    }
 }
