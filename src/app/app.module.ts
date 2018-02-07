@@ -27,6 +27,7 @@ import { AdminSensorListComponent } from './components/admin/sensor/list.compone
 import { AdminSiteFormComponent } from './components/admin/site/form.component';
 import { AdminSiteListComponent } from './components/admin/site/list.component';
 import { ClickOutsideDirective } from './directives/clickOutside.directive';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { ClickOutsideDirective } from './directives/clickOutside.directive';
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
     AgmCoreModule.forRoot({apiKey: 'AIzaSyCJVLgZMjujdJhvWfcV12kxSZu01ZL8MHw'}),
-    AgmSnazzyInfoWindowModule
+    AgmSnazzyInfoWindowModule,
+    Ng2SmartTableModule
   ],
   providers: [
     {provide: APP_BASE_HREF, useValue: '#'},

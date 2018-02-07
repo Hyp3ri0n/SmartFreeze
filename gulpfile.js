@@ -136,7 +136,10 @@ gulp.task("libs_js", ["libs_ng", "libs_rxjs", "libs_agm"], function () {
         'hammerjs/hammer.min.js',
         'bootstrap/dist/js/bootstrap.bundle.min.js',
         'chart.js/dist/Chart.bundle.min.js',
-        'snazzy-info-window/dist/snazzy-info-window.min.js'
+        'snazzy-info-window/dist/snazzy-info-window.min.js',
+        'ng2-smart-table/bundles/table.umd.js',
+        'ng2-completer/ng2-completer.umd.js',
+        'lodash/lodash.min.js'
     ], {cwd: "node_modules/**"}) /* Glob required here. */
         .pipe(rename({dirname:''}))
         .pipe(gulp.dest("dist/www/assets/vendors/libs"));
