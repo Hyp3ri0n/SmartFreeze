@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DeviceService, Device } from '../../services/devices/device.service';
 
 @Component({
     selector: 'home',
@@ -7,5 +8,13 @@ import { Component } from '@angular/core';
 
 export class HomeComponent {
 
-    constructor() { /**/ }
+    private devices : Device[] = [];
+
+    constructor(private deviceService : DeviceService) {
+        this.deviceService.getFavDevices().subscribe(
+            devices => {
+                this.devices = devices;
+            }
+        );
+    }
 }

@@ -27,6 +27,7 @@ import { AdminSensorListComponent } from './components/admin/sensor/list.compone
 import { AdminSiteFormComponent } from './components/admin/site/form.component';
 import { AdminSiteListComponent } from './components/admin/site/list.component';
 import { ClickOutsideDirective } from './directives/clickOutside.directive';
+import { DeviceService } from './services/devices/device.service';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { ClickOutsideDirective } from './directives/clickOutside.directive';
   providers: [
     {provide: APP_BASE_HREF, useValue: '#'},
     HttpService,
-    LoginService
+    LoginService,
+    DeviceService
   ],
   declarations: [
     AppComponent,
