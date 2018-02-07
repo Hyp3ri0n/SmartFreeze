@@ -9,6 +9,20 @@
 
 }
 
+.label-file {
+    cursor: pointer;
+    color: #00b1ca;
+    font-weight: bold;
+}
+.label-file:hover {
+    color: #25a5c4;
+}
+
+// et on masque le input
+.input-file {
+    display: none;
+}
+
 .btn-form-admin {
     margin-top: 30px;
     text-align: center;
