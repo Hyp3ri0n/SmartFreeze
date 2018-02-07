@@ -22,6 +22,10 @@ import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { HttpService } from './services/http/http.service';
 import { LoginService } from './components/root/login/login.service';
 import { LoginComponent } from './components/root/login/login.component';
+import { AdminSensorFormComponent } from './components/admin/sensor/form.component';
+import { AdminSensorListComponent } from './components/admin/sensor/list.component';
+import { AdminSiteFormComponent } from './components/admin/site/form.component';
+import { AdminSiteListComponent } from './components/admin/site/list.component';
 
 
 @NgModule({
@@ -51,7 +55,11 @@ import { LoginComponent } from './components/root/login/login.component';
     TestComponent,
     SiteComponent,
     SensorComponent,
-    LoginComponent
+    LoginComponent,
+    AdminSensorFormComponent,
+    AdminSensorListComponent,
+    AdminSiteFormComponent,
+    AdminSiteListComponent
   ],
   schemas:  [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]
