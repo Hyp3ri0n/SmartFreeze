@@ -94,26 +94,33 @@
         
     }
 
-    button {
+    button.log-in  {
         background-color: $black-transparency-low;
-        padding : 10px;
+        padding : 10px 35px 10px 10px;
         border: 1px solid $black-transparency;
         margin-top: 20px;
+        position: relative;
         .round{
             padding : 5px;
         }
-
         .txt{
             margin-left:5px;
         }
+        .arrow {
+            top: 52%;
+            &.right {
+                right: 15px;
+            }
+        }
         &:hover {
             cursor: pointer;
-        }
-        
-    }
+            box-shadow: 0 .25rem .75rem $mc-blue_grey;
 
-    button:hover{
-        background-color: $mc-blue;
+            .arrow {
+                border-color: $app-primary_light;
+                box-shadow: 0.5vmin -0.5vmin 0 $app-primary;
+            }
+        }
     }
 
 

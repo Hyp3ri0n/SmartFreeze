@@ -3,10 +3,23 @@ import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import { HttpService, MethodRequest } from '../http/http.service';
 import { Device, DeviceService } from '../devices/device.service';
+import { ApplicationContext } from '../../components/root/login/login.service';
 
 export interface Site {
     id : string;
     name : string;
+    description : string;
+    imageUri : string;
+    department : string;
+    region : string;
+    siteType : ApplicationContext;
+    hasActiveAlarms : boolean;  // ?
+    activeAlarmsCount : number; // ?
+    latitude : number;
+    longitude : number;
+    surfaceArea : number;
+    surfaceAreaUnit : string;
+    zones : string[];
     devices : Device[];
 }
 

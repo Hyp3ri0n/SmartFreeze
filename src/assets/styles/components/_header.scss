@@ -91,6 +91,8 @@
     list-style: none;
     padding: 5px 10px;
     border: 1px solid $grey-dark;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     z-index: 3;
     background-color: $mc-white;
     position: absolute;

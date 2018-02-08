@@ -2,10 +2,10 @@
 <app-login *ngIf="endSplashScreen && loginService.app == 0"></app-login>
 <div *ngIf="loginService.app != 0" class="app-container flex-container flex-container-column">
     <app-header class="app-container flex-container flex-fix-height header"></app-header>
-    <div class="app-container flex-container flex-shrink-height flex-container-row main">
-        <app-sidebar  class="app-container flex-container flex-shrink-height flex-fix-width flex-container-column sidebar"></app-sidebar>
-        <div class="app-container flex-container flex-shrink-height flex-container-column content">
-            <router-outlet></router-outlet>
+    <div class="app-container flex-container main">
+        <app-sidebar  class="app-container flex-container sidebar"></app-sidebar>
+        <div id="content" class="app-container flex-container content">
+            <router-outlet style="display: none;"></router-outlet>
         </div>
     </div>
     <app-footer class="app-container flex-container flex-fix-height footer"></app-footer>
