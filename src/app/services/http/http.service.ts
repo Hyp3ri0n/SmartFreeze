@@ -18,12 +18,22 @@ export class HttpService {
     public request(method : MethodRequest, url : string, params : any) : Observable<any> {
         return Observable.create((observer) => {
 
-            let finalUrl = this.ipServer + url;
-
+            let finalUrl : string = '';
             let httpOptions = {
-                headers: new HttpHeaders({'Content-Type': ['application/json']}),
-                params: {'Context': '' + this.login.getApplicationContext()}
+                headers : {},
+                params : {}
             };
+
+            if (url.startsWith('/')) {
+                finalUrl = this.ipServer + url;
+
+                httpOptions = {
+                    headers: new HttpHeaders({'Content-Type': ['application/json']}),
+                    params: {'Context': '' + this.login.getApplicationContext()}
+                };
+            } else {
+                finalUrl = url;
+            }
 
             // Concat all params
             httpOptions.params = Object.assign({}, httpOptions.params, params);

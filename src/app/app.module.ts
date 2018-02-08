@@ -31,6 +31,7 @@ import { DeviceService } from './services/devices/device.service';
 import { SiteService } from './services/sites/site.service';
 import { LoadingComponent } from './components/global/loading/loading.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { AlarmeService } from './services/alarmes/alarme.service';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
     HttpService,
     LoginService,
     DeviceService,
-    SiteService
+    SiteService,
+    AlarmeService
   ],
   declarations: [
     AppComponent,

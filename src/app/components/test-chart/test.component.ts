@@ -58,9 +58,12 @@ export class TestComponent implements OnInit {
         });
 
         let params = {
-            'ids' : ['a123', '45a6']
+            'key' : 'AIzaSyCJVLgZMjujdJhvWfcV12kxSZu01ZL8MHw',
+            'latlng' : '40.714224,-73.961452'
         };
 
-        this.site.getSitesWithIds(['a123', '456a']).subscribe();
+        this.http.request(MethodRequest.GET, 'https://maps.googleapis.com/maps/api/geocode/json', params).subscribe(
+            msg => console.log(msg)
+        );
     }
 }
