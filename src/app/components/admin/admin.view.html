@@ -1,35 +1,45 @@
 <div class="container adminZone">
 
     <div class="row">
+        <div class="col-md-6 row">
 
-        <div class="col">
-            <div>
-                <input [(ngModel)]="querySite" (keyup)="filterSites()" class="form-control" type="text" placeholder="Recherche d'un site">
-            </div>
-            <div class="form-control autocompleteList" *ngIf="filteredListSites.length > 0">
-                <div *ngFor="let item of filteredListSites">
-                    <a routerLink="site/form" (click)="selectSite(item)">{{item}}</a>
+            <div class="col-10">
+                <div>
+                    <input [(ngModel)]="querySite" (keyup)="filterSites()" class="form-control" type="text" placeholder="Recherche d'un site">
+                </div>
+                <div class="form-control autocompleteList" *ngIf="filteredListSites.length > 0">
+                    <div *ngFor="let item of filteredListSites">
+                        <a routerLink="site/form" (click)="selectSite(item)">{{item}}</a>
+                    </div>
                 </div>
             </div>
-
-            <button routerLink="site/new" type="button" class="newButton btn btn-primary" data-toggle="modal" data-target="#addSiteModal">
-                <i class="plusicon fa fa-plus-circle"></i>
-              </button>
-        </div>
-        
-
-        <div class="col">
-            <div>
-                <input [(ngModel)]="querySensor" (keyup)="filterSensors()" class="form-control" type="text" placeholder="Recherche d'un capteur">
+            <div class="col-2" style="text-align:left">
+                <button routerLink="site/new" type="button" class="newButton btn btn-primary" data-toggle="modal" data-target="#addSiteModal">
+                    <i class="plusicon fa fa-plus-circle"></i>
+                </button>
             </div>
-            <div class="form-control autocompleteList" *ngIf="filteredListSensors.length > 0">
-                <div *ngFor="let item of filteredListSensors">
-                    <a routerLink="sensor/form" (click)="selectSensor(item)">{{item}}</a>
+
+        </div>
+        <div class="col-md-6 row">
+
+            <div class="col-10">
+                <div>
+                    <input [(ngModel)]="querySensor" (keyup)="filterSensors()" class="form-control" type="text" placeholder="Recherche d'un capteur">
+                </div>
+                <div class="form-control autocompleteList" *ngIf="filteredListSensors.length > 0">
+                    <div *ngFor="let item of filteredListSensors">
+                        <a routerLink="sensor/form" (click)="selectSensor(item)">{{item}}</a>
+                    </div>
                 </div>
             </div>
+            <div class="col-2">
+                <button routerLink="sensor/new" type="button" class="newButton btn btn-primary" data-toggle="modal" data-target="#addSensorModal">
+                    <i class="plusicon fa fa-plus-circle"></i>
+                </button>
+            </div>
         </div>
-
     </div>
+
     <router-outlet></router-outlet>
 
 </div>

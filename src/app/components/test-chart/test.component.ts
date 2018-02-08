@@ -59,7 +59,7 @@ export class TestComponent implements OnInit {
 
         let params = {
             'key' : 'AIzaSyCJVLgZMjujdJhvWfcV12kxSZu01ZL8MHw',
-            'latlng' : '40.714224,-73.961452'
+            'latlng' : '45.85101,6.830066'
         };
 
         this.http.request(MethodRequest.GET, 'https://maps.googleapis.com/maps/api/geocode/json', params).subscribe(

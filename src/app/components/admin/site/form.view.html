@@ -9,35 +9,71 @@
             </span>
             <input id="id" type="text" class="form-control" name="ID" placeholder="ID" disabled>
         </div>
-        <div class="input-group">
-            <span class="input-group-addon">
-                <i class="fa fa-tag"></i>
-                Nom
-            </span>
-            <input id="name" type="text" class="form-control" name="Nom" placeholder="Nom" required>
+        <div class="row">
+            <div class="col-xl-10 input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-tag"></i>
+                    Nom
+                </span>
+                <input id="name" type="text" class="form-control" name="Nom" placeholder="Nom" required>
+            </div>
+            <div class="col-xl-2 zoneCheckBox">
+                <i class="fa fa-heart"></i>
+                <span>Favoris</span>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+            </div>
         </div>
-
 
 
         <map-site class="app-container"></map-site>
 
+        <div class="row">
+            <div class="col-lg-7 input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-file"></i>
+                    Description
+                </span>
+                <textarea id="description" rows="3" class="form-control"></textarea>
+            </div>
 
-        <div class="input-group">
-            <span class="input-group-addon">
-                <i class="fa fa-file"></i>
-                Description
-            </span>
-            <textarea id="description" rows="3" class="form-control"></textarea>
+            <div class="col-lg-5 input-group">
+
+                <span class="input-group-addon">
+                    <i class="fa fa-puzzle-piece"></i>
+                    Zones
+                </span>
+                <select multiple class="form-control" id="zones">
+                    <option value="1">Zone1</option>
+                    <option value="2">Zone2</option>
+                    <option value="3">Zone3</option>
+                    <option value="3">Zone4</option>
+                    <option value="3">Zone5</option>
+                </select>
+
+                <i class="plusicon fa fa-plus-circle"></i>
+            </div>
         </div>
+        <div class="row">
+            <div class="col-sm-10 col-8 input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-home"></i>
+                    Surface
+                </span>
+                <input id="surfaceArea" type="text" class="form-control" name="Surface" placeholder="Surface">
+            </div>
+            <div class="col-sm-2 col-4  input-group">
+                <select class="form-control" id="uniteSurface">
 
-        <div class="input-group">
-            <span class="input-group-addon">
-                <i class="fa fa-home"></i>
-                Surface
-            </span>
-            <input id="surfaceArea" type="text" class="form-control" name="Surface" placeholder="Surface">
+                    <option selected value="m²">m²</option>
+                    <option value="km²">km²</option>
+                    <option value="a">ares</option>
+                    <option value="ha">ha</option>
+                </select>
+            </div>
         </div>
-
         <div class="input-group">
             <span class="input-group-addon">
                 <i class="fa fa-image"></i>
@@ -50,49 +86,13 @@
             </label>
         </div>
 
-        <div class="input-group">
-
-            <span class="input-group-addon">
-                <i class="fa fa-puzzle-piece"></i>
-                Zones
-            </span>
-            <select multiple class="form-control" id="zones">
-                <option value="1">Zone1</option>
-                <option value="2">Zone2</option>
-                <option value="3">Zone3</option>
-                <option value="3">Zone4</option>
-                <option value="3">Zone5</option>
-            </select>
-
-            <i class="plusicon fa fa-plus-circle"></i>
-        </div>
-
-        <div class="row">
-
-            <div class="col zoneCheckBox">
-                <i class="fa fa-heart"></i>
-                <span>Favoris</span>
-                <label class="switch">
-                    <input type="checkbox">
-                    <span class="slider round"></span>
-                </label>
-            </div>
-            <div class="col zoneCheckBox">
-
-                <i class="fa fa-trash"></i>
-                <span> Supprimer</span>
-                <label class="switch">
-                    <input type="checkbox">
-                    <span class="slider round"></span>
-                </label>
-            </div>
-        </div>
 
         <div class="btn-form-admin">
+            <button type="button" class="btn btn-secondary">
+                <i class="fa fa-trash"></i> Supprimer ce site </button>
             <button type="button" class="btn btn-primary">
-                Enregistrer les modifications
-                <i class="fa fa-floppy-o"></i>
-            </button>
+                <i class="fa fa-floppy-o"></i> Enregistrer les modifications</button>
+
         </div>
     </form>
 

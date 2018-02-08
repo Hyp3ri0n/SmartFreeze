@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
+import { HttpService, MethodRequest } from '../../../../services/http/http.service';
 
 export interface Marker {
     lat: number;
     lng: number;
-    buildingNum : number;
-    streetName : string;
+    departement : string;
+    region : string;
 }
 
 @Component({
@@ -16,46 +17,33 @@ export class MapSiteComponent {
     private lat:number = 45.851010;
     private zoom:number = 9;
     private marker:Marker[] = [];
-    constructor() {
+    constructor(private http : HttpService) {
         this.marker[0] = {
             lat: this.lat,
             lng: this.lng,
-            buildingNum: 0,
-            streetName: ""
+            departement: "",
+            region: ""
         };
      }
 
      public mapClicked($event: any) : void {
-         this.marker[0] = {
-            lat: $event.coords.lat,
-            lng: $event.coords.lng,
-            buildingNum: 0,
-            streetName: ""
+
+        let params = {
+            'key' : 'AIzaSyCJVLgZMjujdJhvWfcV12kxSZu01ZL8MHw',
+            'latlng' : $event.coords.lat + ',' + $event.coords.lng
         };
-        //this.getGeoLocation(this.marker.lat, this.marker.lng);
+
+        this.http.request(MethodRequest.GET, 'https://maps.googleapis.com/maps/api/geocode/json', params).subscribe(
+            msg => {
+                this.marker[0] = {
+                    lat: $event.coords.lat,
+                    lng: $event.coords.lng,
+                    departement: msg.results[3].formatted_address,
+                    region: msg.results[4].formatted_address
+                };
+            }
+        );
         console.log(this.marker);
 
      }
-
-     /*
-     getGeoLocation(lat: number, lng: number) {
-        if (navigator.geolocation) {
-            let geocoder = new google.maps.Geocoder();
-            let latlng = new google.maps.LatLng(lat, lng);
-            let request = { latLng: latlng };
-            geocoder.geocode(request, (results, status) => {
-              if (status === google.maps.GeocoderStatus.OK) {
-                let result = results[0];
-                let rsltAdrComponent = result.address_components;
-                let resultLength = rsltAdrComponent.length;
-                if (result != null) {
-                  this.marker.buildingNum = rsltAdrComponent[resultLength - 8 ].short_name;
-                  this.marker.streetName = rsltAdrComponent[resultLength - 7 ].short_name;
-                } else {
-                  alert("No address available!");
-                }
-              }
-            });
-        }
-        }*/
 }
