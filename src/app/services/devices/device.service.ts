@@ -7,12 +7,12 @@ export interface Device {
     id : string;
     name : string;
     siteId : string;
-    isFavorite : string;
+    isFavorite : boolean;
     lastCommunication : string;
-    activeAlarmsCount : string;
-    hasActiveAlarms : string;
-    latitude : string;
-    longitude : string;
+    activeAlarmsCount : number;
+    hasActiveAlarms : boolean;
+    latitude : number;
+    longitude : number;
 }
 
 @Injectable()

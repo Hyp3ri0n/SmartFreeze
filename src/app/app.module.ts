@@ -28,6 +28,8 @@ import { AdminSiteFormComponent } from './components/admin/site/form.component';
 import { AdminSiteListComponent } from './components/admin/site/list.component';
 import { ClickOutsideDirective } from './directives/clickOutside.directive';
 import { DeviceService } from './services/devices/device.service';
+import { SiteService } from './services/sites/site.service';
+import { LoadingComponent } from './components/global/loading/loading.component';
 
 
 @NgModule({
@@ -42,7 +44,8 @@ import { DeviceService } from './services/devices/device.service';
     {provide: APP_BASE_HREF, useValue: '#'},
     HttpService,
     LoginService,
-    DeviceService
+    DeviceService,
+    SiteService
   ],
   declarations: [
     AppComponent,
@@ -63,7 +66,8 @@ import { DeviceService } from './services/devices/device.service';
     AdminSensorListComponent,
     AdminSiteFormComponent,
     AdminSiteListComponent,
-    ClickOutsideDirective
+    ClickOutsideDirective,
+    LoadingComponent
   ],
   schemas:  [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]

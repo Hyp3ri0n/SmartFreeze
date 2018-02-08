@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
 import { HttpService, MethodRequest } from '../../services/http/http.service';
+import { SiteService } from '../../services/sites/site.service';
 
 @Component({
     selector: 'sf-test',
@@ -15,7 +16,7 @@ import { HttpService, MethodRequest } from '../../services/http/http.service';
 })
 export class TestComponent implements OnInit {
 
-    constructor(private http : HttpService) { /**/ }
+    constructor(private http : HttpService, private site : SiteService) { /**/ }
 
     public ngOnInit(): void {
         let ctx = document.getElementById("test-chart");
@@ -57,11 +58,9 @@ export class TestComponent implements OnInit {
         });
 
         let params = {
-            'deviceId' : '123'
+            'ids' : ['a123', '45a6']
         };
 
-        this.http.request(MethodRequest.GET, '/api/Devices', params).subscribe(
-            () => { /**/ }
-        );
+        this.site.getSitesWithIds(['a123', '456a']).subscribe();
     }
 }
