@@ -4,7 +4,7 @@
 
 .main {
   position: relative;
-  @include media-max("phone-down") {
+  @include media-breakpoint-down(md) {
     flex-direction: column-reverse;
   }
 }

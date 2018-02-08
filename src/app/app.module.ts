@@ -30,6 +30,7 @@ import { ClickOutsideDirective } from './directives/clickOutside.directive';
 import { DeviceService } from './services/devices/device.service';
 import { SiteService } from './services/sites/site.service';
 import { LoadingComponent } from './components/global/loading/loading.component';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { LoadingComponent } from './components/global/loading/loading.component'
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
     AgmCoreModule.forRoot({apiKey: 'AIzaSyCJVLgZMjujdJhvWfcV12kxSZu01ZL8MHw'}),
-    AgmSnazzyInfoWindowModule
+    AgmSnazzyInfoWindowModule,
+    Ng2SmartTableModule
   ],
   providers: [
     {provide: APP_BASE_HREF, useValue: '#'},

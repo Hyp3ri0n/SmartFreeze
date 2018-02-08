@@ -4,9 +4,9 @@
     display: flex;
     flex-flow: row nowrap;
 
-    @include media-max("phone-down") {
+    @include media-breakpoint-down(md) {
       width: 100%;
-     }
+    }
    
   
   .logo {
@@ -17,10 +17,10 @@
     color: $app-primary;
     padding: 0 5px;
 
-    @include media-max("phone-down") {
+    @include media-breakpoint-down(md) {
      width: auto; 
     }
-    @include media-max("little-phone") {
+    @include media-breakpoint-down(sm) {
       display: none;
     }
   } 
@@ -30,7 +30,7 @@
     margin: auto;
     transition: width 1s;
 
-    @include media-min("phone-down") {
+    @include media-breakpoint-up(sm) {
       display: flex;
       width: 33%;
       &:hover {
@@ -45,17 +45,16 @@
       font-size: 24px;
       padding: 8px;
       color: $grey-dark;
-      @include media-max("little-phone") {
+      @include media-breakpoint-down(sm) {
         display: none;
       }
     }
 
     input {
-      @include media-min("phone-down") {
+      @include media-breakpoint-up(sm) {
         display: flex;
         flex: 1;
       }
-
       
       font-size: 16px;
       padding: 8px;
@@ -72,7 +71,15 @@
     background: none;
     border: none;
 
-    @include media-min("phone-down") {
+    &:hover {
+      color: lighten($mc-yellow, 15%);
+      cursor: pointer;
+    }
+    &:focus {
+      outline: none;
+    }
+
+    @include media-breakpoint-up(sm) {
       position: absolute;
       right: 20px;
       top: 10px;
@@ -89,7 +96,7 @@
     position: absolute;
     right: 5px;
     top: 55px;
-    @include media-max("phone-down") {
+    @include media-breakpoint-down(md) {
       right: 0px;
     }
     &:after {
@@ -104,7 +111,7 @@
       border-bottom-color: $mc-white;
       border-width: 7px;
       right: 24px;
-      @include media-max("phone-down") {
+      @include media-breakpoint-down(md) {
         right: 10px;
       }
     }
@@ -112,7 +119,6 @@
     li {
       font-size: 16px;
       padding: 5px;
-      border-bottom: 1px solid $grey-base;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -149,8 +155,32 @@
       &.gravity-3 {
         color: $gravity3;
       }
-      &:last-of-type {
+      &.gravity-item {
+        border-bottom: 1px solid $grey-base;
+      }
+    }
+    //TODO make it work
+    li.gravity-item:last-of-type {
         border-bottom: none;
+    }
+    
+    .more-link {
+      margin-top: 5px;
+      font-weight: bold;
+      text-align: center;
+      padding: 0;
+      border-bottom: none;
+      a {
+        padding: 5px;
+        border: 3px solid $app-primary;
+        width: 100%;
+        color: $mc-white;
+        background-color:$app-primary;
+        &:hover {
+          text-decoration: none;
+          color: $app-primary;
+          background-color:$mc-white;
+        }
       }
     }
   }

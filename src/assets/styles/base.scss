@@ -5,7 +5,6 @@
 /********************************************/
 
 // App variables
-@import "mixins";
 @import "variables";			// Insert our variables here to force the change of brand-primary in bootstrap
 $primary: $app-primary;
 //--------------------------------
@@ -121,6 +120,11 @@ body {
 	flex-direction: row;
 }
 
+.no-padding-x {
+	padding-right: 0!important;
+	padding-left: 0!important;
+}
+
 .no-padding-right {
 	padding-right: 0!important;
 }
@@ -178,7 +182,8 @@ body {
 @import "components/sidebar";
 @import "components/splashScreen";
 @import "components/login";
-/* home */
+@import "components/datatable";
+/* specific */
 @import "components/home";
 @import "components/search";
 @import "components/site";
