@@ -155,13 +155,9 @@
       &.gravity-3 {
         color: $gravity3;
       }
-      &.gravity-item {
-        border-bottom: 1px solid $grey-base;
+      &:not(:first-of-type) {
+        border-top: 1px solid $grey-base;
       }
-    }
-    //TODO make it work
-    li.gravity-item:last-of-type {
-        border-bottom: none;
     }
     
     .more-link {
