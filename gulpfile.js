@@ -125,7 +125,7 @@ gulp.task('compile', ['tslint'], function () {
 /**
  * Copy all required libraries into build directory.
  */
-gulp.task("libs_js", ["libs_ng", "libs_rxjs", "libs_agm", "libs_upload"], function () {
+gulp.task("libs_js", ["libs_ng", "libs_rxjs", "libs_agm"], function () {
     return gulp.src([
         'core-js/client/shim.min.js',
         'systemjs/dist/system-polyfills.js',
@@ -157,14 +157,6 @@ gulp.task("libs_ng", function () {
     ], {cwd: "node_modules/**"}) /* Glob required here. */
         .pipe(rename({dirname:''}))
         .pipe(gulp.dest("dist/www/assets/vendors/libs/@angular"));
-});
-
-gulp.task("libs_upload", function () {
-    return gulp.src([
-        'angular2-image-upload/lib/**/*',
-    ], {cwd: "node_modules/**"}) /* Glob required here. */
-        .pipe(rename({dirname:''}))
-        .pipe(gulp.dest("dist/www/assets/vendors/libs/angular2-image-upload"));
 });
 
 gulp.task("libs_rxjs", function () {

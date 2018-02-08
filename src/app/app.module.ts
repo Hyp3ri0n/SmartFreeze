@@ -27,7 +27,6 @@ import { AdminSensorListComponent } from './components/admin/sensor/list.compone
 import { AdminSiteFormComponent } from './components/admin/site/form.component';
 import { AdminSiteListComponent } from './components/admin/site/list.component';
 import { FormsModule } from '@angular/forms';
-import { ImageUploadModule } from "angular2-image-upload";
 
 
 @NgModule({
@@ -35,7 +34,6 @@ import { ImageUploadModule } from "angular2-image-upload";
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    ImageUploadModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     AgmCoreModule.forRoot({apiKey: 'AIzaSyCJVLgZMjujdJhvWfcV12kxSZu01ZL8MHw'}),
     AgmSnazzyInfoWindowModule
