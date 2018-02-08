@@ -1,57 +1,52 @@
 <div class="row">
-        <div class="col-sm mapSite" >
-                <agm-map 
-                [latitude]="lat"
-                [longitude]="lng"
-                [zoom]="zoom"
-                [disableDefaultUI]="false"
-                [zoomControl]="false"
-                (mapClick)="mapClicked($event)">
-            
-                <agm-marker 
-                    *ngFor="let m of marker; let i = index"
-                    [latitude]="m.lat"
-                    [longitude]="m.lng">
-            
-                </agm-marker>
-                
-                
-            
-            </agm-map>
-        </div>
+    <div class="col-lg mapSite" style="min-height:200px">
+        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false" (mapClick)="mapClicked($event)">
 
-        <div class="col-sm">
-            <div class="input-group">
-                <span class="input-group-addon">
-                    <i class="fa fa-arrows-v"></i>
-                    Altitude
-                </span>
-                <input id="altitude" type="text" class="form-control" name="Altitude" placeholder="Altitude, 0 par défaut">
-            </div>
-            <div class="input-group">
-                <span class="input-group-addon">
-                    <i class="fa fa-thumb-tack"></i>
-                    Latitude
-                </span>
-                <input [(ngModel)]="marker[0].lat" id="latitude" type="text" class="form-control" name="Latitude" placeholder="Latitude" disabled required>
-                <span class="input-group-addon">
-                    Longitude
-                </span>
-                <input [(ngModel)]="marker[0].lng" id="longitude" type="text" class="form-control" name="Longitude" placeholder="Longitude" disabled required>
-            </div>
-            <div class="input-group">
-                <span class="input-group-addon">
-                    <i class="fa fa-globe"></i>
-                    Region
-                </span>
-                <input [(ngModel)]="marker[0].region" id="region" type="text" class="form-control" name="Region" placeholder="Region" disabled required>
-            </div>
-            <div class="input-group">
-                <span class="input-group-addon">
-                    <i class="fa fa-map-marker"></i>
-                    Departement
-                </span>
-                <input [(ngModel)]="marker[0].departement" id="department" type="text" class="form-control" name="Departement" placeholder="Departement" disabled required>
-            </div>
+            <agm-marker *ngFor="let m of marker; let i = index" [latitude]="m.lat" [longitude]="m.lng">
+
+            </agm-marker>
+
+
+
+        </agm-map>
+    </div>
+
+    <div class="col-lg">
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-arrows-v"></i>
+                Altitude
+            </span>
+            <input id="altitude" type="text" class="form-control" name="Altitude" placeholder="Altitude, 0 par défaut">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-thumb-tack"></i>
+                Latitude
+            </span>
+            <input [(ngModel)]="marker[0].lat" id="latitude" type="text" class="form-control" name="Latitude" placeholder="Latitude"
+                disabled required>
+            <span class="input-group-addon">
+                Longitude
+            </span>
+            <input [(ngModel)]="marker[0].lng" id="longitude" type="text" class="form-control" name="Longitude" placeholder="Longitude"
+                disabled required>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-globe"></i>
+                Region
+            </span>
+            <input [(ngModel)]="marker[0].region" id="region" type="text" class="form-control" name="Region" placeholder="Region" disabled
+                required>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-map-marker"></i>
+                Departement
+            </span>
+            <input [(ngModel)]="marker[0].departement" id="department" type="text" class="form-control" name="Departement" placeholder="Departement"
+                disabled required>
         </div>
     </div>
+</div>

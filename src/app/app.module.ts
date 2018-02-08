@@ -35,6 +35,7 @@ import { SiteService } from './services/sites/site.service';
 import { LoadingComponent } from './components/global/loading/loading.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { AlarmeService } from './services/alarmes/alarme.service';
+import { AddSensorComponent } from './components/admin/sensor/addSensor.component';
 
 
 @NgModule({
@@ -77,7 +78,8 @@ import { AlarmeService } from './services/alarmes/alarme.service';
     AddSiteComponent,
     MapSiteComponent,
     ClickOutsideDirective,
-    LoadingComponent
+    LoadingComponent,
+    AddSensorComponent
   ],
   schemas:  [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]

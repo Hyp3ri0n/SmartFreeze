@@ -9,22 +9,13 @@
             </span>
             <input id="id" type="text" class="form-control" name="ID" placeholder="ID" disabled>
         </div>
-        <div class="row">
-            <div class="col-xl-10 input-group">
-                <span class="input-group-addon">
-                    <i class="fa fa-tag"></i>
-                    Nom
-                </span>
-                <input id="name" type="text" class="form-control" name="Nom" placeholder="Nom" required>
-            </div>
-            <div class="col-xl-2 zoneCheckBox">
-                <i class="fa fa-heart"></i>
-                <span>Favoris</span>
-                <label class="switch">
-                    <input type="checkbox">
-                    <span class="slider round"></span>
-                </label>
-            </div>
+
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-tag"></i>
+                Nom
+            </span>
+            <input id="name" type="text" class="form-control" name="Nom" placeholder="Nom" required>
         </div>
 
 
@@ -95,5 +86,19 @@
 
         </div>
     </form>
+
+
+
+ 
+
+
+    <div class="form-group" data-ng-repeat="zone in zones">
+        <label>Zones</label>
+        <button ng-click="addNewChoice()">Add Choice</button>
+        <button ng-click="removeZone()">Remove Choice</button>
+        <input type="text" name="" placeholder="Enter a restaurant name">
+    </div>
+
+
 
 </div>
