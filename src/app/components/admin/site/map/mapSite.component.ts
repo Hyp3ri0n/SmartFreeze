@@ -15,12 +15,18 @@ export class MapSiteComponent {
     private lng:number = 6.830066;
     private lat:number = 45.851010;
     private zoom:number = 9;
-    private marker:Marker;
-    constructor() { /* */
+    private marker:Marker[] = [];
+    constructor() {
+        this.marker[0] = {
+            lat: this.lat,
+            lng: this.lng,
+            buildingNum: 0,
+            streetName: ""
+        };
      }
 
      public mapClicked($event: any) : void {
-         this.marker = {
+         this.marker[0] = {
             lat: $event.coords.lat,
             lng: $event.coords.lng,
             buildingNum: 0,

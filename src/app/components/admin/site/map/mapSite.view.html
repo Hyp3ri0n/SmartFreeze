@@ -9,13 +9,9 @@
                 (mapClick)="mapClicked($event)">
             
                 <agm-marker 
-                    *ngFor="let m of markers; let i = index"
-                    (markerClick)="clickedMarker(m.label, i)"
+                    *ngFor="let m of marker; let i = index"
                     [latitude]="m.lat"
-                    [longitude]="m.lng"
-                    [label]="m.label"
-                    [markerDraggable]="m.draggable"
-                    (dragEnd)="markerDragEnd(m, $event)">
+                    [longitude]="m.lng">
             
                 </agm-marker>
                 
@@ -37,11 +33,11 @@
                     <i class="fa fa-thumb-tack"></i>
                     Latitude
                 </span>
-                <input [(ngModel)]="marker.lat" id="latitude" type="text" class="form-control" name="Latitude" placeholder="Latitude" disabled required>
+                <input [(ngModel)]="marker[0].lat" id="latitude" type="text" class="form-control" name="Latitude" placeholder="Latitude" disabled required>
                 <span class="input-group-addon">
                     Longitude
                 </span>
-                <input [(ngModel)]="marker.lng" id="longitude" type="text" class="form-control" name="Longitude" placeholder="Longitude" disabled required>
+                <input [(ngModel)]="marker[0].lng" id="longitude" type="text" class="form-control" name="Longitude" placeholder="Longitude" disabled required>
             </div>
             <div class="input-group">
                 <span class="input-group-addon">
