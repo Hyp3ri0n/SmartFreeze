@@ -23,8 +23,11 @@
             'tslib': 'npm:tslib.js',
             '@agm/core': 'npm:@agm/core.umd.js',
             '@agm/snazzy-info-window': 'npm:@agm/snazzy-info-window.umd.js',
-            'snazzy-info-window':'npm:snazzy-info-window.min.js',
-            'chart.js': 'npm:Chart.bundle.min.js'
+            'snazzy-info-window': 'npm:snazzy-info-window.min.js',
+            'chart.js': 'npm:Chart.bundle.min.js',
+            'ng2-smart-table': 'npm:table.umd.js',
+            'ng2-completer':'npm:ng2-completer.umd.js',
+            'lodash':'npm:lodash.min.js'
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {

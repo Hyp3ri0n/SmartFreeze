@@ -2,7 +2,7 @@
     height: $size-footer;
     background-color: $app-primary;
 
-    @include media-max("phone-down") {
+    @include media-breakpoint-down(md) {
         display: none;
     }
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoginService } from '../login/login.service';
 
 @Component({
     selector: 'app-sidebar',
@@ -7,5 +8,12 @@ import { Component } from '@angular/core';
 
 export class SidebarComponent {
 
-    constructor() { /**/ }
+    private activeOffset:number;
+
+    constructor(private login : LoginService) {
+        this.activeOffset = 0;
+     }
+    private go_clicked(offset) : void {
+        this.activeOffset = offset;
+    }
 }

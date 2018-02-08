@@ -2,12 +2,6 @@ home {
   @extend .fill;    
 }
 
-.map-wrapper {
-  @include media-max("phone-down") {
-    padding-left: 0;
-  }
-}
-
 .home-summary {
   overflow: auto;
 }

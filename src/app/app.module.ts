@@ -29,6 +29,12 @@ import { AdminSiteListComponent } from './components/admin/site/list.component';
 import { FormsModule } from '@angular/forms';
 import { MapSiteComponent } from './components/admin/site/map/mapSite.component';
 import { AddSiteComponent } from './components/admin/site/addSite.component';
+import { ClickOutsideDirective } from './directives/clickOutside.directive';
+import { DeviceService } from './services/devices/device.service';
+import { SiteService } from './services/sites/site.service';
+import { LoadingComponent } from './components/global/loading/loading.component';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { AlarmeService } from './services/alarmes/alarme.service';
 
 
 @NgModule({
@@ -38,12 +44,16 @@ import { AddSiteComponent } from './components/admin/site/addSite.component';
     FormsModule,
     RouterModule.forRoot(appRoutes),
     AgmCoreModule.forRoot({apiKey: 'AIzaSyCJVLgZMjujdJhvWfcV12kxSZu01ZL8MHw'}),
-    AgmSnazzyInfoWindowModule
+    AgmSnazzyInfoWindowModule,
+    Ng2SmartTableModule
   ],
   providers: [
     {provide: APP_BASE_HREF, useValue: '#'},
     HttpService,
-    LoginService
+    LoginService,
+    DeviceService,
+    SiteService,
+    AlarmeService
   ],
   declarations: [
     AppComponent,
@@ -65,7 +75,9 @@ import { AddSiteComponent } from './components/admin/site/addSite.component';
     AdminSiteFormComponent,
     AdminSiteListComponent,
     AddSiteComponent,
-    MapSiteComponent
+    MapSiteComponent,
+    ClickOutsideDirective,
+    LoadingComponent
   ],
   schemas:  [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]

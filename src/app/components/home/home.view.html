@@ -27,18 +27,18 @@
             </div>  
             <div class="sensors">
                 <h1 class="heading">Mes capteurs clés triés par refuge</h1>
-                <div class="col-sm-12 col-md-12 col-lg-6">
-                    <h2 class="heading"> <a routerLink="/site">Refuge du Goûter</a></h2>
-                    <a routerLink="/sensor">G2 - Fondoir</a>
-                    <a routerLink="/sensor">G4 - Dortoir 1</a>
-                </div>
-                <div class="col-sm-12 col-md-12 col-lg-6">
-                    <h2 class="heading"><a routerLink="/site" >Refuge des Feneys</a></h2>
-                    <a routerLink="/sensor">F2 - Fondoir</a>
-                </div>
+                <loading *ngIf="sites == null" [model]="modelLoading"></loading>
+                <ng-container *ngIf="sites != null">
+                    <div class="col-sm-12 col-md-12 col-lg-6" *ngFor="let site of sites">
+                        <h2 class="heading"> <a routerLink="/site">{{site.name}}</a></h2>
+                        <ng-container *ngFor="let device of site.devices">
+                            <a routerLink="/sensor" *ngIf="device.isFavorite">{{device.name}}</a>
+                        </ng-container>
+                    </div>
+                </ng-container>
             </div>
         </div>
-        <div class="col-sm-12 col-md-12 col-lg-6 fill no-padding-right map-wrapper">
+        <div class="col-sm-12 col-md-12 col-lg-6 fill no-padding-x map-wrapper">
             <map class="app-container"></map>
         </div>
     </div>
