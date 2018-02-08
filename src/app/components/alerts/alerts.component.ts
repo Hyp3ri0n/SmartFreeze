@@ -10,7 +10,7 @@ export class AlertsComponent {
     constructor() { /**/ }
     data = [
         {
-            date: "07/02/2018 - 13h40",
+            date: "2018-02-08",
             intitule: "Température inhabituelle 25°C",
             capteur: "G2 - Fondoir",
             site: "Refuge du Goûter",
@@ -18,7 +18,7 @@ export class AlertsComponent {
             gravite: 1
         },
         {
-            date: "07/02/2018 - 13h40",
+            date: "2018-02-07",
             intitule: "Batterie faible",
             capteur: "G2 - Fondoir",
             site: "Refuge du Goûter",
@@ -26,7 +26,7 @@ export class AlertsComponent {
             gravite: 2
         },
         {
-            date: "07/02/2018 - 13h40",
+            date: "2018-01-07",
             intitule: "Passerelle P1 pas de communication",
             capteur: "N/C",
             site: "N/C",
@@ -44,15 +44,17 @@ export class AlertsComponent {
                     config: {
                       selectText: 'Toutes',
                       list: [
-                        { value: "today", title: "Today"},
-                        { value: "week", title: "Week"},
-                        { value: "month", title: "Month"}
+                        { value: "today", title: "Aujourd'hui"},
+                        { value: "week", title: "Semaine"},
+                        { value: "month", title: "Mois"},
+                        { value: "year", title: "Année"}
                       ],
                     },
                 },
                 filterFunction(cell?: string, search?: string): boolean {
                     var dateCell = new Date(cell);
                     var date = new Date();
+                    date.setHours(0, 0, 0, 0);
                     switch (search) {
                         case "today": {
                             if (dateCell >= date) {
@@ -60,15 +62,25 @@ export class AlertsComponent {
                             }
                             break;
                         }
-                        // case "week": {
-                        //     if (dateCell >= date.get) {
-                        //         return true;
-                        //     }
-                        //    break;
-                        // }
+                        case "week": {
+                            var day = date.getDay();
+                            var mondayOfWeek = new Date(date.getFullYear(), date.getMonth(), date.getDate() + (day === 0 ? -6 : 1) - day );
+                            if (dateCell >= mondayOfWeek) {
+                                return true;
+                            }
+                           break;
+                        }
                         case "month": {
                             var y = date.getFullYear(), m = date.getMonth();
                             var firstDay = new Date(y, m, 1);
+                            if (dateCell >= firstDay) {
+                                return true;
+                            }
+                            break;
+                         }
+                         case "year": {
+                            var y = date.getFullYear();
+                            var firstDay = new Date(y, 1, 1);
                             if (dateCell >= firstDay) {
                                 return true;
                             }
