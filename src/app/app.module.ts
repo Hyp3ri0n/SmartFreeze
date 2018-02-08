@@ -27,6 +27,8 @@ import { AdminSensorListComponent } from './components/admin/sensor/list.compone
 import { AdminSiteFormComponent } from './components/admin/site/form.component';
 import { AdminSiteListComponent } from './components/admin/site/list.component';
 import { FormsModule } from '@angular/forms';
+import { AjoutSiteComponent } from './components/admin/site/ajoutSite.component';
+import { MapSiteComponent } from './components/admin/site/map/mapSite.component';
 
 
 @NgModule({
@@ -61,7 +63,9 @@ import { FormsModule } from '@angular/forms';
     AdminSensorFormComponent,
     AdminSensorListComponent,
     AdminSiteFormComponent,
-    AdminSiteListComponent
+    AdminSiteListComponent,
+    AjoutSiteComponent,
+    MapSiteComponent
   ],
   schemas:  [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]

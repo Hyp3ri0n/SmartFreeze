@@ -8,9 +8,13 @@
             </div>
             <div class="form-control autocompleteList" *ngIf="filteredListSites.length > 0">
                 <div *ngFor="let item of filteredListSites">
-                    <a routerLink="sensor/form" (click)="selectSite(item)">{{item}}</a>
+                    <a routerLink="site/form" (click)="selectSite(item)">{{item}}</a>
                 </div>
             </div>
+
+            <button routerLink="site/new" type="button" class="newButton btn btn-primary" data-toggle="modal" data-target="#ajoutSiteModal">
+                <i class="plusicon fa fa-plus-circle"></i>
+              </button>
         </div>
         
 
@@ -20,13 +24,10 @@
             </div>
             <div class="form-control autocompleteList" *ngIf="filteredListSensors.length > 0">
                 <div *ngFor="let item of filteredListSensors">
-                    <a routerLink="site/form" (click)="selectSensor(item)">{{item}}</a>
+                    <a routerLink="sensor/form" (click)="selectSensor(item)">{{item}}</a>
                 </div>
             </div>
         </div>
-
-
-
 
     </div>
     <router-outlet></router-outlet>

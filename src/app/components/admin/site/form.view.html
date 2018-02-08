@@ -14,25 +14,13 @@
                 <i class="fa fa-tag"></i>
                 Nom
             </span>
-            <input id="name" type="text" class="form-control" name="Nom" placeholder="Nom">
+            <input id="name" type="text" class="form-control" name="Nom" placeholder="Nom" required>
         </div>
 
-        <div class="input-group">
-
-            <span class="input-group-addon">
-                <i class="fa fa-globe"></i>
-                Region
-            </span>
-            <input id="region" type="text" class="form-control" name="Region" placeholder="Region">
 
 
-            <span class="input-group-addon">
-                <i class="fa fa-map-marker"></i>
-                Departement
-            </span>
-            <input id="department" type="text" class="form-control" name="Departement" placeholder="Departement">
+        <map-site class="app-container"></map-site>
 
-        </div>
 
         <div class="input-group">
             <span class="input-group-addon">
@@ -56,21 +44,11 @@
                 Image
             </span>
             <label class="custom-file">
-                
+
                 <input type="file" id="file" class="inputstl">
                 <span class="custom-file-control"></span>
             </label>
         </div>
-
-        <!--<image-upload></image-upload>-->
-
-        <div class="input-group">
-            <label class="input-group-addon"><i class="fa fa-image"></i>Image</label>
-            <input type="file" id="BSbtnsuccess">
-        </div>
-
-
-
 
         <div class="input-group">
 
@@ -89,15 +67,25 @@
             <i class="plusicon fa fa-plus-circle"></i>
         </div>
 
+        <div class="row">
 
-        <div class="zoneCheckBox">
+            <div class="col zoneCheckBox">
+                <i class="fa fa-heart"></i>
+                <span>Favoris</span>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div class="col zoneCheckBox">
 
-            <i class="fa fa-trash"></i>
-            <span> Supprimer</span>
-            <label class="switch">
-                <input type="checkbox">
-                <span class="slider round"></span>
-            </label>
+                <i class="fa fa-trash"></i>
+                <span> Supprimer</span>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+            </div>
         </div>
 
         <div class="btn-form-admin">
@@ -108,6 +96,4 @@
         </div>
     </form>
 
-
-
-</div> 
+</div>
