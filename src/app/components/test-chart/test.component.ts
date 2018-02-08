@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
 import { HttpService, MethodRequest } from '../../services/http/http.service';
+import { SiteService } from '../../services/sites/site.service';
 
 @Component({
     selector: 'sf-test',
@@ -15,7 +16,7 @@ import { HttpService, MethodRequest } from '../../services/http/http.service';
 })
 export class TestComponent implements OnInit {
 
-    constructor(private http : HttpService) { /**/ }
+    constructor(private http : HttpService, private site : SiteService) { /**/ }
 
     public ngOnInit(): void {
         let ctx = document.getElementById("test-chart");
@@ -57,11 +58,12 @@ export class TestComponent implements OnInit {
         });
 
         let params = {
-            'deviceId' : '123'
+            'key' : 'AIzaSyCJVLgZMjujdJhvWfcV12kxSZu01ZL8MHw',
+            'latlng' : '40.714224,-73.961452'
         };
 
-        this.http.request(MethodRequest.GET, '/api/Devices', params).subscribe(
-            () => { /**/ }
+        this.http.request(MethodRequest.GET, 'https://maps.googleapis.com/maps/api/geocode/json', params).subscribe(
+            msg => console.log(msg)
         );
     }
 }

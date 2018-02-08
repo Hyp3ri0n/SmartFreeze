@@ -27,7 +27,11 @@ import { AdminSensorListComponent } from './components/admin/sensor/list.compone
 import { AdminSiteFormComponent } from './components/admin/site/form.component';
 import { AdminSiteListComponent } from './components/admin/site/list.component';
 import { ClickOutsideDirective } from './directives/clickOutside.directive';
+import { DeviceService } from './services/devices/device.service';
+import { SiteService } from './services/sites/site.service';
+import { LoadingComponent } from './components/global/loading/loading.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { AlarmeService } from './services/alarmes/alarme.service';
 
 
 @NgModule({
@@ -42,7 +46,10 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
   providers: [
     {provide: APP_BASE_HREF, useValue: '#'},
     HttpService,
-    LoginService
+    LoginService,
+    DeviceService,
+    SiteService,
+    AlarmeService
   ],
   declarations: [
     AppComponent,
@@ -63,7 +70,8 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
     AdminSensorListComponent,
     AdminSiteFormComponent,
     AdminSiteListComponent,
-    ClickOutsideDirective
+    ClickOutsideDirective,
+    LoadingComponent
   ],
   schemas:  [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]
