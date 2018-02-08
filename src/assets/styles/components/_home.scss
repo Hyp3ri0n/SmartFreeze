@@ -1,14 +1,17 @@
 home {
-  @extend .fill;    
+  @extend .app-container;
 }
 
 .home-summary {
   overflow: auto;
+  @include media-breakpoint-down(md) {
+    display: none;
+  }
 }
 
 agm-map {
-  height: 100%;
-  
+  @extend .app-container;
+  @extend .flex-container;
   .si-content {
     text-align: center;
     font-weight: bold; 

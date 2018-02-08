@@ -1,10 +1,20 @@
-.content {
-  background-color: $grey-lighter;
-}
-
 .main {
-  position: relative;
+  @extend .flex-shrink-height;
+  @extend .flex-container-row;
+
   @include media-breakpoint-down(md) {
     flex-direction: column-reverse;
+  }
+}
+
+.content {
+  @extend .flex-shrink-height;
+  @extend .flex-container-column;
+
+  background-color: $grey-lighter;
+  
+  @include media-breakpoint-down(md) {
+    flex: 1 1 0;
+    width: 100%;
   }
 }

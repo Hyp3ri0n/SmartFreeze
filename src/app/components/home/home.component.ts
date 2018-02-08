@@ -22,4 +22,8 @@ export class HomeComponent {
             }
         );
     }
+
+    private getContentHeight() : number {
+        return document.getElementById('content').clientHeight;
+    }
 }
