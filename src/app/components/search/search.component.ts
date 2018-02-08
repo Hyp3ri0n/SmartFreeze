@@ -10,6 +10,49 @@ export class SearchComponent {
 
     constructor() { /**/ }
 
+    data = [
+        {
+            capteur: "G2 - Fondoir",
+            site: "Refuge du Goûter",
+            favori: "Oui",
+            avertissements: 42,
+            region: "Auvergne-Rhône-Alpes",
+            etat: "Activé"
+        },
+        {
+            capteur: "G3 - Fondoir",
+            site: "Refuge du Goûter",
+            favori: "Non",
+            avertissements: 0,
+            region: "Auvergne-Rhône-Alpes",
+            etat: "Activé"
+        },
+        {
+            capteur: "G5 - Dortoir 1",
+            site: "Refuge du Goûter",
+            favori: "Non",
+            avertissements: 422,
+            region: "Auvergne-Rhône-Alpes",
+            etat: "Erreur"
+        },
+        {
+            capteur: "G6 - Dortoir 2",
+            site: "Refuge du Goûter",
+            favori: "Oui",
+            avertissements: 42,
+            region: "Auvergne-Rhône-Alpes",
+            etat: "Activé"
+        },
+        {
+            capteur: "G7 - Cuisine",
+            site: "Refuge du Goûter",
+            favori: "Non",
+            avertissements: 1,
+            region: "Auvergne-Rhône-Alpes",
+            etat: "Activé"
+        }
+        ];
+
     settings = {
         actions: false,
         columns: {
@@ -20,7 +63,53 @@ export class SearchComponent {
                 title: 'Site'
             },
             etat: {
-                title: 'Etat'
+                title: 'Etat',
+                filter: {
+                    type: 'list',
+                    config: {
+                      selectText: 'Tous',
+                      list: [
+                        { value: "Activé", title: "Activé"},
+                        { value: "Désactivé", title: "Désactivé"},
+                        { value: "Erreur", title: "Erreur"},
+                      ],
+                    },
+                  }
+            },
+            avertissements: {
+                title: 'Min avertissements',
+                filterFunction(cell?: number, search?: number): boolean {
+                    if (cell >= search) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            },
+            region: {
+                title: 'Région',
+                filter: {
+                    type: 'list',
+                    config: {
+                      selectText: 'Toutes',
+                      list: [
+                        { title: "Auvergne-Rhône-Alpes", value: "Auvergne-Rhône-Alpe"},
+                        { title: "Bourgogne-Franche-Comté", value: "Bourgogne-Franche-Comté"},
+                        { title: "Bretagne", value:"Bretagne"},
+                        { title: "Centre-Val de Loire", value:"Centre-Val de Loire"},
+                        { title: "Corse", value:"Corse"},
+                        { title: "Grand Est", value:"Grand Est"},
+                        { title: "Hauts-de-France", value:"Hauts-de-France"},
+                        { title: "Ile-de-France", value:"Ile-de-France"},
+                        { title: "Normandie", value:"Normandie"},
+                        { title: "Nouvelle-Aquitaine", value:"Nouvelle-Aquitaine"},
+                        { title: "Occitanie", value:"Occitanie"},
+                        { title: "Pays de la Loire", value:"Pays de la Loire"},
+                        { title: "Provence-Alpes-Côte d'Azur", value:"Provence-Alpes-Côte d'Azur"},
+                        { title: "Outre-Mer", value:"Outre-Mer"}
+                      ],
+                    },
+                  },
             },
             favori: {
                 title: 'Favori',
@@ -29,80 +118,15 @@ export class SearchComponent {
                     config: {
                         true: 'Oui',
                         false: 'Non',
-                        resetText: 'Vider',
+                        resetText: 'Réinitialiser',
                       },
                 }
-            },
-            avertissments: {
-                title: 'Nb avertissements'
-            },
-            region: {
-                title: 'Région',
-                filter: {
-                    type: 'list',
-                    config: {
-                      selectText: 'Select...',
-                      list: [
-                        { title:"Auvergne-Rh\u00f4ne-Alpes", value: "auvergne-rhone-alpes"},
-                        { title:"Bourgogne-Franche-Comt\u00e9", value: "bourgogne-franche-comte"},
-                        { title: "Bretagne", value:"bretagne"},
-                        { title: "Centre-Val de Loire", value:"centre-val-de-loire"},
-                        { title: "Corse", value:"corse"},
-                        { title: "Grand Est", value:"grand-est"},
-                        { title: "Hauts-de-France", value:"hauts-de-france"},
-                        { title: "\u00cele-de-France", value:"ile-de-france"},
-                        { title: "Normandie", value:"normandie"},
-                        { title: "Nouvelle-Aquitaine", value:"nouvelle-aquitaine"},
-                        { title: "Occitanie", value:"occitanie"},
-                        { title: "Pays de la Loire", value:"pays-de-la-loire"},
-                        { title: "Provence-Alpes-C\u00f4te d'Azur", value:"provence-alpes-cote-d-azur"},
-                        { title: "Outre-Mer", value:"outre-mer"}
-                      ],
-                    },
-                  },
             }
+        },
+        noDataMessage: "N/C",
+        pager: {
+            display: true,
+            perPage: 20
         }
       };
-    data = [
-    {
-        capteur: "G2 - Fondoir",
-        site: "Refuge du Goûter",
-        favori: "Oui",
-        avertissments: 42,
-        region: "auvergne-rhone-alpes",
-        etat: "Activé"
-    },
-    {
-        capteur: "G3 - Fondoir",
-        site: "Refuge du Goûter",
-        favori: "Non",
-        avertissments: 0,
-        region: "auvergne-rhone-alpes",
-        etat: "Activé"
-    },
-    {
-        capteur: "G5 - Dortoir 1",
-        site: "Refuge du Goûter",
-        favori: "Non",
-        avertissments: 422,
-        region: "auvergne-rhone-alpes",
-        etat: "Erreur"
-    },
-    {
-        capteur: "G6 - Dortoir 2",
-        site: "Refuge du Goûter",
-        favori: "Oui",
-        avertissments: 42,
-        region: "auvergne-rhone-alpes",
-        etat: "Activé"
-    },
-    {
-        capteur: "G7 - Cuisine",
-        site: "Refuge du Goûter",
-        favori: "Non",
-        avertissments: 1,
-        region: "auvergne-rhone-alpes",
-        etat: "Activé"
-    }
-    ];
 }
