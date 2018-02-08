@@ -30,7 +30,8 @@ $mc-white       :    rgb(255, 255, 255);
 /* Grey colors */
 
 $grey-darker    :   rgb(20, 20, 20);
-$grey-dark      :   rgb(45, 45, 45);
+// $grey-dark      :   rgb(45, 45, 45);
+$grey-dark      :   rgb(61, 61, 61);
 $grey-base      :   rgb(136, 136, 136);
 $grey-light     :   rgb(210, 210, 210);
 $grey-lighter   :   rgb(250, 250, 250);
@@ -48,4 +49,4 @@ $gravity3: rgb(255, 152, 0);
 
 //TRANSPARENCY
 $black-transparency     :   rgba(0, 0, 0, .125);
-$black-transparency-low :     rgba(0, 0, 0, .03);
+$black-transparency-low :   rgba(0, 0, 0, .03);

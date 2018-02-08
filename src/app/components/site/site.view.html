@@ -1,82 +1,114 @@
 <div class="container-fluid">
+    <h1 class="title">
+        Refuge du Gouter
+    </h1>
     <div class="row">
-        <h1 class="col-centered">
-            Refuge du Gouter
-        </h1>
-    </div>
-
-    <div>&nbsp;</div>
-    <div class="row align-items-end">
-        <div class="col-md-3">
-            <label class="badge badge-danger" for="validationDefault01">Avertissement</label>
-            <div class="form-control" style="height:220px; " id="listeAvertissement">
-                <div class="row" style="margin-left:10px">
-                    <label class="text-primary">Temperature inhabituelle</label>
-                    <p class="small" id="listeAvertissement_temperature">25 C - G2 Fondoir 13/10/2017 13h40</p>
+        <div class="col-sm-6 col-md-3">
+            <div class="card card-alerts">
+                <div class="card-header ">
+                    <h4 class="card-title">Avertissements</h4>
                 </div>
-                <div class="row" style="margin-left:10px">
-                    <label class="text-primary">Humidite inhabituelle</label>
-                    <p class="small" id="exampleFormControlTextarea1">80% - G2 Fondoir 13/10/2017 13h40</p>
-                </div>
-                <div class="row" style="margin-left:10px">
-                    <label class="text-primary">Materiel</label>
-                    <p class="small" id="exampleFormControlTextarea1">Batterie faible - G2 Fondoir 13/10/2017 13h40</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <label class="badge badge-success" for="validationDefault02">Capteurs</label>
-            <div class="form-control" style="height:220px;" id="exampleFormControlTextarea1">
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action">G1 - salle commune</a>
-                    <a href="#" class="list-group-item list-group-item-action list-group-item-warning">G2 - Fondoir</a>
-                    <a href="#" class="list-group-item list-group-item-action">G3 - Cuisine</a>
-                    <a href="#" class="list-group-item list-group-item-action">G4 - Dortoir1</a>
-                    <a href="#" class="list-group-item list-group-item-action">G5 - Dortoir2</a>
+                <div class="card-body">
+                    <div>
+                        <h5 class="card-category">
+                            Température inhabituelle
+                        </h5>
+                        <p>
+                            25°C - <a routerLink="sensor">G2 Fondoir</a> 13/10/2017 13h40
+                        </p>
+                    </div>
+                    <div>
+                        <h5 class="card-category">
+                            Humidité inhabituelle
+                        </h5>
+                        <p>
+                            80% - <a routerLink="sensor">G2 Fondoir</a> 13/10/2017 13h40
+                        </p>
+                    </div>
+                    <div>
+                        <h5 class="card-category">
+                            Matériel
+                        </h5>
+                        <p>
+                            Batterie faible - <a routerLink="sensor">G2 Fondoir</a> 13/10/2017 13h40
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <label class="badge badge-success" for="validationDefaultUsername">Caracteristiques</label>
-            <div class="form-control" style="height:220px;" id="exampleFormControlTextarea1">
-                <div class="list-group">
-                    <p>120 couchages ete / 20 hiver</p>
+  
+        <div class="col-sm-6 col-md-3">
+            <div class="card">
+                <div class="card-header ">
+                    <h4 class="card-title">Capteurs</h4>
+                </div>
+                <div class="card-body">
+                    <div class="card-item">
+                        <a routerLink="/sensor">G1 Salle commune</a>
+                    </div>
+                    <div class="card-item">
+                        <a routerLink="/sensor">G2 Fondoir</a>
+                    </div>
+                    <div class="card-item">
+                        <a routerLink="/sensor">G3 Cuisine</a>
+                    </div>
+                    <div class="card-item">
+                        <a routerLink="/sensor">G4 Dortoir1</a>
+                    </div>
+                    <div class="card-item">
+                        <a routerLink="/sensor">G5 Dortoir2</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="card">
+                <div class="card-header ">
+                    <h4 class="card-title">Caractéristiques</h4>
+                </div>
+                <div class="card-body ">
+                    <p>120 couchages été / 20 hiver</p>
                     <p>80 m2</p>
                     <p>3835m d'atitude</p>
                     <p>Massif du Mont Blanc (Alpes)</p>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="form-control" style="height:220px;" id="exampleFormControlTextarea1">
-                <img src="../../assets/images/refuge.PNG" class="rounded mx-auto d-block">
-            </div>
+        <div class="col-sm-6 col-md-3">
+            <img class="fit-img rounded" src="../../assets/images/gouter.jpg">
         </div>
     </div>
-    <div>&nbsp;</div>
-    <div class="row align-items-end">
-        <div class="col-md-6">
-            <label class="badge badge-success" for="validationDefault01">Prevision</label>
 
-            <div class="row align-items-end"  style="height:220px;">
-                <div class="col-md-6">
-                    <label class="badge badge-pill badge-light" for="validationDefaultUsername">Jour</label>
-                    <div class="form-control"  style="height:190px;" id="exampleFormControlTextarea1"></div>
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <div class="card">
+                <div class="card-header ">
+                    <h4 class="card-title">Prévision</h4>
+                    <!-- <p class="card-category"></p> -->
                 </div>
-                <div class="col-md-6">
-                    <label class="badge badge-pill badge-light" for="validationDefaultUsername">Semaine</label>
-                    <div class="form-control"  style="height:190px;" id="exampleFormControlTextarea1"></div>
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="card-category">Jour</h5>
+                            <!-- chart -->
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="card-category">Semaine</h5>
+                            <!-- chart -->
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </div>
 
-        <div class="col-md-6">
-            <label class="badge badge-success" for="validationDefaultUsername">Temperature</label>
-
-            <div class="form-control" style="height:220px;" id="exampleFormControlTextarea1" rows="9"></div>
+        <div class="col-sm-12 col-md-6">
+            <div class="card">
+                <div class="card-header ">
+                    <h4 class="card-title">Températures</h4>
+                </div>
+                <div class="card-body ">
+                </div>
+            </div>
         </div>
-
-
     </div>
 </div>

@@ -1,77 +1,99 @@
-<div class="container-fluid">
+<div class="container-fluid position-relative">
+    <a routerLink="/site" class="back-nav"><span class="arrow left"></span> Retour</a>
+    <h1 class="title">
+        <!-- TODO Ajouter ngClass pour toggle fav class -->
+        <i class="fa fa-star"></i>
+        G2 Fondoir
+    </h1>
     <div class="row">
-        <h1 class="col-centered">
-            Refuge du Gouter
-        </h1>
+        <div class="col-sm-6 col-md-4">
+            <div class="card card-alerts">
+                <div class="card-header ">
+                    <h4 class="card-title">Avertissements</h4>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <h5 class="card-category">
+                            Température inhabituelle
+                        </h5>
+                        <p>
+                            25°C - <a routerLink="sensor">G2 Fondoir</a> 13/10/2017 13h40
+                        </p>
+                    </div>
+                    <div>
+                        <h5 class="card-category">
+                            Humidité inhabituelle
+                        </h5>
+                        <p>
+                            80% - <a routerLink="sensor">G2 Fondoir</a> 13/10/2017 13h40
+                        </p>
+                    </div>
+                    <div>
+                        <h5 class="card-category">
+                            Matériel
+                        </h5>
+                        <p>
+                            Batterie faible - <a routerLink="sensor">G2 Fondoir</a> 13/10/2017 13h40
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+            <div class="card">
+                <div class="card-header ">
+                    <h4 class="card-title">Capteurs</h4>
+                </div>
+                <div class="card-body">
+                    <label class="font-weight-bold">Site</label>
+                    <p><a routerLink="site">Refuge du Goûter</a></p>
+                    <label class="font-weight-bold">Zone</label>
+                    <p>Fondoir</p>
+                    <label class="font-weight-bold">Dernière communication</label>
+                    <p>5 minutes</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-2">
+            <div class="card">
+                <div class="card-header ">
+                    <h4 class="card-title">Prévision gel</h4>
+                </div>
+                <div class="card-body ">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-2">
+            <img src="../../assets/images/batteryLevel2.PNG" class="fit-img rounded">
+        </div>
     </div>
-
-    <div>&nbsp;</div>
-    <div class="row align-items-end">
-        <div class="col-md-3">
-            <label class="badge badge-danger" for="validationDefault01">Avertissement</label>
-            <div class="form-control" style="height:220px; " id="listeAvertissement">
-                <div style="margin-left:10px">
-                    <label class="text-primary">Temperature inhabituelle</label>
-                    <p class="small" id="listeAvertissement_temperature">25 C - G2 Fondoir 13/10/2017 13h40</p>
+    <div class="row">
+        <div class="col-sm-12 col-md-4">
+            <div class="card">
+                <div class="card-header ">
+                    <h4 class="card-title">Température</h4>
                 </div>
-                <div style="margin-left:10px">
-                    <label class="text-primary">Humidite inhabituelle</label>
-                    <p class="small" id="exampleFormControlTextarea1">80% - G2 Fondoir 13/10/2017 13h40</p>
-                </div>
-                <div style="margin-left:10px">
-                    <label class="text-primary">Materiel</label>
-                    <p class="small" id="exampleFormControlTextarea1">Batterie faible - G2 Fondoir 13/10/2017 13h40</p>
+                <div class="card-body ">
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <label class="badge badge-success" for="validationDefault02">Caracteristiques</label>
-            <div class="form-control" style="height:220px;" id="exampleFormControlTextarea1">
-                <div style="margin-left:10px">
-                    <label class="text-primary">Groupe</label>
-                    <p class="small" id="listeAvertissement_temperature">Refuge du Gouter</p>
+        <div class="col-sm-12 col-md-4">
+            <div class="card">
+                <div class="card-header ">
+                    <h4 class="card-title">Humidité</h4>
                 </div>
-                <div style="margin-left:10px">
-                    <label class="text-primary">Piece</label>
-                    <p class="small" id="exampleFormControlTextarea1">Fondoir</p>
-                </div>
-                <div style="margin-left:10px">
-                    <label class="text-primary">Derniere communication</label>
-                    <p class="small" id="exampleFormControlTextarea1">5 minuites</p>
+                <div class="card-body ">
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <label class="badge badge-success" for="validationDefaultUsername">Prevision gel</label>
-            <div class="form-control" style="height:220px;" id="exampleFormControlTextarea1">
+        <div class="col-sm-12 col-md-4">
+            <div class="card">
+                <div class="card-header ">
+                    <h4 class="card-title">Pression</h4>
+                </div>
+                <div class="card-body ">
+                </div>
             </div>
-        </div>
-        <div class="col-md-3">
-            <label class="badge badge-success" for="validationDefaultUsername">Batterie</label>
-            <div class="form-control" style="height:220px;" id="exampleFormControlTextarea1">
-                <img src="../../assets/images/batteryLevel2.PNG" class="img_battery">
-            </div>
-        </div>
-    </div>
-    <div>&nbsp;</div>
-    <div class="row align-items-end">
-
-        <div class="col-md-3">
-            <label class="badge badge-success" for="validationDefaultUsername">Temperature</label>
-
-            <div class="form-control" style="height:220px;" id="exampleFormControlTextarea1" rows="9"></div>
-        </div>
-
-        <div class="col-md-3">
-            <label class="badge badge-success" for="validationDefaultUsername">Humidite</label>
-
-            <div class="form-control" style="height:220px;" id="exampleFormControlTextarea1" rows="9"></div>
-        </div>
-
-        <div class="col-md-3">
-            <label class="badge badge-success" for="validationDefaultUsername">Pression</label>
-
-            <div class="form-control" style="height:220px;" id="exampleFormControlTextarea1" rows="9"></div>
         </div>
     </div>
 </div>

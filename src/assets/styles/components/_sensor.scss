@@ -1,4 +1,61 @@
-.img_battery {
-    width: 50%;
-    height: 200px;
+.fa-star {
+    color: $grey-base;
+    cursor: pointer;
+    
+    .fav {
+        color: $mc-yellow;
+    }
+
+    &:hover {
+        color: $mc-yellow;
+    }
+}
+
+.back-nav {
+    position: absolute;
+    top: 5px;
+    left: 15px;
+    padding-left: 20px;
+    font-size: 18px;
+
+    &:hover .arrow {
+        border-color: $app-primary_light;
+		box-shadow: 0.5vmin -0.5vmin 0 $app-primary;
+    }
+}
+
+.arrow {
+	position: absolute;
+	top: 50%;
+	width: 20px;
+	height: 20px;
+	background: transparent;
+	border-top: 5px solid $app-primary;
+	border-right: 5px solid $app-primary;
+	box-shadow: 0 0 0 $grey-light;
+    transition: all 200ms ease;
+    &.left {
+		left: 0;
+		transform: translate3d(0,-50%,0) rotate(-135deg);
+	}
+
+	&.right {
+		right: 0;
+		transform: translate3d(0,-50%,0) rotate(45deg);
+	}
+	
+	&:hover {
+		border-color: $app-primary_light;
+		box-shadow: 0.5vmin -0.5vmin 0 $app-primary;
+	}
+	
+	&:before {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-40%,-60%) rotate(45deg);
+		width: 200%;
+		height: 200%;
+	}
 }

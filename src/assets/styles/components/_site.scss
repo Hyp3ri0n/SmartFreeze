@@ -1,13 +1,26 @@
-.row-first {
-    margin-left: 0px;
-    margin-right: 0px;
-    height: 40%;
+site, sensor {
+    .card {
+        height: 100%;
+    }
+    
+    .row:first-of-type {
+        margin-bottom: 20px;
+    }   
 }
 
-.col-centered {
-    float: none;
-    margin: 0 auto;
+.fit-img {
+    object-fit: contain;
+    width: 100%;
 }
-.list-group-item {
-    font-size: 0.7rem;
+
+.card-item {
+    display: inline-block;
+    width: 50%;
+    padding: 5px;
+}
+
+.card-alerts {
+    .card-header .card-title {
+        color: $mc-red;
+    }
 }
