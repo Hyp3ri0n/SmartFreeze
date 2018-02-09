@@ -24,6 +24,7 @@ export class AdminSiteFormComponent {
             activeAlarmsCount :  0,
             latitude : 0,
             longitude : 0,
+            altitude : 0,
             surfaceArea : 0,
             surfaceAreaUnit : "",
             zones : [],
