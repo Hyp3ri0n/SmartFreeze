@@ -28,8 +28,8 @@ export const appRoutes: Routes = [
             ]}
         ]
     },
-    { path: 'site', component: SiteComponent },
-    { path: 'sensor', component: SensorComponent },
+    { path: 'site/:id', component: SiteComponent },
+    { path: 'sensor/:id', component: SensorComponent },
     { path: 'test', component: TestComponent},
     { path: 'allSites', component: AllSitesComponent},
     { path: '', redirectTo: '/home', pathMatch: 'full' },

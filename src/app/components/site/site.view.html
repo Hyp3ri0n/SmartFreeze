@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <h1 class="title">
-        Refuge du Gouter
+        {{site?.name}}
     </h1>
     <div class="row">
         <div class="col-sm-6 col-md-3">
@@ -39,24 +39,12 @@
   
         <div class="col-sm-6 col-md-3">
             <div class="card">
-                <div class="card-header ">
+                <div class="card-header">
                     <h4 class="card-title">Capteurs</h4>
                 </div>
                 <div class="card-body">
-                    <div class="card-item">
-                        <a routerLink="/sensor">G1 Salle commune</a>
-                    </div>
-                    <div class="card-item">
-                        <a routerLink="/sensor">G2 Fondoir</a>
-                    </div>
-                    <div class="card-item">
-                        <a routerLink="/sensor">G3 Cuisine</a>
-                    </div>
-                    <div class="card-item">
-                        <a routerLink="/sensor">G4 Dortoir1</a>
-                    </div>
-                    <div class="card-item">
-                        <a routerLink="/sensor">G5 Dortoir2</a>
+                    <div class="card-item" *ngFor="let device of site?.devices">
+                        <a [routerLink]="'/sensor/'+device.id">{{device.name}}</a>
                     </div>
                 </div>
             </div>
@@ -67,10 +55,10 @@
                     <h4 class="card-title">Caractéristiques</h4>
                 </div>
                 <div class="card-body ">
-                    <p>120 couchages été / 20 hiver</p>
-                    <p>80 m2</p>
-                    <p>3835m d'atitude</p>
-                    <p>Massif du Mont Blanc (Alpes)</p>
+                    <p>{{site?.description}}</p>
+                    <p>{{site?.surfaceArea + ' ' + site?.surfaceAreaUnit}}</p>
+                    <p>[DATA MISSING]m d'altitude</p>
+                    <p>{{site?.region + ' (' + site?.department + ')'}}</p>
                 </div>
             </div>
         </div>
