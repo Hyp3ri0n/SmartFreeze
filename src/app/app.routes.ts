@@ -27,8 +27,8 @@ export const appRoutes: Routes = [
             ]}
         ]
     },
-    { path: 'site', component: SiteComponent },
-    { path: 'sensor', component: SensorComponent },
+    { path: 'site/:id', component: SiteComponent },
+    { path: 'sensor/:id', component: SensorComponent },
     { path: 'test', component: TestComponent},
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', redirectTo: '/home', pathMatch: 'full'}

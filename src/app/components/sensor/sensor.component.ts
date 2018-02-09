@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { DeviceService, Device } from '../../services/devices/device.service';
 
 @Component({
     selector: 'sensor',
@@ -7,5 +9,19 @@ import { Component } from '@angular/core';
 
 export class SensorComponent {
 
-    constructor() { /**/ }
+    private device : Device = null;
+
+    constructor(private router : ActivatedRoute, private deviceService : DeviceService) {
+        this.router.params.subscribe(
+            params => {
+                let deviceId : string = params['id'];
+
+                this.deviceService.getDevice(deviceId).subscribe(
+                    device => {
+                        this.device = device;
+                    }
+                );
+            }
+        );
+    }
 }
