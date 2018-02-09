@@ -4,6 +4,19 @@ home {
 
 .home-summary {
   overflow: auto;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  align-content: center;
+  display: flex;
+
+  h1, h2 {
+    font-size: 1.5rem;
+  }
+
+  .card-alerts {
+    margin-bottom: 10px;
+  }
+  
   @include media-breakpoint-down(md) {
     display: none;
   }

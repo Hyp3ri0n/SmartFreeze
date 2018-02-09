@@ -1,45 +1,56 @@
 <div class="app-container container-fluid no-padding-x">
     <div style="margin: 0;" class="row app-container">
         <div class="col-lg-6 home-summary">
-            <div class="warnings">
-                <h1 class="heading">Avertissements</h1>
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                    <h2 class="heading">Gel prévu</h2>
-                    <p>Refuge du Goûter à partir du 13/10/2017</p>
+            <div class="card card-alerts">
+                <div class="card-header ">
+                    <h1 class="card-title">Avertissements</h1>
                 </div>
-                <!--<div class="col-sm-12 col-md-12 col-lg-12">
-                    <h2 class="heading">Dégel prévu</h2>
-                    <p>Refuge des Feneys à partir du 14/10/2017</p>
-                </div>-->
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                    <h2 class="heading">Température inhabituelle</h2>
-                    <p>25°C - G2 Fondoir (Refuge du Goûter) 13/10/2017 13h40</p>
-                </div>
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                    <h2 class="heading">Humidité inhabituelle</h2>
-                    <p>80% - G2 Fondoir (Refuge du Goûter) 13/10/2017 13h40</p>
-                </div>
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                    <h2 class="heading">Matériel</h2>
-                    <p>Batterie faible - G2 Fondoir (Refuge du Goûter) 13/10/2017 13h40</p>
-                    <p>Passerelle P1 - Pas de communication 13/10/2017 13h40 </p>
-                </div>
-            </div>  
-            <div class="sensors">
-                <h1 class="heading">Mes capteurs clés triés par refuge</h1>
-                <loading *ngIf="sites == null" [model]="modelLoading"></loading>
-                <ng-container *ngIf="sites != null">
-                    <div class="col-sm-12 col-md-12 col-lg-12" *ngFor="let site of sites">
-                        <h2 class="heading"> <a [routerLink]="'/site/'+site.id">{{site.name}}</a></h2>
-                        <ng-container *ngFor="let device of site.devices">
-                            <a [routerLink]="'/sensor/'+device.id" *ngIf="device.isFavorite">{{device.name}}</a>
-                        </ng-container>
+                <div class="card-body">
+                    <div>
+                        <h2 class="card-category">
+                            Température inhabituelle
+                        </h2>
+                        <p>
+                            25°C - <a routerLink="sensor">G2 Fondoir</a> 13/10/2017 13h40
+                        </p>
                     </div>
-                </ng-container>
-                <div *ngIf="sites != null && sites.length == 0">Vous n'avez pas de capteurs clés.</div>
+                    <div>
+                        <h2 class="card-category">
+                            Humidité inhabituelle
+                        </h2>
+                        <p>
+                            80% - <a routerLink="sensor">G2 Fondoir</a> 13/10/2017 13h40
+                        </p>
+                    </div>
+                    <div>
+                        <h2 class="card-category">
+                            Matériel
+                        </h2>
+                        <p>
+                            Batterie faible - <a routerLink="sensor">G2 Fondoir</a> 13/10/2017 13h40
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header ">
+                    <h1 class="card-title">Mes capteurs clés</h1>
+                </div>
+                <div class="card-body">
+                    <loading *ngIf="sites == null" [model]="modelLoading"></loading>
+                    <ng-container *ngIf="sites != null">
+                        <div class="col-sm-12 col-md-12 col-lg-12" *ngFor="let site of sites">
+                            <h2 class="heading"> <a [routerLink]="'/site/'+site.id">{{site.name}}</a></h2>
+                            <ng-container *ngFor="let device of site.devices">
+                                <a [routerLink]="'/sensor/'+device.id" *ngIf="device.isFavorite">{{device.name}}</a>
+                            </ng-container>
+                        </div>
+                    </ng-container>
+                    <div *ngIf="sites != null && sites.length == 0">Vous n'avez pas de capteurs clés.</div>
+                </div>
             </div>
         </div>
-        <div class="col-sm-12 col-md-12 col-lg-6 flex-container no-padding-x">
+        <div class="col-md-12 col-lg-6 flex-container no-padding-x">
             <!-- hack de l'espace !! ne pas toucher "style.height.px" -->
             <map class="app-container" [style.height.px]="getContentHeight()"></map>
         </div>

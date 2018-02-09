@@ -18,3 +18,28 @@
     width: 100%;
   }
 }
+
+.content-loader {
+  width: 70px;
+  margin: 0 auto;
+  display: block;
+  animation: shimmy 3s infinite;
+}
+
+@keyframes shimmy {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(100%);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  75% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
