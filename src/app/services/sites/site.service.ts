@@ -17,6 +17,7 @@ export interface Site {
     activeAlarmsCount : number; // ?
     latitude : number;
     longitude : number;
+    altitude : number;
     surfaceArea : number;
     surfaceAreaUnit : string;
     zones : string[];

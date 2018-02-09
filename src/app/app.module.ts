@@ -26,12 +26,16 @@ import { AdminSensorFormComponent } from './components/admin/sensor/form.compone
 import { AdminSensorListComponent } from './components/admin/sensor/list.component';
 import { AdminSiteFormComponent } from './components/admin/site/form.component';
 import { AdminSiteListComponent } from './components/admin/site/list.component';
+import { FormsModule } from '@angular/forms';
+import { MapSiteComponent } from './components/admin/site/map/mapSite.component';
+import { AddSiteComponent } from './components/admin/site/addSite.component';
 import { ClickOutsideDirective } from './directives/clickOutside.directive';
 import { DeviceService } from './services/devices/device.service';
 import { SiteService } from './services/sites/site.service';
 import { LoadingComponent } from './components/global/loading/loading.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { AlarmeService } from './services/alarmes/alarme.service';
+import { AddSensorComponent } from './components/admin/sensor/addSensor.component';
 import { AllSitesComponent } from './components/all-sites/allSites.component';
 
 
@@ -39,6 +43,7 @@ import { AllSitesComponent } from './components/all-sites/allSites.component';
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     RouterModule.forRoot(appRoutes),
     AgmCoreModule.forRoot({apiKey: 'AIzaSyCJVLgZMjujdJhvWfcV12kxSZu01ZL8MHw'}),
     AgmSnazzyInfoWindowModule,
@@ -71,8 +76,11 @@ import { AllSitesComponent } from './components/all-sites/allSites.component';
     AdminSensorListComponent,
     AdminSiteFormComponent,
     AdminSiteListComponent,
+    AddSiteComponent,
+    MapSiteComponent,
     ClickOutsideDirective,
     LoadingComponent,
+    AddSensorComponent,
     AllSitesComponent
   ],
   schemas:  [ CUSTOM_ELEMENTS_SCHEMA ],

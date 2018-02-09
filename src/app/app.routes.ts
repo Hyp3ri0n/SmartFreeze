@@ -10,6 +10,8 @@ import { AdminSiteFormComponent } from './components/admin/site/form.component';
 import { AdminSiteListComponent } from './components/admin/site/list.component';
 import { AdminSensorListComponent } from './components/admin/sensor/list.component';
 import { AdminSensorFormComponent } from './components/admin/sensor/form.component';
+import { AddSiteComponent } from './components/admin/site/addSite.component';
+import { AddSensorComponent } from './components/admin/sensor/addSensor.component';
 import { AllSitesComponent } from './components/all-sites/allSites.component';
 
 export const appRoutes: Routes = [
@@ -20,11 +22,13 @@ export const appRoutes: Routes = [
         children: [
             { path: 'site', children: [
                 { path: 'list', component: AdminSiteListComponent },
-                { path: 'form', component: AdminSiteFormComponent }
+                { path: 'form', component: AdminSiteFormComponent },
+                { path: 'new', component: AddSiteComponent }
             ]},
             { path: 'sensor', children: [
                 { path: 'list', component: AdminSensorListComponent },
-                { path: 'form', component: AdminSensorFormComponent }
+                { path: 'form', component: AdminSensorFormComponent },
+                { path: 'new', component: AddSensorComponent }
             ]}
         ]
     },

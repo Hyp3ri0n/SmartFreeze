@@ -1,0 +1,86 @@
+<div class="modal fade" id="addSensorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Enregistrer un nouveau capteur</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="container">
+
+
+
+
+
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-tag"></i>
+                            Nom
+                        </span>
+                        <input id="name" type="text" class="form-control" name="Nom" placeholder="Nom">
+                    </div>
+
+
+
+                    <div class="input-group">
+
+                        <span class="input-group-addon">
+                            <i class="fa fa-map-marker"></i>
+                            Site
+                        </span>
+                        <select class="form-control" id="site">
+                            <option selected>
+                                Site
+                            </option>
+                            <option value="1">Site1 machin bidule</option>
+                            <option value="2">Site2</option>
+                            <option value="3">Site3</option>
+                        </select>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <span class="input-group-addon">
+                            <i class="fa fa-home"></i>
+                            Zone
+                        </span>
+                        <select class="form-control" id="zone">
+                            <option selected>
+                                Zone
+                            </option>
+                            <option value="1">Zone1 machin bidule</option>
+                            <option value="2">Zone2</option>
+                            <option value="3">Zone3</option>
+                        </select>
+                    </div>
+
+
+                    <div class=" zoneCheckBox">
+                        <span>
+                            <i class="fa fa-heart"></i>
+                            Favoris
+                        </span>
+                        <label class=" switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+
+
+
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Ajouter</button>
+            </div>
+        </div>
+    </div>
+</div>
