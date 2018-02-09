@@ -9,6 +9,20 @@
 
 }
 
+.deleteZonebtn{
+    padding: 2px;
+    margin-top: 8px;
+    font-size: 20px;
+}
+
+.zoneWrapper{
+    padding: 5px;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+    background-color: $mc-white;
+    border: 1px solid #ced4da;
+}
+
 .mapSite{
     padding-top : 10px;
 }

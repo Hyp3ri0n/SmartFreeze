@@ -1,10 +1,5 @@
 import { Component } from '@angular/core';
 
-export interface Zone {
-    id: number;
-    name: string;
-}
-
 @Component({
     selector: 'site-form',
     templateUrl: './app/components/admin/site/form.view.html'
@@ -12,20 +7,25 @@ export interface Zone {
 
 export class AdminSiteFormComponent {
 
-    private zones: Zone[] = [{id: 1, name:"Piece1"}, {id: 2, name:"Piece2"}];
+    private zones: string[] = [''];
 
     constructor() {/**/ }
 
     public addZone(): void {
-        this.zones.push({ id: this.zones.length + 1, name: "" });
+        console.log(this.zones.indexOf(''));
+        if (this.zones.indexOf('') === -1) {
+            this.zones.push('');
+        }
+        console.log(this.zones);
     }
 
-    public removeZone(idZone: number): void {
-        this.zones.splice(idZone, 1);
+    public removeZone(zone: string): void {
+        let indexZone = this.zones.indexOf(zone);
+        this.zones.splice(indexZone, 1);
     }
 
-    public showAddChoice(choice): void {
-
-    }
+    trackByFn(index: any, item: any) {
+        return index;
+     }
 
 }

@@ -7,5 +7,24 @@ import { Component } from '@angular/core';
 
 export class AddSiteComponent {
 
-    constructor() { /**/ }
+    private zones: string[] = [''];
+
+    constructor() {/**/ }
+
+    public addZone(): void {
+        console.log(this.zones.indexOf(''));
+        if (this.zones.indexOf('') === -1) {
+            this.zones.push('');
+        }
+        console.log(this.zones);
+    }
+
+    public removeZone(zone: string): void {
+        let indexZone = this.zones.indexOf(zone);
+        this.zones.splice(indexZone, 1);
+    }
+
+    trackByFn(index: any, item: any) {
+        return index;
+     }
 }
