@@ -28,12 +28,9 @@ export class SiteService {
 
     constructor(private http : HttpService, private deviceService : DeviceService) { /**/ }
 
-    public getSite(id : string) : Observable<Site[]> {
+    public getSite(id : string) : Observable<Site> {
         return Observable.create((observer) => {
-            let params = {
-                'sitedId' : id
-            };
-            this.http.request(MethodRequest.GET, '/api/Sites', params).subscribe(
+            this.http.request(MethodRequest.GET, '/api/Sites/' + id, {}).subscribe(
                 site => {
                     observer.next(site);
                 },
