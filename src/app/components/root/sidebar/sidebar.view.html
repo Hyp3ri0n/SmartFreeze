@@ -5,19 +5,25 @@
         Accueil
     </div>
 </a>
-<a routerLink="search" class="side-wrapper" (click)="go_clicked(1)" [ngClass]="{ 'side-active' :  activeOffset == 1 }" title="Recherche avancée">
+<a routerLink="allSites" class="side-wrapper" (click)="go_clicked(1)" [ngClass]="{ 'side-active' :  activeOffset == 1 }" title="Mes sites">
+    <i class="side-icon fa fa-cubes"></i>
+    <div class="side-text">
+        Mes sites
+    </div>
+</a>
+<a routerLink="search" class="side-wrapper" (click)="go_clicked(2)" [ngClass]="{ 'side-active' :  activeOffset == 2 }" title="Recherche avancée">
     <i class="side-icon fa fa-search"></i>
     <div class="side-text">
         Recherche
     </div>
 </a>
-<a routerLink="alerts" class="side-wrapper" (click)="go_clicked(2)" [ngClass]="{ 'side-active' :  activeOffset == 2 }" title="Avertissements">
+<a routerLink="alerts" class="side-wrapper d-none d-lg-block" (click)="go_clicked(3)" [ngClass]="{ 'side-active' :  activeOffset == 3 }" title="Avertissements">
     <i class="side-icon fa fa-bell"></i>
     <div class="side-text">
         Avertissements
     </div>
 </a>
-<a routerLink="admin" class="side-wrapper" (click)="go_clicked(3)" [ngClass]="{ 'side-active' :  activeOffset == 3 }" title="Espace d'administration">
+<a routerLink="admin" class="side-wrapper" (click)="go_clicked(4)" [ngClass]="{ 'side-active' :  activeOffset == 4 }" title="Espace d'administration">
     <i class="side-icon fa fa-cogs"></i>
     <div class="side-text">
         Administration
@@ -25,7 +31,7 @@
 </a>
 <div class="side-space"></div>
 <a routerLink="#" class="side-wrapper" (click)="login.reset()" title="Déconnexion">
-    <i class="side-icon fa fa-sign-out"></i>
+    <i class="side-icon fa fa-sign-out fa-rotate-180"></i>
     <div class="side-text">
         Déconnexion
     </div>

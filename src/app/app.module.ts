@@ -36,6 +36,7 @@ import { LoadingComponent } from './components/global/loading/loading.component'
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { AlarmeService } from './services/alarmes/alarme.service';
 import { AddSensorComponent } from './components/admin/sensor/addSensor.component';
+import { AllSitesComponent } from './components/all-sites/allSites.component';
 
 
 @NgModule({
@@ -79,7 +80,8 @@ import { AddSensorComponent } from './components/admin/sensor/addSensor.componen
     MapSiteComponent,
     ClickOutsideDirective,
     LoadingComponent,
-    AddSensorComponent
+    AddSensorComponent,
+    AllSitesComponent
   ],
   schemas:  [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]

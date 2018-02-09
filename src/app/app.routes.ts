@@ -12,6 +12,7 @@ import { AdminSensorListComponent } from './components/admin/sensor/list.compone
 import { AdminSensorFormComponent } from './components/admin/sensor/form.component';
 import { AddSiteComponent } from './components/admin/site/addSite.component';
 import { AddSensorComponent } from './components/admin/sensor/addSensor.component';
+import { AllSitesComponent } from './components/all-sites/allSites.component';
 
 export const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -31,9 +32,10 @@ export const appRoutes: Routes = [
             ]}
         ]
     },
-    { path: 'site', component: SiteComponent },
-    { path: 'sensor', component: SensorComponent },
+    { path: 'site/:id', component: SiteComponent },
+    { path: 'sensor/:id', component: SensorComponent },
     { path: 'test', component: TestComponent},
+    { path: 'allSites', component: AllSitesComponent},
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', redirectTo: '/home', pathMatch: 'full'}
 ];

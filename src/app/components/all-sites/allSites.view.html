@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <ng-container *ngIf="countActives <= 1">
+        <button type="button" class="btn btn-outline-primary toggle-all" (click)="openAll()">Tout déplier</button>
+    </ng-container>
+    <ng-container *ngIf="countActives > 1">
+        <button type="button" class="btn btn-outline-primary toggle-all" (click)="closeAll()">Tout fermer</button>
+    </ng-container>
+    <h1 class="title">
+        Mes sites
+    </h1>
+    <div class="switch-gel">
+        <button type="button" class="btn btn-outline-primary" [ngClass]="{'active': !gelFilter }" (click)="gelFilter = !gelFilter;">Tout</button>
+        <button type="button" class="btn btn-outline-primary" [ngClass]="{'active': gelFilter }" (click)="gelFilter = !gelFilter;">Gel</button>
+    </div>
+    <div class="row" [ngClass]="{'filtered': gelFilter }">
+        <div class="col-sm-6 col-md-3 mb-3" *ngFor="let site of filteredSites" [ngClass]="{'hasAlarm': site.hasAlarm }">
+            <div class="card" [ngClass]="{'active-card': site.isActive }">
+                <div class="card-header">
+                    <h4 class="card-title">
+                        <a routerLink="/site">{{site.title}}</a>
+                    </h4>
+                    <i *ngIf="site.hasAlarm" class="gel-icon fa fa-snowflake-o" title="Gel prévu"></i>
+                    <i class="card-icon fa" [ngClass]="{'fa-minus': site.isActive, 'fa-plus' : !site.isActive }" (click)="go_clicked(site)"></i>
+                </div>
+                <div class="toggle-card">
+                    <div class="card-body">
+                        <div class="card-item">
+                            <a routerLink="/sensor">G1 Salle commune</a><i class="gel-icon fa fa-snowflake-o" title="Gel prévu"></i>
+                        </div>
+                        <div class="card-item">
+                            <a routerLink="/sensor">G2 Fondoir</a>
+                        </div>
+                        <div class="card-item">
+                            <a routerLink="/sensor">G3 Cuisine</a><i class="gel-icon fa fa-snowflake-o" title="Gel prévu"></i>
+                        </div>
+                        <div class="card-item">
+                            <a routerLink="/sensor">G4 Dortoir1</a>
+                        </div>
+                        <div class="card-item">
+                            <a routerLink="/sensor">G5 Dortoir2</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

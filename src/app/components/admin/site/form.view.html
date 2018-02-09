@@ -67,11 +67,11 @@
             <i class="fa fa-image"></i>
             Image
         </span>
-        <label class="custom-file">
 
-            <input [(ngModel)]="site.imageUri" type="file" id="file" class="inputstl">
-            <span class="custom-file-control"></span>
-        </label>
+
+        <input [(ngModel)]="site.imageUri" type="text" id="file" class="form-control">
+
+
     </div>
 
 
@@ -87,25 +87,25 @@
 
 
 <div class="modal fade" id="deleteSiteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Supprimer un site</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-    
-                    Confirmer la suppression du site ?<br/>
-                    Attention, cela provoquera la suppression de tous les capteurs rattachés !
-    
-    
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Supprimer</button>
-                </div>
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Supprimer un site</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                Confirmer la suppression du site ?
+                <br/> Attention, cela provoquera la suppression de tous les capteurs rattachés !
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Supprimer</button>
             </div>
         </div>
     </div>
+</div>

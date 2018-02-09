@@ -30,9 +30,9 @@
                 <loading *ngIf="sites == null" [model]="modelLoading"></loading>
                 <ng-container *ngIf="sites != null">
                     <div class="col-sm-12 col-md-12 col-lg-12" *ngFor="let site of sites">
-                        <h2 class="heading"> <a routerLink="/site">{{site.name}}</a></h2>
+                        <h2 class="heading"> <a [routerLink]="'/site/'+site.id">{{site.name}}</a></h2>
                         <ng-container *ngFor="let device of site.devices">
-                            <a routerLink="/sensor" *ngIf="device.isFavorite">{{device.name}}</a>
+                            <a [routerLink]="'/sensor/'+device.id" *ngIf="device.isFavorite">{{device.name}}</a>
                         </ng-container>
                     </div>
                 </ng-container>

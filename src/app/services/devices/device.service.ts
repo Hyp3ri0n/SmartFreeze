@@ -20,6 +20,20 @@ export class DeviceService {
 
     constructor(private http : HttpService) { /**/ }
 
+    public getDevice(id : string) : Observable<Device> {
+        return Observable.create((observer) => {
+            this.http.request(MethodRequest.GET, '/api/Devices/' + id, {}).subscribe(
+                device => {
+                    observer.next(device);
+                },
+                err => {
+                    // TODO send test
+                    observer.next({test : 'TEST'});
+                }
+            );
+        });
+    }
+
     public getDevices() : Observable<Device[]> {
         return Observable.create((observer) => {
             this.http.request(MethodRequest.GET, '/api/Devices', {}).subscribe(
