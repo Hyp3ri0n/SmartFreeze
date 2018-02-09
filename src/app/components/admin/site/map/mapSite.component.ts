@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpService, MethodRequest } from '../../../../services/http/http.service';
+import { Input } from '@angular/core';
+import { Site } from '../../../../services/sites/site.service';
 
 export interface Marker {
     lat: number;
@@ -13,6 +15,7 @@ export interface Marker {
     templateUrl: './app/components/admin/site/map/mapSite.view.html'
 })
 export class MapSiteComponent {
+    @Input() public site : Site;
     private lng:number = 6.830066;
     private lat:number = 45.851010;
     private zoom:number = 9;
@@ -41,9 +44,11 @@ export class MapSiteComponent {
                     departement: msg.results[3].formatted_address,
                     region: msg.results[4].formatted_address
                 };
+                this.site.latitude = this.marker[0].lat;
+                this.site.longitude = this.marker[0].lng;
+                this.site.department = this.marker[0].departement;
+                this.site.region = this.marker[0].region;
             }
         );
-        console.log(this.marker);
-
      }
 }
