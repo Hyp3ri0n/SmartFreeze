@@ -8,8 +8,17 @@ export enum MethodRequest {
     GET, POST
 }
 
+interface Request {
+    method : MethodRequest;
+    url : string;
+    params : string;
+}
+
 @Injectable()
 export class HttpService {
+
+    private _online : boolean = true;
+    private _backOnlineEventListener : () => void = null;
 
     private ipServer : string = 'http://smartfreeze-back.azurewebsites.net';
 
@@ -43,11 +52,13 @@ export class HttpService {
                     data => {
                         console.log('[HTTP] sucess request GET on : ' + finalUrl);
                         console.log(data);
+                        this.online = true;
                         observer.next(data);
                     },
                     err => {
                         console.error('[HTTP] error request GET on : ' + finalUrl);
                         console.error(err);
+                        this.online = false;
                         observer.error(err);
                     }
                 );
@@ -57,15 +68,44 @@ export class HttpService {
                     data => {
                         console.log('[HTTP] sucess request POST on : ' + finalUrl);
                         console.log(data);
+                        this.online = true;
                         observer.next(data);
                     },
                     err => {
                         console.error('[HTTP] error request POST on : ' + finalUrl);
                         console.error(err);
+                        this.online = false;
                         observer.error(err);
                     }
                 );
             }
         });
+    }
+
+    public isOnline() : boolean {
+        return this._online;
+    }
+
+    private get online() : boolean {
+        return this._online;
+    }
+
+    private set online(online : boolean) {
+        if (this._online !== online) {
+            this._online = online;
+
+            if (online && this._backOnlineEventListener !== null) {
+                this._backOnlineEventListener();
+            }
+        }
+    }
+
+    public set backOnlineEventListener(cb : (() => void)) {
+        //this._backOnlineEventListener.push(cb);
+        this._backOnlineEventListener = cb;
+    }
+
+    public pingServer() : void {
+        this.request(MethodRequest.GET, 'api/Ping', {}).subscribe();
     }
 }
