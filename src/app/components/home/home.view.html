@@ -1,58 +1,223 @@
-<div class="app-container container-fluid no-padding-x">
-    <div style="margin: 0;" class="row app-container">
-        <div class="col-lg-6 home-summary">
-            <div class="card card-alerts">
-                <div class="card-header ">
-                    <h1 class="card-title">Avertissements</h1>
+<div class="app-container container-fluid homePage">
+    <div class="row cardsSummary">
+
+        <div class=" col-lg-3 d-none d-sm-block">
+            <div class="cardHome cardInfo row">
+                <div class="col-md-4">
+                    <div class="cardIcon   bg-red">
+                        <i class="fa fa-exclamation-triangle"></i>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <div>
-                        <h2 class="card-category">
-                            Température inhabituelle
-                        </h2>
-                        <p>
-                            25°C - <a routerLink="sensor">G2 Fondoir</a> 13/10/2017 13h40
-                        </p>
-                    </div>
-                    <div>
-                        <h2 class="card-category">
-                            Humidité inhabituelle
-                        </h2>
-                        <p>
-                            80% - <a routerLink="sensor">G2 Fondoir</a> 13/10/2017 13h40
-                        </p>
-                    </div>
-                    <div>
-                        <h2 class="card-category">
-                            Matériel
-                        </h2>
-                        <p>
-                            Batterie faible - <a routerLink="sensor">G2 Fondoir</a> 13/10/2017 13h40
-                        </p>
-                    </div>
+                <div class="cardInfoText col-md-8">
+                    <div class="color-red">12</div>
+                    <p>Nouveaux Avertissements</p>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-header ">
-                    <h1 class="card-title">Mes capteurs clés</h1>
+        </div>
+
+        <div class=" col-lg-3 d-none d-sm-block">
+            <div class="cardHome cardInfo row">
+                <div class="col-md-4">
+                    <div class="cardIcon   bg-green">
+                        <i class="fa fa-map-marker"></i>
+                    </div>
                 </div>
-                <div class="card-body">
+                <div class="cardInfoText col-md-8">
+                    <div class="color-green">4</div>
+                    <p>Sites enregistrés</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class=" col-lg-3 d-none d-sm-block">
+            <div class="cardHome cardInfo row">
+                <div class="col-md-4">
+                    <div class="cardIcon   bg-orange">
+                        <i class="fa fa-location-arrow"></i>
+                    </div>
+                </div>
+                <div class="cardInfoText col-md-8">
+                    <div class="color-orange">10</div>
+                    <p>Capteurs actifs</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 d-none d-sm-block">
+            <div class="cardHome cardInfo row">
+                <div class="col-md-4">
+                    <div class="cardIcon   bg-blue">
+                        <i class="fa fa-history"></i>
+                    </div>
+                </div>
+                <div class="cardInfoText col-md-8">
+                    <div class="color-blue">192</div>
+                    <p>Avertissements depuis le début</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-7 d-none d-sm-block">
+            <div class="cardHome">
+                <div class="cardHome-header ">
+                    Avertissements
+                </div>
+                <div class="cardHome-body">
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Site</th>
+                                <th></th>
+                                <th>Description</th>
+                                <th>Gravité</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>02/02/2018 15h04</td>
+                                <td>
+                                    <b>Refuge du Goûter</b>
+                                </td>
+                                <td>
+                                    <i class="fa fa-snowflake-o"></i>
+                                </td>
+                                <td>Gel prévu dans 5 jours</td>
+                                <td>
+                                    <span class="label label-serieux">Sérieux</span>
+                                </td>
+                                <td>
+                                    <i class="fa fa-external-link"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>01/02/2018 18h04</td>
+                                <td>
+                                    <b>Refuge du Couvercle</b>
+                                </td>
+                                <td>
+                                    <i class="fa fa-snowflake-o"></i>
+                                </td>
+                                <td>Gel prévu dans 2 jours</td>
+                                <td>
+                                    <span class="label label-critique">Critique</span>
+                                </td>
+                                <td>
+                                    <i class="fa fa-external-link"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>26/01/2018 15h04</td>
+                                <td>
+                                    <b>Refuge du Goûter</b>
+                                </td>
+                                <td>
+                                    <i class="fa fa-wrench"></i>
+                                </td>
+                                <td>Non réception depuis 1 jour</td>
+                                <td>
+                                    <span class="label label-info">Information</span>
+                                </td>
+                                <td>
+                                    <i class="fa fa-external-link"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>26/01/2018 15h04</td>
+                                <td>
+                                    <b>Refuge du Couvercle</b>
+                                </td>
+                                <td>
+                                    <i class="fa fa-thermometer-quarter"></i>
+                                </td>
+                                <td>Dégel prévu dans 10 jours</td>
+                                <td>
+                                    <span class="label label-info">Information</span>
+                                </td>
+                                <td>
+                                    <i class="fa fa-external-link"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+
+            <div class="row">
+                <loading *ngIf="sites == null" [model]="modelLoading"></loading>
+                <ng-container *ngIf="sites != null">
+                    <div class=" col-xl-4 d-none d-sm-block" *ngFor="let site of sites">
+                        <div class="cardHome">
+                            <div [routerLink]="'/site/'+site.id" class="cardHome-header ">
+                                <i class="fa fa-external-link"></i> {{site.name}}
+                            </div>
+                            <div class="cardHome-body cardSite row">
+                                <div [routerLink]="'/site/'+site.id" class="col-md-4">
+                                    <img class="imgSiteCard" src="../../assets/images/gouter.jpg">
+                                </div>
+                                <div class="col-md-8 cardCapteurSite">
+                                    <ng-container *ngFor="let device of site.devices">
+                                        <p [routerLink]="'/sensor/'+device.id" *ngIf="device.isFavorite" ><span class="label label-critique">{{device.name}} <i class="fa fa-star"></i></span></p>
+                                        <p [routerLink]="'/sensor/'+device.id" *ngIf="!device.isFavorite"><span class="label label-info">{{device.name}} </span></p>
+                                    </ng-container>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+
+            <!--
+            <div class="cardHome">
+                <div class="cardHome-header ">
+                    Mes capteurs clés
+                </div>
+                <div class="cardHome-body">
                     <loading *ngIf="sites == null" [model]="modelLoading"></loading>
                     <ng-container *ngIf="sites != null">
                         <div class="col-sm-12 col-md-12 col-lg-12" *ngFor="let site of sites">
-                            <h2 class="heading"> <a [routerLink]="'/site/'+site.id">{{site.name}}</a></h2>
+                            <h2 class="heading">
+                                <a [routerLink]="'/site/'+site.id">{{site.name}}</a>
+                            </h2>
                             <ng-container *ngFor="let device of site.devices">
                                 <a [routerLink]="'/sensor/'+device.id" *ngIf="device.isFavorite">{{device.name}}</a>
                             </ng-container>
                         </div>
                     </ng-container>
                     <div *ngIf="sites != null && sites.length == 0">Vous n'avez pas de capteurs clés.</div>
+                 </div>
+        </div>-->
+        </div>
+
+        <div class="col-lg-5" >
+            <div class="cardHome app-container" >
+                <div class="cardHome-header ">
+                    Tous mes sites
+                </div>
+                <div class="cardHome-body app-container" style="padding:5px; padding-bottom:25px;" >
+                    <map class="app-container"></map> 
                 </div>
             </div>
         </div>
-        <div class="col-md-12 col-lg-6 flex-container no-padding-x">
-            <!-- hack de l'espace !! ne pas toucher "style.height.px" -->
+
+
+        <!--
+        <div class="col-lg-5 flex-container no-padding-x">
+            
             <map class="app-container" [style.height.px]="getContentHeight()"></map>
-        </div>
+        </div> 
+    -->
+
     </div>
 </div>

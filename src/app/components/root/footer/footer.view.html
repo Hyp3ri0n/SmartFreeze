@@ -1,0 +1,7 @@
+<div class="app-container flex-container footer" [ngClass]="{ 'offline' : !http.isOnline() }">
+    <div *ngIf="!http.isOnline()" class="refresh" (click)="http.pingServer()">
+        <i class="fa fa-refresh"></i>
+        OFFLINE
+    </div>
+    <div *ngIf="http.isOnline()">ONLINE</div>
+</div>
