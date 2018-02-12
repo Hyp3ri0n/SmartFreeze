@@ -85,7 +85,6 @@
       top: 10px;
     }
   }
-
   .alerts-pane {
     display: none;
     list-style: none;
@@ -136,6 +135,18 @@
 
         a {
           margin: 0 5px;
+        }
+      }
+
+      button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: $app-primary;
+        font-size: 18px;
+    
+        &:hover {
+          color: $app-primary_dark;
         }
       }
 
