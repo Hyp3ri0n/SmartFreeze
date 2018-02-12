@@ -1,8 +1,22 @@
 .footer {
     height: $size-footer;
     background-color: $app-primary;
+    color: $mc-white;
+    padding: 0 20px;
+    flex-direction: row;
+    justify-content: flex-end;
 
     @include media-breakpoint-down(md) {
         display: none;
+        justify-content: center;
+    }
+}
+
+.offline {
+    background-color: $mc-red;
+    display: flex !important;
+
+    .refresh {
+        cursor: pointer;
     }
 }
