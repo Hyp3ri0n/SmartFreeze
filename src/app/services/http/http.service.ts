@@ -18,7 +18,7 @@ interface Request {
 export class HttpService {
 
     private _online : boolean = true;
-    private _backOnlineEventListener : () => void = null;
+    private _backOnlineEventListener : ({component : string, cb : () => void})[] = [];
 
     private ipServer : string = 'http://smartfreeze-back.azurewebsites.net';
 
@@ -95,14 +95,38 @@ export class HttpService {
             this._online = online;
 
             if (online && this._backOnlineEventListener !== null) {
-                this._backOnlineEventListener();
+                this._backOnlineEventListener.forEach(event => {
+                    event.cb();
+                });
+            } else {
+                // TODO : timer send ping if offline
             }
         }
     }
 
-    public set backOnlineEventListener(cb : (() => void)) {
-        //this._backOnlineEventListener.push(cb);
-        this._backOnlineEventListener = cb;
+    public set backOnlineEventListener(event : ({component : string, cb : () => void})) {
+        let alreadyExists : boolean = false;
+        // If an event already exist on
+        this._backOnlineEventListener.forEach(listener => {
+            if (listener.component === event.component) {
+                alreadyExists = true;
+                return;
+            }
+        });
+        if (!alreadyExists) {
+            this._backOnlineEventListener.push(event);
+            console.log('[HTTP] event listener added : ', this._backOnlineEventListener);
+        }
+    }
+
+    public removeBackOnlineListener(component : string) :void {
+        for (let i = 0; i <= this._backOnlineEventListener.length ; i++) {
+            if (this._backOnlineEventListener[i].component === component) {
+                this._backOnlineEventListener.splice(i, 1);
+                console.log('[HTTP] event listener removed : ', this._backOnlineEventListener);
+                return;
+            }
+        }
     }
 
     public pingServer() : void {

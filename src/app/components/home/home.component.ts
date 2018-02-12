@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { DeviceService, Device } from '../../services/devices/device.service';
 import { Site, SiteService } from '../../services/sites/site.service';
 import { LoadingModel } from '../global/loading/loading.model';
@@ -9,7 +9,7 @@ import { HttpService } from '../../services/http/http.service';
     templateUrl: './app/components/home/home.view.html'
 })
 
-export class HomeComponent {
+export class HomeComponent implements OnDestroy {
 
     private modelLoading : LoadingModel = new LoadingModel(-1, null);
 
@@ -17,9 +17,12 @@ export class HomeComponent {
 
     constructor(private siteService : SiteService, private http : HttpService) {
         this.getData();
-        this.http.backOnlineEventListener = () => {
-            this.getData();
-        };
+        this.http.backOnlineEventListener = { component : 'HomeComponent', cb : () => this.getData()};
+    }
+
+
+    public ngOnDestroy() : void {
+        this.http.removeBackOnlineListener('HomeComponent');
     }
 
     private getData() : void {
