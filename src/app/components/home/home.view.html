@@ -1,7 +1,7 @@
-<div class="app-container container-fluid homePage">
-    <div class="row cardsSummary">
+<div class="app-container flex-container homePage">
+    <div class="row  cardsSummary">
 
-        <div class=" col-lg-3 d-none d-sm-block">
+        <div class=" col-lg-3">
             <div class="cardHome cardInfo row">
                 <div class="col-md-4">
                     <div class="cardIcon   bg-red">
@@ -10,12 +10,12 @@
                 </div>
                 <div class="cardInfoText col-md-8">
                     <div class="color-red">12</div>
-                    <p>Nouveaux Avertissements</p>
+                    <p>Avertissements critiques</p>
                 </div>
             </div>
         </div>
 
-        <div class=" col-lg-3 d-none d-sm-block">
+        <div class=" col-lg-3      ">
             <div class="cardHome cardInfo row">
                 <div class="col-md-4">
                     <div class="cardIcon   bg-green">
@@ -23,14 +23,14 @@
                     </div>
                 </div>
                 <div class="cardInfoText col-md-8">
-                    <div class="color-green">4</div>
-                    <p>Sites enregistrés</p>
+                    <div class="color-green">4/7</div>
+                    <p>Sites critiques</p>
                 </div>
             </div>
 
         </div>
 
-        <div class=" col-lg-3 d-none d-sm-block">
+        <div class=" col-lg-3      ">
             <div class="cardHome cardInfo row">
                 <div class="col-md-4">
                     <div class="cardIcon   bg-orange">
@@ -38,14 +38,14 @@
                     </div>
                 </div>
                 <div class="cardInfoText col-md-8">
-                    <div class="color-orange">10</div>
+                    <div class="color-orange">10/15</div>
                     <p>Capteurs actifs</p>
                 </div>
             </div>
 
         </div>
 
-        <div class="col-lg-3 d-none d-sm-block">
+        <div class="col-lg-3      ">
             <div class="cardHome cardInfo row">
                 <div class="col-md-4">
                     <div class="cardIcon   bg-blue">
@@ -62,101 +62,106 @@
     </div>
 
 
-    <div class="row">
-        <div class="col-lg-7 d-none d-sm-block">
-            <div class="cardHome">
-                <div class="cardHome-header ">
-                    Avertissements
-                </div>
-                <div class="cardHome-body">
+    <div class="row wrapperPrincipal">
+        <div class="col-lg-7  wrapperLeft">
+            <div class="row">
+                <div class="cardHome wrapperAlarms">
+                   
+                    <div class="cardHome-header ">
+                        Avertissements
+                    </div> 
+                    <div class="cardHome-body tableWrapper">
 
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Site</th>
-                                <th></th>
-                                <th>Description</th>
-                                <th>Gravité</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>02/02/2018 15h04</td>
-                                <td>
-                                    <b>Refuge du Goûter</b>
-                                </td>
-                                <td>
-                                    <i class="fa fa-snowflake-o"></i>
-                                </td>
-                                <td>Gel prévu dans 5 jours</td>
-                                <td>
-                                    <span class="label label-serieux">Sérieux</span>
-                                </td>
-                                <td>
-                                    <i class="fa fa-external-link"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>01/02/2018 18h04</td>
-                                <td>
-                                    <b>Refuge du Couvercle</b>
-                                </td>
-                                <td>
-                                    <i class="fa fa-snowflake-o"></i>
-                                </td>
-                                <td>Gel prévu dans 2 jours</td>
-                                <td>
-                                    <span class="label label-critique">Critique</span>
-                                </td>
-                                <td>
-                                    <i class="fa fa-external-link"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>26/01/2018 15h04</td>
-                                <td>
-                                    <b>Refuge du Goûter</b>
-                                </td>
-                                <td>
-                                    <i class="fa fa-wrench"></i>
-                                </td>
-                                <td>Non réception depuis 1 jour</td>
-                                <td>
-                                    <span class="label label-info">Information</span>
-                                </td>
-                                <td>
-                                    <i class="fa fa-external-link"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>26/01/2018 15h04</td>
-                                <td>
-                                    <b>Refuge du Couvercle</b>
-                                </td>
-                                <td>
-                                    <i class="fa fa-thermometer-quarter"></i>
-                                </td>
-                                <td>Dégel prévu dans 10 jours</td>
-                                <td>
-                                    <span class="label label-info">Information</span>
-                                </td>
-                                <td>
-                                    <i class="fa fa-external-link"></i>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Site</th>
+                                    <th>Zone</th>
+                                    <th></th>
+                                    <th>Description</th>
+                                    <th>Gravité</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>02/02/2018 15h04</td>
+                                    <td>
+                                        <b>Refuge du Goûter</b>
+                                    </td>
+                                    <td>Fondoir</td>
+                                    <td>
+                                        <i class="fa fa-snowflake-o"></i>
+                                    </td>
+                                    <td>Gel prévu dans 5 jours</td>
+                                    <td>
+                                        <span class="label label-serieux">Sérieux</span>
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-external-link"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>01/02/2018 18h04</td>
+                                    <td>
+                                        <b>Refuge du Couvercle</b>
+                                    </td>
+                                    <td>Fondoir</td>
+                                    <td>
+                                        <i class="fa fa-snowflake-o"></i>
+                                    </td>
+                                    <td>Gel prévu dans 2 jours</td>
+                                    <td>
+                                        <span class="label label-critique">Critique</span>
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-external-link"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>26/01/2018 15h04</td>
+                                    <td>
+                                        <b>Refuge du Goûter</b>
+                                    </td>
+                                    <td>Extérieur</td>
+                                    <td>
+                                        <i class="fa fa-wrench"></i>
+                                    </td>
+                                    <td>Non réception depuis 1 jour</td>
+                                    <td>
+                                        <span class="label label-info">Information</span>
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-external-link"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>26/01/2018 15h04</td>
+                                    <td>
+                                        <b>Refuge du Couvercle</b>
+                                    </td>
+                                    <td>Extérieur</td>
+                                    <td>
+                                        <i class="fa fa-thermometer-quarter"></i>
+                                    </td>
+                                    <td>Dégel prévu dans 10 jours</td>
+                                    <td>
+                                        <span class="label label-info">Information</span>
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-external-link"></i>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-
-            <div class="row">
+            <div class="row wrapperSites">
                 <loading *ngIf="sites == null" [model]="modelLoading"></loading>
                 <ng-container *ngIf="sites != null">
-                    <div class=" col-xl-4 d-none d-sm-block" *ngFor="let site of sites">
+                    <div class="wrapperSite     " *ngFor="let site of sites">
                         <div class="cardHome">
                             <div [routerLink]="'/site/'+site.id" class="cardHome-header ">
                                 <i class="fa fa-external-link"></i> {{site.name}}
@@ -167,8 +172,14 @@
                                 </div>
                                 <div class="col-md-8 cardCapteurSite">
                                     <ng-container *ngFor="let device of site.devices">
-                                        <p [routerLink]="'/sensor/'+device.id" *ngIf="device.isFavorite" ><span class="label label-critique">{{device.name}} <i class="fa fa-star"></i></span></p>
-                                        <p [routerLink]="'/sensor/'+device.id" *ngIf="!device.isFavorite"><span class="label label-info">{{device.name}} </span></p>
+                                        <p [routerLink]="'/sensor/'+device.id" *ngIf="device.isFavorite">
+                                            <span class="label label-critique">{{device.name}}
+                                                <i class="fa fa-star"></i>
+                                            </span>
+                                        </p>
+                                        <p [routerLink]="'/sensor/'+device.id" *ngIf="!device.isFavorite">
+                                            <span class="label label-info">{{device.name}} </span>
+                                        </p>
                                     </ng-container>
 
                                 </div>
@@ -200,13 +211,13 @@
         </div>-->
         </div>
 
-        <div class="col-lg-5" >
-            <div class="cardHome app-container" >
-                <div class="cardHome-header ">
+        <div class="col-lg-5 mapWrapper flex-container">
+            <div class="cardHome app-container flex-container">
+                 <div class="cardHome-header ">
                     Tous mes sites
                 </div>
-                <div class="cardHome-body app-container" style="padding:5px; padding-bottom:25px;" >
-                    <map class="app-container"></map> 
+                <div class="cardHome-body flex-container">
+                    <map class="app-container"></map>
                 </div>
             </div>
         </div>
