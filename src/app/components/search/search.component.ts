@@ -7,6 +7,7 @@ import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { DeviceService, Device } from '../../services/devices/device.service';
 import { HttpService } from '../../services/http/http.service';
 import { SiteService } from '../../services/sites/site.service';
+import { RenderDate } from './renderDate.component';
 
 interface DeviceSearch extends Device {
     siteName: string;
@@ -78,20 +79,6 @@ export class SearchComponent implements OnDestroy {
                 type: 'custom',
                 renderComponent: RenderSite
             },
-            // etat: {
-            //     title: 'Etat',
-            //     filter: {
-            //         type: 'list',
-            //         config: {
-            //           selectText: 'Tous',
-            //           list: [
-            //             { value: "Activé", title: "Activé"},
-            //             { value: "Désactivé", title: "Désactivé"},
-            //             { value: "Erreur", title: "Erreur"},
-            //           ],
-            //         },
-            //       }
-            // },
             activeAlarmsCount: {
                 title: 'Min avertissements actifs',
                 filterFunction(cell?: number, search?: number): boolean {
@@ -101,6 +88,12 @@ export class SearchComponent implements OnDestroy {
                         return false;
                     }
                 }
+            },
+            lastCommunication: {
+                title: 'Dernière communication',
+                filter: false,
+                type: 'custom',
+                renderComponent: RenderDate
             },
             siteRegion: {
                 title: 'Région',

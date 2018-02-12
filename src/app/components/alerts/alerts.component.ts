@@ -1,54 +1,78 @@
 import { Component } from '@angular/core';
 import { RenderSite } from '../search/renderSite.component';
 import { RenderSensor } from '../search/rendersensor.component';
+import { RenderDate } from '../search/renderDate.component';
+import { AlarmeService, Alarme, Gravity, Type } from '../../services/alarmes/alarme.service';
+import { RenderBoolean } from '../search/renderBoolean.component';
+import { SiteService } from '../../services/sites/site.service';
+import { DeviceService } from '../../services/devices/device.service';
+import { HttpService } from '../../services/http/http.service';
+import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
+
+interface AlarmSearch extends Alarme {
+    siteId: string;
+    siteName: string;
+    deviceName: string;
+    siteRegion: string;
+}
 
 @Component({
     selector: 'alerts',
     templateUrl: './app/components/alerts/alerts.view.html'
 })
 
-export class AlertsComponent {
+export class AlertsComponent implements OnDestroy {
 
-    constructor() { /**/ }
-    data = [
-        {
-            date: "2018-02-08",
-            intitule: "Température inhabituelle 25°C",
-            sensor: "G2 - Fondoir",
-            sensorId: 2,
-            hasAlarm: true,
-            site: "Refuge du Goûter",
-            siteId: 1,
-            region: "auvergne-rhone-alpes",
-            gravite: 1
-        },
-        {
-            date: "2018-02-07",
-            intitule: "Batterie faible",
-            sensor: "G2 - Fondoir",
-            sensorId: 2,
-            hasAlarm: true,
-            site: "Refuge du Goûter",
-            siteId: 1,
-            region: "auvergne-rhone-alpes",
-            gravite: 2
-        },
-        {
-            date: "2018-01-07",
-            intitule: "Passerelle P1 pas de communication",
-            sensor: "N/C",
-            sensorId: null,
-            hasAlarm: false,
-            site: "N/C",
-            siteId: null,
-            region: "auvergne-rhone-alpes",
-            gravite: 3
-        }
-        ];
+    private siteIds:string[];
+    private data:AlarmSearch[];
+    private gravities:Gravity[];
+    private types:Type[];
+
+    constructor(private alarmeService : AlarmeService, private deviceService : DeviceService,
+        private siteService : SiteService, private http : HttpService) {
+        this.getData();
+        this.http.backOnlineEventListener = { component : 'AlertsComponent', cb : () => this.getData()};
+    }
+
+    public ngOnDestroy() : void {
+        this.http.removeBackOnlineListener('SearchComponent');
+    }
+
+    private getData() : void {
+        this.alarmeService.getAlarmes().subscribe(
+            alarms => {
+                this.data = [];
+                alarms.forEach(alarm => {
+                    this.deviceService.getDevice(alarm.deviceId).subscribe(
+                        device => {
+                            this.siteService.getSite(device.siteId).subscribe(
+                                site => {
+                                    this.data.push({
+                                        id : alarm.id,
+                                        description : alarm.description,
+                                        isActive : alarm.isActive,
+                                        occuredAt : alarm.occuredAt,
+                                        type : alarm.type,
+                                        gravity : alarm.gravity,
+                                        shortDescription : alarm.shortDescription,
+                                        siteId: site.id,
+                                        siteName: site.name,
+                                        deviceId: device.id,
+                                        deviceName: device.name,
+                                        siteRegion: site.region
+                                    });
+                                }
+                            );
+                        });
+                    }
+                );
+            }
+        );
+    }
     settings = {
         actions: false,
         columns: {
-            date: {
+            occuredAt: {
                 title: 'Date avertissement',
                 filter: {
                     type: 'list',
@@ -102,34 +126,90 @@ export class AlertsComponent {
                         }
                      }
                      return false;
-                }
+                },
+                type: 'custom',
+                renderComponent: RenderDate
             },
-            intitule: {
+            shortDescription: {
                 title: 'Intitulé'
             },
-            sensor: {
+            deviceName: {
                 title: 'Capteur',
                 type: 'custom',
                 renderComponent: RenderSensor
             },
-            site: {
+            siteName: {
                 title: 'Site',
                 type: 'custom',
                 renderComponent: RenderSite
             },
-            gravite: {
+            gravity: {
                 title: 'Gravité',
                 filter: {
                     type: 'list',
                     config: {
                       selectText: 'Toutes',
                       list: [
-                        { title:1, value: 1},
-                        { title:2, value: 2},
-                        { title:3, value:3}
+                        // { title:'Toutes', value: Gravity.All},
+                        { title:'Critique', value: Gravity.Critical},
+                        { title:'Sérieuse', value: Gravity.Serious},
+                        { title:'Informative', value: Gravity.Information}
                       ],
                     },
-                  },
+                },
+            },
+            type: {
+                title: 'Type',
+                filter: {
+                    type: 'list',
+                    config: {
+                      selectText: 'Toutes',
+                      list: [
+                        // { title:'Toutes', value: Type.All},
+                        { title:'Gel', value: Type.FreezeWarning},
+                        { title:'Dégel', value: Type.ThawWarning},
+                        { title:'Erreur matérielle', value: Type.DeviceFailure}
+                      ],
+                    },
+                },
+            },
+            siteRegion: {
+                title: 'Région',
+                filter: {
+                    type: 'list',
+                    config: {
+                      selectText: 'Toutes',
+                      list: [
+                        { title: "Auvergne-Rhône-Alpes", value: "Auvergne-Rhône-Alpe"},
+                        { title: "Bourgogne-Franche-Comté", value: "Bourgogne-Franche-Comté"},
+                        { title: "Bretagne", value:"Bretagne"},
+                        { title: "Centre-Val de Loire", value:"Centre-Val de Loire"},
+                        { title: "Corse", value:"Corse"},
+                        { title: "Grand Est", value:"Grand Est"},
+                        { title: "Hauts-de-France", value:"Hauts-de-France"},
+                        { title: "Ile-de-France", value:"Ile-de-France"},
+                        { title: "Normandie", value:"Normandie"},
+                        { title: "Nouvelle-Aquitaine", value:"Nouvelle-Aquitaine"},
+                        { title: "Occitanie", value:"Occitanie"},
+                        { title: "Pays de la Loire", value:"Pays de la Loire"},
+                        { title: "Provence-Alpes-Côte d'Azur", value:"Provence-Alpes-Côte d'Azur"},
+                        { title: "Outre-Mer", value:"Outre-Mer"}
+                      ],
+                    },
+                },
+            },
+            isActive: {
+                title: 'Active',
+                filter: {
+                    type: 'checkbox',
+                    config: {
+                        true: 'true',
+                        false: 'false',
+                        resetText: 'Réinitialiser',
+                      },
+                },
+                type: 'custom',
+                renderComponent: RenderBoolean
             }
         },
         noDataMessage: "N/C",

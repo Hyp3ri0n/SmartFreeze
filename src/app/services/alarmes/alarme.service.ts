@@ -11,6 +11,7 @@ export interface Alarme {
     type : Type;
     gravity : Gravity;
     shortDescription : string;
+    deviceId: string;
 }
 
 export enum Type {
