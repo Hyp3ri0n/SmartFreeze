@@ -106,6 +106,6 @@ export class HttpService {
     }
 
     public pingServer() : void {
-        this.request(MethodRequest.GET, 'api/Ping', {}).subscribe();
+        this.request(MethodRequest.GET, '/api/Ping', {}).subscribe();
     }
 }
