@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { DeviceService } from '../../../services/devices/device.service';
+import { HttpService } from '../../../services/http/http.service';
 
 export interface Marker {
     lat: number;
@@ -12,21 +14,38 @@ export interface Marker {
     selector: 'map',
     templateUrl: './app/components/home/map/map.view.html'
 })
-export class MapComponent {
+export class MapComponent implements OnDestroy {
     private lng:number = 6.830066;
     private lat:number = 45.851010;
     private zoom:number = 9;
     private markers:Marker[] = [];
 
-    constructor() {
-        this.markers.push({
-            lat: 45.851010,
-            lng: 6.830066,
-            site: 'Refuge du Goûter',
-            sensor: 'G2 - Fondoir',
-            link: 'http://refugedugouter.ffcam.fr/'
-        });
-     }
+    constructor(private device : DeviceService, private http : HttpService) {
+        this.getData();
+        this.http.backOnlineEventListener = { component : 'MapComponent', cb : () => this.getData()};
+    }
+
+
+    public ngOnDestroy() : void {
+        this.http.removeBackOnlineListener('MapComponent');
+    }
+
+    private getData() : void {
+        this.device.getDevices().subscribe(
+            devices => {
+                this.markers = [];
+                devices.forEach(device => {
+                    this.markers.push({
+                        lat: device.latitude,
+                        lng: device.longitude,
+                        site: device.siteId,
+                        sensor: device.name,
+                        link: 'http://refugedugouter.ffcam.fr/'
+                    });
+                });
+            }
+        );
+    }
 
     public clickedMarker(label: string, index: number) : void {
         // console.log(`clicked the marker: ${label || index}`);
