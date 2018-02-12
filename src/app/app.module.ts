@@ -39,6 +39,7 @@ import { AddSensorComponent } from './components/admin/sensor/addSensor.componen
 import { AllSitesComponent } from './components/all-sites/allSites.component';
 import { RenderSensor } from './components/search/rendersensor.component';
 import { RenderSite } from './components/search/renderSite.component';
+import { RenderBoolean } from './components/search/renderBoolean.component';
 
 @NgModule({
   imports: [
@@ -84,11 +85,13 @@ import { RenderSite } from './components/search/renderSite.component';
     AddSensorComponent,
     AllSitesComponent,
     RenderSensor,
-    RenderSite
+    RenderSite,
+    RenderBoolean
   ],
   entryComponents: [
     RenderSensor,
-    RenderSite
+    RenderSite,
+    RenderBoolean
   ],
   schemas:  [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]

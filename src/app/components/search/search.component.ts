@@ -2,103 +2,98 @@ import { Component } from '@angular/core';
 import { validateConfig } from '@angular/router/src/config';
 import { RenderSensor } from './rendersensor.component';
 import { RenderSite } from './renderSite.component';
+import { RenderBoolean } from './renderBoolean.component';
+import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
+import { DeviceService, Device } from '../../services/devices/device.service';
+import { HttpService } from '../../services/http/http.service';
+import { SiteService } from '../../services/sites/site.service';
+
+interface DeviceSearch extends Device {
+    siteName: string;
+    siteRegion: string;
+}
 
 @Component({
     selector: 'search',
     templateUrl: './app/components/search/search.view.html'
 })
 
-export class SearchComponent {
+export class SearchComponent implements OnDestroy {
 
-    constructor() { /**/ }
+    private siteIds:string[];
+    private data:DeviceSearch[];
 
-    data = [
-        {
-            sensor: "G2 - Fondoir",
-            sensorId: 2,
-            site: "Refuge du Goûter",
-            siteId: 1,
-            favori: "Oui",
-            avertissements: 42,
-            region: "Auvergne-Rhône-Alpes",
-            etat: "Activé",
-            hasAlarm : true
-        },
-        {
-            sensor: "G3 - Fondoir",
-            sensorId: 3,
-            site: "Refuge du Goûter",
-            siteId: 1,
-            favori: "Non",
-            avertissements: 0,
-            region: "Auvergne-Rhône-Alpes",
-            etat: "Activé",
-            hasAlarm : false
-        },
-        {
-            sensor: "G5 - Dortoir 1",
-            sensorId: 5,
-            site: "Refuge du Goûter",
-            siteId: 1,
-            favori: "Non",
-            avertissements: 422,
-            region: "Auvergne-Rhône-Alpes",
-            etat: "Erreur",
-            hasAlarm : true
-        },
-        {
-            sensor: "G6 - Dortoir 2",
-            sensorId: 6,
-            site: "Refuge du Goûter",
-            siteId: 1,
-            favori: "Oui",
-            avertissements: 42,
-            region: "Auvergne-Rhône-Alpes",
-            etat: "Activé",
-            hasAlarm : false
-        },
-        {
-            sensor: "G7 - Cuisine",
-            sensorId: 7,
-            site: "Refuge du Goûter",
-            siteId: 1,
-            favori: "Non",
-            avertissements: 1,
-            region: "Auvergne-Rhône-Alpes",
-            etat: "Activé",
-            hasAlarm : false
-        }
-        ];
+    constructor(private siteService : SiteService, private http : HttpService) {
+        this.getData();
+        this.http.backOnlineEventListener = { component : 'SearchComponent', cb : () => this.getData()};
+    }
+
+    public ngOnDestroy() : void {
+        this.http.removeBackOnlineListener('SearchComponent');
+    }
+
+    private getData() : void {
+        this.siteService.getSites().subscribe(
+            sites => {
+                this.siteIds = [];
+                sites.forEach(site => {
+                    this.siteIds.push(site.id);
+                });
+                this.siteService.getSitesWithIds(this.siteIds).subscribe(
+                    sites => {
+                        this.data = [];
+                        sites.forEach(site => {
+                            site.devices.forEach(device => {
+                                this.data.push({
+                                    id : device.id,
+                                    name : device.name,
+                                    siteId : device.siteId,
+                                    isFavorite : device.isFavorite,
+                                    lastCommunication : device.lastCommunication,
+                                    activeAlarmsCount : device.activeAlarmsCount,
+                                    hasActiveAlarms : device.hasActiveAlarms,
+                                    latitude : device.latitude,
+                                    longitude : device.longitude,
+                                    siteName: site.name,
+                                    siteRegion: site.region
+                                });
+                            });
+                        });
+                    }
+                );
+            }
+        );
+    }
 
     settings = {
         actions: false,
         columns: {
-            sensor: {
+            name: {
                 title: 'Capteur',
                 type: 'custom',
                 renderComponent: RenderSensor
             },
-            site: {
+            siteName: {
                 title: 'Site',
                 type: 'custom',
                 renderComponent: RenderSite
             },
-            etat: {
-                title: 'Etat',
-                filter: {
-                    type: 'list',
-                    config: {
-                      selectText: 'Tous',
-                      list: [
-                        { value: "Activé", title: "Activé"},
-                        { value: "Désactivé", title: "Désactivé"},
-                        { value: "Erreur", title: "Erreur"},
-                      ],
-                    },
-                  }
-            },
-            avertissements: {
-                title: 'Min avertissements',
+            // etat: {
+            //     title: 'Etat',
+            //     filter: {
+            //         type: 'list',
+            //         config: {
+            //           selectText: 'Tous',
+            //           list: [
+            //             { value: "Activé", title: "Activé"},
+            //             { value: "Désactivé", title: "Désactivé"},
+            //             { value: "Erreur", title: "Erreur"},
+            //           ],
+            //         },
+            //       }
+            // },
+            activeAlarmsCount: {
+                title: 'Min avertissements actifs',
                 filterFunction(cell?: number, search?: number): boolean {
                     if (cell >= search) {
                         return true;
@@ -107,7 +102,7 @@ export class SearchComponent {
                     }
                 }
             },
-            region: {
+            siteRegion: {
                 title: 'Région',
                 filter: {
                     type: 'list',
@@ -132,16 +127,18 @@ export class SearchComponent {
                     },
                   },
             },
-            favori: {
+            isFavorite: {
                 title: 'Favori',
                 filter: {
                     type: 'checkbox',
                     config: {
-                        true: 'Oui',
-                        false: 'Non',
+                        true: 'true',
+                        false: 'false',
                         resetText: 'Réinitialiser',
                       },
-                }
+                },
+                type: 'custom',
+                renderComponent: RenderBoolean
             }
         },
         noDataMessage: "N/C",

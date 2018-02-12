@@ -13,10 +13,12 @@
 }
 
 custom-view-component, ng-component {
-    display: block;
+    display: flex;
     width: 100%;
-
     .gel-icon {
         float: right;
+    }
+    .fa {
+        margin: auto;
     }
 }
