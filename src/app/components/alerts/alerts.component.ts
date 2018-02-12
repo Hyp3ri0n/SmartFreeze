@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { RenderSite } from '../search/renderSite.component';
+import { RenderSensor } from '../search/rendersensor.component';
 
 @Component({
     selector: 'alerts',
@@ -12,24 +14,33 @@ export class AlertsComponent {
         {
             date: "2018-02-08",
             intitule: "Température inhabituelle 25°C",
-            capteur: "G2 - Fondoir",
+            sensor: "G2 - Fondoir",
+            sensorId: 2,
+            hasAlarm: true,
             site: "Refuge du Goûter",
+            siteId: 1,
             region: "auvergne-rhone-alpes",
             gravite: 1
         },
         {
             date: "2018-02-07",
             intitule: "Batterie faible",
-            capteur: "G2 - Fondoir",
+            sensor: "G2 - Fondoir",
+            sensorId: 2,
+            hasAlarm: true,
             site: "Refuge du Goûter",
+            siteId: 1,
             region: "auvergne-rhone-alpes",
             gravite: 2
         },
         {
             date: "2018-01-07",
             intitule: "Passerelle P1 pas de communication",
-            capteur: "N/C",
+            sensor: "N/C",
+            sensorId: null,
+            hasAlarm: false,
             site: "N/C",
+            siteId: null,
             region: "auvergne-rhone-alpes",
             gravite: 3
         }
@@ -96,11 +107,15 @@ export class AlertsComponent {
             intitule: {
                 title: 'Intitulé'
             },
-            capteur: {
-                title: 'Capteur'
+            sensor: {
+                title: 'Capteur',
+                type: 'custom',
+                renderComponent: RenderSensor
             },
             site: {
-                title: 'Site'
+                title: 'Site',
+                type: 'custom',
+                renderComponent: RenderSite
             },
             gravite: {
                 title: 'Gravité',

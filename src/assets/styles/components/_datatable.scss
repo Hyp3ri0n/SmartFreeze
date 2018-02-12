@@ -1,6 +1,6 @@
 .ng2-smart-title, .ng2-smart-filter {
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 18px;
 }
 
 [_nghost-c1] a {
@@ -8,6 +8,15 @@
 }
 
 [_nghost-c1] table tbody tr td {
-    font-size: 1.5rem;
+    font-size: 20px;
     padding: .5em 1.5em;
+}
+
+custom-view-component, ng-component {
+    display: block;
+    width: 100%;
+
+    .gel-icon {
+        float: right;
+    }
 }

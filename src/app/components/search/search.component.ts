@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { validateConfig } from '@angular/router/src/config';
+import { RenderSensor } from './rendersensor.component';
+import { RenderSite } from './renderSite.component';
 
 @Component({
     selector: 'search',
@@ -12,55 +14,74 @@ export class SearchComponent {
 
     data = [
         {
-            capteur: "G2 - Fondoir",
+            sensor: "G2 - Fondoir",
+            sensorId: 2,
             site: "Refuge du Goûter",
+            siteId: 1,
             favori: "Oui",
             avertissements: 42,
             region: "Auvergne-Rhône-Alpes",
-            etat: "Activé"
+            etat: "Activé",
+            hasAlarm : true
         },
         {
-            capteur: "G3 - Fondoir",
+            sensor: "G3 - Fondoir",
+            sensorId: 3,
             site: "Refuge du Goûter",
+            siteId: 1,
             favori: "Non",
             avertissements: 0,
             region: "Auvergne-Rhône-Alpes",
-            etat: "Activé"
+            etat: "Activé",
+            hasAlarm : false
         },
         {
-            capteur: "G5 - Dortoir 1",
+            sensor: "G5 - Dortoir 1",
+            sensorId: 5,
             site: "Refuge du Goûter",
+            siteId: 1,
             favori: "Non",
             avertissements: 422,
             region: "Auvergne-Rhône-Alpes",
-            etat: "Erreur"
+            etat: "Erreur",
+            hasAlarm : true
         },
         {
-            capteur: "G6 - Dortoir 2",
+            sensor: "G6 - Dortoir 2",
+            sensorId: 6,
             site: "Refuge du Goûter",
+            siteId: 1,
             favori: "Oui",
             avertissements: 42,
             region: "Auvergne-Rhône-Alpes",
-            etat: "Activé"
+            etat: "Activé",
+            hasAlarm : false
         },
         {
-            capteur: "G7 - Cuisine",
+            sensor: "G7 - Cuisine",
+            sensorId: 7,
             site: "Refuge du Goûter",
+            siteId: 1,
             favori: "Non",
             avertissements: 1,
             region: "Auvergne-Rhône-Alpes",
-            etat: "Activé"
+            etat: "Activé",
+            hasAlarm : false
         }
         ];
 
     settings = {
         actions: false,
         columns: {
-            capteur: {
-                title: 'Capteur'
+            sensor: {
+                title: 'Capteur',
+                type: 'custom',
+                renderComponent: RenderSensor
             },
             site: {
-                title: 'Site'
+                title: 'Site',
+                type: 'custom',
+                renderComponent: RenderSite
             },
             etat: {
                 title: 'Etat',

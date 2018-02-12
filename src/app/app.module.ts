@@ -37,7 +37,8 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { AlarmeService } from './services/alarmes/alarme.service';
 import { AddSensorComponent } from './components/admin/sensor/addSensor.component';
 import { AllSitesComponent } from './components/all-sites/allSites.component';
-
+import { RenderSensor } from './components/search/rendersensor.component';
+import { RenderSite } from './components/search/renderSite.component';
 
 @NgModule({
   imports: [
@@ -81,7 +82,13 @@ import { AllSitesComponent } from './components/all-sites/allSites.component';
     ClickOutsideDirective,
     LoadingComponent,
     AddSensorComponent,
-    AllSitesComponent
+    AllSitesComponent,
+    RenderSensor,
+    RenderSite
+  ],
+  entryComponents: [
+    RenderSensor,
+    RenderSite
   ],
   schemas:  [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]
