@@ -2,25 +2,159 @@ home {
   @extend .app-container;
 }
 
+.table{
+  font-size:12px;
+
+  .fa{
+    font-size:14px;
+  }
+}
+
+.label{
+  padding:4px;
+  color: $mc-white;
+  font-size: 12px;
+  text-transform: lowercase;
+  border-radius: 2px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.label-serieux{
+  background-color: $mc-orange;
+}
+
+.label-critique{
+  background-color: $mc-red; 
+}
+
+.label-info{
+  background-color: $mc-teal ;
+}
+
+
+.cardsSummary{
+  background-color: $grey-background;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.homePage{
+  background-color: $grey-background;
+}
+
+  .cardHome{
+    border-radius: 3px;
+    box-shadow: 0 2px 5px 0 $cardShadow  ;
+    background-color : $mc-white;
+    padding: 10px;
+    margin:5px;
+    font-family: RobotoDraft, Roboto, 'Helvetica Neue', sans-serif;
+
+    .cardHome-header{
+      text-transform: uppercase;
+      font-size: 15px;
+    }
+
+    .cardSite{
+      padding-top:10px;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .imgSiteCard{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    line-height: 60px;
+    margin-top: -30px;
+    box-shadow: 0 2px 5px 0 $cardShadow  ;
+  }
+
+  .mapHome{
+    width:100%; 
+    height:100%;
+    padding: 10px;
+  }
+
+  .cardCapteurSite{
+    padding-left: 37px;
+    padding-bottom: 30px;
+  }
+
+  .cardInfo {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+  .cardIcon{
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+    line-height: 50px;
+    border-radius: 50%;
+    margin:auto;
+    color: #fff;
+
+  }
+
+  .bg-green{
+    background-color: $mc-teal;
+    padding-left: 18px;
+  }
+
+  .bg-orange{
+    background-color: $mc-orange ;
+    padding-left:15px;
+  }
+
+  .bg-blue{
+    background-color: $mc-light_blue;
+    padding-left: 14px;
+  }
+
+  .bg-red{
+    background-color: $mc-red ;
+    padding-left: 14px;
+  }
+
+  .cardInfoText{
+    font-size: 12px; 
+    text-transform: uppercase;
+
+    .color-green{
+      font-size: 25px;
+      color:$mc-teal;
+    }
+
+    .color-orange{
+      font-size: 25px;
+      color: $mc-orange ;
+    }
+  
+    .color-blue{
+      font-size: 25px;
+      color: $mc-light_blue;
+    }
+  
+    .color-red{
+      font-size: 25px;
+      color: $mc-red ;
+    }
+  }
+
 .home-summary {
   overflow: auto;
   flex-flow: column nowrap;
   justify-content: space-around;
   align-content: center;
   display: flex;
-
-  h1, h2 {
-    font-size: 1.5rem;
-  }
-
-  .card-alerts {
-    margin-bottom: 10px;
-  }
+  background-color: $grey-background;
   
-  @include media-breakpoint-down(md) {
-    display: none;
-  }
 }
+
+
 
 agm-map {
   @extend .app-container;
