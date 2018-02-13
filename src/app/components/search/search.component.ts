@@ -22,7 +22,7 @@ interface DeviceSearch extends Device {
 export class SearchComponent implements OnDestroy {
 
     private siteIds:string[];
-    private data:DeviceSearch[];
+    private data:any[];
     private settings:any;
 
     constructor(private siteService : SiteService, private http : HttpService) {

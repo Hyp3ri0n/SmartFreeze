@@ -21,8 +21,38 @@ home {
       flex : none;
       overflow-x:auto;
       display:flex;
-      flex-direction: row;
-      flex-wrap : nowrap;
+      margin-bottom: 10px;
+
+      .wla {
+        display: flex;
+        flex-grow: 1;
+      }
+  
+      .wrapperAlarms{
+        flex-grow : 1;
+        display : flex;
+        flex-direction:column;
+        margin-bottom:10px;
+
+        .tableWrapper{
+          flex : 1;
+          overflow : auto;
+        
+          .table{
+            font-size:12px;
+          
+            .fa{
+              font-size:14px;
+            }
+          }
+        }
+      }
+      .wrapperSites{
+        flex : none;
+        overflow-x:hidden;  // Create arrows (left and right) to navigate in it
+        display:flex;
+        flex-direction: row;
+        flex-wrap : nowrap;
   
       .wrapperSite {
         flex:none;
@@ -35,33 +65,53 @@ home {
   .mapWrapper{
     padding-left:0px;
     margin-bottom:10px;
+    @include media-breakpoint-down(md) {
+      padding-left: 10px;
+    }
+
+    div {
+      flex-direction: column;
+    }
   }
   
-  .cardsSummary{
+  .cardsSummary {
     background-color: $grey-background;
     flex:none;
     display:flex;
     justify-content: space-between;
     margin-bottom:10px;
     margin-top: 10px;
+
+    @include media-breakpoint-down(md) {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+    }
   }
+
+  .cardHome {
+    border-radius: 3px;
+    box-shadow: 0 2px 5px 0 $cardShadow  ;
+    background-color : $mc-white;
+    padding: 10px;
+    font-family: RobotoDraft, Roboto, 'Helvetica Neue', sans-serif;
+
+    .cardHome-header {
+      text-transform: uppercase;
+      font-size: 15px;
+    }
+
     .cardSite{
       padding-top:10px;
       display: flex;
       align-items: center;
     }
 
-    .cardCapteurSite{
+    .cardCapteurSite {
       padding-left: 37px;
       padding-bottom: 30px;
     }
-  
-    .cardInfo {
-      display: flex;
-      align-items: center;
-      height: 100%;
-    }
-    .cardIcon{
+
+    .cardIcon {
       width: 50px;
       height: 50px;
       font-size: 25px;
@@ -71,7 +121,7 @@ home {
       color: #fff;
   
     }
-    .imgSiteCard{
+    .imgSiteCard {
       width: 80px;
       height: 80px;
       border-radius: 50%;
@@ -126,9 +176,15 @@ home {
   
   
 
+
   
-
-
+.cardInfo {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
 
 agm-map {
   @extend .app-container;
