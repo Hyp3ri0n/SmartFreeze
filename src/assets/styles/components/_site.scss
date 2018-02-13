@@ -80,3 +80,89 @@ site {
     }
 
 }
+
+//All sites
+site, sensor {
+    .card {
+        height: 100%;
+    }
+    
+    .row:first-of-type {
+        margin-bottom: 20px;
+    }   
+}
+
+all-sites {
+     .card {
+         &.active-card {
+             .toggle-card {
+                 transition: max-height 1s;
+                 max-height: 500px;
+             }
+         }
+         .toggle-card {
+             overflow: hidden;
+             max-height: 0;
+             transition: max-height 0.7s;
+         }
+         .card-header {
+             display: flex;
+             flex-flow: row nowrap;
+             .card-title {
+                 flex: 1;
+             }
+         }
+         .card-icon, .gel-icon {
+             flex: 0;
+             align-self: flex-end;
+             font-size: 24px;
+             margin-bottom: auto;
+             margin-top: 5px;
+         }
+         .card-icon {
+             cursor: pointer;
+             color: $app-primary;
+         }
+         .gel-icon {
+             color: $mc-red;
+             margin-right: 10px;
+         }
+         .card-item {
+             display: flex;
+             flex-flow: row nowrap;
+             a {
+                 flex: 1;
+             }
+         }
+     }
+ 
+     .container-fluid {
+         position: relative;
+     }
+ 
+     .toggle-all, .switch-gel {
+         position: absolute;
+         top: 10px;
+     }
+     .toggle-all {
+         left: 20px;
+     }
+     .switch-gel {
+         right: 15px;
+         display: flex;
+         flex-flow: row nowrap;
+         .btn {
+             display: flex;
+             &:first-of-type {
+                 border-right: none;
+             }
+             &:last-of-type {
+                 border-left: none;
+             }
+         }
+     }
+ 
+     .filtered > :not(.hasAlarm) {
+         display: none;
+     }
+}
