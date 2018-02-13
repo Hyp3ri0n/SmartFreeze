@@ -15,6 +15,14 @@ export interface Device {
     longitude : number;
 }
 
+export interface Telemetry {
+    deviceId: string;
+    occuredAt: Date;
+    temperature: number;
+    pressure: number;
+    humidity: number;
+}
+
 @Injectable()
 export class DeviceService {
 
@@ -59,6 +67,26 @@ export class DeviceService {
                         }
                     });
                     observer.next(fav);
+                }
+            );
+        });
+    }
+
+    public getTelemetry(deviceId : string, from : Date, to : Date) : Observable<Telemetry[]> {
+        return Observable.create((observer) => {
+            let params = {
+                "from" : from.toISOString(),
+                "to": to.toISOString()
+            };
+            this.http.request(MethodRequest.GET, '/api/Devices/' + deviceId + '/telemetry', params).subscribe(
+                telemetry => {
+                    observer.next(telemetry.items);
+                    observer.complete();
+                },
+                err => {
+                    // TODO send test
+                    observer.next({test : 'TEST'});
+                    observer.complete();
                 }
             );
         });
