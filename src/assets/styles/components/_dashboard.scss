@@ -1,3 +1,5 @@
+$margin-card-dashboard : 5px;
+
 .homePage{
     background-color: $grey-background;
     flex-direction:column;
@@ -99,7 +101,7 @@
         background-color : $mc-white;
         padding: 10px;
         font-family: RobotoDraft, Roboto, 'Helvetica Neue', sans-serif;
-        margin-bottom:5px;
+        margin-bottom: $margin-card-dashboard;
     
         .cardDashboard-header{
           text-transform: uppercase;
