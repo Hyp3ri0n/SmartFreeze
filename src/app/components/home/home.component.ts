@@ -3,6 +3,7 @@ import { DeviceService, Device } from '../../services/devices/device.service';
 import { Site, SiteService } from '../../services/sites/site.service';
 import { LoadingModel } from '../global/loading/loading.model';
 import { HttpService } from '../../services/http/http.service';
+import { Alarme, AlarmeService } from '../../services/alarmes/alarme.service';
 
 @Component({
     selector: 'home',
@@ -13,11 +14,12 @@ export class HomeComponent implements OnDestroy {
 
     private modelLoading : LoadingModel = new LoadingModel(-1, null);
 
-    private sites : Site[] = null;
+    private sitesWithFavDevices : Site[] = null;
+    private alarmes : any[] = null;
 
-    constructor(private siteService : SiteService, private http : HttpService) {
+    constructor(private siteService : SiteService, private alarmeService : AlarmeService, private http : HttpService) {
         this.getData();
-        this.http.backOnlineEventListener = { component : 'HomeComponent', cb : () => this.getData()};
+        this.http.backOnlineEventListener = { component : 'HomeComponent', cb : () => this.getData() };
     }
 
 
@@ -26,16 +28,21 @@ export class HomeComponent implements OnDestroy {
     }
 
     private getData() : void {
-        this.sites = null;
+        this.sitesWithFavDevices = null;
         this.siteService.getSiteWithFavDevices().subscribe(
             sites => {
-                this.sites = sites;
-                console.log(this.sites);
+                this.sitesWithFavDevices = sites;
+            }
+        );
+        this.alarmes = null;
+        this.alarmeService.getAlarmesWithMoreInfo().subscribe(
+            alarmes => {
+                this.alarmes = alarmes;
             }
         );
     }
 
     private getContentHeight() : number {
-        return document.getElementById('content').clientHeight;
+        return document.getElementById('contentMap').clientHeight;
     }
 }

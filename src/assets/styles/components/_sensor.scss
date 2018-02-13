@@ -1,3 +1,7 @@
+sensor {
+	@extend .app-container;
+}
+
 .fa-star {
     color: $grey-base;
     cursor: pointer;

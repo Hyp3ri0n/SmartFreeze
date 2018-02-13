@@ -7,6 +7,7 @@ export interface Device {
     id : string;
     name : string;
     siteId : string;
+    zone : string;
     isFavorite : boolean;
     lastCommunication : string;
     activeAlarmsCount : number;

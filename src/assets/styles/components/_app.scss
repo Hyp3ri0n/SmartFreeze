@@ -19,11 +19,15 @@
   }
 }
 
+loading{
+  width: 100%;
+}
+
 .content-loader {
   width: 70px;
   margin: 0 auto;
   display: block;
-  animation: shimmy 3s infinite;
+  animation: shimmy 5s infinite;
 }
 
 @keyframes shimmy {

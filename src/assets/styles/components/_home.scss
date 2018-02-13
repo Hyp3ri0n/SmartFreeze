@@ -17,13 +17,18 @@ home {
     flex-flow: column nowrap;
     display:flex;
   
-  .wrapperSites{
+    .wla {
+      display: flex;
+      flex-grow: 1;
+    }
+    
+    .wrapperSites{
       flex : none;
-      overflow-x:auto;
+      overflow-x:hidden;  // Create arrows (left and right) to navigate in it
       display:flex;
       flex-direction: row;
       flex-wrap : nowrap;
-  
+
       .wrapperSite {
         flex:none;
         margin-right:5px;
@@ -34,101 +39,22 @@ home {
   
   .mapWrapper{
     padding-left:0px;
-    margin-bottom:10px;
+    @include media-breakpoint-down(md) {
+      padding-left: 10px;
+    }
+
+    div {
+      flex-direction: column;
+    }
   }
   
-  .cardsSummary{
-    background-color: $grey-background;
-    flex:none;
-    display:flex;
-    justify-content: space-between;
-    margin-bottom:10px;
-    margin-top: 10px;
-  }
-    .cardSite{
-      padding-top:10px;
-      display: flex;
-      align-items: center;
-    }
-
-    .cardCapteurSite{
-      padding-left: 37px;
-      padding-bottom: 30px;
-    }
-  
-    .cardInfo {
-      display: flex;
-      align-items: center;
-      height: 100%;
-    }
-    .cardIcon{
-      width: 50px;
-      height: 50px;
-      font-size: 25px;
-      line-height: 50px;
-      border-radius: 50%;
-      margin:auto;
-      color: #fff;
-  
-    }
-    .imgSiteCard{
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      line-height: 60px;
-      box-shadow: 0 2px 5px 0 $cardShadow  ;
-    }
-
-    .bg-green{
-      background-color: $mc-teal;
-      padding-left: 18px;
-    }
-  
-    .bg-orange{
-      background-color: $mc-orange ;
-      padding-left:15px;
-    }
-  
-    .bg-blue{
-      background-color: $mc-light_blue;
-      padding-left: 14px;
-    }
-  
-    .bg-red{
-      background-color: $mc-red ;
-      padding-left: 14px;
-    }
-  
-    .cardInfoText{
-      font-size: 12px; 
-      text-transform: uppercase;
-  
-      .color-green{
-        font-size: 25px;
-        color:$mc-teal;
-      }
-  
-      .color-orange{
-        font-size: 25px;
-        color: $mc-orange ;
-      }
-    
-      .color-blue{
-        font-size: 25px;
-        color: $mc-light_blue;
-      }
-    
-      .color-red{
-        font-size: 25px;
-        color: $mc-red ;
-      }
-    }
-  
-  
-
-  
-
-
+.cardInfo {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
 
 agm-map {
   @extend .app-container;

@@ -26,14 +26,11 @@ export class AlertsComponent implements OnDestroy {
 
     private siteIds:string[];
     private data:AlarmSearch[];
-    private devices : Map<string, Device> = new Map<string, Device>();
-    private sites : Map<string, Site> = new Map<string, Site>();
     private settings:any;
     public gravities:any[];
     public types:any[];
 
-    constructor(private alarmeService : AlarmeService, private deviceService : DeviceService,
-        private siteService : SiteService, private http : HttpService) {
+    constructor(private alarmeService : AlarmeService, private http : HttpService) {
         this.getData();
         this.http.backOnlineEventListener = { component : 'AlertsComponent', cb : () => this.getData()};
         this.types = [];
@@ -209,39 +206,9 @@ export class AlertsComponent implements OnDestroy {
     }
 
     private getData() : void {
-        this.deviceService.getDevices().subscribe(
-            devices => {
-                devices.forEach(device => {
-                    this.devices.set(device.id, device);
-                });
-                this.siteService.getSites().subscribe(
-                    sites => {
-                        sites.forEach(site => {
-                            this.sites.set(site.id, site);
-                        });
-                        this.alarmeService.getAlarmes().subscribe(
-                            alarms => {
-                                this.data = [];
-                                alarms.forEach(alarm => {
-                                    this.data.push({
-                                        id : alarm.id,
-                                        description : alarm.description,
-                                        isActive : alarm.isActive,
-                                        occuredAt : alarm.occuredAt,
-                                        type : alarm.type,
-                                        gravity : alarm.gravity,
-                                        shortDescription : alarm.shortDescription,
-                                        deviceId: alarm.deviceId,
-                                        deviceName: this.devices.get(alarm.deviceId).name,
-                                        siteId: alarm.siteId,
-                                        siteName: this.sites.get(alarm.siteId).name,
-                                        siteRegion: this.sites.get(alarm.siteId).region
-                                    });
-                                });
-                            }
-                        );
-                    }
-                );
+        this.alarmeService.getAlarmesWithMoreInfo().subscribe(
+            alarmes => {
+                this.data = alarmes;
             }
         );
     }

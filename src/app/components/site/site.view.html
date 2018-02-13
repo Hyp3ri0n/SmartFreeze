@@ -87,24 +87,36 @@
         </div>
 
         <div class="col-md-3">
-            <div class="cardDashboard">
-                <div class="cardDashboard-header">
-                    Les Capteurs
-                </div>
-                <div>
-                    <div *ngFor="let device of site?.devices">
-                        <button class="btn btn-primary" style="margin:3px;">
-                            <span title="{{device.activeAlarmsCount}} alarmes actives" *ngIf="device.hasActiveAlarms">
-                                <i class="fa fa-exclamation-triangle"></i>
-                            </span>
-                            <span *ngIf="device.isFavorite">
-                                <i class="fa fa-star"></i>
-                            </span>
+            <div class="row">
+                <div class="cardDashboard">
+                    <div class="cardDashboard-header">
+                        Les Capteurs
+                    </div>
+                    <div>
+                        <div *ngFor="let device of site?.devices">
+                            <button [routerLink]="'/sensor/'+device.id" class="btn btn-primary" style="margin:3px;">
+                                <span title="{{device.activeAlarmsCount}} alarmes actives" *ngIf="device.hasActiveAlarms">
+                                    <i class="fa fa-exclamation-triangle"></i>
+                                </span>
+                                <span *ngIf="device.isFavorite">
+                                    <i class="fa fa-star"></i>
+                                </span>
 
-                            <span [routerLink]="'/sensor/'+device.id">
-                                {{device.name}}
-                            </span>
-                        </button>
+                                <span>
+                                    {{device.name}}
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="cardDashboard">
+                    <div class="cardDashboard-header ">
+                        Prévisions
+                    </div>
+                    <div>
+                        prévisions (..) tableau sur 5 jours
                     </div>
                 </div>
             </div>
@@ -156,30 +168,28 @@
 
     </div>
     <div class="row wrapperFirstLine">
-        <div class="col-sm-12 col-md-6">
-            <div class="cardDashboard">
-                <div class="cardDashboard-header ">
-                    Prévisions
-                </div>
-                <div>
-                    <!-- prévisions (..)
-                    tableau sur 5 jours -->
-                    <canvas id="chart-humidity" class="chartjs-render-monitor site-chart"></canvas>
-                </div>
-            </div>
-        </div>
 
-        <div class="col-sm-12 col-md-6">
+        <div class="col-md-6">
             <div class="cardDashboard">
                 <div class="cardDashboard-header ">
-                    Historique
+                    Historique température
                 </div>
                 <div>
-                    <!-- graphe humidité, pression, température (..)
-                    plusieurs granularité  -->
                     <canvas id="chart-temp" class="chartjs-render-monitor site-chart"></canvas>
+                    <!-- graphe température pour tous les capteurs + plusieurs granularité -->
                 </div>
             </div>
         </div>
+        <div class="col-md-6">
+                <div class="cardDashboard">
+                    <div class="cardDashboard-header ">
+                        Historique humidité
+                    </div>
+                    <div>
+                        <canvas id="chart-humidity" class="chartjs-render-monitor site-chart"></canvas>
+                        <!-- graphe humidité pour tous les capteurs + plusieurs granularité -->
+                    </div>
+                </div>
+            </div>
     </div>
 </div>
