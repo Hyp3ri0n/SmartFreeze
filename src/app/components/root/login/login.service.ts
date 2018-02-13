@@ -2,15 +2,14 @@ import { Injectable } from '@angular/core';
 
 
 export enum ApplicationContext {
-    NONE = 0,
-    MOUNTAIN_SHELTER = 1,
-    FIELD = 2
+    MOUNTAIN_SHELTER = 0,
+    FIELD = 1
 }
 
 @Injectable()
 export class LoginService {
 
-    private app : ApplicationContext = ApplicationContext.NONE;
+    private app : ApplicationContext = null;
 
     constructor() { /**/ }
 
@@ -24,7 +23,7 @@ export class LoginService {
     }
 
     public reset() : void {
-        this.app = ApplicationContext.NONE;
+        this.app = null;
     }
 
     public switch() : void {

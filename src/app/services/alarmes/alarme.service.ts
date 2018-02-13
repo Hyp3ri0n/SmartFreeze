@@ -12,13 +12,15 @@ export interface Alarme {
     gravity : Gravity;
     shortDescription : string;
     deviceId: string;
+    siteId: string;
 }
 
 export enum Type {
     All = 0,
     FreezeWarning = 1,
     ThawWarning = 2,
-    DeviceFailure = 3
+    DeviceFailure = 3,
+    CommunicationFailure = 4
 }
 
 export enum Gravity {
@@ -31,7 +33,21 @@ export enum Gravity {
 @Injectable()
 export class AlarmeService {
 
-    constructor(private http : HttpService) { /**/ }
+    public static types: string[] = [];
+    public static gravities: string[] = [];
+
+    constructor(private http : HttpService) {
+        AlarmeService.types[Type.All] = "Tous";
+        AlarmeService.types[Type.CommunicationFailure] = "Communication interrompue";
+        AlarmeService.types[Type.DeviceFailure] = "Données incohérentes";
+        AlarmeService.types[Type.FreezeWarning] = "Gel";
+        AlarmeService.types[Type.ThawWarning] = "Dégel";
+
+        AlarmeService.gravities[Gravity.All] = "Tous";
+        AlarmeService.gravities[Gravity.Critical] = "Critique";
+        AlarmeService.gravities[Gravity.Information] = "Informative";
+        AlarmeService.gravities[Gravity.Serious] = "Sérieuse";
+    }
 
     public getAlarmes() : Observable<Alarme[]> {
         return Observable.create((observer) => {

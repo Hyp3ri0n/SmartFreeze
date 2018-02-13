@@ -23,10 +23,85 @@ export class SearchComponent implements OnDestroy {
 
     private siteIds:string[];
     private data:DeviceSearch[];
+    private settings:any;
 
     constructor(private siteService : SiteService, private http : HttpService) {
         this.getData();
         this.http.backOnlineEventListener = { component : 'SearchComponent', cb : () => this.getData()};
+        this.settings = {
+            actions: false,
+            columns: {
+                name: {
+                    title: 'Capteur',
+                    type: 'custom',
+                    renderComponent: RenderSensor
+                },
+                siteName: {
+                    title: 'Site',
+                    type: 'custom',
+                    renderComponent: RenderSite
+                },
+                activeAlarmsCount: {
+                    title: 'Min avertissements actifs',
+                    filterFunction(cell?: number, search?: number): boolean {
+                        if (cell >= search) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+                },
+                lastCommunication: {
+                    title: 'Dernière communication',
+                    filter: false,
+                    type: 'custom',
+                    renderComponent: RenderDate
+                },
+                siteRegion: {
+                    title: 'Région',
+                    filter: {
+                        type: 'list',
+                        config: {
+                          selectText: 'Toutes',
+                          list: [
+                            { title: "Auvergne-Rhône-Alpes", value: "Auvergne-Rhône-Alpe"},
+                            { title: "Bourgogne-Franche-Comté", value: "Bourgogne-Franche-Comté"},
+                            { title: "Bretagne", value:"Bretagne"},
+                            { title: "Centre-Val de Loire", value:"Centre-Val de Loire"},
+                            { title: "Corse", value:"Corse"},
+                            { title: "Grand Est", value:"Grand Est"},
+                            { title: "Hauts-de-France", value:"Hauts-de-France"},
+                            { title: "Ile-de-France", value:"Ile-de-France"},
+                            { title: "Normandie", value:"Normandie"},
+                            { title: "Nouvelle-Aquitaine", value:"Nouvelle-Aquitaine"},
+                            { title: "Occitanie", value:"Occitanie"},
+                            { title: "Pays de la Loire", value:"Pays de la Loire"},
+                            { title: "Provence-Alpes-Côte d'Azur", value:"Provence-Alpes-Côte d'Azur"},
+                            { title: "Outre-Mer", value:"Outre-Mer"}
+                          ],
+                        },
+                      },
+                },
+                isFavorite: {
+                    title: 'Favori',
+                    filter: {
+                        type: 'checkbox',
+                        config: {
+                            true: 'true',
+                            false: 'false',
+                            resetText: 'Réinitialiser',
+                          },
+                    },
+                    type: 'custom',
+                    renderComponent: RenderBoolean
+                }
+            },
+            noDataMessage: "N/C",
+            pager: {
+                display: true,
+                perPage: 20
+            }
+        };
     }
 
     public ngOnDestroy() : void {
@@ -65,79 +140,4 @@ export class SearchComponent implements OnDestroy {
             }
         );
     }
-
-    settings = {
-        actions: false,
-        columns: {
-            name: {
-                title: 'Capteur',
-                type: 'custom',
-                renderComponent: RenderSensor
-            },
-            siteName: {
-                title: 'Site',
-                type: 'custom',
-                renderComponent: RenderSite
-            },
-            activeAlarmsCount: {
-                title: 'Min avertissements actifs',
-                filterFunction(cell?: number, search?: number): boolean {
-                    if (cell >= search) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                }
-            },
-            lastCommunication: {
-                title: 'Dernière communication',
-                filter: false,
-                type: 'custom',
-                renderComponent: RenderDate
-            },
-            siteRegion: {
-                title: 'Région',
-                filter: {
-                    type: 'list',
-                    config: {
-                      selectText: 'Toutes',
-                      list: [
-                        { title: "Auvergne-Rhône-Alpes", value: "Auvergne-Rhône-Alpe"},
-                        { title: "Bourgogne-Franche-Comté", value: "Bourgogne-Franche-Comté"},
-                        { title: "Bretagne", value:"Bretagne"},
-                        { title: "Centre-Val de Loire", value:"Centre-Val de Loire"},
-                        { title: "Corse", value:"Corse"},
-                        { title: "Grand Est", value:"Grand Est"},
-                        { title: "Hauts-de-France", value:"Hauts-de-France"},
-                        { title: "Ile-de-France", value:"Ile-de-France"},
-                        { title: "Normandie", value:"Normandie"},
-                        { title: "Nouvelle-Aquitaine", value:"Nouvelle-Aquitaine"},
-                        { title: "Occitanie", value:"Occitanie"},
-                        { title: "Pays de la Loire", value:"Pays de la Loire"},
-                        { title: "Provence-Alpes-Côte d'Azur", value:"Provence-Alpes-Côte d'Azur"},
-                        { title: "Outre-Mer", value:"Outre-Mer"}
-                      ],
-                    },
-                  },
-            },
-            isFavorite: {
-                title: 'Favori',
-                filter: {
-                    type: 'checkbox',
-                    config: {
-                        true: 'true',
-                        false: 'false',
-                        resetText: 'Réinitialiser',
-                      },
-                },
-                type: 'custom',
-                renderComponent: RenderBoolean
-            }
-        },
-        noDataMessage: "N/C",
-        pager: {
-            display: true,
-            perPage: 20
-        }
-      };
 }

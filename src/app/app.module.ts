@@ -41,6 +41,8 @@ import { RenderSensor } from './components/search/rendersensor.component';
 import { RenderSite } from './components/search/renderSite.component';
 import { RenderBoolean } from './components/search/renderBoolean.component';
 import { RenderDate } from './components/search/renderDate.component';
+import { RenderType } from './components/alerts/renderType.component';
+import { RenderGravity } from './components/alerts/renderGravity.component';
 
 @NgModule({
   imports: [
@@ -88,13 +90,17 @@ import { RenderDate } from './components/search/renderDate.component';
     RenderSensor,
     RenderSite,
     RenderBoolean,
-    RenderDate
+    RenderDate,
+    RenderType,
+    RenderGravity
   ],
   entryComponents: [
     RenderSensor,
     RenderSite,
     RenderBoolean,
-    RenderDate
+    RenderDate,
+    RenderType,
+    RenderGravity
   ],
   schemas:  [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]

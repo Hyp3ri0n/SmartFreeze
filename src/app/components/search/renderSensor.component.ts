@@ -16,8 +16,16 @@ export class RenderSensor implements ViewCell, OnInit {
     @Input() value: string;
     @Input() rowData: any;
     ngOnInit() {
-      this.renderValue = this.value;
-      this.renderId = this.rowData.id;
-      this.hasAlarm = this.rowData.hasActiveAlarms;
-  }
+        this.renderValue = this.value;
+        if ("deviceId" in this.rowData) {
+            this.renderId = this.rowData.deviceId;
+        } else {
+            this.renderId = this.rowData.id;
+        }
+        if ("hasActiveAlarms" in this.rowData) {
+            this.hasAlarm = this.rowData.hasActiveAlarms;
+        } else {
+            this.hasAlarm = false;
+        }
+    }
 }
