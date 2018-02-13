@@ -8,6 +8,7 @@
 </div>
 <button (click)="go_clicked()" (clickOutside)="close()" class="alerts" type="button" title="Notifications">
     <i class="side-icon fa fa-bell"></i>
+    <span class="count-alerts">4</span>
 </button>
 <ul class="alerts-pane" [style.display]="show">
     <ng-container *ngFor="let avert of alarmes">
