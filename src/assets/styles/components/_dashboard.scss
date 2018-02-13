@@ -1,0 +1,83 @@
+.homePage{
+    background-color: $grey-background;
+    flex-direction:column;
+
+
+    .titleDashboard{
+        font-family: RobotoDraft, Roboto, 'Helvetica Neue', sans-serif;
+        font-size: 30px;
+        text-align: center;
+        padding:4px;
+    }
+
+    .row{
+        margin-left:0px;
+        margin-right: 0px;
+      }
+
+    .wrapperAlarms{
+        flex-grow : 1;
+        display : flex;
+        flex-direction:column;
+        margin-bottom:10px;
+
+        .tableWrapper{
+            flex : 1;
+            overflow : auto;
+        
+            .table{
+                font-size:12px;
+                
+                .fa{
+                    font-size:14px;
+                }
+            }
+        
+        }
+    }
+
+    .label{
+        padding:4px;
+        color: $mc-white;
+        font-size: 12px;
+        text-transform: lowercase;
+        border-radius: 2px;
+        font-weight: bold;
+        text-align: center;
+          
+        .fa{
+            color:$mc-yellow;
+        }
+    }
+          
+    .label-serieux{
+        background-color: $mc-orange;
+    }
+          
+    .label-critique{
+        background-color: $mc-red; 
+    }
+          
+    .label-info{
+        background-color: $mc-teal ;
+    }
+    
+    .fa-star{
+        color:$mc-yellow;
+    }
+
+
+    .cardDashboard{
+        border-radius: 3px;
+        box-shadow: 0 2px 5px 0 $cardShadow  ;
+        background-color : $mc-white;
+        padding: 10px;
+        font-family: RobotoDraft, Roboto, 'Helvetica Neue', sans-serif;
+    
+        .cardDashboard-header{
+          text-transform: uppercase;
+          font-size: 15px;
+        }
+    }
+}
+
