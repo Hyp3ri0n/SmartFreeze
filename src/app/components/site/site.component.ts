@@ -26,4 +26,22 @@ export class SiteComponent {
             }
         );
     }
+
+    public showCaract():void {
+        let elmtCaract = document.getElementById("caracteristiques");
+        let elmtMeteo = document.getElementById("meteo");
+
+        elmtMeteo.style.display = "none";
+        elmtCaract.style.display = "block";
+
+    }
+
+    public showMeteo():void {
+        let elmtCaract = document.getElementById("caracteristiques");
+        let elmtMeteo = document.getElementById("meteo");
+
+        elmtMeteo.style.display = "block";
+        elmtCaract.style.display = "none";
+
+    }
 }

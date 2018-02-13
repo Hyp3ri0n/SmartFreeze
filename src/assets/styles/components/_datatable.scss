@@ -3,17 +3,19 @@
     font-size: 18px;
 }
 
-.ng2-smart-row:nth-child(2n) {
-    background: rgba(0,0,0,.05);
-}
-
 [_nghost-c1] a {
     color : $app-primary!important;
 }
 
-[_nghost-c1] table tbody tr td {
-    font-size: 20px;
-    padding: .5em 1.5em;
+[_nghost-c1] table tbody tr {
+    &:nth-child(2n) {
+        background: rgba(0,0,0,.05);
+    }
+
+    td {
+        font-size: 20px;
+        padding: .5em 1.5em;
+    }
 }
 
 custom-view-component, ng-component {

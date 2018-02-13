@@ -3,22 +3,23 @@ home {
 }
 
 
-
-.homePage{
-  background-color: $grey-background;
-  flex-direction:column;
   
-  .wrapperPrincipal{
-    flex: 1;
+.wrapperPrincipal{
+  flex: 1;
 
-    .mapHome{
-      width:100%; 
-      height:100%;
-      padding: 10px;
-    }
+  .mapHome{
+    width:100%; 
+    height:100%;
+    padding: 10px;
+  }
 
-    .wrapperLeft{
-      flex-flow: column nowrap;
+  .wrapperLeft{
+    flex-flow: column nowrap;
+    display:flex;
+  
+  .wrapperSites{
+      flex : none;
+      overflow-x:auto;
       display:flex;
       margin-bottom: 10px;
 
@@ -53,44 +54,13 @@ home {
         flex-direction: row;
         flex-wrap : nowrap;
   
-        .wrapperSite {
-          flex:none;
-          margin-right:10px;
-        }
+      .wrapperSite {
+        flex:none;
+        margin-right:5px;
       }
     }
   }
-
-  .row{
-    margin-left:0px;
-    margin-right: 0px;
-  }
-
-  .label{
-    padding:4px;
-    color: $mc-white;
-    font-size: 12px;
-    text-transform: lowercase;
-    border-radius: 2px;
-    font-weight: bold;
-    text-align: center;
-  
-    .fa{
-      color:$mc-yellow;
-    }
-  }
-  
-  .label-serieux{
-    background-color: $mc-orange;
-  }
-  
-  .label-critique{
-    background-color: $mc-red; 
-  }
-  
-  .label-info{
-    background-color: $mc-teal ;
-  }
+}
   
   .mapWrapper{
     padding-left:0px;
@@ -130,7 +100,7 @@ home {
       font-size: 15px;
     }
 
-    .cardSite {
+    .cardSite{
       padding-top:10px;
       display: flex;
       align-items: center;
@@ -204,8 +174,7 @@ home {
       }
     }
   
-  }
-}
+  
 
 
   

@@ -1,8 +1,7 @@
 <div class="app-container flex-container homePage">
     <div class="row cardsSummary">
-
         <div class="col-lg-3">
-            <div class="cardHome cardInfo row">
+            <div class="cardDashboard cardInfo row">
                 <div class="col-md-4">
                     <div class="cardIcon bg-red">
                         <i class="fa fa-exclamation-triangle"></i>
@@ -14,9 +13,8 @@
                 </div>
             </div>
         </div>
-
-        <div class="col-lg-3">
-            <div class="cardHome cardInfo row">
+        <div class=" col-lg-3">
+            <div class="cardDashboard cardInfo row">
                 <div class="col-md-4">
                     <div class="cardIcon bg-green">
                         <i class="fa fa-map-marker"></i>
@@ -30,8 +28,8 @@
 
         </div>
 
-        <div class="col-lg-3">
-            <div class="cardHome cardInfo row">
+        <div class=" col-lg-3">
+            <div class="cardDashboard cardInfo row">
                 <div class="col-md-4">
                     <div class="cardIcon bg-orange">
                         <i class="fa fa-location-arrow"></i>
@@ -44,9 +42,8 @@
             </div>
 
         </div>
-
         <div class="col-lg-3">
-            <div class="cardHome cardInfo row">
+            <div class="cardDashboard cardInfo row">
                 <div class="col-md-4">
                     <div class="cardIcon bg-blue">
                         <i class="fa fa-history"></i>
@@ -64,12 +61,12 @@
     <div class="row wrapperPrincipal">
         <div class="col-lg-7 wrapperLeft">
             <div class="row wla">
-                <div class="cardHome wrapperAlarms">
+                <div class="cardDashboard wrapperAlarms">
                    
-                    <div class="cardHome-header ">
+                    <div class="cardDashboard-header ">
                         Avertissements
                     </div> 
-                    <div class="cardHome-body tableWrapper">
+                    <div class="cardDashboard-body tableWrapper">
 
                         <table class="table">
                             <thead>
@@ -122,10 +119,10 @@
                 <ng-container *ngIf="sitesWithFavDevices != null">
                     <div class="wrapperSite" *ngFor="let site of sitesWithFavDevices">
                         <div class="cardHome">
-                            <div [routerLink]="'/site/'+site.id" class="cardHome-header ">
+                            <div [routerLink]="'/site/'+site.id" class="cardDashboard-header ">
                                 <i class="fa fa-external-link"></i> {{site.name}}
                             </div>
-                            <div class="cardHome-body cardSite row">
+                            <div class="cardDashboard-body cardSite row">
                                 <div [routerLink]="'/site/'+site.id" class="col-md-4">
                                     <img class="imgSiteCard" src="../../assets/images/gouter.jpg">
                                 </div>
@@ -150,11 +147,11 @@
             </div>
         </div>
         <div class="col-lg-5 mapWrapper flex-container">
-            <div class="cardHome app-container flex-container">
-                 <div class="cardHome-header ">
+            <div class="cardDashboard app-container flex-container">
+                 <div class="cardDashboard-header ">
                     Tous mes sites
                 </div>
-                <div id="contentMap" class="cardHome-body flex-container">
+                <div id="contentMap" class="cardDashboard-body flex-container">
                     <map class="app-container" [style.height.px]="getContentHeight()"></map>
                 </div>
             </div>

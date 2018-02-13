@@ -1,101 +1,81 @@
-site, sensor {
-    .card {
-        height: 100%;
-    }
+.wrapperFirstLine{
+    flex:none;
+    display:flex;
+    justify-content: space-between;
+    margin-bottom:10px;
+    margin-top: 10px;
+
+    .cardInfosSite{
     
-    .row:first-of-type {
-        margin-bottom: 20px;
-    }   
-}
+        .fit-img {
+            object-fit: contain;
+            width: 100%;
+            border-top-right-radius: 3px;
+            border-top-left-radius: 3px;
+            box-shadow: 0 2px 5px 0 $cardShadow  ;
+        }
 
-.fit-img {
-    object-fit: contain;
-    width: 100%;
-}
+        .contentSite{
 
-.card-item {
-    display: inline-block;
-    width: 50%;
-    padding: 5px;
-}
-
-.card-alerts {
-    .card-header .card-title {
-        color: $mc-red;
-    }
-}
-
-//All sites
-all-sites {
-    .card {
-        &.active-card {
-            .toggle-card {
-                transition: max-height 1s;
-                max-height: 500px;
+            .title{
+                text-transform: uppercase;
+                font-size: 15px;
+                padding-top:10px;
             }
-        }
-        .toggle-card {
-            overflow: hidden;
-            max-height: 0;
-            transition: max-height 0.7s;
-        }
-        .card-header {
-            display: flex;
-            flex-flow: row nowrap;
-            .card-title {
-                flex: 1;
+
+            .buttonMoreInfos{
+
+                margin-top: -40px;
+                display : flex;
+                align-items: left;
+                flex-direction: row;
+                justify-content: center;
+
+                .icon{
+                    width: 50px;
+                    height: 50px;
+                    font-size: 25px;
+                    line-height: 50px;
+                    border-radius: 50%;
+                    margin:auto;
+                    color: #fff;
+                    padding:10px;
+                    display : flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .btnCaract{
+                    background-color: $mc-teal;
+                }
+                
+                .btnMeteo{
+                    background-color: $mc-orange ;
+                }
+
             }
-        }
-        .card-icon, .gel-icon {
-            flex: 0;
-            align-self: flex-end;
-            font-size: 24px;
-            margin-bottom: auto;
-            margin-top: 5px;
-        }
-        .card-icon {
-            cursor: pointer;
-            color: $app-primary;
-        }
-        .gel-icon {
-            margin-right: 10px;
-        }
-        .card-item {
-            display: flex;
-            flex-flow: row nowrap;
-            a {
-                flex: 1;
+
+
+            .caracteristiques{
+                display:block;
+                font-family: RobotoDraft, Roboto, 'Helvetica Neue', sans-serif;
+                font-size: 12px;
+
+                div{
+                    padding-top:10px;
+                }
+
+                p{
+                    margin-bottom: 0px;
+                }
             }
+
+            .meteo{
+                display:none;
+            }
+
         }
+
     }
 
-    .container-fluid {
-        position: relative;
-    }
-
-    .toggle-all, .switch-gel {
-        position: absolute;
-        top: 10px;
-    }
-    .toggle-all {
-        left: 20px;
-    }
-    .switch-gel {
-        right: 15px;
-        display: flex;
-        flex-flow: row nowrap;
-        .btn {
-            display: flex;
-            &:first-of-type {
-                border-right: none;
-            }
-            &:last-of-type {
-                border-left: none;
-            }
-        }
-    }
-
-    .filtered > :not(.hasAlarm) {
-        display: none;
-    }
 }

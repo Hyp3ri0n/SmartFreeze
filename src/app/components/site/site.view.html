@@ -1,99 +1,181 @@
-<div class="container-fluid">
-    <h1 class="title">
+<div class="app-container flex-container homePage">
+    <div class="titleDashboard">
         {{site?.name}}
-    </h1>
-    <div class="row">
-        <div class="col-sm-6 col-md-3">
-            <div class="card card-alerts">
-                <div class="card-header ">
-                    <h4 class="card-title">Avertissements</h4>
-                </div>
-                <div class="card-body">
-                    <div>
-                        <h5 class="card-category">
-                            Température inhabituelle
-                        </h5>
-                        <p>
-                            25°C - <a routerLink="sensor">G2 Fondoir</a> 13/10/2017 13h40
-                        </p>
-                    </div>
-                    <div>
-                        <h5 class="card-category">
-                            Humidité inhabituelle
-                        </h5>
-                        <p>
-                            80% - <a routerLink="sensor">G2 Fondoir</a> 13/10/2017 13h40
-                        </p>
-                    </div>
-                    <div>
-                        <h5 class="card-category">
-                            Matériel
-                        </h5>
-                        <p>
-                            Batterie faible - <a routerLink="sensor">G2 Fondoir</a> 13/10/2017 13h40
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-  
-        <div class="col-sm-6 col-md-3">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Capteurs</h4>
-                </div>
-                <div class="card-body">
-                    <div class="card-item" *ngFor="let device of site?.devices">
-                        <a [routerLink]="'/sensor/'+device.id">{{device.name}}</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <div class="card">
-                <div class="card-header ">
-                    <h4 class="card-title">Caractéristiques</h4>
-                </div>
-                <div class="card-body ">
-                    <p>{{site?.description}}</p>
-                    <p>{{site?.surfaceArea + ' ' + site?.surfaceAreaUnit}}</p>
-                    <p>[DATA MISSING]m d'altitude</p>
-                    <p>{{site?.region + ' (' + site?.department + ')'}}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <img class="fit-img rounded" src="../../assets/images/gouter.jpg">
-        </div>
     </div>
-    <div class="row">
-        <div class="col-sm-12 col-md-6">
-            <div class="card">
-                <div class="card-header ">
-                    <h4 class="card-title">Prévision</h4>
-                    <!-- <p class="card-category"></p> -->
+    <div class="row wrapperFirstLine">
+        <div class="col-md-6">
+            <div class="cardDashboard wrapperAlarms">
+
+                <div class="cardDashboard-header ">
+                    Derniers Avertissements
                 </div>
-                <div class="card-body ">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h5 class="card-category">Jour</h5>
-                            <!-- chart -->
-                        </div>
-                        <div class="col-md-6">
-                            <h5 class="card-category">Semaine</h5>
-                            <!-- chart -->
-                        </div>
+                <div class="tableWrapper">
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+
+                                <th>Zone</th>
+                                <th></th>
+                                <th>Description</th>
+                                <th>Gravité</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>02/02/2018 15h04</td>
+                                <td>Fondoir</td>
+                                <td>
+                                    <i class="fa fa-snowflake-o"></i>
+                                </td>
+                                <td>Gel prévu dans 5 jours</td>
+                                <td>
+                                    <span class="label label-serieux">Sérieux</span>
+                                </td>
+                                <td>
+                                    <i class="fa fa-external-link"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>01/02/2018 18h04</td>
+                                <td>Fondoir</td>
+                                <td>
+                                    <i class="fa fa-snowflake-o"></i>
+                                </td>
+                                <td>Gel prévu dans 2 jours</td>
+                                <td>
+                                    <span class="label label-critique">Critique</span>
+                                </td>
+                                <td>
+                                    <i class="fa fa-external-link"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>26/01/2018 15h04</td>
+                                <td>Extérieur</td>
+                                <td>
+                                    <i class="fa fa-wrench"></i>
+                                </td>
+                                <td>Non réception depuis 1 jour</td>
+                                <td>
+                                    <span class="label label-info">Information</span>
+                                </td>
+                                <td>
+                                    <i class="fa fa-external-link"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>26/01/2018 15h04</td>
+                                <td>Extérieur</td>
+                                <td>
+                                    <i class="fa fa-thermometer-quarter"></i>
+                                </td>
+                                <td>Dégel prévu dans 10 jours</td>
+                                <td>
+                                    <span class="label label-info">Information</span>
+                                </td>
+                                <td>
+                                    <i class="fa fa-external-link"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="cardDashboard">
+                <div class="cardDashboard-header">
+                    Les Capteurs
+                </div>
+                <div>
+                    <div *ngFor="let device of site?.devices">
+                        <button class="btn btn-primary" style="margin:3px;">
+                            <span title="{{device.activeAlarmsCount}} alarmes actives" *ngIf="device.hasActiveAlarms">
+                                <i class="fa fa-exclamation-triangle"></i>
+                            </span>
+                            <span *ngIf="device.isFavorite">
+                                <i class="fa fa-star"></i>
+                            </span>
+
+                            <span [routerLink]="'/sensor/'+device.id">
+                                {{device.name}}
+                            </span>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-sm-12 col-md-6">
-            <div class="card">
-                <div class="card-header ">
-                    <h4 class="card-title">Températures</h4>
+        <div class="col-md-3">
+
+            <div class="cardInfosSite">
+                <img class="fit-img" src="../../assets/images/gouter.jpg">
+                <div class="contentSite cardDashboard">
+                    <div class="buttonMoreInfos">
+                        <div class="col-md-5"></div>
+                        <div class="col-md-3">
+                            <span (click)="showCaract()" class="icon btnCaract">
+                                <i class=" fa fa-bars"> </i>
+                            </span>
+                        </div>
+                        <div class="col-md-3">
+                            <span (click)="showMeteo()" class="icon btnMeteo">
+                                <i class=" fa fa-cloud"> </i>
+                            </span>
+                        </div>
+                    </div>
+                    <div id="caracteristiques" class="caracteristiques">
+                        <div class="title">
+                            Caractéristiques du site
+                        </div>
+                        <div>
+                            <p>
+                                <i>{{site?.description}}</i>
+                            </p>
+                            <p>
+                                <b>Surface : </b>{{site?.surfaceArea + ' ' + site?.surfaceAreaUnit}}</p>
+                            <p>
+                                <b>Altitude : </b>[DATA MISSING]m d'altitude</p>
+                            <p>
+                                <b>Département : </b>{{site?.region + ' (' + site?.department + ')'}}</p>
+                        </div>
+                    </div>
+                    <div id="meteo" class="meteo">
+                        <div class="title">
+                            Prévisions météo
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body ">
+            </div>
+
+        </div>
+
+    </div>
+    <div class="row wrapperFirstLine">
+        <div class="col-sm-12 col-md-6">
+            <div class="cardDashboard">
+                <div class="cardDashboard-header ">
+                    Prévisions
+                </div>
+                <div>
+                        prévisions (..)
+                        tableau sur 5 jours
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-6">
+            <div class="cardDashboard">
+                <div class="cardDashboard-header ">
+                    Historique
+                </div>
+                <div>
+                    graphe humidité, pression, température (..)
+                    plusieurs granularité 
                 </div>
             </div>
         </div>

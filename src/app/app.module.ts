@@ -44,6 +44,7 @@ import { RenderDate } from './components/search/renderDate.component';
 import { RenderType } from './components/alerts/renderType.component';
 import { RenderGravity } from './components/alerts/renderGravity.component';
 
+
 @NgModule({
   imports: [
     BrowserModule,
