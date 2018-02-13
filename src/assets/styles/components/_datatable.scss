@@ -1,13 +1,30 @@
 .ng2-smart-title, .ng2-smart-filter {
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 18px;
 }
 
 [_nghost-c1] a {
     color : $app-primary!important;
 }
 
-[_nghost-c1] table tbody tr td {
-    font-size: 1.5rem;
-    padding: .5em 1.5em;
+[_nghost-c1] table tbody tr {
+    &:nth-child(2n) {
+        background: rgba(0,0,0,.05);
+    }
+
+    td {
+        font-size: 20px;
+        padding: .5em 1.5em;
+    }
+}
+
+custom-view-component, ng-component {
+    display: flex;
+    width: 100%;
+    .gel-icon {
+        float: right;
+    }
+    .fa {
+        margin: auto;
+    }
 }
