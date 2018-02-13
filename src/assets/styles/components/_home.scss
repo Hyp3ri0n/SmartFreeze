@@ -17,17 +17,17 @@ home {
     flex-flow: column nowrap;
     display:flex;
   
+    .wla {
+      display: flex;
+      flex-grow: 1;
+    }
+    
     .wrapperSites{
       flex : none;
       overflow-x:hidden;  // Create arrows (left and right) to navigate in it
       display:flex;
       flex-direction: row;
       flex-wrap : nowrap;
-
-      .wla {
-        display: flex;
-        flex-grow: 1;
-      }
 
       .wrapperSite {
         flex:none;
