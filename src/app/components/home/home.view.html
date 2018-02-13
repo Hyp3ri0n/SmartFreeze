@@ -118,7 +118,7 @@
                 <loading *ngIf="sitesWithFavDevices == null" [model]="modelLoading"></loading>
                 <ng-container *ngIf="sitesWithFavDevices != null">
                     <div class="wrapperSite" *ngFor="let site of sitesWithFavDevices">
-                        <div class="cardHome">
+                        <div class="cardDashboard">
                             <div [routerLink]="'/site/'+site.id" class="cardDashboard-header ">
                                 <i class="fa fa-external-link"></i> {{site.name}}
                             </div>
@@ -147,7 +147,7 @@
             </div>
         </div>
         <div class="col-lg-5 mapWrapper flex-container">
-            <div class="cardDashboard app-container flex-container">
+            <div class="cardDashboard flex-container">
                  <div class="cardDashboard-header ">
                     Tous mes sites
                 </div>
