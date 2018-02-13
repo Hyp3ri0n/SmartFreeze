@@ -1,10 +1,9 @@
 <div class="app-container flex-container homePage">
     <div class="row  wrapperFirstLine">
-
         <div class=" col-lg-3">
             <div class="cardDashboard cardInfo row">
                 <div class="col-md-4">
-                    <div class="cardIcon   bg-red">
+                    <div class="cardIcon bg-red">
                         <i class="fa fa-exclamation-triangle"></i>
                     </div>
                 </div>
@@ -14,11 +13,10 @@
                 </div>
             </div>
         </div>
-
-        <div class=" col-lg-3      ">
+        <div class=" col-lg-3">
             <div class="cardDashboard cardInfo row">
                 <div class="col-md-4">
-                    <div class="cardIcon   bg-green">
+                    <div class="cardIcon bg-green">
                         <i class="fa fa-map-marker"></i>
                     </div>
                 </div>
@@ -30,10 +28,10 @@
 
         </div>
 
-        <div class=" col-lg-3      ">
+        <div class=" col-lg-3">
             <div class="cardDashboard cardInfo row">
                 <div class="col-md-4">
-                    <div class="cardIcon   bg-orange">
+                    <div class="cardIcon bg-orange">
                         <i class="fa fa-location-arrow"></i>
                     </div>
                 </div>
@@ -44,16 +42,15 @@
             </div>
 
         </div>
-
-        <div class="col-lg-3      ">
+        <div class="col-lg-3">
             <div class="cardDashboard cardInfo row">
                 <div class="col-md-4">
-                    <div class="cardIcon   bg-blue">
+                    <div class="cardIcon bg-blue">
                         <i class="fa fa-history"></i>
                     </div>
                 </div>
                 <div class="cardInfoText col-md-8">
-                    <div class="color-blue">192</div>
+                    <div class="color-blue">{{alarmes?.length}}</div>
                     <p>Avertissements depuis le début</p>
                 </div>
             </div>
@@ -61,10 +58,9 @@
         </div>
     </div>
 
-
     <div class="row wrapperPrincipal">
-        <div class="col-lg-7  wrapperLeft">
-            <div class="row">
+        <div class="col-lg-7 wrapperLeft">
+            <div class="row wla">
                 <div class="cardDashboard wrapperAlarms">
                    
                     <div class="cardDashboard-header ">
@@ -85,84 +81,44 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>02/02/2018 15h04</td>
-                                    <td>
-                                        <b>Refuge du Goûter</b>
-                                    </td>
-                                    <td>Fondoir</td>
-                                    <td>
-                                        <i class="fa fa-snowflake-o"></i>
-                                    </td>
-                                    <td>Gel prévu dans 5 jours</td>
-                                    <td>
-                                        <span class="label label-serieux">Sérieux</span>
-                                    </td>
-                                    <td>
-                                        <i class="fa fa-external-link"></i>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>01/02/2018 18h04</td>
-                                    <td>
-                                        <b>Refuge du Couvercle</b>
-                                    </td>
-                                    <td>Fondoir</td>
-                                    <td>
-                                        <i class="fa fa-snowflake-o"></i>
-                                    </td>
-                                    <td>Gel prévu dans 2 jours</td>
-                                    <td>
-                                        <span class="label label-critique">Critique</span>
-                                    </td>
-                                    <td>
-                                        <i class="fa fa-external-link"></i>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>26/01/2018 15h04</td>
-                                    <td>
-                                        <b>Refuge du Goûter</b>
-                                    </td>
-                                    <td>Extérieur</td>
-                                    <td>
-                                        <i class="fa fa-wrench"></i>
-                                    </td>
-                                    <td>Non réception depuis 1 jour</td>
-                                    <td>
-                                        <span class="label label-info">Information</span>
-                                    </td>
-                                    <td>
-                                        <i class="fa fa-external-link"></i>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>26/01/2018 15h04</td>
-                                    <td>
-                                        <b>Refuge du Couvercle</b>
-                                    </td>
-                                    <td>Extérieur</td>
-                                    <td>
-                                        <i class="fa fa-thermometer-quarter"></i>
-                                    </td>
-                                    <td>Dégel prévu dans 10 jours</td>
-                                    <td>
-                                        <span class="label label-info">Information</span>
-                                    </td>
-                                    <td>
-                                        <i class="fa fa-external-link"></i>
-                                    </td>
-                                </tr>
+                                <loading *ngIf="alarmes == null" [model]="modelLoading"></loading>
+                                <ng-container *ngIf="alarmes != null">
+                                    <tr *ngFor="let alarme of alarmes">
+                                        <td>{{alarme.occuredAt}}</td>
+                                        <td>
+                                            <b>{{alarme.siteName}}</b>
+                                        </td>
+                                        <td>{{alarme.deviceZone}}</td>
+                                        <td>
+                                            <i *ngIf="alarme.type == 1" class="fa fa-snowflake-o"></i>
+                                            <i *ngIf="alarme.type == 2" class="fa fa-thermometer-quarter"></i>
+                                            <i *ngIf="alarme.type == 3" class="fa fa-wrench"></i>
+                                            <span *ngIf="alarme.type == 4" class="fa-stack fa-lg">
+                                                <i class="fa fa-wifi fa-stack-1x"></i>
+                                                <i class="fa fa-ban fa-stack-2x text-danger"></i>
+                                            </span>
+                                        </td>
+                                        <td>{{alarme.shortDescription}}</td>
+                                        <td>
+                                            <span *ngIf="alarme.gravity == 1" class="label label-critique">Critique</span>
+                                            <span *ngIf="alarme.gravity == 2" class="label label-serieux">Sérieux</span>
+                                            <span *ngIf="alarme.gravity == 3" class="label label-info">Info</span>
+                                        </td>
+                                        <td>
+                                            <i class="fa fa-external-link" [routerLink]="'/sensor/'+alarme.deviceId"></i>
+                                        </td>
+                                    </tr>
+                                </ng-container>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
             <div class="row wrapperSites">
-                <loading *ngIf="sites == null" [model]="modelLoading"></loading>
-                <ng-container *ngIf="sites != null">
-                    <div class="wrapperSite     " *ngFor="let site of sites">
-                        <div class="cardDashboard">
+                <loading *ngIf="sitesWithFavDevices == null" [model]="modelLoading"></loading>
+                <ng-container *ngIf="sitesWithFavDevices != null">
+                    <div class="wrapperSite" *ngFor="let site of sitesWithFavDevices">
+                        <div class="cardHome">
                             <div [routerLink]="'/site/'+site.id" class="cardDashboard-header ">
                                 <i class="fa fa-external-link"></i> {{site.name}}
                             </div>
@@ -187,48 +143,18 @@
                         </div>
                     </div>
                 </ng-container>
+                <div *ngIf="sitesWithFavDevices != null && sitesWithFavDevices.length == 0">Vous n'avez pas de capteurs clés.</div>
             </div>
-
-            <!--
-            <div class="cardDashboard">
-                <div class="cardDashboard-header ">
-                    Mes capteurs clés
-                </div>
-                <div class="cardDashboard-body">
-                    <loading *ngIf="sites == null" [model]="modelLoading"></loading>
-                    <ng-container *ngIf="sites != null">
-                        <div class="col-sm-12 col-md-12 col-lg-12" *ngFor="let site of sites">
-                            <h2 class="heading">
-                                <a [routerLink]="'/site/'+site.id">{{site.name}}</a>
-                            </h2>
-                            <ng-container *ngFor="let device of site.devices">
-                                <a [routerLink]="'/sensor/'+device.id" *ngIf="device.isFavorite">{{device.name}}</a>
-                            </ng-container>
-                        </div>
-                    </ng-container>
-                    <div *ngIf="sites != null && sites.length == 0">Vous n'avez pas de capteurs clés.</div>
-                 </div>
-        </div>-->
         </div>
-
         <div class="col-lg-5 mapWrapper flex-container">
             <div class="cardDashboard app-container flex-container">
                  <div class="cardDashboard-header ">
                     Tous mes sites
                 </div>
-                <div class="cardDashboard-body flex-container">
-                    <map class="app-container"></map>
+                <div id="contentMap" class="cardDashboard-body flex-container">
+                    <map class="app-container" [style.height.px]="getContentHeight()"></map>
                 </div>
             </div>
         </div>
-
-
-        <!--
-        <div class="col-lg-5 flex-container no-padding-x">
-            
-            <map class="app-container" [style.height.px]="getContentHeight()"></map>
-        </div> 
-    -->
-
     </div>
 </div>
