@@ -1,99 +1,301 @@
-<div class="container-fluid position-relative">
-    <a routerLink="/site" class="back-nav"><span class="arrow left"></span> Retour</a>
-    <h1 class="title">
-        <!-- TODO Ajouter ngClass pour toggle fav class -->
-        <i class="fa fa-star"></i>
+<div class="app-container flex-container homePage">
+
+    <div class="titleDashboard">
+        <span *ngIf="device?.isFavorite">
+            <i class="fa fa-star"></i>
+        </span>
+        {{device?.name}}
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="cardDashboard wrapperAlarms">
+
+                <div class="cardDashboard-header ">
+                    Derniers Avertissements
+                </div>
+                <div class="tableWrapper">
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+
+                                <th>Zone</th>
+                                <th></th>
+                                <th>Description</th>
+                                <th>Gravité</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>02/02/2018 15h04</td>
+                                <td>Fondoir</td>
+                                <td>
+                                    <i class="fa fa-snowflake-o"></i>
+                                </td>
+                                <td>Gel prévu dans 5 jours</td>
+                                <td>
+                                    <span class="label label-serieux">Sérieux</span>
+                                </td>
+                                <td>
+                                    <i class="fa fa-external-link"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>01/02/2018 18h04</td>
+                                <td>Fondoir</td>
+                                <td>
+                                    <i class="fa fa-snowflake-o"></i>
+                                </td>
+                                <td>Gel prévu dans 2 jours</td>
+                                <td>
+                                    <span class="label label-critique">Critique</span>
+                                </td>
+                                <td>
+                                    <i class="fa fa-external-link"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>26/01/2018 15h04</td>
+                                <td>Extérieur</td>
+                                <td>
+                                    <i class="fa fa-wrench"></i>
+                                </td>
+                                <td>Non réception depuis 1 jour</td>
+                                <td>
+                                    <span class="label label-info">Information</span>
+                                </td>
+                                <td>
+                                    <i class="fa fa-external-link"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>26/01/2018 15h04</td>
+                                <td>Extérieur</td>
+                                <td>
+                                    <i class="fa fa-thermometer-quarter"></i>
+                                </td>
+                                <td>Dégel prévu dans 10 jours</td>
+                                <td>
+                                    <span class="label label-info">Information</span>
+                                </td>
+                                <td>
+                                    <i class="fa fa-external-link"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+
+
+            <div class="row  cardsSummary">
+
+                <div class="col-lg-4">
+                    <div [routerLink]="'/site/'+device.siteId" class="cardDashboard cardInfo row">
+                        <div class="col-md-4">
+                            <div class="cardIcon   bg-red">
+                                <i class="fa fa-exclamation-triangle"></i>
+                            </div>
+                        </div>
+                        <div class="cardInfoTextSensor col-md-8">
+                            <p>Site</p>
+                            <div class="color-red">{{device?.siteId}}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class=" col-lg-4">
+                    <div class="cardDashboard cardInfo row">
+                        <div class="col-md-4">
+                            <div class="cardIcon   bg-green">
+                                <i class="fa fa-map-marker"></i>
+                            </div>
+                        </div>
+                        <div class="cardInfoTextSensor col-md-8">
+                            <p>Zone</p>
+                            <div class="color-green">Fondoir</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="cardDashboard cardInfo row">
+                        <div class="col-md-4">
+                            <div class="cardIcon   bg-blue">
+                                <i class="fa fa-history"></i>
+                            </div>
+                        </div>
+                        <div class="cardInfoTextSensor col-md-8">
+                            <p>Dernière communication</p>
+                            <div class="color-blue">{{device?.lastCommunication}}</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="cardDashboard">
+                    <div class="cardDashboard-header ">
+                        Prévision Gel
+                    </div>
+                    <div>
+                        prévision gel (...)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-4">
+            <div class=" cardDashboard ">
+                <div class="cardDashboard-header ">
+                    Température
+                </div>
+                <div>
+                    température (...)
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class=" cardDashboard ">
+                <div class="cardDashboard-header ">
+                    Humidité
+                </div>
+                <div>
+                    humidité (...)
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class=" cardDashboard ">
+                <div class="cardDashboard-header ">
+                    Pression
+                </div>
+                <div>
+                    pression (...)
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<!--
+<div class="container-fluid position-relative ">
+    <a routerLink="/site " class="back-nav "><span class="arrow left "></span> Retour</a>
+    <h1 class="title ">
+        TODO Ajouter ngClass pour toggle fav class
+        <i class="fa fa-star "></i>
         {{device?.name}}
     </h1>
-    <div class="row">
-        <div class="col-sm-6 col-md-4">
-            <div class="card card-alerts">
+    <div class="row ">
+        <div class="col-sm-6 col-md-4 ">
+            <div class="card card-alerts ">
                 <div class="card-header ">
-                    <h4 class="card-title">Avertissements</h4>
+                    <h4 class="card-title ">Avertissements</h4>
                 </div>
-                <div class="card-body">
+                <div class="card-body ">
                     <div>
-                        <h5 class="card-category">
+                        <h5 class="card-category ">
                             Température inhabituelle
                         </h5>
                         <p>
-                            25°C - <a routerLink="sensor">G2 Fondoir</a> 13/10/2017 13h40
+                            25°C - <a routerLink="sensor ">G2 Fondoir</a> 13/10/2017 13h40
                         </p>
                     </div>
                     <div>
-                        <h5 class="card-category">
+                        <h5 class="card-category ">
                             Humidité inhabituelle
                         </h5>
                         <p>
-                            80% - <a routerLink="sensor">G2 Fondoir</a> 13/10/2017 13h40
+                            80% - <a routerLink="sensor ">G2 Fondoir</a> 13/10/2017 13h40
                         </p>
                     </div>
                     <div>
-                        <h5 class="card-category">
+                        <h5 class="card-category ">
                             Matériel
                         </h5>
                         <p>
-                            Batterie faible - <a routerLink="sensor">G2 Fondoir</a> 13/10/2017 13h40
+                            Batterie faible - <a routerLink="sensor ">G2 Fondoir</a> 13/10/2017 13h40
                         </p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-md-4">
-            <div class="card">
+        <div class="col-sm-6 col-md-4 ">
+            <div class="card ">
                 <div class="card-header ">
-                    <h4 class="card-title">Capteurs</h4>
+                    <h4 class="card-title ">Capteurs</h4>
                 </div>
-                <div class="card-body">
-                    <label class="font-weight-bold">Site</label>
-                    <p><a routerLink="site">Refuge du Goûter</a></p>
-                    <label class="font-weight-bold">Zone</label>
+                <div class="card-body ">
+                    <label class="font-weight-bold ">Site</label>
+                    <p><a routerLink="site ">Refuge du Goûter</a></p>
+                    <label class="font-weight-bold ">Zone</label>
                     <p>Fondoir</p>
-                    <label class="font-weight-bold">Dernière communication</label>
+                    <label class="font-weight-bold ">Dernière communication</label>
                     <p>5 minutes</p>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-md-2">
-            <div class="card">
+        <div class="col-sm-6 col-md-2 ">
+            <div class="card ">
                 <div class="card-header ">
-                    <h4 class="card-title">Prévision gel</h4>
+                    <h4 class="card-title ">Prévision gel</h4>
                 </div>
                 <div class="card-body ">
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-md-2">
-            <img src="../../assets/images/batteryLevel2.PNG" class="fit-img rounded">
+        <div class="col-sm-6 col-md-2 ">
+            <img src="../../assets/images/batteryLevel2.PNG " class="fit-img rounded ">
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-12 col-md-4">
-            <div class="card">
+    <div class="row ">
+        <div class="col-sm-12 col-md-4 ">
+            <div class="card ">
                 <div class="card-header ">
-                    <h4 class="card-title">Température</h4>
+                    <h4 class="card-title ">Température</h4>
                 </div>
                 <div class="card-body ">
                 </div>
             </div>
         </div>
-        <div class="col-sm-12 col-md-4">
-            <div class="card">
+        <div class="col-sm-12 col-md-4 ">
+            <div class="card ">
                 <div class="card-header ">
-                    <h4 class="card-title">Humidité</h4>
+                    <h4 class="card-title ">Humidité</h4>
                 </div>
                 <div class="card-body ">
                 </div>
             </div>
         </div>
-        <div class="col-sm-12 col-md-4">
-            <div class="card">
+        <div class="col-sm-12 col-md-4 ">
+            <div class="card ">
                 <div class="card-header ">
-                    <h4 class="card-title">Pression</h4>
+                    <h4 class="card-title ">Pression</h4>
                 </div>
                 <div class="card-body ">
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div> 
+-->

@@ -79,5 +79,121 @@
           font-size: 15px;
         }
     }
+
+    .cardsSummary{
+        background-color: $grey-background;
+        flex:none;
+        display:flex;
+        justify-content: space-between;
+        margin-bottom:10px;
+        margin-top: 10px;
+      }
+        .cardSite{
+          padding-top:10px;
+          display: flex;
+          align-items: center;
+        }
+    
+        .cardCapteurSite{
+          padding-left: 37px;
+          padding-bottom: 30px;
+        }
+      
+        .cardInfo {
+          display: flex;
+          align-items: center;
+          height: 100%;
+        }
+        .cardIcon{
+          width: 50px;
+          height: 50px;
+          font-size: 25px;
+          line-height: 50px;
+          border-radius: 50%;
+          margin:auto;
+          color: #fff;
+      
+        }
+        .imgSiteCard{
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          line-height: 60px;
+          box-shadow: 0 2px 5px 0 $cardShadow  ;
+        }
+    
+        .bg-green{
+          background-color: $mc-teal;
+          padding-left: 18px;
+        }
+      
+        .bg-orange{
+          background-color: $mc-orange ;
+          padding-left:15px;
+        }
+      
+        .bg-blue{
+          background-color: $mc-light_blue;
+          padding-left: 14px;
+        }
+      
+        .bg-red{
+          background-color: $mc-red ;
+          padding-left: 14px;
+        }
+      
+        .cardInfoText{
+          font-size: 12px; 
+          text-transform: uppercase;
+      
+          .color-green{
+            font-size: 25px;
+            color:$mc-teal;
+          }
+      
+          .color-orange{
+            font-size: 25px;
+            color: $mc-orange ;
+          }
+        
+          .color-blue{
+            font-size: 25px;
+            color: $mc-light_blue;
+          }
+        
+          .color-red{
+            font-size: 25px;
+            color: $mc-red ;
+          }
+        }
+
+        .cardInfoTextSensor{
+            font-size: 15px;
+            text-transform: uppercase;
+
+            .color-green{
+                font-size: 13px;
+                color:$mc-teal;
+                text-transform: capitalize;
+              }
+          
+              .color-orange{
+                font-size: 13px;
+                color: $mc-orange ;
+                text-transform: capitalize;
+              }
+            
+              .color-blue{
+                font-size: 13px;
+                color: $mc-light_blue;
+                text-transform: capitalize;
+              }
+            
+              .color-red{
+                font-size: 13px;
+                color: $mc-red ;
+                text-transform: capitalize;
+              }
+        }
 }
 
