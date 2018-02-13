@@ -35,7 +35,7 @@ export class AlarmeService {
 
     public getAlarmes() : Observable<Alarme[]> {
         return Observable.create((observer) => {
-            this.http.request(MethodRequest.GET, '/api/Alarmes', {}).subscribe(
+            this.http.request(MethodRequest.GET, '/api/Alarms', {}).subscribe(
                 alarmes => {
                     observer.next(alarmes.items);
                 },
@@ -53,7 +53,7 @@ export class AlarmeService {
                 'rowsPerPage': '5',
                 'pageNumber': '1'
             };
-            this.http.request(MethodRequest.GET, '/api/Alarmes', params).subscribe(
+            this.http.request(MethodRequest.GET, '/api/Alarms', params).subscribe(
                 alarmes => {
                     observer.next(alarmes.items);
                 },
