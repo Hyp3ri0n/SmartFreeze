@@ -67,6 +67,32 @@
     }
 
 
+    .cardSummary{
+        margin-right:0px;
+        margin-left: 0px;
+        margin-top: 0px;
+        margin-bottom: 10px;
+        padding-right: 0px;
+        padding-left: 0px;
+
+    }
+
+    .wrapperRightSensor{
+        display : flex;
+        flex-direction:column;
+
+        row{
+            flex:none;
+            display:flex;
+            justify-content: space-between; 
+        }
+
+        .cardInfo{
+            margin-right:2px;
+            margin-left:2px;
+        }
+    }
+
     .cardDashboard{
         border-radius: 3px;
         box-shadow: 0 2px 5px 0 $cardShadow  ;
@@ -80,14 +106,8 @@
         }
     }
 
-    .cardsSummary{
-        background-color: $grey-background;
-        flex:none;
-        display:flex;
-        justify-content: space-between;
-        margin-bottom:10px;
-        margin-top: 10px;
-      }
+    
+
         .cardSite{
           padding-top:10px;
           display: flex;
@@ -103,6 +123,10 @@
           display: flex;
           align-items: center;
           height: 100%;
+          padding-right:0px;
+          padding-left:0px;
+          padding-top:5px;
+          padding-bottom:5px;
         }
         .cardIcon{
           width: 50px;
@@ -112,6 +136,10 @@
           border-radius: 50%;
           margin:auto;
           color: #fff;
+          display : flex;
+          align-items: center;
+          justify-content: center;
+          margin:7px;
       
         }
         .imgSiteCard{
@@ -124,22 +152,18 @@
     
         .bg-green{
           background-color: $mc-teal;
-          padding-left: 18px;
         }
       
         .bg-orange{
           background-color: $mc-orange ;
-          padding-left:15px;
         }
       
         .bg-blue{
           background-color: $mc-light_blue;
-          padding-left: 14px;
         }
       
         .bg-red{
           background-color: $mc-red ;
-          padding-left: 14px;
         }
       
         .cardInfoText{
@@ -168,8 +192,13 @@
         }
 
         .cardInfoTextSensor{
-            font-size: 15px;
+            font-size: 13px;
             text-transform: uppercase;
+            padding:5px;
+
+            p{
+                margin-bottom:0px;
+            }
 
             .color-green{
                 font-size: 13px;
@@ -195,5 +224,6 @@
                 text-transform: capitalize;
               }
         }
+
 }
 

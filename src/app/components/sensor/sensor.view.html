@@ -92,50 +92,66 @@
             </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-6 wrapperRightSensor">
 
 
-            <div class="row  cardsSummary">
+            <div class="row">
 
-                <div class="col-lg-4">
+                <div class="col-md-6 cardSummary">
                     <div [routerLink]="'/site/'+device.siteId" class="cardDashboard cardInfo row">
-                        <div class="col-md-4">
-                            <div class="cardIcon   bg-red">
-                                <i class="fa fa-exclamation-triangle"></i>
-                            </div>
+
+                        <div class="cardIcon   bg-red">
+                            <i class="fa fa-map-marker"></i>
                         </div>
-                        <div class="cardInfoTextSensor col-md-8">
+
+                        <div class="cardInfoTextSensor">
                             <p>Site</p>
                             <div class="color-red">{{device?.siteId}}</div>
                         </div>
                     </div>
                 </div>
 
-                <div class=" col-lg-4">
+                <div class="col-md-6 cardSummary">
                     <div class="cardDashboard cardInfo row">
-                        <div class="col-md-4">
-                            <div class="cardIcon   bg-green">
-                                <i class="fa fa-map-marker"></i>
-                            </div>
+
+                        <div class="cardIcon   bg-green">
+                            <i class="fa fa-home"></i>
                         </div>
-                        <div class="cardInfoTextSensor col-md-8">
+
+                        <div class="cardInfoTextSensor">
                             <p>Zone</p>
                             <div class="color-green">Fondoir</div>
                         </div>
                     </div>
 
                 </div>
+            </div>
+            <div class="row">
 
-                <div class="col-lg-4">
+                <div class="col-md-6 cardSummary">
                     <div class="cardDashboard cardInfo row">
-                        <div class="col-md-4">
-                            <div class="cardIcon   bg-blue">
-                                <i class="fa fa-history"></i>
-                            </div>
+
+                        <div class="cardIcon   bg-blue">
+                            <i class="fa fa-wifi"></i>
                         </div>
-                        <div class="cardInfoTextSensor col-md-8">
+
+                        <div class="cardInfoTextSensor">
                             <p>Dernière communication</p>
                             <div class="color-blue">{{device?.lastCommunication}}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 cardSummary">
+                    <div class="cardDashboard cardInfo row">
+
+                        <div class="cardIcon   bg-orange">
+                            <i class="fa fa-battery-half"></i>
+                        </div>
+
+                        <div class="cardInfoTextSensor">
+                            <p>Batterie</p>
+                            <div class="color-orange">Bonne</div>
                         </div>
                     </div>
 
