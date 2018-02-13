@@ -172,14 +172,14 @@
                                 </div>
                                 <div class="col-md-8 cardCapteurSite">
                                     <ng-container *ngFor="let device of site.devices">
-                                        <p [routerLink]="'/sensor/'+device.id" *ngIf="device.isFavorite">
+                                        <div [routerLink]="'/sensor/'+device.id" *ngIf="device.isFavorite">
                                             <span class="label label-critique">{{device.name}}
                                                 <i class="fa fa-star"></i>
                                             </span>
-                                        </p>
-                                        <p [routerLink]="'/sensor/'+device.id" *ngIf="!device.isFavorite">
+                                        </div>
+                                        <div [routerLink]="'/sensor/'+device.id" *ngIf="!device.isFavorite">
                                             <span class="label label-info">{{device.name}} </span>
-                                        </p>
+                                        </div>
                                     </ng-container>
 
                                 </div>

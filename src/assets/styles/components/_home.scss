@@ -2,110 +2,109 @@ home {
   @extend .app-container;
 }
 
-.tableWrapper{
-  flex : 1;
-  overflow : auto;
-}
 
-.table{
-  font-size:12px;
-
-  .fa{
-    font-size:14px;
-  }
-}
-
-.wrapperPrincipal{
-  flex: 1;
-}
-
-.wrapperLeft{
-  flex-flow: column nowrap;
-  display:flex;
-
-  .wrapperAlarms{
-    flex-grow : 1;
-    display : flex;
-    flex-direction:column;
-    margin-bottom:10px;
-  }
-  .wrapperSites{
-    flex : none;
-    overflow-x:auto;
-    display:flex;
-    flex-direction: row;
-    flex-wrap : nowrap;
-
-    .wrapperSite {
-      flex:none;
-      margin-right:5px;
-    }
-  }
-}
-
-.label{
-  padding:4px;
-  color: $mc-white;
-  font-size: 12px;
-  text-transform: lowercase;
-  border-radius: 2px;
-  font-weight: bold;
-  text-align: center;
-
-  .fa{
-    color:$mc-yellow;
-  }
-}
-
-.label-serieux{
-  background-color: $mc-orange;
-}
-
-.label-critique{
-  background-color: $mc-red; 
-}
-
-.label-info{
-  background-color: $mc-teal ;
-}
-
-.mapWrapper{
-  padding-left:0px;
-  margin-bottom:10px;
-
-  & div{
-    //flex-direction: column;
-    //display:flex;
-  }
-}
-
-.cardsSummary{
-  background-color: $grey-background;
-  //padding-top: 20px;
-  //padding-bottom: 20px;
-  flex:none;
-  display:flex;
-  justify-content: space-between;
-  margin-bottom:10px;
-  margin-top: 10px;
-}
 
 .homePage{
   background-color: $grey-background;
   flex-direction:column;
   
+  .wrapperPrincipal{
+    flex: 1;
+
+    .mapHome{
+      width:100%; 
+      height:100%;
+      padding: 10px;
+    }
+
+    .wrapperLeft{
+      flex-flow: column nowrap;
+      display:flex;
+  
+      .wrapperAlarms{
+        flex-grow : 1;
+        display : flex;
+        flex-direction:column;
+        margin-bottom:10px;
+
+        .tableWrapper{
+          flex : 1;
+          overflow : auto;
+        
+          .table{
+            font-size:12px;
+          
+            .fa{
+              font-size:14px;
+            }
+          }
+        }
+      }
+      .wrapperSites{
+        flex : none;
+        overflow-x:auto;
+        display:flex;
+        flex-direction: row;
+        flex-wrap : nowrap;
+  
+        .wrapperSite {
+          flex:none;
+          margin-right:5px;
+        }
+      }
+    }
+  }
+
   .row{
     margin-left:0px;
     margin-right: 0px;
   }
-}
+
+  .label{
+    padding:4px;
+    color: $mc-white;
+    font-size: 12px;
+    text-transform: lowercase;
+    border-radius: 2px;
+    font-weight: bold;
+    text-align: center;
+  
+    .fa{
+      color:$mc-yellow;
+    }
+  }
+  
+  .label-serieux{
+    background-color: $mc-orange;
+  }
+  
+  .label-critique{
+    background-color: $mc-red; 
+  }
+  
+  .label-info{
+    background-color: $mc-teal ;
+  }
+  
+  .mapWrapper{
+    padding-left:0px;
+    margin-bottom:10px;
+  }
+  
+  .cardsSummary{
+    background-color: $grey-background;
+    flex:none;
+    display:flex;
+    justify-content: space-between;
+    margin-bottom:10px;
+    margin-top: 10px;
+  }
 
   .cardHome{
     border-radius: 3px;
     box-shadow: 0 2px 5px 0 $cardShadow  ;
     background-color : $mc-white;
     padding: 10px;
-    //margin:5px;
     font-family: RobotoDraft, Roboto, 'Helvetica Neue', sans-serif;
 
     .cardHome-header{
@@ -118,98 +117,84 @@ home {
       display: flex;
       align-items: center;
     }
-  }
 
-  .imgSiteCard{
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    line-height: 60px;
-    //margin-top: -30px;
-    box-shadow: 0 2px 5px 0 $cardShadow  ;
-  }
-
-  .mapHome{
-    width:100%; 
-    height:100%;
-    padding: 10px;
-  }
-
-  .cardCapteurSite{
-    padding-left: 37px;
-    padding-bottom: 30px;
-  }
-
-  .cardInfo {
-    display: flex;
-    align-items: center;
-    height: 100%;
-  }
-  .cardIcon{
-    width: 50px;
-    height: 50px;
-    font-size: 25px;
-    line-height: 50px;
-    border-radius: 50%;
-    margin:auto;
-    color: #fff;
-
-  }
-
-  .bg-green{
-    background-color: $mc-teal;
-    padding-left: 18px;
-  }
-
-  .bg-orange{
-    background-color: $mc-orange ;
-    padding-left:15px;
-  }
-
-  .bg-blue{
-    background-color: $mc-light_blue;
-    padding-left: 14px;
-  }
-
-  .bg-red{
-    background-color: $mc-red ;
-    padding-left: 14px;
-  }
-
-  .cardInfoText{
-    font-size: 12px; 
-    text-transform: uppercase;
-
-    .color-green{
-      font-size: 25px;
-      color:$mc-teal;
-    }
-
-    .color-orange{
-      font-size: 25px;
-      color: $mc-orange ;
+    .cardCapteurSite{
+      padding-left: 37px;
+      padding-bottom: 30px;
     }
   
-    .color-blue{
-      font-size: 25px;
-      color: $mc-light_blue;
+    .cardInfo {
+      display: flex;
+      align-items: center;
+      height: 100%;
     }
+    .cardIcon{
+      width: 50px;
+      height: 50px;
+      font-size: 25px;
+      line-height: 50px;
+      border-radius: 50%;
+      margin:auto;
+      color: #fff;
   
-    .color-red{
-      font-size: 25px;
-      color: $mc-red ;
     }
-  }
+    .imgSiteCard{
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      line-height: 60px;
+      box-shadow: 0 2px 5px 0 $cardShadow  ;
+    }
 
-.home-summary {
-  overflow: auto;
-  flex-flow: column nowrap;
-  justify-content: space-around;
-  align-content: center;
-  display: flex;
-  background-color: $grey-background;
+    .bg-green{
+      background-color: $mc-teal;
+      padding-left: 18px;
+    }
   
+    .bg-orange{
+      background-color: $mc-orange ;
+      padding-left:15px;
+    }
+  
+    .bg-blue{
+      background-color: $mc-light_blue;
+      padding-left: 14px;
+    }
+  
+    .bg-red{
+      background-color: $mc-red ;
+      padding-left: 14px;
+    }
+  
+    .cardInfoText{
+      font-size: 12px; 
+      text-transform: uppercase;
+  
+      .color-green{
+        font-size: 25px;
+        color:$mc-teal;
+      }
+  
+      .color-orange{
+        font-size: 25px;
+        color: $mc-orange ;
+      }
+    
+      .color-blue{
+        font-size: 25px;
+        color: $mc-light_blue;
+      }
+    
+      .color-red{
+        font-size: 25px;
+        color: $mc-red ;
+      }
+    }
+  
+  }
 }
+
+  
 
 
 
