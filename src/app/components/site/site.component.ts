@@ -9,6 +9,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
 import { ChartComponent } from '../global/chart/chart.component';
 import { LoadingModel } from '../global/loading/loading.model';
+import { ChartUtil } from '../global/chart/chart.util';
 
 @Component({
     selector: 'site',
@@ -16,8 +17,6 @@ import { LoadingModel } from '../global/loading/loading.model';
 })
 
 export class SiteComponent {
-    private datasetConfig : any;
-    private chartConfig : any;
     private siteId : string;
     private site : Site = null;
     private alarmes : Alarme[] = [];
@@ -26,8 +25,6 @@ export class SiteComponent {
     private period:string;
     private from:Date = new Date();
     private to:Date;
-    private chartTemp:ChartComponent;
-    private chartHumidity:ChartComponent;
 
     constructor(private router : ActivatedRoute,
                 private siteService : SiteService,
@@ -40,8 +37,7 @@ export class SiteComponent {
         );
         this.to = new Date();
         this.to.setHours(23, 59, 59, 999);
-        this.period = 'day';
-        this.from = this.getFirstDayOfPeriod();
+        this.changedPeriod('day');
     }
 
     public ngOnInit(): void {
@@ -85,7 +81,7 @@ export class SiteComponent {
                                     y: telemetry.humidity
                                 });
                             });
-                            let color = this.getRandomColor();
+                            let color = ChartUtil.getRandomColor();
                             this.temperatureDataset.push({
                                 data: tmpTemperatures,
                                 label: device,
@@ -110,16 +106,6 @@ export class SiteComponent {
             }
         );
     }
-
-    public getRandomColor() {
-        var letters = '0123456789ABCDEF';
-        var color = '#';
-        for (var i = 0; i < 6; i++) {
-          color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-    }
-
     public showCaract():void {
         let elmtCaract = document.getElementById("caracteristiques");
         let elmtMeteo = document.getElementById("meteo");
@@ -137,57 +123,15 @@ export class SiteComponent {
         elmtCaract.style.display = "none";
     }
 
-    public changeScale(period) {
-        this.period = period;
-        this.from = this.getFirstDayOfPeriod();
+    //event on select change
+    private reloadChart(period) {
+        this.changedPeriod(period);
         this.getData();
     }
 
-    private getFirstDayOfPeriod() : Date {
-        var date = new Date();
-        switch (this.period) {
-            //Heure courante
-            case "hour": {
-                //On change la période afin d'avoir le format adapté
-                this.period = 'minute';
-                date.setHours(date.getHours() - 1);
-                return date;
-            }
-            //Aujourd'hui
-            case "day": {
-                this.period = 'hour';
-                date.setHours(0, 0, 0, 0);
-                return date;
-            }
-            //Semaine courante
-            case "week": {
-                this.period = 'day';
-                var day = date.getDay();
-                return new Date(date.getFullYear(),
-                                            date.getMonth(),
-                                            date.getDate() + (day === 0 ? -6 : 1) - day, 0, 0, 0, 0);
-            }
-            //Mois courant
-            case "month": {
-                this.period = 'day';
-                var y = date.getFullYear(), m = date.getMonth();
-                return new Date(y, m, 1, 0, 0, 0, 0);
-             }
-             //Trimestre courant
-            case "quarter": {
-                this.period = 'week';
-                var quarter = Math.floor((date.getMonth() / 3));
-                return new Date(date.getFullYear(), quarter * 3, 1, 0, 0, 0, 0);
-            }
-            //Année courante
-            case "year": {
-                this.period = 'week';
-                var y = date.getFullYear();
-                return new Date(y, 0, 1, 0, 0, 0, 0);
-             }
-            default: {
-                return date;
-            }
-        }
+    private changedPeriod(value) :void {
+        let newValues = ChartUtil.getFirstDayOfPeriod(value);
+        this.from = newValues.date;
+        this.period = newValues.period;
     }
 }

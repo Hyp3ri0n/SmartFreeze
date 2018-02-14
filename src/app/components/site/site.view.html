@@ -173,12 +173,12 @@
                 Historique température
             </div>
             <div>
-                <loading *ngIf="temperatureDataset == null" [model]="modelLoading"></loading>
+                <loading *ngIf="temperatureDataset == null"></loading>
                 <chart class="app-container" *ngIf="temperatureDataset != null" [dataSet]="temperatureDataset" [type]="'temp'" [period]="period"></chart>
                 <!-- graphe température pour tous les capteurs + plusieurs granularité -->
             </div>
         </div>
-        <select class="select-period" (change)="changeScale($event.target.value)">
+        <select class="select-site-period" (change)="reloadChart($event.target.value)">
             <option value="" disabled>Période courante</option>
             <option value="year">Année</option>
             <option value="quarter">Trimestre</option>
@@ -192,7 +192,7 @@
                 Historique humidité
             </div>
             <div>
-                <loading *ngIf="humidityDataset == null" [model]="modelLoading"></loading>
+                <loading *ngIf="humidityDataset == null"></loading>
                 <chart class="app-container" *ngIf="humidityDataset != null" [dataSet]="humidityDataset" [type]="'humidity'" [period]="period"></chart>
                 <!-- graphe humidité pour tous les capteurs + plusieurs granularité -->
             </div>

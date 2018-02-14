@@ -13,7 +13,7 @@
         <button type="button" class="btn btn-outline-primary" [ngClass]="{'active': gelFilter }" (click)="gelFilter = !gelFilter;">Gel</button>
     </div>
     <div class="row" [ngClass]="{'filtered': gelFilter }">
-        <loading *ngIf="sites == null" [model]="modelLoading"></loading>
+        <loading *ngIf="sites == null"></loading>
         <div class="col-sm-6 col-md-3 mb-3" *ngFor="let site of sites" [ngClass]="{'hasAlarm': site.hasActiveAlarms }">
             <div class="card" [ngClass]="{'active-card': site.isActive }">
                 <div class="card-header">
