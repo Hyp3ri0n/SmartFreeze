@@ -13,31 +13,22 @@
         <button type="button" class="btn btn-outline-primary" [ngClass]="{'active': gelFilter }" (click)="gelFilter = !gelFilter;">Gel</button>
     </div>
     <div class="row" [ngClass]="{'filtered': gelFilter }">
-        <div class="col-sm-6 col-md-3 mb-3" *ngFor="let site of filteredSites" [ngClass]="{'hasAlarm': site.hasAlarm }">
+        <loading *ngIf="sites == null" [model]="modelLoading"></loading>
+        <div class="col-sm-6 col-md-3 mb-3" *ngFor="let site of sites" [ngClass]="{'hasAlarm': site.hasActiveAlarms }">
             <div class="card" [ngClass]="{'active-card': site.isActive }">
                 <div class="card-header">
                     <h4 class="card-title">
-                        <a routerLink="/site">{{site.title}}</a>
+                        <a [routerLink]="'/site/'+site.id">{{site.name}}</a>
                     </h4>
-                    <i *ngIf="site.hasAlarm" class="gel-icon fa fa-snowflake-o" title="Gel prévu"></i>
+                    <i *ngIf="site.hasActiveAlarms" class="gel-icon fa fa-snowflake-o" title="Gel prévu"></i>
                     <i class="card-icon fa" [ngClass]="{'fa-minus': site.isActive, 'fa-plus' : !site.isActive }" (click)="go_clicked(site)"></i>
                 </div>
                 <div class="toggle-card">
                     <div class="card-body">
-                        <div class="card-item">
-                            <a routerLink="/sensor">G1 Salle commune</a><i class="gel-icon fa fa-snowflake-o" title="Gel prévu"></i>
-                        </div>
-                        <div class="card-item">
-                            <a routerLink="/sensor">G2 Fondoir</a>
-                        </div>
-                        <div class="card-item">
-                            <a routerLink="/sensor">G3 Cuisine</a><i class="gel-icon fa fa-snowflake-o" title="Gel prévu"></i>
-                        </div>
-                        <div class="card-item">
-                            <a routerLink="/sensor">G4 Dortoir1</a>
-                        </div>
-                        <div class="card-item">
-                            <a routerLink="/sensor">G5 Dortoir2</a>
+                        <div class="card-item" *ngFor="let device of site.devices">
+                            <a [routerLink]="'/sensor/'+device.id">{{device.name}}</a>
+                            <i *ngIf="device.isFavorite" class="fav-icon fa fa-star" title="Capteur favori"></i>
+                            <i *ngIf="device.hasActiveAlarms" class="gel-icon fa fa-snowflake-o" title="Gel prévu"></i>
                         </div>
                     </div>
                 </div>

@@ -113,7 +113,7 @@ all-sites {
                  flex: 1;
              }
          }
-         .card-icon, .gel-icon {
+         .card-icon, .gel-icon, .fav-icon {
              flex: 0;
              align-self: flex-end;
              font-size: 24px;
@@ -126,6 +126,10 @@ all-sites {
          }
          .gel-icon {
              color: $mc-red;
+             margin-right: 10px;
+         }
+         .fav-icon {
+             color: $mc-yellow;
              margin-right: 10px;
          }
          .card-item {
