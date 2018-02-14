@@ -3,8 +3,29 @@
 </div>
 <div class="search-wrapper">
     <i class="fa fa-search"></i>
-    <input id="freesearch" class="d-md-none" name="freesearch" value="" placeholder="Recherche capteur/site"/>
-    <input id="freesearch" class="d-none d-md-block" name="freesearch" value="" placeholder="Rechercher un capteur/site"/>
+
+    <div>
+        <input [(ngModel)]="query" (click)="deleteItem()" (keyup)="filterListAutoComplete()" id="freesearch" class="d-md-none" name="freesearch" value=""
+            placeholder="Recherche capteur/site" />
+        <input [(ngModel)]="query" (click)="deleteItem()" (keyup)="filterListAutoComplete()" id="freesearch" class="d-none d-md-block" name="freesearch"
+            value="" placeholder="Rechercher un capteur/site" />
+
+    </div>
+    <div id="autoCompletePlace" class="form-control autocompleteSearchList">
+        
+        <div *ngIf="filteredSitesAutoComplete.length > 0">
+        Sites
+            <div *ngFor="let site of filteredSitesAutoComplete">
+                <a [routerLink]="'/site/'+site.id" (click)="selectItem(site.name)">{{site.name}}</a>
+            </div>
+        </div>
+        <div *ngIf="filteredDevicesAutoComplete.length > 0">
+        Capteurs
+            <div *ngFor="let device of filteredDevicesAutoComplete">
+                <a [routerLink]="'/sensor/'+device.id" (click)="selectItem(device.name)">{{device.name}}</a>
+            </div>
+        </div>
+    </div>
 </div>
 <button (click)="go_clicked()" (clickOutside)="close()" class="alerts" type="button" title="Notifications">
     <i class="side-icon fa fa-bell"></i>
