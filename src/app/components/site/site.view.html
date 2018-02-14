@@ -173,7 +173,8 @@
                 Historique température
             </div>
             <div>
-                <canvas id="chart-temp" class="chartjs-render-monitor site-chart"></canvas>
+                <loading *ngIf="temperatureDataset == null" [model]="modelLoading"></loading>
+                <chart class="app-container" *ngIf="temperatureDataset != null" [dataSet]="temperatureDataset" [type]="'temp'" [period]="period"></chart>
                 <!-- graphe température pour tous les capteurs + plusieurs granularité -->
             </div>
         </div>
@@ -191,7 +192,8 @@
                 Historique humidité
             </div>
             <div>
-                <canvas id="chart-humidity" class="chartjs-render-monitor site-chart"></canvas>
+                <loading *ngIf="humidityDataset == null" [model]="modelLoading"></loading>
+                <chart class="app-container" *ngIf="humidityDataset != null" [dataSet]="humidityDataset" [type]="'humidity'" [period]="period"></chart>
                 <!-- graphe humidité pour tous les capteurs + plusieurs granularité -->
             </div>
         </div>

@@ -7,6 +7,8 @@ import { HttpService } from '../../services/http/http.service';
 import { Chart } from 'chart.js';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
+import { ChartComponent } from '../global/chart/chart.component';
+import { LoadingModel } from '../global/loading/loading.model';
 
 @Component({
     selector: 'site',
@@ -19,13 +21,13 @@ export class SiteComponent {
     private siteId : string;
     private site : Site = null;
     private alarmes : Alarme[] = [];
-    private humidityRecords : any[];
-    private temperatureRecords : any[];
+    private humidityDataset : any[];
+    private temperatureDataset : any[];
     private period:string;
     private from:Date = new Date();
     private to:Date;
-    private chartTemp:Chart;
-    private chartHumidity:Chart;
+    private chartTemp:ChartComponent;
+    private chartHumidity:ChartComponent;
 
     constructor(private router : ActivatedRoute,
                 private siteService : SiteService,
@@ -36,15 +38,6 @@ export class SiteComponent {
                 this.siteId = params['id'];
             }
         );
-        this.datasetConfig = {
-            fill: false,
-            showLine: true,
-            steppedLine: true
-        };
-        this.chartConfig = {
-            responsive: true,
-            spanGaps: true
-        };
         this.to = new Date();
         this.to.setHours(23, 59, 59, 999);
         this.period = 'day';
@@ -66,20 +59,23 @@ export class SiteComponent {
                 this.site = site;
                 // Get alarmes from devices
                 // Get devices records for charts
-                this.temperatureRecords = [];
-                this.humidityRecords = [];
                 let subscribes : Observable<Telemetry[]>[] = [];
                 this.site.devices.forEach(device => {
                     subscribes.push(this.deviceService.getTelemetry(device.id, this.from, this.to));
                 });
+                // destroy chart component
+                this.temperatureDataset = null;
+                this.humidityDataset = null;
                 Observable.forkJoin(subscribes).subscribe(
                     telemetriesTab => {
+                        this.temperatureDataset = [];
+                        this.humidityDataset = [];
                         telemetriesTab.forEach(telemDevice => {
                             let tmpTemperatures = [];
                             let tmpHumidity = [];
-                            let dev : string = '';
+                            let device : string = '';
                             telemDevice.forEach(telemetry => {
-                                dev = telemetry.deviceId;
+                                device = telemetry.deviceId;
                                 tmpTemperatures.push({
                                     x: new Date(telemetry.occuredAt),
                                     y: telemetry.temperature
@@ -90,107 +86,24 @@ export class SiteComponent {
                                 });
                             });
                             let color = this.getRandomColor();
-                            let commonSettings = {
-                                label: dev,
+                            this.temperatureDataset.push({
+                                data: tmpTemperatures,
+                                label: device,
                                 borderColor: color,
                                 pointBackgroundColor: color,
                                 pointBorderColor: color,
-                            };
-                            this.temperatureRecords.push({
-                                data: tmpTemperatures,
-                                ...commonSettings,
-                                ...this.datasetConfig
+                                fill: false,
+                                showLine: true
                             });
-                            this.humidityRecords.push({
+                            this.humidityDataset.push({
                                 data: tmpHumidity,
-                                ...commonSettings,
-                                ...this.datasetConfig
+                                label: device,
+                                borderColor: color,
+                                pointBackgroundColor: color,
+                                pointBorderColor: color,
+                                fill: false,
+                                showLine: true
                             });
-                        });
-                        // chart definition
-                        if (this.chartTemp) {
-                            this.chartTemp.destroy();
-                        }
-                        if (this.chartHumidity) {
-                            this.chartHumidity.destroy();
-                        }
-                        let ctTemp = document.getElementById("chart-temp");
-                        this.chartTemp = new Chart(ctTemp, {
-                            type: 'scatter',
-                            data: {
-                                datasets: this.temperatureRecords
-                            },
-                            options: {
-                                ...this.chartConfig,
-                                scales: {
-                                    xAxes: [{
-                                        type: 'time',
-                                        display: true,
-                                        time: {
-                                            isoWeekday: true,
-                                            unit: this.period,
-                                            format: 'DD/MM/YYYY HH:mm',
-                                            tooltipFormat: 'DD/MM/YYYY HH:mm'
-                                        },
-                                        scaleLabel: {
-                                            display: true,
-                                            labelString: 'Date'
-                                        }
-                                    }],
-                                    yAxes: [{
-                                        type: 'linear',
-                                        position: 'bottom',
-                                        stacked: true,
-                                        display: true,
-                                        scaleLabel: {
-                                            display: true,
-                                            labelString: 'Température en °C'
-                                        }
-                                    }],
-                                }
-                            }
-                        });
-                        let ctHumidity = document.getElementById("chart-humidity");
-                        this.chartHumidity = new Chart(ctHumidity, {
-                            type: 'scatter',
-                            data: {
-                                datasets: this.humidityRecords
-                            },
-                            options: {
-                                ...this.chartConfig,
-                                scales: {
-                                    xAxes: [{
-                                        type: 'time',
-                                        display: true,
-                                        time: {
-                                            isoWeekday: true,
-                                            unit: this.period,
-                                            format: 'DD/MM/YYYY HH:mm',
-                                            tooltipFormat: 'DD/MM/YYYY HH:mm'
-                                        },
-                                        scaleLabel: {
-                                            display: true,
-                                            labelString: 'Date'
-                                        },
-                                    }],
-                                    yAxes: [{
-                                        type: 'linear',
-                                        position: 'bottom',
-                                        stacked: true,
-                                        display: true,
-                                        scaleLabel: {
-                                            display: true,
-                                            labelString: 'Humidité en %'
-                                        },
-                                        ticks: {
-                                            beginAtZero:true,
-                                            max: 100,
-                                            min: 0,
-                                            stepSize: 20
-                                        }
-                                    }],
-                                }
-                            }
                         });
                     }
                 );

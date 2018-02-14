@@ -43,6 +43,7 @@ import { RenderBoolean } from './components/search/renderBoolean.component';
 import { RenderDate } from './components/search/renderDate.component';
 import { RenderType } from './components/alerts/renderType.component';
 import { RenderGravity } from './components/alerts/renderGravity.component';
+import { ChartComponent } from './components/global/chart/chart.component';
 
 
 @NgModule({
@@ -93,7 +94,8 @@ import { RenderGravity } from './components/alerts/renderGravity.component';
     RenderBoolean,
     RenderDate,
     RenderType,
-    RenderGravity
+    RenderGravity,
+    ChartComponent
   ],
   entryComponents: [
     RenderSensor,
