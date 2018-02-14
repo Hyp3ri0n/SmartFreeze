@@ -1,7 +1,5 @@
-<div class="container">
-
-
-
+<loading *ngIf="site == null" [model]="modelLoading"></loading>
+<div  *ngIf="site != null" class="container">
     <div class="input-group">
         <span class="input-group-addon">
             <i class="fa fa-info-circle"></i>
@@ -53,13 +51,15 @@
             <input [(ngModel)]="site.surfaceArea" id="surfaceArea" type="text" class="form-control" name="Surface" placeholder="Surface">
         </div>
         <div class="col-sm-2 col-4  input-group">
-            <select [(ngModel)]="site.surfaceAreaUnit" class="form-control" id="uniteSurface">
+            <input [(ngModel)]="site.surfaceAreaUnit" id="surfaceAreaUnit" type="text" class="form-control" name="Surface unit" placeholder="Surface unit" disabled>
+
+            <!--<select [(ngModel)]="site.surfaceAreaUnit" class="form-control" id="uniteSurface">
 
                 <option selected value="m²">m²</option>
                 <option value="km²">km²</option>
                 <option value="a">ares</option>
                 <option value="ha">ha</option>
-            </select>
+            </select>-->
         </div>
     </div>
     <div class="input-group">
@@ -68,12 +68,9 @@
             Image
         </span>
 
-
-        <input [(ngModel)]="site.imageUri" type="text" id="file" class="form-control">
-
+        <input [(ngModel)]="site.image" type="text" id="file" class="form-control">
 
     </div>
-
 
     <div class="btn-form-admin">
         <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#deleteSiteModal">
@@ -84,7 +81,6 @@
     </div>
 
 </div>
-
 
 <div class="modal fade" id="deleteSiteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">

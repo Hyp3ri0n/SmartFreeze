@@ -92,4 +92,22 @@ export class DeviceService {
             );
         });
     }
+
+    public setDevice(device : Device) : Observable<String> {
+        return Observable.create((observer) => {
+            let data = {
+                name: device.name,
+                isFavorite: device.isFavorite,
+                zone: device.zone,
+                siteId: device.siteId,
+                latitude: device.latitude,
+                longitude: device.longitude
+            };
+            this.http.request(MethodRequest.PUT, '/api/Devices/' + device.id, data).subscribe(
+                sucess => {
+                    observer.next('');
+                }
+            );
+        });
+    }
 }

@@ -9,7 +9,7 @@
                 </div>
                 <div class="form-control autocompleteList" *ngIf="filteredListSites.length > 0">
                     <div *ngFor="let item of filteredListSites">
-                        <a routerLink="site/form" (click)="selectSite(item)">{{item}}</a>
+                        <a [routerLink]="'site/form/'+item.id" (click)="selectSite(item)">{{item.name}}</a>
                     </div>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                 </div>
                 <div class="form-control autocompleteList" *ngIf="filteredListSensors.length > 0">
                     <div *ngFor="let item of filteredListSensors">
-                        <a routerLink="sensor/form" (click)="selectSensor(item)">{{item}}</a>
+                        <a [routerLink]="'sensor/form/'+item.id" (click)="selectSensor(item.name)">{{item.name}}</a>
                     </div>
                 </div>
             </div>

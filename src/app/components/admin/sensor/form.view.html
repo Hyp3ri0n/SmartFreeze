@@ -1,12 +1,12 @@
-<div class="container">
-
+<loading *ngIf="device == null" [model]="modelLoading"></loading>
+<div *ngIf="device != null" class="container">
     <div class="row">
         <div class="col-lg input-group">
             <span class="input-group-addon">
                 <i class="fa fa-info-circle"></i>
                 ID
             </span>
-            <input id="id" type="text" class="form-control" name="ID" placeholder="ID" disabled>
+            <input [(ngModel)]="device.id" id="id" type="text" class="form-control" name="ID" placeholder="ID" disabled>
         </div>
 
         <div class="col-lg input-group">
@@ -14,7 +14,7 @@
                 <i class="fa fa-commenting"></i>
                 Dernier message
             </span>
-            <input id="lastCommunication" type="text" class="form-control" name="derniere communication" placeholder="derniere communication"
+            <input [(ngModel)]="device.lastCommunication" id="lastCommunication" type="text" class="form-control" name="derniere communication" placeholder="derniere communication"
                 disabled>
         </div>
     </div>
@@ -26,7 +26,7 @@
                 <i class="fa fa-tag"></i>
                 Nom
             </span>
-            <input id="name" type="text" class="form-control" name="Nom" placeholder="Nom">
+            <input [(ngModel)]="device.name" id="name" type="text" class="form-control" name="Nom" placeholder="Nom">
         </div>
 
         <div class="col-xl-2 zoneCheckBox">
@@ -35,14 +35,11 @@
                 Favoris
             </span>
             <label class=" switch">
-                <input type="checkbox">
+                <input type="checkbox" [checked]="device.isFavorite">
                 <span class="slider round"></span>
             </label>
         </div>
     </div>
-
-
-
 
     <div class="input-group">
 
@@ -50,13 +47,10 @@
             <i class="fa fa-map-marker"></i>
             Site
         </span>
-        <select class="form-control" id="site">
-            <option selected>
-                Site
-            </option>
-            <option value="1">Site1 machin bidule</option>
-            <option value="2">Site2</option>
-            <option value="3">Site3</option>
+        <select class="form-control" id="site" (change)="site_changed($event.target.value)">
+            <ng-container *ngFor="let site of sites" >
+                <option [value]="site.id" [selected]="site.id == device.siteId">{{site.name}}</option>
+            </ng-container>
         </select>
 
         <i class="plusicon fa fa-plus-circle"></i>
@@ -69,25 +63,20 @@
             Zone
         </span>
         <select class="form-control" id="zone">
-            <option selected>
-                Zone
-            </option>
-            <option value="1">Zone1 machin bidule</option>
-            <option value="2">Zone2</option>
-            <option value="3">Zone3</option>
+            <ng-container *ngFor="let zone of zones" (change)="zone_changed($event.target.value)">
+                <option [value]="zone"[selected]="zone == device.zone">{{zone}}</option>
+            </ng-container>
         </select>
     </div>
 
     <div class="btn-form-admin">
         <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#deleteSensorModal">
             <i class="fa fa-trash"></i> Supprimer ce site </button>
-        <button type="button" class="btn btn-primary">
-            <i class="fa fa-floppy-o"></i> Enregistrer les modifications</button>
+        <button type="button" class="btn btn-primary" (click)="send_device()">
+            <i class="fa fa-floppy-o"></i> Enregistrer les modifications
+        </button>
 
     </div>
-
-
-
 
 </div>
 

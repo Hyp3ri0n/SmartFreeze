@@ -16,17 +16,15 @@ export interface Marker {
 })
 export class MapSiteComponent {
     @Input() public site : Site;
-    private lng:number = 6.830066;
-    private lat:number = 45.851010;
     private zoom:number = 9;
     private marker:Marker[] = [];
     constructor(private http : HttpService) {
-        this.marker[0] = {
-            lat: this.lat,
+        /*this.marker[0] = {
+            lat: this.site.latitude,
             lng: this.lng,
             departement: "",
             region: ""
-        };
+        };*/
      }
 
      public mapClicked($event: any) : void {
@@ -38,16 +36,16 @@ export class MapSiteComponent {
 
         this.http.request(MethodRequest.GET, 'https://maps.googleapis.com/maps/api/geocode/json', params).subscribe(
             msg => {
-                this.marker[0] = {
+                /*this.marker[0] = {
                     lat: $event.coords.lat,
                     lng: $event.coords.lng,
                     departement: msg.results[3].formatted_address,
                     region: msg.results[4].formatted_address
-                };
-                this.site.latitude = this.marker[0].lat;
-                this.site.longitude = this.marker[0].lng;
-                this.site.department = this.marker[0].departement;
-                this.site.region = this.marker[0].region;
+                };*/
+                this.site.latitude = $event.coords.lat;
+                this.site.longitude = $event.coords.lng;
+                this.site.department = msg.results[3].formatted_address;
+                this.site.region = msg.results[4].formatted_address;
             }
         );
      }

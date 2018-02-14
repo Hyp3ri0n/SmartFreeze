@@ -1,18 +1,30 @@
-import { Component } from '@angular/core';
-import { Site } from '../../../services/sites/site.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Site, SiteService } from '../../../services/sites/site.service';
+import { HttpService } from '../../../services/http/http.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { LoadingModel } from '../../global/loading/loading.model';
 
 @Component({
     selector: 'site-form',
     templateUrl: './app/components/admin/site/form.view.html'
 })
 
-export class AdminSiteFormComponent {
+export class AdminSiteFormComponent implements OnInit, OnDestroy {
 
-    private site: Site;
+    private modelLoading : LoadingModel = new LoadingModel(-1, null);
+
+    private siteId : string = '';
+    private site: Site = null;
     private zones: string[] = [''];
 
-    constructor() {
-        this.site = {
+    constructor(private router : ActivatedRoute, private route : Router, private http : HttpService, private siteService : SiteService) {
+        this.router.params.subscribe(
+            params => {
+                this.siteId = params['id'];
+            }
+        );
+
+        /*this.site = {
             id:"",
             name : "",
             description :  "",
@@ -29,12 +41,36 @@ export class AdminSiteFormComponent {
             surfaceAreaUnit : "",
             zones : [],
             devices : []
-        };
+        };*/
+    }
+
+    public ngOnInit() : void {
+        this.getData();
+        this.http.backOnlineEventListener = {component: 'AdminSiteFormComponent', cb : () => this.getData()};
+    }
+
+    public ngOnDestroy() : void {
+        this.http.removeBackOnlineListener('AdminSiteFormComponent');
+    }
+
+    private getData() : void {
+        this.site = null;
+        this.siteService.getSite(this.siteId).subscribe(
+            site => {
+                this.site = site;
+                this.zones = this.site.zones;
+            }
+        );
     }
 
     public sendModifications(): void {
         this.site.zones = this.zones;
         console.log(this.site);
+        this.siteService.setSite(this.site).subscribe(
+            sucess => {
+                this.route.navigate(['site', {id: this.site.id}]);
+            }
+        );
     }
 
     public addZone(): void {
@@ -49,8 +85,8 @@ export class AdminSiteFormComponent {
         this.zones.splice(indexZone, 1);
     }
 
-    trackByFn(index: any, item: any) {
+    private trackByFn(index: any, item: any) : any {
         return index;
-     }
+    }
 
 }
