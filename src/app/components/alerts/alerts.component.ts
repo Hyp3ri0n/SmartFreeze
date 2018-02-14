@@ -86,7 +86,7 @@ export class AlertsComponent implements OnDestroy {
                                 var day = date.getDay();
                                 var mondayOfWeek = new Date(date.getFullYear(),
                                                             date.getMonth(),
-                                                            date.getDate() + (day === 0 ? -6 : 1) - day );
+                                                            date.getDate() + (day === 0 ? -6 : 1) - day, 0, 0, 0, 0);
                                 if (dateCell >= mondayOfWeek) {
                                     return true;
                                 }
@@ -94,7 +94,7 @@ export class AlertsComponent implements OnDestroy {
                             }
                             case "month": {
                                 var y = date.getFullYear(), m = date.getMonth();
-                                var firstDay = new Date(y, m, 1);
+                                var firstDay = new Date(y, m, 1, 0, 0, 0, 0);
                                 if (dateCell >= firstDay) {
                                     return true;
                                 }
@@ -102,7 +102,7 @@ export class AlertsComponent implements OnDestroy {
                              }
                              case "year": {
                                 var y = date.getFullYear();
-                                var firstDay = new Date(y, 1, 1);
+                                var firstDay = new Date(y, 0, 1, 0, 0, 0, 0);
                                 if (dateCell >= firstDay) {
                                     return true;
                                 }

@@ -21,7 +21,11 @@ export class SiteComponent {
     private alarmes : Alarme[] = [];
     private humidityRecords : any[];
     private temperatureRecords : any[];
-    private granularity:number;
+    private period:string;
+    private from:Date = new Date();
+    private to:Date;
+    private chartTemp:Chart;
+    private chartHumidity:Chart;
 
     constructor(private router : ActivatedRoute,
                 private siteService : SiteService,
@@ -41,7 +45,10 @@ export class SiteComponent {
             responsive: true,
             spanGaps: true
         };
-        this.granularity = 1;
+        this.to = new Date();
+        this.to.setHours(23, 59, 59, 999);
+        this.period = 'day';
+        this.from = this.getFirstDayOfPeriod();
     }
 
     public ngOnInit(): void {
@@ -61,12 +68,9 @@ export class SiteComponent {
                 // Get devices records for charts
                 this.temperatureRecords = [];
                 this.humidityRecords = [];
-                let from = new Date();
-                from.setDate(from.getDate() - this.granularity);
-                let to = new Date();
                 let subscribes : Observable<Telemetry[]>[] = [];
                 this.site.devices.forEach(device => {
-                    subscribes.push(this.deviceService.getTelemetry(device.id, from, to));
+                    subscribes.push(this.deviceService.getTelemetry(device.id, this.from, this.to));
                 });
                 Observable.forkJoin(subscribes).subscribe(
                     telemetriesTab => {
@@ -104,29 +108,34 @@ export class SiteComponent {
                             });
                         });
                         // chart definition
+                        if (this.chartTemp) {
+                            this.chartTemp.destroy();
+                        }
+                        if (this.chartHumidity) {
+                            this.chartHumidity.destroy();
+                        }
                         let ctTemp = document.getElementById("chart-temp");
-                        let chartTemp = new Chart(ctTemp, {
+                        this.chartTemp = new Chart(ctTemp, {
                             type: 'scatter',
                             data: {
                                 datasets: this.temperatureRecords
                             },
                             options: {
                                 ...this.chartConfig,
-                                title: {
-                                    display: true,
-                                    text: 'Température'
-                                },
                                 scales: {
                                     xAxes: [{
                                         type: 'time',
                                         display: true,
                                         time: {
-                                            unit: 'hour'
+                                            isoWeekday: true,
+                                            unit: this.period,
+                                            format: 'DD/MM/YYYY HH:mm',
+                                            tooltipFormat: 'DD/MM/YYYY HH:mm'
                                         },
                                         scaleLabel: {
                                             display: true,
                                             labelString: 'Date'
-                                        },
+                                        }
                                     }],
                                     yAxes: [{
                                         type: 'linear',
@@ -135,28 +144,30 @@ export class SiteComponent {
                                         display: true,
                                         scaleLabel: {
                                             display: true,
-                                            labelString: 'Température'
+                                            labelString: 'Température en °C'
                                         }
                                     }],
                                 }
                             }
                         });
                         let ctHumidity = document.getElementById("chart-humidity");
-                        let chartHumidity = new Chart(ctHumidity, {
+                        this.chartHumidity = new Chart(ctHumidity, {
                             type: 'scatter',
                             data: {
                                 datasets: this.humidityRecords
                             },
                             options: {
                                 ...this.chartConfig,
-                                title: {
-                                    display: true,
-                                    text: 'Humidité'
-                                },
                                 scales: {
                                     xAxes: [{
                                         type: 'time',
                                         display: true,
+                                        time: {
+                                            isoWeekday: true,
+                                            unit: this.period,
+                                            format: 'DD/MM/YYYY HH:mm',
+                                            tooltipFormat: 'DD/MM/YYYY HH:mm'
+                                        },
                                         scaleLabel: {
                                             display: true,
                                             labelString: 'Date'
@@ -169,7 +180,13 @@ export class SiteComponent {
                                         display: true,
                                         scaleLabel: {
                                             display: true,
-                                            labelString: 'Humidité'
+                                            labelString: 'Humidité en %'
+                                        },
+                                        ticks: {
+                                            beginAtZero:true,
+                                            max: 100,
+                                            min: 0,
+                                            stepSize: 20
                                         }
                                     }],
                                 }
@@ -205,6 +222,59 @@ export class SiteComponent {
 
         elmtMeteo.style.display = "block";
         elmtCaract.style.display = "none";
+    }
 
+    public changeScale(period) {
+        this.period = period;
+        this.from = this.getFirstDayOfPeriod();
+        this.getData();
+    }
+
+    private getFirstDayOfPeriod() : Date {
+        var date = new Date();
+        switch (this.period) {
+            //Heure courante
+            case "hour": {
+                //On change la période afin d'avoir le format adapté
+                this.period = 'minute';
+                date.setHours(date.getHours() - 1);
+                return date;
+            }
+            //Aujourd'hui
+            case "day": {
+                this.period = 'hour';
+                date.setHours(0, 0, 0, 0);
+                return date;
+            }
+            //Semaine courante
+            case "week": {
+                this.period = 'day';
+                var day = date.getDay();
+                return new Date(date.getFullYear(),
+                                            date.getMonth(),
+                                            date.getDate() + (day === 0 ? -6 : 1) - day, 0, 0, 0, 0);
+            }
+            //Mois courant
+            case "month": {
+                this.period = 'day';
+                var y = date.getFullYear(), m = date.getMonth();
+                return new Date(y, m, 1, 0, 0, 0, 0);
+             }
+             //Trimestre courant
+            case "quarter": {
+                this.period = 'week';
+                var quarter = Math.floor((date.getMonth() / 3));
+                return new Date(date.getFullYear(), quarter * 3, 1, 0, 0, 0, 0);
+            }
+            //Année courante
+            case "year": {
+                this.period = 'week';
+                var y = date.getFullYear();
+                return new Date(y, 0, 1, 0, 0, 0, 0);
+             }
+            default: {
+                return date;
+            }
+        }
     }
 }
