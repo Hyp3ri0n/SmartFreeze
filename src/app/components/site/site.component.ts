@@ -154,7 +154,7 @@ export class SiteComponent {
             }
         );
     }
-    
+
     public showCaract():void {
         let elmtCaract = document.getElementById("caracteristiques");
         let elmtMeteo = document.getElementById("meteo");
