@@ -34,6 +34,7 @@ site {
 
 .wrapperSndLine{
     flex: none;
+    padding-bottom: 10px;
 
     .cardDashboard{
         flex:1;
@@ -108,36 +109,31 @@ site {
 
 .cardInfosSite{
     display: flex;
-    flex: none;
     max-width: 400px;
     flex-flow: column nowrap;
-    margin: 10px 20px 0;
+    margin: 10px 20px 10px;
+    max-height: 100%;
 
     @include media-breakpoint-down(sm) {
         flex-flow: row wrap;
     }
 
-    .fit-img {
+    .wrapperImg {
         flex: none;
-        object-fit: contain;
-        width: 100%;
-        border-top-right-radius: 3px;
-        border-top-left-radius: 3px;
-        box-shadow: 0 2px 5px 0 $cardShadow  ;
-    }
+        position: relative;
 
-    .contentSite{
-        flex: 1;
-
-        .title{
-            text-transform: uppercase;
-            font-size: 15px;
-            padding-top:10px;
+        .fit-img {
+            object-fit: contain;
+            width: 100%;
+            border-top-right-radius: 3px;
+            border-top-left-radius: 3px;
+            box-shadow: 0 2px 5px 0 $cardShadow  ;
         }
 
         .buttonMoreInfos{
-            float: right;
-            margin-top: -40px;
+            position: absolute;
+            bottom: -20px;
+            right: 0;
             display : flex;
             flex-direction: row; 
 
@@ -166,7 +162,18 @@ site {
             }
 
         }
+    }
 
+    .contentSite{
+        position: relative;
+        flex: 1;
+        overflow: hidden;
+
+        .title{
+            text-transform: uppercase;
+            font-size: 15px;
+            padding-top:10px;
+        }
 
         .caracteristiques{
             display:block;
@@ -189,6 +196,10 @@ site {
 
     }
 
+}
+
+.meteo-content {
+    overflow: auto;
 }
 
 .wrapperSite .cardDashboard-header, .imgSiteCard, .linkToSensor  {

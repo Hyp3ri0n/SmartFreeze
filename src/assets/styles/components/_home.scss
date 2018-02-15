@@ -2,7 +2,9 @@ home {
   @extend .app-container;
 }
 
-
+.tableWrapper .fa-external-link:hover {
+  color: $app-primary;
+}
   
 .wrapperPrincipal{
   flex: 1;
@@ -24,7 +26,7 @@ home {
     
     .wrapperSites{
       flex : none;
-      overflow-x:hidden;  // Create arrows (left and right) to navigate in it
+      overflow-x: auto;
       display:flex;
       flex-direction: row;
       flex-wrap : nowrap;
@@ -81,10 +83,6 @@ agm-map {
         padding-right: 0;
       }
     }
-  }
-
-  .wrapperPrincipal .wrapperLeft .wrapperSites {
-    overflow-x: auto;
   }
 
   .wrapperAlarms {

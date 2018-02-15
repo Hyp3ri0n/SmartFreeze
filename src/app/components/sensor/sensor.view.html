@@ -1,11 +1,11 @@
 <div class="app-container flex-container homePage">
 
-    <div class="titleDashboard">
+    <h1 class="titleDashboard">
         <span *ngIf="device?.isFavorite">
             <i class="fa fa-star"></i>
         </span>
         {{device?.name}}
-    </div>
+    </h1>
     <div class="wrapperAllSite app-container">
         <div class="row wrapperFirstLine">
             <div class="col-12 col-sm-12 col-md-5">
@@ -88,9 +88,9 @@
             </div>
             <div class="col-12 col-sm-12 col-md-4">  
                 <div class="cardDashboard wrapperForecast flex-container-column">
-                    <div class="cardDashboard-header">
+                    <h2 class="cardDashboard-header">
                         Prévisions du gel sur 5 jours
-                    </div>
+                    </h2>
                     <div class="gelTab">
                         <div class="allIndications">
                             <div class="indicationDay">
@@ -123,19 +123,19 @@
                         <div class="legendeProbaGel">
                             Légende pour la probabilité de gel
                             <div class="row ">
-                                <div class="col-lg-2 legendeItem">
+                                <div class="col-2 col-sm-2 legendeItem">
                                     <span class="indicationSquare indicationSquare-0"></span>
                                     Aucune</div>
-                                <div class="col-lg-2 legendeItem">
+                                <div class="col-2 col-sm-2 legendeItem">
                                     <span class="indicationSquare indicationSquare-1"></span>
                                     Faible</div>
-                                <div class="col-lg-2 legendeItem">
+                                <div class="col-2 col-sm-2 legendeItem">
                                     <span class="indicationSquare indicationSquare-2"></span>
                                     Moyenne</div>
-                                <div class="col-lg-2 legendeItem">
+                                <div class="col-2 col-sm-2 legendeItem">
                                     <span class="indicationSquare indicationSquare-3"></span>
                                     Forte</div>
-                                <div class="col-lg-2 legendeItem">
+                                <div class="col-2 col-sm-2 legendeItem">
                                     <span class="indicationSquare indicationSquare-4"></span>
                                     Certaine</div>
                             </div>
@@ -204,27 +204,27 @@
         <div class="row wrapperSndLine wrapperCharts">
             <div class="col-12 col-sm-12 col-md-4">
                 <div class="cardDashboard">
-                    <div class="cardDashboard-header ">
+                    <h2 class="cardDashboard-header ">
                         Historique de la Température
-                    </div>
+                    </h2>
                     <loading *ngIf="temperatureDataset == null"></loading>
                     <chart *ngIf="temperatureDataset != null" [dataSet]="temperatureDataset" [type]="'temp'" [period]="period"></chart>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-4">
                 <div class="cardDashboard">
-                    <div class="cardDashboard-header ">
+                    <h2 class="cardDashboard-header ">
                         Historique de l'Humidité
-                    </div>
+                    </h2>
                     <loading *ngIf="humidityDataset == null"></loading>
                     <chart *ngIf="humidityDataset != null" [dataSet]="humidityDataset" [type]="'humidity'" [period]="period"></chart>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-4">
                 <div class="cardDashboard">
-                    <div class="cardDashboard-header ">
+                    <h2 class="cardDashboard-header ">
                         Historique de la Pression
-                    </div>
+                    </h2>
                     <loading *ngIf="pressureDataset == null"></loading>
                     <chart *ngIf="pressureDataset != null" [dataSet]="pressureDataset" [type]="'pressure'" [period]="period"></chart>
                 </div>

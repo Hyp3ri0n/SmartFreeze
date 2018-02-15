@@ -1,18 +1,15 @@
 <div class="logo">
     Requea
 </div>
-<div class="search-wrapper">
+<div class="search-wrapper" [ngClass]="{'focused': focusInput }">
     <i class="fa fa-search"></i>
-
-    <div>
+    <div class="input-wrapper" (click)="focusInput = true" (clickOutside)="focusInput = false">
         <input [(ngModel)]="query" (click)="deleteItem()" (keyup)="filterListAutoComplete()" id="freesearch" class="d-md-none" name="freesearch"
             value="" placeholder="Recherche capteur/site" />
         <input [(ngModel)]="query" (click)="deleteItem()" (keyup)="filterListAutoComplete()" id="freesearch" class="d-none d-md-block"
             name="freesearch" value="" placeholder="Rechercher un capteur/site" />
-
     </div>
     <div id="autoCompletePlace" class="form-control autocompleteSearchList">
-
         <div *ngIf="filteredSitesAutoComplete.length > 0">
             Sites
             <div *ngFor="let site of filteredSitesAutoComplete">

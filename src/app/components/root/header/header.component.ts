@@ -17,6 +17,7 @@ export class HeaderComponent implements OnDestroy {
     public filteredSitesAutoComplete: Site[] = [];
     public filteredDevicesAutoComplete: Device[] = [];
     public query: string = "";
+    private focusInput: boolean = false;
 
     private alarmes: Alarme[] = [];
 

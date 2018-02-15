@@ -1,15 +1,15 @@
 <div class="app-container flex-container homePage">
-    <div class="titleDashboard">
+    <h1 class="titleDashboard">
         {{site?.name}}
-    </div>
+    </h1>
     <div class="site-row app-container flex-container">
         <div class="wrapperAllSite">
             <div class="row wrapperFirstLine">
                 <div class="col-12 col-sm-12 col-md-7 wrapperAvertLeft">
                     <div class="cardDashboard wrapperAlarms">
-                        <div class="cardDashboard-header ">
+                        <h2 class="cardDashboard-header ">
                             Derniers Avertissements
-                        </div>
+                        </h2>
                         <div class="tableWrapper">
                             <table class="table">
                                 <thead>
@@ -171,9 +171,9 @@
                 </div>
                 <div class="col-12 col-sm-12 col-md-5 site-column">
                     <div class="cardDashboard flex-container-column">
-                        <div class="cardDashboard-header">
+                        <h2 class="cardDashboard-header">
                             Prévisions du gel sur 5 jours
-                        </div>
+                        </h2>
                         <div class="gelTab">
                             <div class="allIndications">
                                 <div class="indicationDay">
@@ -206,19 +206,19 @@
                             <div class="legendeProbaGel">
                                 Légende pour la probabilité de gel
                                 <div class="row ">
-                                    <div class="col-lg-2 legendeItem">
+                                    <div class="col-2 col-sm-2 legendeItem">
                                         <span class="indicationSquare indicationSquare-0"></span>
                                         Aucune</div>
-                                    <div class="col-lg-2 legendeItem">
+                                    <div class="col-2 col-sm-2 legendeItem">
                                         <span class="indicationSquare indicationSquare-1"></span>
                                         Faible</div>
-                                    <div class="col-lg-2 legendeItem">
+                                    <div class="col-2 col-sm-2 legendeItem">
                                         <span class="indicationSquare indicationSquare-2"></span>
                                         Moyenne</div>
-                                    <div class="col-lg-2 legendeItem">
+                                    <div class="col-2 col-sm-2 legendeItem">
                                         <span class="indicationSquare indicationSquare-3"></span>
                                         Forte</div>
-                                    <div class="col-lg-2 legendeItem">
+                                    <div class="col-2 col-sm-2 legendeItem">
                                         <span class="indicationSquare indicationSquare-4"></span>
                                         Certaine</div>
                                 </div>
@@ -230,9 +230,9 @@
             <div class="row wrapperSndLine wrapperCharts position-relative">
                 <div class="col-12 col-sm-12 col-md-6">
                     <div class="cardDashboard">
-                        <div class="cardDashboard-header">
+                        <h2 class="cardDashboard-header">
                             Historique température
-                        </div>
+                        </h2>
                         <loading *ngIf="temperatureDataset == null"></loading>
                         <chart *ngIf="temperatureDataset != null" [dataSet]="temperatureDataset" [type]="'temp'" [period]="period"></chart>
                     </div>
@@ -248,9 +248,9 @@
                 </select>
                 <div class="col-12 col-sm-12 col-md-6">
                     <div class="cardDashboard">
-                        <div class="cardDashboard-header text-sm-right text-md-right">
+                        <h2 class="cardDashboard-header text-sm-right text-md-right">
                             Historique humidité
-                        </div>
+                        </h2>
                         <loading *ngIf="humidityDataset == null"></loading>
                         <chart *ngIf="humidityDataset != null" [dataSet]="humidityDataset" [type]="'humidity'" [period]="period"></chart>
                     </div>
@@ -258,8 +258,8 @@
             </div>
         </div>
         <div class="cardInfosSite">
-            <img class="fit-img" src="../../assets/images/gouter.jpg">
-            <div class="contentSite cardDashboard">
+            <div class="wrapperImg">
+                <img class="fit-img" src="../../assets/images/gouter.jpg">
                 <div class="buttonMoreInfos">
                     <span (click)="showCaract()" class="icon btnCaract">
                         <i class=" fa fa-bars"> </i>
@@ -269,10 +269,12 @@
                         <i class=" fa fa-cloud"> </i>
                     </span>
                 </div>
+            </div>
+            <div class="contentSite cardDashboard">
                 <div id="caracteristiques" class="caracteristiques">
-                    <div class="title">
+                    <h2 class="title">
                         Caractéristiques du site
-                    </div>
+                    </h2>
                     <div>
                         <p>
                             <i>{{site?.description}}</i>
@@ -286,9 +288,9 @@
                     </div>
                     <div>
                         <!-- middleWrapperFirstLine -->
-                        <div class="cardDashboard-header">
+                        <h2 class="cardDashboard-header">
                             Les Capteurs
-                        </div>
+                        </h2>
                         <div>
                             <div *ngFor="let device of site?.devices">
                                 <button [routerLink]="'/sensor/'+device.id" class="btn btn-primary" style="margin:3px;">
@@ -311,7 +313,7 @@
                     <!--<div class="title">
                         Prévisions météo
                     </div>-->
-                    <div style="overflow: auto;">
+                    <div class="meteo-content">
                         <weather-widget *ngIf="settings != null" [settings]="settings"></weather-widget>
                     </div>
                 </div>
