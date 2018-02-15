@@ -86,127 +86,119 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-sm-12 col-md-7 wrapperRightSensor">
-                <div class="row">
-
-                    <div class="col-lg-7">
-                        <div class="cardDashboard">
-                            <div class="cardDashboard-header">
-                                Prévisions du gel sur 5 jours
-                            </div>
-                            <div class="allIndications">
-                                <div class="indicationDay">
-                                    <div class="indicationSquare">Jour</div>
-                                    <div class="indicationSquare">A.M.</div>
-                                    <div class="indicationSquare">P.M.</div>
-                                </div>
-                                <div title="Probabilité de gel d'indice {{forecast.morning?.trustIndication}}" class="indicationDay" *ngFor="let forecast of forecastSite">
-                                    <div class="indicationSquare">
-                                        {{forecast.date | date:'EEE'}}
-                                    </div>
-                                    <div [routerLink]="'/sensor/'+forecast.morning?.deviceId" [ngClass]="{ 
-                                            'indicationSquare-0' : forecast.morning?.trustIndication == 0,
-                                            'indicationSquare-1' : forecast.morning?.trustIndication == 1, 
-                                            'indicationSquare-2' : forecast.morning?.trustIndication == 2,
-                                            'indicationSquare-3' : forecast.morning?.trustIndication == 3,
-                                            'indicationSquare-4 fa fa-exclamation-triangle' : forecast.morning?.trustIndication == 4}"
-                                        class="indicationSquare">
-                                    </div>
-                                    <div [routerLink]="'/sensor/'+forecast.afternoon?.deviceId" [ngClass]="{ 
-                                                'indicationSquare-0' : forecast.afternoon?.trustIndication == 0,
-                                                'indicationSquare-1' : forecast.afternoon?.trustIndication == 1, 
-                                                'indicationSquare-2' : forecast.afternoon?.trustIndication == 2,
-                                                'indicationSquare-3' : forecast.afternoon?.trustIndication == 3,
-                                                'indicationSquare-4 fa fa-exclamation-triangle' : forecast.afternoon?.trustIndication == 4}"
-                                        class="indicationSquare">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="legendeProbaGel">
-                                Légende pour la probabilité de gel
-                                <div class="row ">
-                                    <div class="col-lg-2 legendeItem">
-                                        <span class="indicationSquare indicationSquare-0"></span>
-                                        Aucune</div>
-                                    <div class="col-lg-2 legendeItem">
-                                        <span class="indicationSquare indicationSquare-1"></span>
-                                        Faible</div>
-                                    <div class="col-lg-2 legendeItem">
-                                        <span class="indicationSquare indicationSquare-2"></span>
-                                        Moyenne</div>
-                                    <div class="col-lg-2 legendeItem">
-                                        <span class="indicationSquare indicationSquare-3"></span>
-                                        Forte</div>
-                                    <div class="col-lg-2 legendeItem">
-                                        <span class="indicationSquare indicationSquare-4"></span>
-                                        Certaine</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="selectBoxGraphe">
-                            <select class="select-sensor-period" (change)="reloadChart($event.target.value)">
-                                <option value="" disabled>Période courante</option>
-                                <option value="year">Année</option>
-                                <option value="quarter">Trimestre</option>
-                                <option value="month">Mois</option>
-                                <option value="week">Semaine</option>
-                                <option value="day" selected>Jour</option>
-                                <option value="hour">Heure</option>
-                            </select>
-                        </div>
+            <div class="col-12 col-sm-12 col-md-4">  
+                <div class="cardDashboard wrapperForecast flex-container-column">
+                    <div class="cardDashboard-header">
+                        Prévisions du gel sur 5 jours
                     </div>
-                    <div class="col-lg-5">
-                        <div class="cardSummary">
-                            <div [routerLink]="'/site/'+device?.siteId" class="cardInfoSensor cardDashboard cardInfo row">
-                                <div class="cardIcon   bg-red">
-                                    <i class="fa fa-map-marker"></i>
+                    <div class="gelTab">
+                        <div class="allIndications">
+                            <div class="indicationDay">
+                                <div class="indicationSquare">Jour</div>
+                                <div class="indicationSquare">A.M.</div>
+                                <div class="indicationSquare">P.M.</div>
+                            </div>
+                            <div title="Probabilité de gel d'indice {{forecast.morning?.trustIndication}}" class="indicationDay" *ngFor="let forecast of forecastSite">
+                                <div class="indicationSquare">
+                                    {{forecast.date | date:'EEE'}}
                                 </div>
-                                <div class="cardInfoTextSensor">
-                                    <p>Site</p>
-                                    <div class="color-red">{{device?.siteId}}</div>
+                                <div [routerLink]="'/sensor/'+forecast.morning?.deviceId" [ngClass]="{ 
+                                        'indicationSquare-0' : forecast.morning?.trustIndication == 0,
+                                        'indicationSquare-1' : forecast.morning?.trustIndication == 1, 
+                                        'indicationSquare-2' : forecast.morning?.trustIndication == 2,
+                                        'indicationSquare-3' : forecast.morning?.trustIndication == 3,
+                                        'indicationSquare-4 fa fa-exclamation-triangle' : forecast.morning?.trustIndication == 4}"
+                                    class="indicationSquare">
+                                </div>
+                                <div [routerLink]="'/sensor/'+forecast.afternoon?.deviceId" [ngClass]="{ 
+                                            'indicationSquare-0' : forecast.afternoon?.trustIndication == 0,
+                                            'indicationSquare-1' : forecast.afternoon?.trustIndication == 1, 
+                                            'indicationSquare-2' : forecast.afternoon?.trustIndication == 2,
+                                            'indicationSquare-3' : forecast.afternoon?.trustIndication == 3,
+                                            'indicationSquare-4 fa fa-exclamation-triangle' : forecast.afternoon?.trustIndication == 4}"
+                                    class="indicationSquare">
                                 </div>
                             </div>
                         </div>
-                        <div class="cardSummary">
-                            <div class="cardDashboard cardInfoSensor cardInfo row">
-                                <div class="cardIcon   bg-green">
-                                    <i class="fa fa-home"></i>
-                                </div>
-                                <div class="cardInfoTextSensor">
-                                    <p>Zone</p>
-                                    <div class="color-green">{{device?.zone}}</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cardSummary">
-                            <div class="cardDashboard cardInfoSensor cardInfo row">
-
-                                <div class="cardIcon   bg-blue">
-                                    <i class="fa fa-wifi"></i>
-                                </div>
-
-                                <div class="cardInfoTextSensor">
-                                    <p>Dernière communication</p>
-                                    <div class="color-blue">{{device?.lastCommunication | date:'dd/MM/yyyy HH:mm' }}</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cardSummary">
-                            <div class="cardDashboard cardInfoSensor cardInfo row">
-
-                                <div class="cardIcon   bg-orange">
-                                    <i class="fa fa-battery-half"></i>
-                                </div>
-
-                                <div class="cardInfoTextSensor">
-                                    <p>Batterie</p>
-                                    <div class="color-orange">Bonne</div>
-                                </div>
+                        <div class="legendeProbaGel">
+                            Légende pour la probabilité de gel
+                            <div class="row ">
+                                <div class="col-lg-2 legendeItem">
+                                    <span class="indicationSquare indicationSquare-0"></span>
+                                    Aucune</div>
+                                <div class="col-lg-2 legendeItem">
+                                    <span class="indicationSquare indicationSquare-1"></span>
+                                    Faible</div>
+                                <div class="col-lg-2 legendeItem">
+                                    <span class="indicationSquare indicationSquare-2"></span>
+                                    Moyenne</div>
+                                <div class="col-lg-2 legendeItem">
+                                    <span class="indicationSquare indicationSquare-3"></span>
+                                    Forte</div>
+                                <div class="col-lg-2 legendeItem">
+                                    <span class="indicationSquare indicationSquare-4"></span>
+                                    Certaine</div>
                             </div>
                         </div>
                     </div>
                 </div>
-
+                <div class="selectBoxGraphe">
+                    <select class="select-sensor-period" (change)="reloadChart($event.target.value)">
+                        <option value="" disabled>Période courante</option>
+                        <option value="year">Année</option>
+                        <option value="quarter">Trimestre</option>
+                        <option value="month">Mois</option>
+                        <option value="week">Semaine</option>
+                        <option value="day" selected>Jour</option>
+                        <option value="hour">Heure</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-3">
+                <div class="cardSummary">
+                    <div [routerLink]="'/site/'+device?.siteId" class="linkToSensor cardInfoSensor cardDashboard cardInfo">
+                        <div class="cardIcon   bg-red">
+                            <i class="fa fa-map-marker"></i>
+                        </div>
+                        <div class="cardInfoTextSensor">
+                            <p>Site</p>
+                            <div class="color-red">{{device?.siteId}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cardSummary">
+                    <div class="cardDashboard cardInfoSensor cardInfo">
+                        <div class="cardIcon   bg-green">
+                            <i class="fa fa-home"></i>
+                        </div>
+                        <div class="cardInfoTextSensor">
+                            <p>Zone</p>
+                            <div class="color-green">{{device?.zone}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cardSummary">
+                    <div class="cardDashboard cardInfoSensor cardInfo">
+                        <div class="cardIcon   bg-blue">
+                            <i class="fa fa-wifi"></i>
+                        </div>
+                        <div class="cardInfoTextSensor">
+                            <p>Dernière communication</p>
+                            <div class="color-blue">{{device?.lastCommunication | date:'dd/MM/yyyy HH:mm' }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cardSummary">
+                    <div class="cardDashboard cardInfoSensor cardInfo">
+                        <div class="cardIcon   bg-orange">
+                            <i class="fa fa-battery-half"></i>
+                        </div>
+                        <div class="cardInfoTextSensor">
+                            <p>Batterie</p>
+                            <div class="color-orange">Bonne</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row wrapperSndLine wrapperCharts">

@@ -170,56 +170,58 @@
                     </div>
                 </div>
                 <div class="col-12 col-sm-12 col-md-5 site-column">
-                    <div class="cardDashboard">
+                    <div class="cardDashboard flex-container-column">
                         <div class="cardDashboard-header">
                             Prévisions du gel sur 5 jours
                         </div>
-                        <div class="allIndications">
-                            <div class="indicationDay">
-                                <div class="indicationSquare">Jour</div>
-                                <div class="indicationSquare">A.M.</div>
-                                <div class="indicationSquare">P.M.</div>
+                        <div class="gelTab">
+                            <div class="allIndications">
+                                <div class="indicationDay">
+                                    <div class="indicationSquare">Jour</div>
+                                    <div class="indicationSquare">A.M.</div>
+                                    <div class="indicationSquare">P.M.</div>
+                                </div>
+                                <div title="Probabilité de gel d'indice {{forecast.morning?.trustIndication}}" class="indicationDay" *ngFor="let forecast of forecastSite">
+                                    <div class="indicationSquare">
+                                        {{forecast.date | date:'EEE'}}
+                                    </div>
+                                    <div [routerLink]="'/sensor/'+forecast.morning?.deviceId" [ngClass]="{ 
+                                    'indicationSquare-0' : forecast.morning?.trustIndication == 0,
+                                    'indicationSquare-1' : forecast.morning?.trustIndication == 1, 
+                                    'indicationSquare-2' : forecast.morning?.trustIndication == 2,
+                                    'indicationSquare-3' : forecast.morning?.trustIndication == 3,
+                                    'indicationSquare-4 fa fa-exclamation-triangle' : forecast.morning?.trustIndication == 4}"
+                                        class="indicationSquare">
+                                    </div>
+                                    <div [routerLink]="'/sensor/'+forecast.afternoon?.deviceId" [ngClass]="{ 
+                                        'indicationSquare-0' : forecast.afternoon?.trustIndication == 0,
+                                        'indicationSquare-1' : forecast.afternoon?.trustIndication == 1, 
+                                        'indicationSquare-2' : forecast.afternoon?.trustIndication == 2,
+                                        'indicationSquare-3' : forecast.afternoon?.trustIndication == 3,
+                                        'indicationSquare-4 fa fa-exclamation-triangle' : forecast.afternoon?.trustIndication == 4}"
+                                        class="indicationSquare">
+                                    </div>
+                                </div>
                             </div>
-                            <div title="Probabilité de gel d'indice {{forecast.morning?.trustIndication}}" class="indicationDay" *ngFor="let forecast of forecastSite">
-                                <div class="indicationSquare">
-                                    {{forecast.date | date:'EEE'}}
+                            <div class="legendeProbaGel">
+                                Légende pour la probabilité de gel
+                                <div class="row ">
+                                    <div class="col-lg-2 legendeItem">
+                                        <span class="indicationSquare indicationSquare-0"></span>
+                                        Aucune</div>
+                                    <div class="col-lg-2 legendeItem">
+                                        <span class="indicationSquare indicationSquare-1"></span>
+                                        Faible</div>
+                                    <div class="col-lg-2 legendeItem">
+                                        <span class="indicationSquare indicationSquare-2"></span>
+                                        Moyenne</div>
+                                    <div class="col-lg-2 legendeItem">
+                                        <span class="indicationSquare indicationSquare-3"></span>
+                                        Forte</div>
+                                    <div class="col-lg-2 legendeItem">
+                                        <span class="indicationSquare indicationSquare-4"></span>
+                                        Certaine</div>
                                 </div>
-                                <div [routerLink]="'/sensor/'+forecast.morning?.deviceId" [ngClass]="{ 
-                                'indicationSquare-0' : forecast.morning?.trustIndication == 0,
-                                'indicationSquare-1' : forecast.morning?.trustIndication == 1, 
-                                'indicationSquare-2' : forecast.morning?.trustIndication == 2,
-                                'indicationSquare-3' : forecast.morning?.trustIndication == 3,
-                                'indicationSquare-4 fa fa-exclamation-triangle' : forecast.morning?.trustIndication == 4}"
-                                    class="indicationSquare">
-                                </div>
-                                <div [routerLink]="'/sensor/'+forecast.afternoon?.deviceId" [ngClass]="{ 
-                                    'indicationSquare-0' : forecast.afternoon?.trustIndication == 0,
-                                    'indicationSquare-1' : forecast.afternoon?.trustIndication == 1, 
-                                    'indicationSquare-2' : forecast.afternoon?.trustIndication == 2,
-                                    'indicationSquare-3' : forecast.afternoon?.trustIndication == 3,
-                                    'indicationSquare-4 fa fa-exclamation-triangle' : forecast.afternoon?.trustIndication == 4}"
-                                    class="indicationSquare">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="legendeProbaGel">
-                            Légende pour la probabilité de gel
-                            <div class="row ">
-                                <div class="col-lg-2 legendeItem">
-                                    <span class="indicationSquare indicationSquare-0"></span>
-                                    Aucune</div>
-                                <div class="col-lg-2 legendeItem">
-                                    <span class="indicationSquare indicationSquare-1"></span>
-                                    Faible</div>
-                                <div class="col-lg-2 legendeItem">
-                                    <span class="indicationSquare indicationSquare-2"></span>
-                                    Moyenne</div>
-                                <div class="col-lg-2 legendeItem">
-                                    <span class="indicationSquare indicationSquare-3"></span>
-                                    Forte</div>
-                                <div class="col-lg-2 legendeItem">
-                                    <span class="indicationSquare indicationSquare-4"></span>
-                                    Certaine</div>
                             </div>
                         </div>
                     </div>

@@ -139,8 +139,7 @@ site {
             float: right;
             margin-top: -40px;
             display : flex;
-            flex-direction: row;
-            z-index: 1;
+            flex-direction: row; 
 
             .icon{
                 width: 50px;
@@ -155,6 +154,7 @@ site {
                 align-items: center;
                 justify-content: center;
                 cursor: pointer;
+                z-index: 1;
             }
 
             .btnCaract{
@@ -188,6 +188,13 @@ site {
 
     }
 
+}
+
+.wrapperSite .cardDashboard-header, .imgSiteCard, .linkToSensor  {
+    cursor: pointer;
+    &:hover {
+        color: $app-primary;
+    }
 }
 
 //All sites
