@@ -45,7 +45,7 @@ export class HeaderComponent implements OnDestroy {
     private setAlerteAsView(id : string) : void {
         this.alarme.setAlarmeAsView(id).subscribe(
             sucess => {
-               /* this.route.navigate(['site', {id: this.site.id}]);*/
+               this.getData();
             }
         );
     }
