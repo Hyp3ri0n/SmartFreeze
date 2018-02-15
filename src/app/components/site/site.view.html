@@ -278,7 +278,7 @@
                         <p>
                             <b>Surface : </b>{{site?.surfaceArea + ' ' + site?.surfaceAreaUnit}}</p>
                         <p>
-                            <b>Altitude : </b>[DATA MISSING]m d'altitude</p>
+                            <b>Altitude : </b>{{site?.altitude}}m d'altitude</p>
                         <p>
                             <b>Département : </b>{{site?.region + ' (' + site?.department + ')'}}</p>
                     </div>
@@ -305,9 +305,12 @@
                         </div>
                     </div>
                 </div>
-                <div id="meteo" class="meteo">
-                    <div class="title">
+                <div id="meteo" class="meteo app-container">
+                    <!--<div class="title">
                         Prévisions météo
+                    </div>-->
+                    <div style="overflow: auto;">
+                        <weather-widget *ngIf="settings != null" [settings]="settings"></weather-widget>
                     </div>
                 </div>
             </div>

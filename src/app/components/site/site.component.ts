@@ -11,6 +11,7 @@ import { ChartComponent } from '../global/chart/chart.component';
 import { LoadingModel } from '../global/loading/loading.model';
 import { ChartUtil } from '../global/chart/chart.util';
 import { PrevisionsService, ForecastDay, ForecastWeek } from '../../services/previsions/previsions.service';
+import { WeatherSettings, TemperatureScale, ForecastMode, WeatherLayout } from 'angular-weather-widget';
 
 
 @Component({
@@ -29,6 +30,7 @@ export class SiteComponent {
     private to:Date;
     private forecastSite: ForecastDay[];
     private forecastWeek: ForecastWeek;
+    private settings : WeatherSettings = null;
 
     constructor(private router: ActivatedRoute,
         private siteService: SiteService,
@@ -117,6 +119,27 @@ export class SiteComponent {
                         });
                     }
                 );
+
+                // Meteo Manager
+                this.settings = {
+                    location: {
+                      latLng : {
+                          lat : this.site.latitude,
+                          lng : this.site.longitude
+                      }
+                    },
+                    backgroundColor: 'transparent',
+                    color: 'rgb(61, 61, 61)',
+                    width: 'auto',
+                    height: 'auto',
+                    showWind: false,
+                    scale: TemperatureScale.CELCIUS,
+                    forecastMode: ForecastMode.GRID,
+                    showDetails: false,
+                    showForecast: true,
+                    layout: WeatherLayout.NARROW,
+                    language: 'fr'
+                };
             }
         );
     }
@@ -134,7 +157,7 @@ export class SiteComponent {
         let elmtCaract = document.getElementById("caracteristiques");
         let elmtMeteo = document.getElementById("meteo");
 
-        elmtMeteo.style.display = "block";
+        elmtMeteo.style.display = "flex";
         elmtCaract.style.display = "none";
     }
 
