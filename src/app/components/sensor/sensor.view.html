@@ -28,7 +28,7 @@
                             <tbody>
                                 <tr>
                                     <td>02/02/2018 15h04</td>
-                                    
+
                                     <td>
                                         <i class="fa fa-snowflake-o"></i>
                                     </td>
@@ -42,7 +42,7 @@
                                 </tr>
                                 <tr>
                                     <td>01/02/2018 18h04</td>
-                                    
+
                                     <td>
                                         <i class="fa fa-snowflake-o"></i>
                                     </td>
@@ -56,7 +56,7 @@
                                 </tr>
                                 <tr>
                                     <td>26/01/2018 15h04</td>
-                                    
+
                                     <td>
                                         <i class="fa fa-wrench"></i>
                                     </td>
@@ -70,7 +70,7 @@
                                 </tr>
                                 <tr>
                                     <td>26/01/2018 15h04</td>
-                                    
+
                                     <td>
                                         <i class="fa fa-thermometer-quarter"></i>
                                     </td>
@@ -145,25 +145,27 @@
                                         Forte</div>
                                     <div class="col-lg-2 legendeItem">
                                         <span class="indicationSquare indicationSquare-4"></span>
-                                        Imminente</div>
+                                        Certaine</div>
                                 </div>
                             </div>
                         </div>
 
+
+                        <div class="selectBoxGraphe">
+                            <select class="select-sensor-period" (change)="reloadChart($event.target.value)">
+                                <option value="" disabled>Période courante</option>
+                                <option value="year">Année</option>
+                                <option value="quarter">Trimestre</option>
+                                <option value="month">Mois</option>
+                                <option value="week">Semaine</option>
+                                <option value="day" selected>Jour</option>
+                                <option value="hour">Heure</option>
+                            </select>
+                        </div>
+
+
                     </div>
-                    <!--
-                    <div class="col-sm-3">
-                        <select class="select-sensor-period" (change)="reloadChart($event.target.value)">
-                            <option value="" disabled>Période courante</option>
-                            <option value="year">Année</option>
-                            <option value="quarter">Trimestre</option>
-                            <option value="month">Mois</option>
-                            <option value="week">Semaine</option>
-                            <option value="day" selected>Jour</option>
-                            <option value="hour">Heure</option>
-                        </select>
-                    </div>
-                -->
+
 
                     <div class="col-lg-5">
                         <div class="cardSummary">
@@ -198,7 +200,7 @@
 
                                 <div class="cardInfoTextSensor">
                                     <p>Dernière communication</p>
-                                    <div class="color-blue">{{device?.lastCommunication | date:'dd/MM/yyyy HH:mm'  }}</div>
+                                    <div class="color-blue">{{device?.lastCommunication | date:'dd/MM/yyyy HH:mm' }}</div>
                                 </div>
                             </div>
                         </div>
@@ -225,7 +227,7 @@
             <div class="col-sm-4">
                 <div class="cardDashboard">
                     <div class="cardDashboard-header ">
-                        Température
+                        Historique de la Température
                     </div>
                     <loading *ngIf="temperatureDataset == null"></loading>
                     <chart *ngIf="temperatureDataset != null" [dataSet]="temperatureDataset" [type]="'temp'" [period]="period"></chart>
@@ -234,7 +236,7 @@
             <div class="col-sm-4">
                 <div class="cardDashboard">
                     <div class="cardDashboard-header ">
-                        Humidité
+                        Historique de l'Humidité
                     </div>
                     <loading *ngIf="humidityDataset == null"></loading>
                     <chart *ngIf="humidityDataset != null" [dataSet]="humidityDataset" [type]="'humidity'" [period]="period"></chart>
@@ -243,7 +245,7 @@
             <div class="col-sm-4">
                 <div class="cardDashboard">
                     <div class="cardDashboard-header ">
-                        Pression
+                        Historique de la Pression
                     </div>
                     <loading *ngIf="pressureDataset == null"></loading>
                     <chart *ngIf="pressureDataset != null" [dataSet]="pressureDataset" [type]="'pressure'" [period]="period"></chart>
