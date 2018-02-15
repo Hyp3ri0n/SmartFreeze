@@ -4,10 +4,9 @@ sensor {
 
 .back-nav {
     position: absolute;
-    top: 5px;
-    left: 15px;
-    padding-left: 20px;
-    font-size: 18px;
+    padding-left: 35px;
+	font-size: 18px;
+	margin-top:5px;
 
     &:hover .arrow {
         border-color: $app-primary_light;
@@ -24,7 +23,9 @@ sensor {
 	border-top: 5px solid $app-primary;
 	border-right: 5px solid $app-primary;
 	box-shadow: 0 0 0 $grey-light;
-    transition: all 200ms ease;
+	transition: all 200ms ease;
+	margin-left:15px;
+
     &.left {
 		left: 0;
 		transform: translate3d(0,-50%,0) rotate(-135deg);
