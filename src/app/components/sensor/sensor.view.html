@@ -6,10 +6,9 @@
         </span>
         {{device?.name}}
     </div>
-
     <div class="wrapperAllSite app-container">
         <div class="row wrapperFirstLine">
-            <div class="col-md-6">
+            <div class="col-12 col-sm-12 col-md-6">
                 <div class="cardDashboard wrapperAlarms">
                     <div class="cardDashboard-header ">
                         Derniers Avertissements
@@ -89,7 +88,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 wrapperRightSensor">
+            <div class="col-12 col-sm-12 col-md-6 wrapperRightSensor">
                 <div class="row">
                     <div class="col-md-6 cardSummary">
                         <div [routerLink]="'/site/'+device?.siteId" class="cardDashboard cardInfo row">
@@ -144,7 +143,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="cardDashboard col-sm-9">
+                    <div class="cardDashboard col-12 col-sm-12 col-md-9">
                         <div class="cardDashboard-header ">
                             Prévision Gel
                         </div>
@@ -152,7 +151,7 @@
                             prévision gel (...)
                         </div>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-12 col-sm-12 col-md-3">
                         <select class="select-sensor-period" (change)="reloadChart($event.target.value)">
                             <option value="" disabled>Période courante</option>
                             <option value="year">Année</option>
@@ -167,7 +166,7 @@
             </div>
         </div>
         <div class="row wrapperSndLine wrapperCharts">
-            <div class="col-sm-4">
+            <div class="col-12 col-sm-12 col-md-4">
                 <div class="cardDashboard">
                     <div class="cardDashboard-header ">
                         Température
@@ -176,7 +175,7 @@
                     <chart *ngIf="temperatureDataset != null" [dataSet]="temperatureDataset" [type]="'temp'" [period]="period"></chart>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-12 col-sm-12 col-md-4">
                 <div class="cardDashboard">
                     <div class="cardDashboard-header ">
                         Humidité
@@ -185,7 +184,7 @@
                     <chart *ngIf="humidityDataset != null" [dataSet]="humidityDataset" [type]="'humidity'" [period]="period"></chart>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-12 col-sm-12 col-md-4">
                 <div class="cardDashboard">
                     <div class="cardDashboard-header ">
                         Pression

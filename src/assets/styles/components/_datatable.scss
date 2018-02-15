@@ -3,8 +3,22 @@
     font-size: 18px;
 }
 
-[_nghost-c1] a {
-    color : $app-primary!important;
+[_nghost-c1] {
+    @include media-breakpoint-down(md) {
+        display: block;
+        width: 100%;
+        height: auto !important;
+
+        table {
+            width: 100%;
+            display: block !important;
+            overflow: auto;
+        }
+    }
+
+    a {
+        color : $app-primary!important;
+    }
 }
 
 [_nghost-c1] table tbody tr {

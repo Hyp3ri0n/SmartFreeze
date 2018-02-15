@@ -155,6 +155,7 @@
 
     @include media-breakpoint-down(md) {
       right: 0px;
+      width: 100%;
     }
     &:after {
       bottom: 100%;

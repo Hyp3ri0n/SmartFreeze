@@ -1,20 +1,22 @@
 <div class="container-fluid">
-    <ng-container *ngIf="countActives <= 1">
-        <button type="button" class="btn btn-outline-primary toggle-all" (click)="openAll()">Tout déplier</button>
-    </ng-container>
-    <ng-container *ngIf="countActives > 1">
-        <button type="button" class="btn btn-outline-primary toggle-all" (click)="closeAll()">Tout fermer</button>
-    </ng-container>
-    <h1 class="title">
-        Mes sites
-    </h1>
-    <div class="switch-gel">
-        <button type="button" class="btn btn-outline-primary" [ngClass]="{'active': !gelFilter }" (click)="gelFilter = !gelFilter;">Tout</button>
-        <button type="button" class="btn btn-outline-primary" [ngClass]="{'active': gelFilter }" (click)="gelFilter = !gelFilter;">Gel</button>
+    <div class="all-sites-header">
+        <ng-container *ngIf="countActives <= 1">
+            <button type="button" class="btn btn-outline-primary toggle-all" (click)="openAll()">Tout déplier</button>
+        </ng-container>
+        <ng-container *ngIf="countActives > 1">
+            <button type="button" class="btn btn-outline-primary toggle-all" (click)="closeAll()">Tout fermer</button>
+        </ng-container>
+        <h1 class="title">
+            Mes sites
+        </h1>
+        <div class="switch-gel">
+            <button type="button" class="btn btn-outline-primary" [ngClass]="{'active': !gelFilter }" (click)="gelFilter = !gelFilter;">Tout</button>
+            <button type="button" class="btn btn-outline-primary" [ngClass]="{'active': gelFilter }" (click)="gelFilter = !gelFilter;">Gel</button>
+        </div>
     </div>
     <div class="row" [ngClass]="{'filtered': gelFilter }">
         <loading *ngIf="sites == null"></loading>
-        <div class="col-sm-6 col-md-3 mb-3" *ngFor="let site of sites" [ngClass]="{'hasAlarm': site.hasActiveAlarms }">
+        <div class="col-6 col-sm-6 col-md-3 mb-3" *ngFor="let site of sites" [ngClass]="{'hasAlarm': site.hasActiveAlarms }">
             <div class="card" [ngClass]="{'active-card': site.isActive }">
                 <div class="card-header">
                     <h4 class="card-title">

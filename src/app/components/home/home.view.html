@@ -1,55 +1,44 @@
 <div class="app-container flex-container homePage">
-    <div class="row  wrapperFirstLine">
-        <div class=" col-lg-3">
-            <div class="cardDashboard cardInfo row">
-                <div class="col-md-4">
-                    <div class="cardIcon bg-red">
-                        <i class="fa fa-exclamation-triangle"></i>
-                    </div>
+    <div class="row  wrapperFirstLine dashboard-header">
+        <div class="col-6 col-sm-6 col-md-3">
+            <div class="cardDashboard cardInfo">
+                <div class="cardIcon bg-red">
+                    <i class="fa fa-exclamation-triangle"></i>
                 </div>
-                <div class="cardInfoText col-md-8">
+                <div class="cardInfoText">
                     <div class="color-red">12</div>
                     <p>Avertissements critiques</p>
                 </div>
             </div>
         </div>
-        <div class=" col-lg-3">
-            <div class="cardDashboard cardInfo row">
-                <div class="col-md-4">
-                    <div class="cardIcon bg-green">
-                        <i class="fa fa-map-marker"></i>
-                    </div>
+        <div class="col-6 col-sm-6 col-md-3">
+            <div class="cardDashboard cardInfo">
+                <div class="cardIcon bg-green">
+                    <i class="fa fa-map-marker"></i>
                 </div>
-                <div class="cardInfoText col-md-8">
+                <div class="cardInfoText">
                     <div class="color-green">4/7</div>
                     <p>Sites critiques</p>
                 </div>
             </div>
-
         </div>
-
-        <div class=" col-lg-3">
-            <div class="cardDashboard cardInfo row">
-                <div class="col-md-4">
-                    <div class="cardIcon bg-orange">
-                        <i class="fa fa-location-arrow"></i>
-                    </div>
+        <div class="col-6 col-sm-6 col-md-3">
+            <div class="cardDashboard cardInfo">
+                <div class="cardIcon bg-orange">
+                    <i class="fa fa-location-arrow"></i>
                 </div>
-                <div class="cardInfoText col-md-8">
+                <div class="cardInfoText">
                     <div class="color-orange">10/15</div>
                     <p>Capteurs actifs</p>
                 </div>
             </div>
-
         </div>
-        <div class="col-lg-3">
-            <div class="cardDashboard cardInfo row">
-                <div class="col-md-4">
-                    <div class="cardIcon bg-blue">
-                        <i class="fa fa-history"></i>
-                    </div>
+        <div class="col-6 col-sm-6 col-md-3">
+            <div class="cardDashboard cardInfo">
+                <div class="cardIcon bg-blue">
+                    <i class="fa fa-history"></i>
                 </div>
-                <div class="cardInfoText col-md-8">
+                <div class="cardInfoText">
                     <div class="color-blue">{{alarmes?.length}}</div>
                     <p>Avertissements depuis le début</p>
                 </div>
@@ -59,15 +48,13 @@
     </div>
 
     <div class="row wrapperPrincipal">
-        <div class="col-lg-7 wrapperLeft">
+        <div class="col-12 col-sm-12 col-md-7 wrapperLeft">
             <div class="row wla">
                 <div class="cardDashboard wrapperAlarms">
-                   
                     <div class="cardDashboard-header ">
                         Avertissements
                     </div> 
                     <div class="cardDashboard-body tableWrapper">
-
                         <table class="table">
                             <thead>
                                 <tr>
@@ -123,10 +110,10 @@
                                 <i class="fa fa-external-link"></i> {{site.name}}
                             </div>
                             <div class="cardDashboard-body cardSite row">
-                                <div [routerLink]="'/site/'+site.id" class="col-md-4">
+                                <div [routerLink]="'/site/'+site.id" class="col-4 col-sm-4">
                                     <img class="imgSiteCard" src="../../assets/images/gouter.jpg">
                                 </div>
-                                <div class="col-md-8 cardCapteurSite">
+                                <div class="col-8 col-sm-8 cardCapteurSite">
                                     <ng-container *ngFor="let device of site.devices">
                                         <div [routerLink]="'/sensor/'+device.id" *ngIf="device.isFavorite">
                                             <span class="label label-critique">{{device.name}}
@@ -146,7 +133,7 @@
                 <div *ngIf="sitesWithFavDevices != null && sitesWithFavDevices.length == 0">Vous n'avez pas de capteurs clés.</div>
             </div>
         </div>
-        <div class="col-lg-5 mapWrapper flex-container">
+        <div class="col-12 col-sm-12 col-md-5 mapWrapper flex-container">
             <div class="cardDashboard flex-container">
                  <div class="cardDashboard-header ">
                     Tous mes sites

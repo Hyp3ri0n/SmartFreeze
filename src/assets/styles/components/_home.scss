@@ -51,7 +51,6 @@ home {
 .cardInfo {
   display: flex;
   flex: 1;
-  justify-content: center;
   align-items: center;
   height: 100%;
 }
@@ -62,5 +61,33 @@ agm-map {
   .si-content {
     text-align: center;
     font-weight: bold; 
+  }
+}
+
+
+@include media-breakpoint-down(md) {
+  .homePage .dashboard-header .cardDashboard {
+    box-shadow: none;
+    border-radius: 0; 
+  }
+  .dashboard-header {
+    .col-6 {
+      border: none;
+
+      &:nth-child(2n) {
+        padding-left: 0;
+      }
+      &:nth-child(2n+1) {
+        padding-right: 0;
+      }
+    }
+  }
+
+  .wrapperPrincipal .wrapperLeft .wrapperSites {
+    overflow-x: auto;
+  }
+
+  .wrapperAlarms {
+    overflow: auto;
   }
 }

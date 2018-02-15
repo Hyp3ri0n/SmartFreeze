@@ -62,6 +62,10 @@ site {
         chart {
             display: flex;
             flex:1;
+
+            canvas {
+                width: 100%;
+            }
         }
     }
 }
@@ -147,6 +151,10 @@ site {
     flex-flow: column nowrap;
     margin: 10px 20px 0;
 
+    @include media-breakpoint-down(sm) {
+        flex-flow: row wrap;
+    }
+
     .fit-img {
         flex: none;
         object-fit: contain;
@@ -170,6 +178,7 @@ site {
             margin-top: -40px;
             display : flex;
             flex-direction: row;
+            z-index: 1;
 
             .icon{
                 width: 50px;
@@ -224,10 +233,6 @@ site, sensor {
     .card {
         height: 100%;
     }
-    
-    .row:first-of-type {
-        margin-bottom: 20px;
-    }   
 }
 
 all-sites {
@@ -316,4 +321,54 @@ all-sites {
     transform: translate(-50%, -50%);
     padding: 2px;
     z-index: 2;
+}
+
+@include media-breakpoint-down(md) {
+    all-sites {
+        .all-sites-header {
+            margin: 10px auto;
+            flex-flow: row nowrap;
+            display: flex;
+            position: relative;
+            align-items: center;
+            & > * {
+                display: flex;
+            }
+            .toggle-all, .switch-gel {
+                position: relative;
+                top: inherit;
+                left: inherit;
+                right: inherit;
+                flex: none;
+                height: 50px;
+                padding: 2px;
+            }
+            h1 {
+                flex: 1;
+                margin: 0 5px;
+                text-align: center;
+            }
+        }
+        .card .card-header {
+            flex-flow: row wrap;
+        }
+    }
+
+    site {
+        .site-row {
+            flex-flow: row wrap;
+            width: 100%;
+        }
+    }
+    .cardInfosSite {
+        width: 100%;
+        margin: 0;
+        display: block;
+    }
+    .wrapperAllSite {
+        width: 100%;
+    }
+    //.select-site-period {
+        //TODO placer le select en mobile
+    //}
 }
