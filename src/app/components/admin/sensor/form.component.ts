@@ -70,6 +70,10 @@ export class AdminSensorFormComponent {
         this.device.zone = zone;
     }
 
+    private favorite_changed(value : boolean) : void {
+        this.device.isFavorite = value;
+    }
+
     private send_device() : void {
         this.deviceService.setDevice(this.device).subscribe(
             success => {

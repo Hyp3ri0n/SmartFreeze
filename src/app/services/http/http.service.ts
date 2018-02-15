@@ -63,7 +63,7 @@ export class HttpService {
                     }
                 );
             } else if (method === MethodRequest.POST) {
-                let body = JSON.stringify(httpOptions.params);
+                let body = JSON.stringify(params);
                 this.http.post(finalUrl, body, {headers: httpOptions.headers}).subscribe(
                     data => {
                         console.log('[HTTP] sucess request POST on : ' + finalUrl);

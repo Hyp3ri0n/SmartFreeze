@@ -9,11 +9,12 @@ export interface Device {
     siteId : string;
     zone : string;
     isFavorite : boolean;
-    lastCommunication : string;
+    lastCommunication : Date;
     activeAlarmsCount : number;
     hasActiveAlarms : boolean;
     latitude : number;
     longitude : number;
+    altitude: number;
 }
 
 export interface Telemetry {
@@ -104,6 +105,27 @@ export class DeviceService {
                 longitude: device.longitude
             };
             this.http.request(MethodRequest.PUT, '/api/Devices/' + device.id, data).subscribe(
+                sucess => {
+                    observer.next('');
+                }
+            );
+        });
+    }
+
+
+    public createDevice(device : Device) : Observable<String> {
+        return Observable.create((observer) => {
+            let data = {
+                id: device.id,
+                name: device.name,
+                isFavorite: device.isFavorite,
+                zone: device.zone,
+                siteId: device.siteId,
+                latitude: device.latitude,
+                longitude: device.longitude,
+                altitude: device.altitude
+            };
+            this.http.request(MethodRequest.POST, '/api/Devices', data).subscribe(
                 sucess => {
                     observer.next('');
                 }

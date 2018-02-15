@@ -35,7 +35,7 @@
                 Favoris
             </span>
             <label class=" switch">
-                <input type="checkbox" [checked]="device.isFavorite">
+                <input type="checkbox" [checked]="device.isFavorite" (change)="favorite_changed($event.target.checked)">
                 <span class="slider round"></span>
             </label>
         </div>
@@ -53,7 +53,7 @@
             </ng-container>
         </select>
 
-        <i class="plusicon fa fa-plus-circle"></i>
+        <!--<i class="plusicon fa fa-plus-circle"></i>-->
     </div>
 
     <div class="input-group">
@@ -62,8 +62,8 @@
             <i class="fa fa-home"></i>
             Zone
         </span>
-        <select class="form-control" id="zone">
-            <ng-container *ngFor="let zone of zones" (change)="zone_changed($event.target.value)">
+        <select class="form-control" id="zone" (change)="zone_changed($event.target.value)">
+            <ng-container *ngFor="let zone of zones">
                 <option [value]="zone"[selected]="zone == device.zone">{{zone}}</option>
             </ng-container>
         </select>
