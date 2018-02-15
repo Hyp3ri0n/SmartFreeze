@@ -22,12 +22,12 @@ export const appRoutes: Routes = [
         children: [
             { path: 'site', children: [
                 { path: 'list', component: AdminSiteListComponent },
-                { path: 'form', component: AdminSiteFormComponent },
+                { path: 'form/:id', component: AdminSiteFormComponent },
                 { path: 'new', component: AddSiteComponent }
             ]},
             { path: 'sensor', children: [
                 { path: 'list', component: AdminSensorListComponent },
-                { path: 'form', component: AdminSensorFormComponent },
+                { path: 'form/:id', component: AdminSensorFormComponent },
                 { path: 'new', component: AddSensorComponent }
             ]}
         ]

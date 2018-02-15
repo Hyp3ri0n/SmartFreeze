@@ -9,7 +9,7 @@ export interface Site {
     id : string;
     name : string;
     description : string;
-    imageUri : string;
+    image : string;
     department : string;
     region : string;
     siteType : ApplicationContext;
@@ -96,6 +96,28 @@ export class SiteService {
                             observer.next(sites);
                         }
                     );
+                }
+            );
+        });
+    }
+
+    public setSite(site : Site) : Observable<String> {
+        return Observable.create((observer) => {
+            let data = {
+                name: site.name,
+                surfaceArea: site.surfaceArea,
+                zones: site.zones,
+                description: site.description,
+                imageUri: site.image,
+                latitude: site.latitude,
+                longitude: site.longitude,
+                altitude: site.altitude,
+                department: site.department,
+                region: site.region
+            };
+            this.http.request(MethodRequest.PUT, '/api/Sites/' + site.id, data).subscribe(
+                sucess => {
+                    observer.next('');
                 }
             );
         });

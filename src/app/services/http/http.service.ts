@@ -5,7 +5,7 @@ import { Observer } from 'rxjs/Observer';
 import { LoginService } from '../../components/root/login/login.service';
 
 export enum MethodRequest {
-    GET, POST
+    GET, POST, PUT, DELETE
 }
 
 interface Request {
@@ -63,8 +63,39 @@ export class HttpService {
                     }
                 );
             } else if (method === MethodRequest.POST) {
-                let body = JSON.stringify(httpOptions.params);
+                let body = JSON.stringify(params);
                 this.http.post(finalUrl, body, {headers: httpOptions.headers}).subscribe(
+                    data => {
+                        console.log('[HTTP] sucess request POST on : ' + finalUrl);
+                        console.log(data);
+                        this.online = true;
+                        observer.next(data);
+                    },
+                    err => {
+                        console.error('[HTTP] error request POST on : ' + finalUrl);
+                        console.error(err);
+                        this.online = false;
+                        observer.error(err);
+                    }
+                );
+            } else if (method === MethodRequest.PUT) {
+                let body = JSON.stringify(params);
+                this.http.put(finalUrl, body, {headers: httpOptions.headers}).subscribe(
+                    data => {
+                        console.log('[HTTP] sucess request POST on : ' + finalUrl);
+                        console.log(data);
+                        this.online = true;
+                        observer.next(data);
+                    },
+                    err => {
+                        console.error('[HTTP] error request POST on : ' + finalUrl);
+                        console.error(err);
+                        this.online = false;
+                        observer.error(err);
+                    }
+                );
+            } else if (method === MethodRequest.DELETE) {
+                this.http.delete(finalUrl, httpOptions).subscribe(
                     data => {
                         console.log('[HTTP] sucess request POST on : ' + finalUrl);
                         console.log(data);
