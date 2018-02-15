@@ -10,8 +10,8 @@
             Mes sites
         </h1>
         <div class="switch-gel">
-            <button type="button" class="btn btn-outline-primary" [ngClass]="{'active': !gelFilter }" (click)="gelFilter = !gelFilter;">Tout</button>
-            <button type="button" class="btn btn-outline-primary" [ngClass]="{'active': gelFilter }" (click)="gelFilter = !gelFilter;">Gel</button>
+            <button type="button" class="btn btn-outline-primary" [ngClass]="{'active': !gelFilter }" (click)="gelFilter = !gelFilter;">Voir tous les sites</button>
+            <button type="button" class="btn btn-outline-primary" [ngClass]="{'active': gelFilter }" (click)="gelFilter = !gelFilter;">Voir uniquement les sites en gel</button>
         </div>
     </div>
     <div class="row" [ngClass]="{'filtered': gelFilter }">
@@ -26,10 +26,21 @@
                 <div class="toggle-card">
                     <div class="card-body">
                         <div class="card-item" *ngFor="let device of site.devices">
-                            <button [routerLink]="'/sensor/'+device.id" class="btn btn-primary btnSensor">
+
+                            <p style="text-align:center;">
                                 <i *ngIf="device.isFavorite" class="fav-icon fa fa-star" title="Capteur favoris"></i>
-                                {{device.name}}
-                                <i style="float:right;" *ngIf="device.hasActiveAlarms" class="gel-icon fa fa-snowflake-o" title="Gel prévu"></i>
+                                <i *ngIf="device.hasActiveAlarms" class="gel-icon fa fa-snowflake-o" title="Gel prévu"></i>
+                            </p>
+
+                            <button [routerLink]="'/sensor/'+device.id" class="btn btn-primary btnSensor">
+                                <p>
+                                    <b>Zone : </b> {{device.zone}}
+                                    <br/>
+                                </p>
+                                <p>
+                                    <b>Capteur : </b> {{device.name}}
+                                    <br/>
+                                </p>
                             </button>
                         </div>
                     </div>

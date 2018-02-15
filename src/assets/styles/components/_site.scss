@@ -274,10 +274,13 @@ all-sites {
 
          .btnSensor{
             display: flex;
-            flex-direction: row;
-            flex-wrap: nowrap;
-            justify-content: left;
-            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            font-size:12px;
+
+            p{
+                margin-bottom: 5px;
+            }
 
             .fa-snowflake-o{
                 margin-left:10px;
@@ -287,6 +290,12 @@ all-sites {
                 margin-right:10px;
                 margin-top:0px;
             }
+        }
+
+        .card-body{
+            display:flex;
+            align-content: left;
+            flex-direction: column;
         }
        
     
