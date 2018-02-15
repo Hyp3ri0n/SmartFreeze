@@ -8,29 +8,79 @@ import { Chart } from 'chart.js';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
 
+
+export enum TrustIndication {
+    NONE, LOW, MEDIUM, HIGH, IMINENT
+}
+
+export interface HalfDayForecast {
+    deviceId: string;
+    trustIndication: TrustIndication;
+}
+
+export interface ForecastDay  {
+    date: string;
+    morning: HalfDayForecast;
+    afternoon: HalfDayForecast;
+}
+
 @Component({
     selector: 'site',
     templateUrl: './app/components/site/site.view.html'
 })
 
 export class SiteComponent {
-    private datasetConfig : any;
-    private chartConfig : any;
-    private siteId : string;
-    private site : Site = null;
-    private alarmes : Alarme[] = [];
-    private humidityRecords : any[];
-    private temperatureRecords : any[];
-    private period:string;
-    private from:Date = new Date();
-    private to:Date;
-    private chartTemp:Chart;
-    private chartHumidity:Chart;
+    private datasetConfig: any;
+    private chartConfig: any;
+    private siteId: string;
+    private site: Site = null;
+    private alarmes: Alarme[] = [];
+    private humidityRecords: any[];
+    private temperatureRecords: any[];
+    private period: string;
+    private from: Date = new Date();
+    private to: Date;
+    private chartTemp: Chart;
+    private chartHumidity: Chart;
 
-    constructor(private router : ActivatedRoute,
-                private siteService : SiteService,
-                private deviceService : DeviceService,
-                private http : HttpService) {
+    private forecastSite: ForecastDay[];
+
+    constructor(private router: ActivatedRoute,
+        private siteService: SiteService,
+        private deviceService: DeviceService,
+        private http: HttpService) {
+
+        /* FOR CAST FAKE DATA */
+        this.forecastSite = [
+            {
+                date: "lu",
+                morning: { deviceId: "id01", trustIndication: TrustIndication.HIGH },
+                afternoon: { deviceId: "id02", trustIndication: TrustIndication.LOW }
+            },
+            {
+                date: "ma",
+                morning: { deviceId: "id03", trustIndication: TrustIndication.HIGH },
+                afternoon: { deviceId: "id02", trustIndication: TrustIndication.NONE }
+            },
+            {
+                date: "me",
+                morning: { deviceId: "id01", trustIndication: TrustIndication.MEDIUM },
+                afternoon: { deviceId: "id02", trustIndication: TrustIndication.LOW }
+            },
+            {
+                date: "je",
+                morning: { deviceId: "id04", trustIndication: TrustIndication.IMINENT },
+                afternoon: { deviceId: "id02", trustIndication: TrustIndication.LOW }
+            },
+            {
+                date: "ve",
+                morning: { deviceId: "id01", trustIndication: TrustIndication.NONE},
+                afternoon: { deviceId: "id02", trustIndication: TrustIndication.LOW }
+            }
+        ];
+        console.log(this.forecastSite);
+
+
         this.router.params.subscribe(
             params => {
                 this.siteId = params['id'];
@@ -49,18 +99,20 @@ export class SiteComponent {
         this.to.setHours(23, 59, 59, 999);
         this.period = 'day';
         this.from = this.getFirstDayOfPeriod();
+
+
     }
 
     public ngOnInit(): void {
         this.getData();
-        this.http.backOnlineEventListener = { component : 'SiteComponent', cb : () => this.getData()};
+        this.http.backOnlineEventListener = { component: 'SiteComponent', cb: () => this.getData() };
     }
 
-    public ngOnDestroy() : void {
+    public ngOnDestroy(): void {
         this.http.removeBackOnlineListener('SiteComponent');
     }
 
-    private getData() : void {
+    private getData(): void {
         this.siteService.getSite(this.siteId).subscribe(
             site => {
                 this.site = site;
@@ -68,7 +120,7 @@ export class SiteComponent {
                 // Get devices records for charts
                 this.temperatureRecords = [];
                 this.humidityRecords = [];
-                let subscribes : Observable<Telemetry[]>[] = [];
+                let subscribes: Observable<Telemetry[]>[] = [];
                 this.site.devices.forEach(device => {
                     subscribes.push(this.deviceService.getTelemetry(device.id, this.from, this.to));
                 });
@@ -77,7 +129,7 @@ export class SiteComponent {
                         telemetriesTab.forEach(telemDevice => {
                             let tmpTemperatures = [];
                             let tmpHumidity = [];
-                            let dev : string = '';
+                            let dev: string = '';
                             telemDevice.forEach(telemetry => {
                                 dev = telemetry.deviceId;
                                 tmpTemperatures.push({
@@ -183,7 +235,7 @@ export class SiteComponent {
                                             labelString: 'Humidité en %'
                                         },
                                         ticks: {
-                                            beginAtZero:true,
+                                            beginAtZero: true,
                                             max: 100,
                                             min: 0,
                                             stepSize: 20
@@ -202,12 +254,12 @@ export class SiteComponent {
         var letters = '0123456789ABCDEF';
         var color = '#';
         for (var i = 0; i < 6; i++) {
-          color += letters[Math.floor(Math.random() * 16)];
+            color += letters[Math.floor(Math.random() * 16)];
         }
         return color;
     }
 
-    public showCaract():void {
+    public showCaract(): void {
         let elmtCaract = document.getElementById("caracteristiques");
         let elmtMeteo = document.getElementById("meteo");
 
@@ -216,7 +268,7 @@ export class SiteComponent {
 
     }
 
-    public showMeteo():void {
+    public showMeteo(): void {
         let elmtCaract = document.getElementById("caracteristiques");
         let elmtMeteo = document.getElementById("meteo");
 
@@ -230,7 +282,7 @@ export class SiteComponent {
         this.getData();
     }
 
-    private getFirstDayOfPeriod() : Date {
+    private getFirstDayOfPeriod(): Date {
         var date = new Date();
         switch (this.period) {
             //Heure courante
@@ -251,16 +303,16 @@ export class SiteComponent {
                 this.period = 'day';
                 var day = date.getDay();
                 return new Date(date.getFullYear(),
-                                            date.getMonth(),
-                                            date.getDate() + (day === 0 ? -6 : 1) - day, 0, 0, 0, 0);
+                    date.getMonth(),
+                    date.getDate() + (day === 0 ? -6 : 1) - day, 0, 0, 0, 0);
             }
             //Mois courant
             case "month": {
                 this.period = 'day';
                 var y = date.getFullYear(), m = date.getMonth();
                 return new Date(y, m, 1, 0, 0, 0, 0);
-             }
-             //Trimestre courant
+            }
+            //Trimestre courant
             case "quarter": {
                 this.period = 'week';
                 var quarter = Math.floor((date.getMonth() / 3));
@@ -271,7 +323,7 @@ export class SiteComponent {
                 this.period = 'week';
                 var y = date.getFullYear();
                 return new Date(y, 0, 1, 0, 0, 0, 0);
-             }
+            }
             default: {
                 return date;
             }
