@@ -11,6 +11,22 @@ import { ChartComponent } from '../global/chart/chart.component';
 import { LoadingModel } from '../global/loading/loading.model';
 import { ChartUtil } from '../global/chart/chart.util';
 
+
+export enum TrustIndication {
+    NONE, LOW, MEDIUM, HIGH, IMINENT
+}
+
+export interface HalfDayForecast {
+    deviceId: string;
+    trustIndication: TrustIndication;
+}
+
+export interface ForecastDay  {
+    date: string;
+    morning: HalfDayForecast;
+    afternoon: HalfDayForecast;
+}
+
 @Component({
     selector: 'site',
     templateUrl: './app/components/site/site.view.html'
@@ -25,11 +41,43 @@ export class SiteComponent {
     private period:string;
     private from:Date = new Date();
     private to:Date;
+    private forecastSite: ForecastDay[];
 
-    constructor(private router : ActivatedRoute,
-                private siteService : SiteService,
-                private deviceService : DeviceService,
-                private http : HttpService) {
+    constructor(private router: ActivatedRoute,
+        private siteService: SiteService,
+        private deviceService: DeviceService,
+        private http: HttpService) {
+
+        /* FOR CAST FAKE DATA */
+        this.forecastSite = [
+            {
+                date: "lu",
+                morning: { deviceId: "id01", trustIndication: TrustIndication.HIGH },
+                afternoon: { deviceId: "id02", trustIndication: TrustIndication.LOW }
+            },
+            {
+                date: "ma",
+                morning: { deviceId: "id03", trustIndication: TrustIndication.HIGH },
+                afternoon: { deviceId: "id02", trustIndication: TrustIndication.NONE }
+            },
+            {
+                date: "me",
+                morning: { deviceId: "id01", trustIndication: TrustIndication.MEDIUM },
+                afternoon: { deviceId: "id02", trustIndication: TrustIndication.LOW }
+            },
+            {
+                date: "je",
+                morning: { deviceId: "id04", trustIndication: TrustIndication.IMINENT },
+                afternoon: { deviceId: "id02", trustIndication: TrustIndication.LOW }
+            },
+            {
+                date: "ve",
+                morning: { deviceId: "id01", trustIndication: TrustIndication.NONE},
+                afternoon: { deviceId: "id02", trustIndication: TrustIndication.LOW }
+            }
+        ];
+        console.log(this.forecastSite);
+
         this.router.params.subscribe(
             params => {
                 this.siteId = params['id'];
@@ -42,14 +90,14 @@ export class SiteComponent {
 
     public ngOnInit(): void {
         this.getData();
-        this.http.backOnlineEventListener = { component : 'SiteComponent', cb : () => this.getData()};
+        this.http.backOnlineEventListener = { component: 'SiteComponent', cb: () => this.getData() };
     }
 
-    public ngOnDestroy() : void {
+    public ngOnDestroy(): void {
         this.http.removeBackOnlineListener('SiteComponent');
     }
 
-    private getData() : void {
+    private getData(): void {
         this.siteService.getSite(this.siteId).subscribe(
             site => {
                 this.site = site;
@@ -106,6 +154,7 @@ export class SiteComponent {
             }
         );
     }
+    
     public showCaract():void {
         let elmtCaract = document.getElementById("caracteristiques");
         let elmtMeteo = document.getElementById("meteo");
@@ -115,7 +164,7 @@ export class SiteComponent {
 
     }
 
-    public showMeteo():void {
+    public showMeteo(): void {
         let elmtCaract = document.getElementById("caracteristiques");
         let elmtMeteo = document.getElementById("meteo");
 
