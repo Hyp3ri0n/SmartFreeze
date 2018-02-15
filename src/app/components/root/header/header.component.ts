@@ -42,6 +42,14 @@ export class HeaderComponent implements OnDestroy {
         }
     }
 
+    private setAlerteAsView(id : string) : void {
+        this.alarme.setAlarmeAsView(id).subscribe(
+            sucess => {
+               this.getData();
+            }
+        );
+    }
+
     private deleteItem(): void {
         this.query = "";
     }
@@ -91,6 +99,16 @@ export class HeaderComponent implements OnDestroy {
                 this.alarmes = alarmes;
             }
         );
+    }
+
+    private getDeviceByID(id : string) : string {
+        let result = "";
+        this.devices.forEach(device => {
+            if (device.id === id) {
+                result = device.name;
+            }
+        });
+        return result;
     }
 
     private go_clicked(): void {

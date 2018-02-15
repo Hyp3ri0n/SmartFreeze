@@ -5,22 +5,22 @@
     <i class="fa fa-search"></i>
 
     <div>
-        <input [(ngModel)]="query" (click)="deleteItem()" (keyup)="filterListAutoComplete()" id="freesearch" class="d-md-none" name="freesearch" value=""
-            placeholder="Recherche capteur/site" />
-        <input [(ngModel)]="query" (click)="deleteItem()" (keyup)="filterListAutoComplete()" id="freesearch" class="d-none d-md-block" name="freesearch"
-            value="" placeholder="Rechercher un capteur/site" />
+        <input [(ngModel)]="query" (click)="deleteItem()" (keyup)="filterListAutoComplete()" id="freesearch" class="d-md-none" name="freesearch"
+            value="" placeholder="Recherche capteur/site" />
+        <input [(ngModel)]="query" (click)="deleteItem()" (keyup)="filterListAutoComplete()" id="freesearch" class="d-none d-md-block"
+            name="freesearch" value="" placeholder="Rechercher un capteur/site" />
 
     </div>
     <div id="autoCompletePlace" class="form-control autocompleteSearchList">
-        
+
         <div *ngIf="filteredSitesAutoComplete.length > 0">
-        Sites
+            Sites
             <div *ngFor="let site of filteredSitesAutoComplete">
                 <a [routerLink]="'/site/'+site.id" (click)="selectItem(site.name)">{{site.name}}</a>
             </div>
         </div>
         <div *ngIf="filteredDevicesAutoComplete.length > 0">
-        Capteurs
+            Capteurs
             <div *ngFor="let device of filteredDevicesAutoComplete">
                 <a [routerLink]="'/sensor/'+device.id" (click)="selectItem(device.name)">{{device.name}}</a>
             </div>
@@ -29,17 +29,30 @@
 </div>
 <button (click)="go_clicked()" (clickOutside)="close()" class="alerts" type="button" title="Notifications">
     <i class="side-icon fa fa-bell"></i>
-    <span class="count-alerts">4</span>
+    <span class="count-alerts">{{ alarmes.length }}</span>
 </button>
-<ul class="alerts-pane" [style.display]="show">
-    <ng-container *ngFor="let avert of alarmes">
-        <li [ngClass]="{ 'gravity-1' : avert.gravity == 1, 'gravity-2' : avert.gravity == 2,'gravity-3' : avert.gravity == 3 }">
-            <span class="alert-text">{{ avert.shortDescription }}</span>
-            <span class="alert-timestamp">{{ avert.occuredAt }}</span>
-            <i class="fa fa-eye-slash" title="Marquer comme lu"></i>
-        </li>
-    </ng-container>
-    <li class="more-link">
-        <a routerLink="alerts">Voir tout</a>
-    </li>
-</ul>
+<div class="alerts-pane" [style.display]="show">
+    <table class="table">
+        <tbody>
+            
+                <tr *ngFor="let avert of alarmes">
+                    <td>
+                        <span *ngIf="avert.gravity == 1" class="label label-critique">Critique</span>
+                        <span *ngIf="avert.gravity == 2" class="label label-serieux">Sérieux</span>
+                        <span *ngIf="avert.gravity == 3" class="label label-info">Information</span>
+                    </td>
+                    <td class="alert-timestamp">{{ avert.occuredAt | date:'dd/MM/yyyy HH:mm' }}</td>
+                    <td class="alert-text">
+                        <a [routerLink]="'/sensor/'+avert.deviceId">{{ getDeviceByID(avert.deviceId) }}</a>
+                    </td>
+                    <td class="alert-text">{{ avert.shortDescription }}</td>
+                    <td>
+                        <a (click)="setAlerteAsView(avert.id)" title="Marquer comme lu">
+                            <i class="fa fa-eye-slash"></i>
+                        </a>
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+    <div class="btnAlertNotif"><button class="btn btn-primary" routerLink="alerts">Voir tout</button></div>
+</div>

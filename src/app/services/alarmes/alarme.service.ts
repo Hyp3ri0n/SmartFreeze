@@ -9,7 +9,7 @@ export interface Alarme {
     id : string;
     description : string;
     isActive : boolean;
-    occuredAt : string;
+    occuredAt : Date;
     type : Type;
     gravity : Gravity;
     shortDescription : string;
@@ -65,11 +65,22 @@ export class AlarmeService {
         });
     }
 
+    public setAlarmeAsView(id : string) : Observable<String> {
+        return Observable.create((observer) => {
+            this.http.request(MethodRequest.PUT, '/api/Alarms/' + id + "/ack", {}).subscribe(
+                sucess => {
+                    observer.next('');
+                }
+            );
+        });
+    }
+
     public getLastAlarmes() : Observable<Alarme[]> {
         return Observable.create((observer) => {
             let params = {
                 'rowsPerPage': '5',
-                'pageNumber': '1'
+                'pageNumber': '1',
+                'ReadFilter': '2'
             };
             this.http.request(MethodRequest.GET, '/api/Alarms', params).subscribe(
                 alarmes => {
