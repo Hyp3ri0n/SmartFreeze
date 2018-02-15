@@ -83,7 +83,7 @@ export class SearchComponent implements OnDestroy {
                       },
                 },
                 isFavorite: {
-                    title: 'Favori',
+                    title: 'Favoris?',
                     filter: {
                         type: 'checkbox',
                         config: {
