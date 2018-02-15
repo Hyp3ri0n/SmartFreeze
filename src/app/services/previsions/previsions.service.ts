@@ -34,6 +34,7 @@ export class PrevisionsService {
         return Observable.create((observer) => {
             this.http.request(MethodRequest.GET, '/api/Sites/' + id + "/freeze", {}).subscribe(
                 previsions => {
+                    console.log(previsions);
                     observer.next(previsions);
                 },
                 err => {

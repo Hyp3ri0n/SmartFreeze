@@ -5,6 +5,75 @@ $margin-card-dashboard : 5px;
     flex-direction:column;
 
 
+  .allIndications{
+    display:flex;
+    flex-direction: row;
+    margin-top:10px;
+    justify-content: center;
+    text-transform: uppercase;
+    font-size: 12px;
+
+    .indicationDay {
+        display:flex;
+        flex-direction:column;
+        text-align: center;
+    }
+  }
+
+  .legendeProbaGel{
+    text-transform: uppercase;
+    font-size: 12px;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top:20px;
+
+    .row{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .indicationSquare{
+        width: 20px;
+        height : 20px;
+      }
+
+      .legendeItem{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+
+  .indicationSquare{
+    width: 40px;
+    height : 40px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border:1px solid $mc-white;
+  }
+
+  .indicationSquare-0{
+    background-color: $indic-0;  
+  }
+  .indicationSquare-1{
+    background-color: $indic-1;  
+  }
+  .indicationSquare-2{
+    background-color: $indic-2;   
+  }
+  .indicationSquare-3{
+    background-color: $indic-3;   
+  }
+  .indicationSquare-4{
+    background-color: $indic-4;     
+  }
+
+
     .titleDashboard{
         font-family: RobotoDraft, Roboto, 'Helvetica Neue', sans-serif;
         font-size: 30px;
