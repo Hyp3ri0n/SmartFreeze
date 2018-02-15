@@ -156,6 +156,18 @@ $margin-card-dashboard : 5px;
     .wrapperRightSensor{
         display : flex;
         flex-direction:column;
+        margin-bottom:0px;
+
+        .cardDashboard{
+          margin-bottom: 0px;
+        }
+
+        .cardInfoSensor{
+          padding:2px;
+          text-align: left;
+          justify-content: left;
+          align-items: center;
+        }
 
         row{
             flex:none;
