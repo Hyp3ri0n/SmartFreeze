@@ -77,7 +77,7 @@ export class AdminSensorFormComponent {
     private send_device() : void {
         this.deviceService.setDevice(this.device).subscribe(
             success => {
-                /* */
+                this.route.navigate(['sensor', {id: this.device.id}]);
             }
         );
     }

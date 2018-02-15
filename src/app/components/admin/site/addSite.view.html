@@ -8,65 +8,52 @@
                 </button>
             </div>
             <div class="modal-body">
-
-
                 <div class="container">
-
-
-
-
-
-                    <div class=" input-group">
+                
+                    <div class="input-group">
                         <span class="input-group-addon">
                             <i class="fa fa-tag"></i>
                             Nom
                         </span>
-                        <input id="name" type="text" class="form-control" name="Nom" placeholder="Nom" required>
+                        <input [(ngModel)]="site.name" id="name" type="text" class="form-control" name="Nom" placeholder="Nom">
                     </div>
-
-
-
-                    <map-site class="app-container"></map-site>
-
-
-                    <div class=" input-group">
-                        <span class="input-group-addon">
-                            <i class="fa fa-file"></i>
-                            Description
-                        </span>
-                        <textarea id="description" rows="3" class="form-control"></textarea>
-                    </div>
-
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="fa fa-puzzle-piece"></i>
-                            Zones
-                            <i (click)="addZone()" class="plusicon fa fa-plus-circle"></i>
-                        </span>
-                        <div class="zoneWrapper">
-                            <div *ngFor="let zone of zones; let i = index; trackBy:trackByFn" class="input-group">
-                                <input [(ngModel)]="zones[i]" class="form-control" type="text" name="" placeholder="Entrez un nom de zone">
-                                <i class="deleteZonebtn fa fa-minus-square" (click)="removeZone(zone)"></i>
+                
+                
+                    <map-site [site]="site"></map-site>
+                
+                    <div class="row">
+                        <div class="col-lg-7 input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-file"></i>
+                                Description
+                            </span>
+                            <textarea [(ngModel)]="site.description" id="description" rows="3" class="form-control"></textarea>
+                        </div>
+                
+                        <div class="col-lg-5 input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-puzzle-piece"></i>
+                                Zones
+                                <i (click)="addZone()" class="plusicon fa fa-plus-circle"></i>
+                            </span>
+                            <div class="zoneWrapper">
+                                <div *ngFor="let zone of zones; let i = index; trackBy:trackByFn" class="input-group">
+                                    <input [(ngModel)]="zones[i]" class="form-control" type="text" name="" placeholder="Entrez un nom de zone">
+                                    <i class="deleteZonebtn fa fa-minus-square" (click)="removeZone(zone)"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-sm-10 col-8 input-group">
                             <span class="input-group-addon">
                                 <i class="fa fa-home"></i>
                                 Surface
                             </span>
-                            <input id="surfaceArea" type="text" class="form-control" name="Surface" placeholder="Surface">
+                            <input [(ngModel)]="site.surfaceArea" id="surfaceArea" type="text" class="form-control" name="Surface" placeholder="Surface">
                         </div>
                         <div class="col-sm-2 col-4  input-group">
-                            <select class="form-control" id="uniteSurface">
-
-                                <option selected value="m²">m²</option>
-                                <option value="km²">km²</option>
-                                <option value="a">ares</option>
-                                <option value="ha">ha</option>
-                            </select>
+                            <input [(ngModel)]="site.surfaceAreaUnit" id="surfaceAreaUnit" type="text" class="form-control" name="Surface unit" placeholder="Surface unit" disabled>
                         </div>
                     </div>
                     <div class="input-group">
@@ -74,22 +61,13 @@
                             <i class="fa fa-image"></i>
                             Image
                         </span>
-                        <label class="custom-file">
-
-                            <input type="file" id="file" class="inputstl">
-                            <span class="custom-file-control"></span>
-                        </label>
+                        <input [(ngModel)]="site.image" type="text" id="file" class="form-control">
                     </div>
-
-
-
                 </div>
-
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Ajouter</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="send_site()">Ajouter</button>
             </div>
         </div>
     </div>
