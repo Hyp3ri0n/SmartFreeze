@@ -82,7 +82,7 @@ export class AddSensorComponent {
     private send_device() : void {
         this.deviceService.createDevice(this.device).subscribe(
             success => {
-
+                this.route.navigate(['sensor', {id: this.device.id}]);
             }
         );
     }
