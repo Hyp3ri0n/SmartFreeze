@@ -249,11 +249,11 @@ all-sites {
          }
          .gel-icon {
              color: $mc-red;
-             margin-right: 10px;
+             //margin-right: 10px;
          }
          .fav-icon {
              color: $mc-yellow;
-             margin-right: 10px;
+             //margin-right: 10px;
          }
 
          .cardDashboard-header{
@@ -281,15 +281,13 @@ all-sites {
             p{
                 margin-bottom: 5px;
             }
+        }
 
-            .fa-snowflake-o{
-                margin-left:10px;
-                margin-top:0px;
-            }
-            .fa-star{
-                margin-right:10px;
-                margin-top:0px;
-            }
+        .sensorIcons{
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            margin-right:10px;
         }
 
         .card-body{

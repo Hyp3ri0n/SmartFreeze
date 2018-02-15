@@ -27,7 +27,7 @@
                     <div class="card-body">
                         <div class="card-item" *ngFor="let device of site.devices">
 
-                            <p style="text-align:center;">
+                            <p class="sensorIcons">
                                 <i *ngIf="device.isFavorite" class="fav-icon fa fa-star" title="Capteur favoris"></i>
                                 <i *ngIf="device.hasActiveAlarms" class="gel-icon fa fa-snowflake-o" title="Gel prévu"></i>
                             </p>
