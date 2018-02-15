@@ -120,7 +120,7 @@
 
                         <div class="cardInfoTextSensor">
                             <p>Zone</p>
-                            <div class="color-green">Fondoir</div>
+                            <div class="color-green">{{device?.zone}}</div>
                         </div>
                     </div>
 
@@ -160,13 +160,24 @@
 
 
             <div class="row">
-                <div class="cardDashboard">
+                <div class="cardDashboard col-sm-9">
                     <div class="cardDashboard-header ">
                         Prévision Gel
                     </div>
                     <div>
                         prévision gel (...)
                     </div>
+                </div>
+                <div class="col-sm-3">
+                    <select class="select-sensor-period" (change)="reloadChart($event.target.value)">
+                        <option value="" disabled>Période courante</option>
+                        <option value="year">Année</option>
+                        <option value="quarter">Trimestre</option>
+                        <option value="month">Mois</option>
+                        <option value="week">Semaine</option>
+                        <option value="day" selected>Jour</option>
+                        <option value="hour">Heure</option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -181,7 +192,8 @@
                     Température
                 </div>
                 <div>
-                    température (...)
+                    <loading *ngIf="temperatureDataset == null"></loading>
+                    <chart class="app-container" *ngIf="temperatureDataset != null" [dataSet]="temperatureDataset" [type]="'temp'" [period]="period"></chart>
                 </div>
             </div>
         </div>
@@ -192,7 +204,8 @@
                     Humidité
                 </div>
                 <div>
-                    humidité (...)
+                    <loading *ngIf="humidityDataset == null"></loading>
+                    <chart class="app-container" *ngIf="humidityDataset != null" [dataSet]="humidityDataset" [type]="'humidity'" [period]="period"></chart>
                 </div>
             </div>
         </div>
@@ -203,115 +216,11 @@
                     Pression
                 </div>
                 <div>
-                    pression (...)
+                    <loading *ngIf="pressureDataset == null"></loading>
+                    <chart class="app-container" *ngIf="pressureDataset != null" [dataSet]="pressureDataset" [type]="'pressure'" [period]="period"></chart>
                 </div>
             </div>
         </div>
 
     </div>
 </div>
-
-
-
-
-<!--
-<div class="container-fluid position-relative ">
-    <a routerLink="/site " class="back-nav "><span class="arrow left "></span> Retour</a>
-    <h1 class="title ">
-        TODO Ajouter ngClass pour toggle fav class
-        <i class="fa fa-star "></i>
-        {{device?.name}}
-    </h1>
-    <div class="row ">
-        <div class="col-sm-6 col-md-4 ">
-            <div class="card card-alerts ">
-                <div class="card-header ">
-                    <h4 class="card-title ">Avertissements</h4>
-                </div>
-                <div class="card-body ">
-                    <div>
-                        <h5 class="card-category ">
-                            Température inhabituelle
-                        </h5>
-                        <p>
-                            25°C - <a routerLink="sensor ">G2 Fondoir</a> 13/10/2017 13h40
-                        </p>
-                    </div>
-                    <div>
-                        <h5 class="card-category ">
-                            Humidité inhabituelle
-                        </h5>
-                        <p>
-                            80% - <a routerLink="sensor ">G2 Fondoir</a> 13/10/2017 13h40
-                        </p>
-                    </div>
-                    <div>
-                        <h5 class="card-category ">
-                            Matériel
-                        </h5>
-                        <p>
-                            Batterie faible - <a routerLink="sensor ">G2 Fondoir</a> 13/10/2017 13h40
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-4 ">
-            <div class="card ">
-                <div class="card-header ">
-                    <h4 class="card-title ">Capteurs</h4>
-                </div>
-                <div class="card-body ">
-                    <label class="font-weight-bold ">Site</label>
-                    <p><a routerLink="site ">Refuge du Goûter</a></p>
-                    <label class="font-weight-bold ">Zone</label>
-                    <p>Fondoir</p>
-                    <label class="font-weight-bold ">Dernière communication</label>
-                    <p>5 minutes</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-2 ">
-            <div class="card ">
-                <div class="card-header ">
-                    <h4 class="card-title ">Prévision gel</h4>
-                </div>
-                <div class="card-body ">
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-2 ">
-            <img src="../../assets/images/batteryLevel2.PNG " class="fit-img rounded ">
-        </div>
-    </div>
-    <div class="row ">
-        <div class="col-sm-12 col-md-4 ">
-            <div class="card ">
-                <div class="card-header ">
-                    <h4 class="card-title ">Température</h4>
-                </div>
-                <div class="card-body ">
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-12 col-md-4 ">
-            <div class="card ">
-                <div class="card-header ">
-                    <h4 class="card-title ">Humidité</h4>
-                </div>
-                <div class="card-body ">
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-12 col-md-4 ">
-            <div class="card ">
-                <div class="card-header ">
-                    <h4 class="card-title ">Pression</h4>
-                </div>
-                <div class="card-body ">
-                </div>
-            </div>
-        </div>
-    </div>
-</div> 
--->
