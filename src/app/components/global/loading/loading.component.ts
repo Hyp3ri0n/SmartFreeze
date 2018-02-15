@@ -8,7 +8,7 @@ import { LoadingModel } from './loading.model';
 
 export class LoadingComponent implements OnInit {
 
-    @Input() model : LoadingModel;
+    @Input() model : LoadingModel = new LoadingModel(-1, null);
 
     constructor() { /**/ }
 

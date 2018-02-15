@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
 import { forEach } from '@angular/router/src/utils/collection';
+import { SiteService, Site } from '../../services/sites/site.service';
+import { HttpService } from '../../services/http/http.service';
+
+interface SiteAllSite extends Site {
+    isActive: boolean;
+}
 
 @Component({
     selector: 'all-sites',
@@ -8,52 +14,26 @@ import { forEach } from '@angular/router/src/utils/collection';
 
 export class AllSitesComponent {
 
-    private sites:Site[];
-    private filteredSites:Site[];
+    private sites:SiteAllSite[];
+    private siteIds:string[];
     private countActives;
     private gelFilter;
 
-    constructor() {
-        this.sites = [
-            {
-                title : "Refuge du Goûter",
-                isActive: false,
-                hasAlarm: true
-            },
-            {
-                title : "Refuge du Couvercle",
-                isActive: false,
-                hasAlarm: false
-            },
-            {
-                title : "Refuge Laval",
-                isActive: false,
-                hasAlarm: false
-            },
-            {
-                title : "Refuge du Truc",
-                isActive: false,
-                hasAlarm: false
-            },
-            {
-                title : "Refuge du Charbournéou",
-                isActive: false,
-                hasAlarm: true
-            }
-        ];
+    constructor(private siteService : SiteService, private http : HttpService) {
+        this.getData();
+        this.http.backOnlineEventListener = { component : 'AllSitesComponent', cb : () => this.getData()};
         this.countActives = 0;
         this.gelFilter = false;
-        this.filteredSites = this.sites;
     }
 
     private openAll() : void {
-        this.filteredSites.forEach(element => {
+        this.sites.forEach(element => {
             element.isActive = true;
         });
-        this.countActives = this.filteredSites.length;
+        this.countActives = this.sites.length;
     }
     private closeAll() : void {
-        this.filteredSites.forEach(element => {
+        this.sites.forEach(element => {
             element.isActive = false;
         });
         this.countActives = 0;
@@ -66,10 +46,30 @@ export class AllSitesComponent {
             this.countActives --;
         }
     }
-}
 
-export interface Site {
-    isActive: boolean;
-    title: string;
-    hasAlarm: boolean;
+    public ngOnDestroy() : void {
+        this.http.removeBackOnlineListener('AllSitesComponent');
+    }
+
+    private getData() : void {
+        this.siteService.getSites().subscribe(
+            sites => {
+                this.siteIds = [];
+                sites.forEach(site => {
+                    this.siteIds.push(site.id);
+                });
+                this.siteService.getSitesWithIds(this.siteIds).subscribe(
+                    sites => {
+                        this.sites = [];
+                        sites.forEach(site => {
+                            this.sites.push({
+                                ...site,
+                                isActive: false
+                            });
+                        });
+                    }
+                );
+            }
+        );
+    }
 }

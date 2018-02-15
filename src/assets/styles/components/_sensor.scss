@@ -2,19 +2,6 @@ sensor {
 	@extend .app-container;
 }
 
-.fa-star {
-    color: $grey-base;
-    cursor: pointer;
-    
-    .fav {
-        color: $mc-yellow;
-    }
-
-    &:hover {
-        color: $mc-yellow;
-    }
-}
-
 .back-nav {
     position: absolute;
     top: 5px;
@@ -62,4 +49,8 @@ sensor {
 		width: 200%;
 		height: 200%;
 	}
+}
+
+.select-sensor-period {
+    padding: 2px;
 }

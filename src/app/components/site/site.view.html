@@ -288,36 +288,35 @@
             </div>
 
         </div>
-
-        <div class="row wrapperSndLine">
-            <div class="cardDashboard position-relative">
-                <div class="col-md-6">
-                    <div class="cardDashboard-header">
-                        Historique de la température
-                    </div>
-                    <div>
-                        <canvas id="chart-temp" class="chartjs-render-monitor site-chart"></canvas>
-                        <!-- graphe température pour tous les capteurs + plusieurs granularité -->
-                    </div>
-                </div>
-                <select class="select-period" (change)="changeScale($event.target.value)">
-                    <option value="" disabled>Période courante</option>
-                    <option value="year">Année</option>
-                    <option value="quarter">Trimestre</option>
-                    <option value="month">Mois</option>
-                    <option value="week">Semaine</option>
-                    <option value="day" selected>Jour</option>
-                    <option value="hour">Heure</option>
-                </select>
-                <div class="col-md-6">
-                    <div class="cardDashboard-header text-sm-right text-md-right">
-                        Historique de l'humidité
-                    </div>
-                    <div>
-                        <canvas id="chart-humidity" class="chartjs-render-monitor site-chart"></canvas>
-                        <!-- graphe humidité pour tous les capteurs + plusieurs granularité -->
-                    </div>
-                </div>
+    </div>
+    <div class="row wrapperFirstLine cardDashboard position-relative">
+        <div class="col-md-6">
+            <div class="cardDashboard-header">
+                Historique température
+            </div>
+            <div>
+                <loading *ngIf="temperatureDataset == null"></loading>
+                <chart class="app-container" *ngIf="temperatureDataset != null" [dataSet]="temperatureDataset" [type]="'temp'" [period]="period"></chart>
+                <!-- graphe température pour tous les capteurs + plusieurs granularité -->
+            </div>
+        </div>
+        <select class="select-site-period" (change)="reloadChart($event.target.value)">
+            <option value="" disabled>Période courante</option>
+            <option value="year">Année</option>
+            <option value="quarter">Trimestre</option>
+            <option value="month">Mois</option>
+            <option value="week">Semaine</option>
+            <option value="day" selected>Jour</option>
+            <option value="hour">Heure</option>
+        </select>
+        <div class="col-md-6">    
+            <div class="cardDashboard-header text-sm-right text-md-right">
+                Historique humidité
+            </div>
+            <div>
+                <loading *ngIf="humidityDataset == null"></loading>
+                <chart class="app-container" *ngIf="humidityDataset != null" [dataSet]="humidityDataset" [type]="'humidity'" [period]="period"></chart>
+                <!-- graphe humidité pour tous les capteurs + plusieurs granularité -->
             </div>
         </div>
     </div>
