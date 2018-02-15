@@ -84,7 +84,7 @@
                                 <loading *ngIf="alarmes == null" [model]="modelLoading"></loading>
                                 <ng-container *ngIf="alarmes != null">
                                     <tr *ngFor="let alarme of alarmes">
-                                        <td>{{alarme.occuredAt}}</td>
+                                        <td>{{alarme.occuredAt | date:'dd/MM/yyyy HH:mm'}}</td>
                                         <td>
                                             <b>{{alarme.siteName}}</b>
                                         </td>

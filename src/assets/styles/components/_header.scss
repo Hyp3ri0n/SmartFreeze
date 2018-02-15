@@ -106,14 +106,53 @@
     display: none;
     list-style: none;
     padding: 5px 10px;
-    border: 1px solid $grey-dark;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border: 1px solid $grey-light;
+    border-radius: 10px;
+    opacity: 0.97;
     z-index: 3;
     background-color: $mc-white;
     position: absolute;
     right: 5px;
     top: 55px;
+    font-family: RobotoDraft, Roboto, 'Helvetica Neue', sans-serif;
+    font-size:12px;
+
+    .btnAlertNotif{
+      display:flex;
+
+      .btn{
+        width:100%;
+        margin:auto;
+      }
+    }
+
+    .label{
+      padding:4px;
+      color: $mc-white;
+      font-size: 12px;
+      text-transform: lowercase;
+      border-radius: 2px;
+      font-weight: bold;
+      text-align: center;
+        
+      .fa{
+          color:$mc-yellow;
+      }
+    }
+        
+    .label-serieux{
+      background-color: $mc-orange;
+    }
+        
+    .label-critique{
+      background-color: $mc-red; 
+    }
+        
+    .label-info{
+      background-color: $mc-teal ;
+    }
+    
+
     @include media-breakpoint-down(md) {
       right: 0px;
     }

@@ -9,7 +9,7 @@ export interface Alarme {
     id : string;
     description : string;
     isActive : boolean;
-    occuredAt : string;
+    occuredAt : Date;
     type : Type;
     gravity : Gravity;
     shortDescription : string;
@@ -60,6 +60,16 @@ export class AlarmeService {
                 err => {
                     // TODO send test
                     observer.next({test : 'TEST'});
+                }
+            );
+        });
+    }
+
+    public setAlarmeAsView(id : string) : Observable<String> {
+        return Observable.create((observer) => {
+            this.http.request(MethodRequest.PUT, '/api/Alarms/' + id + "ack", {}).subscribe(
+                sucess => {
+                    observer.next('');
                 }
             );
         });
