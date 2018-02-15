@@ -3,44 +3,6 @@ site {
 }
 
 
-.allIndications{
-    display:flex;
-    flex-direction: row;
-    margin-top:10px;
-    justify-content: center;
-
-    .indicationDay {
-        display:flex;
-        flex-direction:column;
-        text-align: center;
-        padding:2px;
-
-        .indicationSquare{
-            width: 40px;
-            height : 40px;
-            display:flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .indicationSquare-0{
-            background-color: $indic-0;  
-        }
-        .indicationSquare-1{
-            background-color: $indic-1;  
-        }
-        .indicationSquare-2{
-            background-color: $indic-2;   
-        }
-        .indicationSquare-3{
-            background-color: $indic-3;   
-        }
-        .indicationSquare-4{
-            background-color: $indic-4;     
-        }
-    }
-}
-
 .wrapperAllSite {
     flex-flow: column nowrap;
     display: flex;
@@ -212,7 +174,7 @@ site {
             font-size: 12px;
 
             div{
-                padding-top:10px;
+                padding-top:5px;
             }
 
             p{
