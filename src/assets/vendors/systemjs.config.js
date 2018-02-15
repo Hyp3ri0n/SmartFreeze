@@ -27,7 +27,8 @@
             'chart.js': 'npm:Chart.bundle.min.js',
             'ng2-smart-table': 'npm:table.umd.js',
             'ng2-completer':'npm:ng2-completer.umd.js',
-            'lodash':'npm:lodash.min.js'
+            'lodash':'npm:lodash.min.js',
+            'angular-weather-widget': 'npm:angular-weather-widget.umd.min.js'
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {

@@ -45,6 +45,8 @@ import { RenderType } from './components/alerts/renderType.component';
 import { RenderGravity } from './components/alerts/renderGravity.component';
 import { ChartComponent } from './components/global/chart/chart.component';
 import { PrevisionsService } from './services/previsions/previsions.service';
+import { MeteoService } from './services/meteo/meteo.service';
+import { AngularWeatherWidgetModule, WeatherApiName } from 'angular-weather-widget';
 
 
 @NgModule({
@@ -55,7 +57,11 @@ import { PrevisionsService } from './services/previsions/previsions.service';
     RouterModule.forRoot(appRoutes),
     AgmCoreModule.forRoot({apiKey: 'AIzaSyCJVLgZMjujdJhvWfcV12kxSZu01ZL8MHw'}),
     AgmSnazzyInfoWindowModule,
-    Ng2SmartTableModule
+    Ng2SmartTableModule,
+    AngularWeatherWidgetModule.forRoot({key: '948a4f8d9d39b26fd733260fe2fd2c41',
+                                        name: WeatherApiName.OPEN_WEATHER_MAP,
+                                        baseUrl: 'http://api.openweathermap.org/data/2.5'
+                                      })
   ],
   providers: [
     {provide: APP_BASE_HREF, useValue: '#'},
@@ -64,7 +70,8 @@ import { PrevisionsService } from './services/previsions/previsions.service';
     DeviceService,
     SiteService,
     AlarmeService,
-    PrevisionsService
+    PrevisionsService,
+    MeteoService
   ],
   declarations: [
     AppComponent,

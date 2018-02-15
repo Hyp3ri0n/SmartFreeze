@@ -139,7 +139,8 @@ gulp.task("libs_js", ["libs_ng", "libs_rxjs", "libs_agm"], function () {
         'snazzy-info-window/dist/snazzy-info-window.min.js',
         'ng2-smart-table/bundles/table.umd.js',
         'ng2-completer/ng2-completer.umd.js',
-        'lodash/lodash.min.js'
+        'lodash/lodash.min.js',
+        'angular-weather-widget/bundles/angular-weather-widget.umd.min.js'
     ], {cwd: "node_modules/**"}) /* Glob required here. */
         .pipe(rename({dirname:''}))
         .pipe(gulp.dest("dist/www/assets/vendors/libs"));
