@@ -255,13 +255,49 @@ all-sites {
              color: $mc-yellow;
              margin-right: 10px;
          }
-         .card-item {
-             display: flex;
-             flex-flow: row nowrap;
-             a {
-                 flex: 1;
-             }
+
+         .cardDashboard-header{
+            align-items: center;
+            justify-content: center;
+            display:flex;
+
+            .fa-snowflake-o{
+                margin-right:auto;
+            }
+            .fa-minus{
+                margin-left:auto;
+            }
+            .fa-plus{
+                margin-left:auto;
+            }
          }
+
+         .btnSensor{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: left;
+            align-items: center;
+
+            .fa-snowflake-o{
+                margin-left:10px;
+                margin-top:0px;
+            }
+            .fa-star{
+                margin-right:10px;
+                margin-top:0px;
+            }
+        }
+       
+    
+        .card-item{
+            padding:5px;
+            display: flex;
+            flex-flow: row nowrap;
+                a {
+                    flex: 1;
+                }
+        }
      }
  
      .container-fluid {
@@ -330,9 +366,10 @@ all-sites {
                 text-align: center;
             }
         }
-        .card .card-header {
+        .cardDashboard .cardDashboard-header {
             flex-flow: row wrap;
         }
+
     }
 
     site {

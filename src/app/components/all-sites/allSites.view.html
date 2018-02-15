@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid homePage">
     <div class="all-sites-header">
         <ng-container *ngIf="countActives <= 1">
             <button type="button" class="btn btn-outline-primary toggle-all" (click)="openAll()">Tout déplier</button>
@@ -17,20 +17,20 @@
     <div class="row" [ngClass]="{'filtered': gelFilter }">
         <loading *ngIf="sites == null"></loading>
         <div class="col-6 col-sm-6 col-md-3 mb-3" *ngFor="let site of sites" [ngClass]="{'hasAlarm': site.hasActiveAlarms }">
-            <div class="card" [ngClass]="{'active-card': site.isActive }">
-                <div class="card-header">
-                    <h4 class="card-title">
-                        <a [routerLink]="'/site/'+site.id">{{site.name}}</a>
-                    </h4>
+            <div class="card cardDashboard cardAllSites" [ngClass]="{'active-card': site.isActive }">
+                <div class=" cardDashboard-header">
                     <i *ngIf="site.hasActiveAlarms" class="gel-icon fa fa-snowflake-o" title="Gel prévu"></i>
+                    <a [routerLink]="'/site/'+site.id">{{site.name}}</a>
                     <i class="card-icon fa" [ngClass]="{'fa-minus': site.isActive, 'fa-plus' : !site.isActive }" (click)="go_clicked(site)"></i>
                 </div>
                 <div class="toggle-card">
                     <div class="card-body">
                         <div class="card-item" *ngFor="let device of site.devices">
-                            <a [routerLink]="'/sensor/'+device.id">{{device.name}}</a>
-                            <i *ngIf="device.isFavorite" class="fav-icon fa fa-star" title="Capteur favori"></i>
-                            <i *ngIf="device.hasActiveAlarms" class="gel-icon fa fa-snowflake-o" title="Gel prévu"></i>
+                            <button [routerLink]="'/sensor/'+device.id" class="btn btn-primary btnSensor">
+                                <i *ngIf="device.isFavorite" class="fav-icon fa fa-star" title="Capteur favoris"></i>
+                                {{device.name}}
+                                <i style="float:right;" *ngIf="device.hasActiveAlarms" class="gel-icon fa fa-snowflake-o" title="Gel prévu"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
