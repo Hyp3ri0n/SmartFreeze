@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DeviceService, Device } from '../../services/devices/device.service';
 import { ChartUtil } from '../global/chart/chart.util';
 import { HttpService } from '../../services/http/http.service';
+import { PrevisionsService, ForecastDay, ForecastWeek } from '../../services/previsions/previsions.service';
 
 @Component({
     selector: 'sensor',
@@ -19,9 +20,12 @@ export class SensorComponent {
     private period:string;
     private from:Date = new Date();
     private to:Date;
+    private forecastSite: ForecastDay[];
+    private forecastWeek: ForecastWeek;
 
     constructor(private router : ActivatedRoute,
         private deviceService : DeviceService,
+        private previsionsService : PrevisionsService,
         private http : HttpService) {
         this.router.params.subscribe(
             params => {
@@ -46,6 +50,14 @@ export class SensorComponent {
         this.temperatureDataset = null;
         this.humidityDataset = null;
         this.pressureDataset = null;
+
+        this.previsionsService.getPrevisionsForDevice(this.deviceId).subscribe(
+            previsions => {
+                this.forecastWeek = previsions;
+                this.forecastSite = this.forecastWeek.forecast;
+            }
+        );
+
         this.deviceService.getDevice(this.deviceId).subscribe(
             device => {
                 this.device = device;

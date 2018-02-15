@@ -5,7 +5,7 @@
     <div class="site-row app-container flex-container">
         <div class="wrapperAllSite">
             <div class="row wrapperFirstLine">
-                <div class="col-md-6 wrapperAvertLeft">
+                <div class="col-md-7 wrapperAvertLeft">
                     <div class="cardDashboard wrapperAlarms">
                         <div class="cardDashboard-header ">
                             Derniers Avertissements
@@ -170,29 +170,8 @@
                     </div>
                 </div>
 
-                <div class="col-md-6 site-column">
-                    <div class="cardDashboard">
-                        <!-- middleWrapperFirstLine -->
-                        <div class="cardDashboard-header">
-                            Les Capteurs
-                        </div>
-                        <div>
-                            <div *ngFor="let device of site?.devices">
-                                <button [routerLink]="'/sensor/'+device.id" class="btn btn-primary" style="margin:3px;">
-                                    <span title="{{device.activeAlarmsCount}} alarmes actives" *ngIf="device.hasActiveAlarms">
-                                        <i class="fa fa-exclamation-triangle"></i>
-                                    </span>
-                                    <span *ngIf="device.isFavorite">
-                                        <i class="fa fa-star"></i>
-                                    </span>
+                <div class="col-md-5 site-column">
 
-                                    <span>
-                                        {{device.name}}
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
                     <div class="cardDashboard">
                         <div class="cardDashboard-header">
                             Prévisions du gel sur 5 jours
@@ -203,28 +182,55 @@
                                 <div class="indicationSquare">A.M.</div>
                                 <div class="indicationSquare">P.M.</div>
                             </div>
-                            <div class="indicationDay" *ngFor="let forecast of forecastSite">
-                                <div>
-                                    {{forecast.date}}
+                            <div title="Probabilité de gel d'indice {{forecast.morning?.trustIndication}}" class="indicationDay" *ngFor="let forecast of forecastSite">
+                                <div class="indicationSquare">
+                                    {{forecast.date | date:'EEE'}}
                                 </div>
-                                <div [ngClass]="{ 
-                                'indicationSquare-0' : forecast.morning.trustIndication == 0,
-                                'indicationSquare-1' : forecast.morning.trustIndication == 1, 
-                                'indicationSquare-2' : forecast.morning.trustIndication == 2,
-                                'indicationSquare-3' : forecast.morning.trustIndication == 3,
-                                'indicationSquare-4 fa fa-exclamation-triangle' : forecast.morning.trustIndication == 4 }"
+                                <div [routerLink]="'/sensor/'+forecast.morning?.deviceId" [ngClass]="{ 
+                                'indicationSquare-0' : forecast.morning?.trustIndication == 0,
+                                'indicationSquare-1' : forecast.morning?.trustIndication == 1, 
+                                'indicationSquare-2' : forecast.morning?.trustIndication == 2,
+                                'indicationSquare-3' : forecast.morning?.trustIndication == 3,
+                                'indicationSquare-4 fa fa-exclamation-triangle' : forecast.morning?.trustIndication == 4}"
                                     class="indicationSquare">
                                 </div>
-                                <div [ngClass]="{ 
-                                    'indicationSquare-0' : forecast.afternoon.trustIndication == 0,
-                                    'indicationSquare-1' : forecast.afternoon.trustIndication == 1, 
-                                    'indicationSquare-2' : forecast.afternoon.trustIndication == 2,
-                                    'indicationSquare-3' : forecast.afternoon.trustIndication == 3,
-                                    'indicationSquare-4 fa fa-exclamation-triangle' : forecast.afternoon.trustIndication == 4 }"
-                                        class="indicationSquare">
+                                <div [routerLink]="'/sensor/'+forecast.afternoon?.deviceId" [ngClass]="{ 
+                                    'indicationSquare-0' : forecast.afternoon?.trustIndication == 0,
+                                    'indicationSquare-1' : forecast.afternoon?.trustIndication == 1, 
+                                    'indicationSquare-2' : forecast.afternoon?.trustIndication == 2,
+                                    'indicationSquare-3' : forecast.afternoon?.trustIndication == 3,
+                                    'indicationSquare-4 fa fa-exclamation-triangle' : forecast.afternoon?.trustIndication == 4}"
+                                    class="indicationSquare">
                                 </div>
                             </div>
+
+
                         </div>
+
+                        <div class="legendeProbaGel">
+                            Légende pour la probabilité de gel
+                            <div class="row ">
+
+
+                                <div class="col-lg-2 legendeItem">
+                                    <span class="indicationSquare indicationSquare-0"></span>
+                                    Aucune</div>
+                                <div class="col-lg-2 legendeItem">
+                                    <span class="indicationSquare indicationSquare-1"></span>
+                                    Faible</div>
+                                <div class="col-lg-2 legendeItem">
+                                    <span class="indicationSquare indicationSquare-2"></span>
+                                    Moyenne</div>
+                                <div class="col-lg-2 legendeItem">
+                                    <span class="indicationSquare indicationSquare-3"></span>
+                                    Forte</div>
+                                <div class="col-lg-2 legendeItem">
+                                    <span class="indicationSquare indicationSquare-4"></span>
+                                    Certaine</div>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
 
@@ -285,6 +291,28 @@
                             <b>Altitude : </b>[DATA MISSING]m d'altitude</p>
                         <p>
                             <b>Département : </b>{{site?.region + ' (' + site?.department + ')'}}</p>
+                    </div>
+                    <div>
+                        <!-- middleWrapperFirstLine -->
+                        <div class="cardDashboard-header">
+                            Les Capteurs
+                        </div>
+                        <div>
+                            <div *ngFor="let device of site?.devices">
+                                <button [routerLink]="'/sensor/'+device.id" class="btn btn-primary" style="margin:3px;">
+                                    <span title="{{device.activeAlarmsCount}} alarmes actives" *ngIf="device.hasActiveAlarms">
+                                        <i class="fa fa-exclamation-triangle"></i>
+                                    </span>
+                                    <span *ngIf="device.isFavorite">
+                                        <i class="fa fa-star"></i>
+                                    </span>
+
+                                    <span>
+                                        {{device.name}}
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div id="meteo" class="meteo">
