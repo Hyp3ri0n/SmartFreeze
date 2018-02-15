@@ -44,6 +44,7 @@ import { RenderDate } from './components/search/renderDate.component';
 import { RenderType } from './components/alerts/renderType.component';
 import { RenderGravity } from './components/alerts/renderGravity.component';
 import { ChartComponent } from './components/global/chart/chart.component';
+import { PrevisionsService } from './services/previsions/previsions.service';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import { ChartComponent } from './components/global/chart/chart.component';
     LoginService,
     DeviceService,
     SiteService,
-    AlarmeService
+    AlarmeService,
+    PrevisionsService
   ],
   declarations: [
     AppComponent,

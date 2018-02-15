@@ -10,22 +10,8 @@ import 'rxjs/add/observable/forkJoin';
 import { ChartComponent } from '../global/chart/chart.component';
 import { LoadingModel } from '../global/loading/loading.model';
 import { ChartUtil } from '../global/chart/chart.util';
+import { PrevisionsService, ForecastDay, ForecastWeek } from '../../services/previsions/previsions.service';
 
-
-export enum TrustIndication {
-    NONE, LOW, MEDIUM, HIGH, IMINENT
-}
-
-export interface HalfDayForecast {
-    deviceId: string;
-    trustIndication: TrustIndication;
-}
-
-export interface ForecastDay  {
-    date: string;
-    morning: HalfDayForecast;
-    afternoon: HalfDayForecast;
-}
 
 @Component({
     selector: 'site',
@@ -42,41 +28,13 @@ export class SiteComponent {
     private from:Date = new Date();
     private to:Date;
     private forecastSite: ForecastDay[];
+    private forecastWeek: ForecastWeek;
 
     constructor(private router: ActivatedRoute,
         private siteService: SiteService,
         private deviceService: DeviceService,
+        private previsionsService : PrevisionsService,
         private http: HttpService) {
-
-        /* FOR CAST FAKE DATA */
-        this.forecastSite = [
-            {
-                date: "lu",
-                morning: { deviceId: "id01", trustIndication: TrustIndication.HIGH },
-                afternoon: { deviceId: "id02", trustIndication: TrustIndication.LOW }
-            },
-            {
-                date: "ma",
-                morning: { deviceId: "id03", trustIndication: TrustIndication.HIGH },
-                afternoon: { deviceId: "id02", trustIndication: TrustIndication.NONE }
-            },
-            {
-                date: "me",
-                morning: { deviceId: "id01", trustIndication: TrustIndication.MEDIUM },
-                afternoon: { deviceId: "id02", trustIndication: TrustIndication.LOW }
-            },
-            {
-                date: "je",
-                morning: { deviceId: "id04", trustIndication: TrustIndication.IMINENT },
-                afternoon: { deviceId: "id02", trustIndication: TrustIndication.LOW }
-            },
-            {
-                date: "ve",
-                morning: { deviceId: "id01", trustIndication: TrustIndication.NONE},
-                afternoon: { deviceId: "id02", trustIndication: TrustIndication.LOW }
-            }
-        ];
-        console.log(this.forecastSite);
 
         this.router.params.subscribe(
             params => {
@@ -98,6 +56,14 @@ export class SiteComponent {
     }
 
     private getData(): void {
+
+        this.previsionsService.getPrevisionsForSite(this.siteId).subscribe(
+            previsions => {
+                this.forecastWeek = previsions;
+                this.forecastSite = this.forecastWeek.forecast;
+            }
+        );
+
         this.siteService.getSite(this.siteId).subscribe(
             site => {
                 this.site = site;
