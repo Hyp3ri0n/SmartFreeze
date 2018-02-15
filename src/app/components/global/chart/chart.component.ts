@@ -61,7 +61,7 @@ export class ChartComponent implements AfterViewInit {
                     ...tmpYAxes,
                     scaleLabel: {
                         display: true,
-                        labelString: 'Pression en Bar'
+                        labelString: 'Pression en Pascal'
                     }
                 }];
                 break;
@@ -79,7 +79,7 @@ export class ChartComponent implements AfterViewInit {
             },
             options: {
                 responsive: true,
-                spanGaps: true,
+                maintainAspectRatio: false,
                 scales: {
                     xAxes: [{
                         type: 'time',
@@ -98,6 +98,5 @@ export class ChartComponent implements AfterViewInit {
                 }
             }
         });
-        console.log(this.chart);
     }
 }

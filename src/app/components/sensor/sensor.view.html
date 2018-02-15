@@ -7,220 +7,192 @@
         {{device?.name}}
     </div>
 
-    <div class="row">
-
-        <div class="col-md-6">
-            <div class="cardDashboard wrapperAlarms">
-
-                <div class="cardDashboard-header ">
-                    Derniers Avertissements
-                </div>
-                <div class="tableWrapper">
-
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-
-                                <th>Zone</th>
-                                <th></th>
-                                <th>Description</th>
-                                <th>Gravité</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>02/02/2018 15h04</td>
-                                <td>Fondoir</td>
-                                <td>
-                                    <i class="fa fa-snowflake-o"></i>
-                                </td>
-                                <td>Gel prévu dans 5 jours</td>
-                                <td>
-                                    <span class="label label-serieux">Sérieux</span>
-                                </td>
-                                <td>
-                                    <i class="fa fa-external-link"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>01/02/2018 18h04</td>
-                                <td>Fondoir</td>
-                                <td>
-                                    <i class="fa fa-snowflake-o"></i>
-                                </td>
-                                <td>Gel prévu dans 2 jours</td>
-                                <td>
-                                    <span class="label label-critique">Critique</span>
-                                </td>
-                                <td>
-                                    <i class="fa fa-external-link"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>26/01/2018 15h04</td>
-                                <td>Extérieur</td>
-                                <td>
-                                    <i class="fa fa-wrench"></i>
-                                </td>
-                                <td>Non réception depuis 1 jour</td>
-                                <td>
-                                    <span class="label label-info">Information</span>
-                                </td>
-                                <td>
-                                    <i class="fa fa-external-link"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>26/01/2018 15h04</td>
-                                <td>Extérieur</td>
-                                <td>
-                                    <i class="fa fa-thermometer-quarter"></i>
-                                </td>
-                                <td>Dégel prévu dans 10 jours</td>
-                                <td>
-                                    <span class="label label-info">Information</span>
-                                </td>
-                                <td>
-                                    <i class="fa fa-external-link"></i>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6 wrapperRightSensor">
-
-
-            <div class="row">
-
-                <div class="col-md-6 cardSummary">
-                    <div [routerLink]="'/site/'+device?.siteId" class="cardDashboard cardInfo row">
-
-                        <div class="cardIcon   bg-red">
-                            <i class="fa fa-map-marker"></i>
-                        </div>
-
-                        <div class="cardInfoTextSensor">
-                            <p>Site</p>
-                            <div class="color-red">{{device?.siteId}}</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 cardSummary">
-                    <div class="cardDashboard cardInfo row">
-
-                        <div class="cardIcon   bg-green">
-                            <i class="fa fa-home"></i>
-                        </div>
-
-                        <div class="cardInfoTextSensor">
-                            <p>Zone</p>
-                            <div class="color-green">{{device?.zone}}</div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="row">
-
-                <div class="col-md-6 cardSummary">
-                    <div class="cardDashboard cardInfo row">
-
-                        <div class="cardIcon   bg-blue">
-                            <i class="fa fa-wifi"></i>
-                        </div>
-
-                        <div class="cardInfoTextSensor">
-                            <p>Dernière communication</p>
-                            <div class="color-blue">{{device?.lastCommunication}}</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 cardSummary">
-                    <div class="cardDashboard cardInfo row">
-
-                        <div class="cardIcon   bg-orange">
-                            <i class="fa fa-battery-half"></i>
-                        </div>
-
-                        <div class="cardInfoTextSensor">
-                            <p>Batterie</p>
-                            <div class="color-orange">Bonne</div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-
-            <div class="row">
-                <div class="cardDashboard col-sm-9">
+    <div class="wrapperAllSite app-container">
+        <div class="row wrapperFirstLine">
+            <div class="col-md-6">
+                <div class="cardDashboard wrapperAlarms">
                     <div class="cardDashboard-header ">
-                        Prévision Gel
+                        Derniers Avertissements
                     </div>
-                    <div>
-                        prévision gel (...)
+                    <div class="tableWrapper">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+
+                                    <th>Zone</th>
+                                    <th></th>
+                                    <th>Description</th>
+                                    <th>Gravité</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>02/02/2018 15h04</td>
+                                    <td>Fondoir</td>
+                                    <td>
+                                        <i class="fa fa-snowflake-o"></i>
+                                    </td>
+                                    <td>Gel prévu dans 5 jours</td>
+                                    <td>
+                                        <span class="label label-serieux">Sérieux</span>
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-external-link"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>01/02/2018 18h04</td>
+                                    <td>Fondoir</td>
+                                    <td>
+                                        <i class="fa fa-snowflake-o"></i>
+                                    </td>
+                                    <td>Gel prévu dans 2 jours</td>
+                                    <td>
+                                        <span class="label label-critique">Critique</span>
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-external-link"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>26/01/2018 15h04</td>
+                                    <td>Extérieur</td>
+                                    <td>
+                                        <i class="fa fa-wrench"></i>
+                                    </td>
+                                    <td>Non réception depuis 1 jour</td>
+                                    <td>
+                                        <span class="label label-info">Information</span>
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-external-link"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>26/01/2018 15h04</td>
+                                    <td>Extérieur</td>
+                                    <td>
+                                        <i class="fa fa-thermometer-quarter"></i>
+                                    </td>
+                                    <td>Dégel prévu dans 10 jours</td>
+                                    <td>
+                                        <span class="label label-info">Information</span>
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-external-link"></i>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <div class="col-sm-3">
-                    <select class="select-sensor-period" (change)="reloadChart($event.target.value)">
-                        <option value="" disabled>Période courante</option>
-                        <option value="year">Année</option>
-                        <option value="quarter">Trimestre</option>
-                        <option value="month">Mois</option>
-                        <option value="week">Semaine</option>
-                        <option value="day" selected>Jour</option>
-                        <option value="hour">Heure</option>
-                    </select>
+            </div>
+            <div class="col-md-6 wrapperRightSensor">
+                <div class="row">
+                    <div class="col-md-6 cardSummary">
+                        <div [routerLink]="'/site/'+device?.siteId" class="cardDashboard cardInfo row">
+                            <div class="cardIcon   bg-red">
+                                <i class="fa fa-map-marker"></i>
+                            </div>
+                            <div class="cardInfoTextSensor">
+                                <p>Site</p>
+                                <div class="color-red">{{device?.siteId}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 cardSummary">
+                        <div class="cardDashboard cardInfo row">
+                            <div class="cardIcon   bg-green">
+                                <i class="fa fa-home"></i>
+                            </div>
+                            <div class="cardInfoTextSensor">
+                                <p>Zone</p>
+                                <div class="color-green">{{device?.zone}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 cardSummary">
+                        <div class="cardDashboard cardInfo row">
+
+                            <div class="cardIcon   bg-blue">
+                                <i class="fa fa-wifi"></i>
+                            </div>
+
+                            <div class="cardInfoTextSensor">
+                                <p>Dernière communication</p>
+                                <div class="color-blue">{{device?.lastCommunication}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 cardSummary">
+                        <div class="cardDashboard cardInfo row">
+
+                            <div class="cardIcon   bg-orange">
+                                <i class="fa fa-battery-half"></i>
+                            </div>
+
+                            <div class="cardInfoTextSensor">
+                                <p>Batterie</p>
+                                <div class="color-orange">Bonne</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="cardDashboard col-sm-9">
+                        <div class="cardDashboard-header ">
+                            Prévision Gel
+                        </div>
+                        <div>
+                            prévision gel (...)
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <select class="select-sensor-period" (change)="reloadChart($event.target.value)">
+                            <option value="" disabled>Période courante</option>
+                            <option value="year">Année</option>
+                            <option value="quarter">Trimestre</option>
+                            <option value="month">Mois</option>
+                            <option value="week">Semaine</option>
+                            <option value="day" selected>Jour</option>
+                            <option value="hour">Heure</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
-
-    </div>
-
-    <div class="row">
-
-        <div class="col-sm-4">
-            <div class=" cardDashboard ">
-                <div class="cardDashboard-header ">
-                    Température
-                </div>
-                <div>
+        <div class="row wrapperSndLine wrapperCharts">
+            <div class="col-sm-4">
+                <div class="cardDashboard">
+                    <div class="cardDashboard-header ">
+                        Température
+                    </div>
                     <loading *ngIf="temperatureDataset == null"></loading>
-                    <chart class="app-container" *ngIf="temperatureDataset != null" [dataSet]="temperatureDataset" [type]="'temp'" [period]="period"></chart>
+                    <chart *ngIf="temperatureDataset != null" [dataSet]="temperatureDataset" [type]="'temp'" [period]="period"></chart>
                 </div>
             </div>
-        </div>
-
-        <div class="col-sm-4">
-            <div class=" cardDashboard ">
-                <div class="cardDashboard-header ">
-                    Humidité
-                </div>
-                <div>
+            <div class="col-sm-4">
+                <div class="cardDashboard">
+                    <div class="cardDashboard-header ">
+                        Humidité
+                    </div>
                     <loading *ngIf="humidityDataset == null"></loading>
-                    <chart class="app-container" *ngIf="humidityDataset != null" [dataSet]="humidityDataset" [type]="'humidity'" [period]="period"></chart>
+                    <chart *ngIf="humidityDataset != null" [dataSet]="humidityDataset" [type]="'humidity'" [period]="period"></chart>
                 </div>
             </div>
-        </div>
-
-        <div class="col-sm-4">
-            <div class=" cardDashboard ">
-                <div class="cardDashboard-header ">
-                    Pression
-                </div>
-                <div>
+            <div class="col-sm-4">
+                <div class="cardDashboard">
+                    <div class="cardDashboard-header ">
+                        Pression
+                    </div>
                     <loading *ngIf="pressureDataset == null"></loading>
-                    <chart class="app-container" *ngIf="pressureDataset != null" [dataSet]="pressureDataset" [type]="'pressure'" [period]="period"></chart>
+                    <chart *ngIf="pressureDataset != null" [dataSet]="pressureDataset" [type]="'pressure'" [period]="period"></chart>
                 </div>
             </div>
         </div>
-
-    </div>
 </div>
