@@ -79,7 +79,7 @@ export class HomeComponent implements OnDestroy {
 
         this.alarmes.forEach(alarme => {
             if (alarme.gravity === Gravity.Critical) {
-                if (sitesCritiques.find(alarme.siteId) === undefined) {
+                if (sitesCritiques.indexOf(alarme.siteId) === -1) {
                     sitesCritiques.push(alarme.siteId);
                 }
             }
@@ -92,7 +92,7 @@ export class HomeComponent implements OnDestroy {
 
         this.alarmes.forEach(alarme => {
             if (alarme.gravity === Gravity.Critical) {
-                if (devicesCritiques.find(alarme.deviceId) === undefined) {
+                if (devicesCritiques.indexOf(alarme.deviceId) === -1) {
                     devicesCritiques.push(alarme.deviceId);
                 }
             }
