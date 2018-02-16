@@ -155,8 +155,8 @@
         </div>
         <div class="cardInfosSite">
             <div class="wrapperImg">
-                <img *ngIf="site.image" class="fit-img" [src]="site?.image">
-                <img *ngIf="!site.image" class="fit-img" src="./assets/images/default.jpg">
+                <img *ngIf="site?.image" class="fit-img" [src]="site?.image">
+                <img *ngIf="!site?.image" class="fit-img" src="./assets/images/default.jpg">
                 <div class="buttonMoreInfos">
                     <span (click)="showCaract()" class="icon btnCaract">
                         <i class=" fa fa-bars"> </i>
