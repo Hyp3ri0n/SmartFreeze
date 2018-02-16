@@ -27,6 +27,7 @@ export class SensorComponent {
     private forecastWeek: ForecastWeek;
     private alarmes : Alarme[] = [];
     private sites: Site[] = [];
+    private siteName : string = '';
 
     constructor(private router : ActivatedRoute,
         private deviceService : DeviceService,
@@ -53,14 +54,14 @@ export class SensorComponent {
         this.http.removeBackOnlineListener('SensorComponent');
     }
 
-    private getSiteName(id : string) : string {
+    private getSiteName(id : string) : void {
         let siteName : string = "";
         this.sites.forEach(site => {
             if (site.id === id) {
                 siteName = site.name;
             }
         });
-        return siteName;
+        this.siteName = siteName;
     }
 
     private getData() : void {
@@ -75,16 +76,17 @@ export class SensorComponent {
             }
         );
 
-        this.sites = null;
-        this.siteService.getSites().subscribe(
-            sites => {
-                this.sites = sites;
-            }
-        );
-
         this.deviceService.getDevice(this.deviceId).subscribe(
             device => {
                 this.device = device;
+
+                this.sites = null;
+                this.siteService.getSites().subscribe(
+                    sites => {
+                        this.sites = sites;
+                        this.getSiteName(this.device.siteId);
+                    }
+                );
                 //Alarms
                 this.alarmeService.getAlarmesWithMoreInfoByDevices([this.device]).subscribe(
                     alarmes => {
@@ -151,5 +153,14 @@ export class SensorComponent {
         let newValues = ChartUtil.getFirstDayOfPeriod(value);
         this.from = newValues.date;
         this.period = newValues.period;
+    }
+
+    private clicked_fav(): void {
+        this.device.isFavorite = !this.device.isFavorite;
+        this.deviceService.setDevice(this.device).subscribe(
+            sucess => {
+                /* */
+            }
+        );
     }
 }
