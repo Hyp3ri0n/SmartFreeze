@@ -1,13 +1,15 @@
 import { Component, OnDestroy } from '@angular/core';
 import { DeviceService } from '../../../services/devices/device.service';
 import { HttpService } from '../../../services/http/http.service';
+import { SiteService } from '../../../services/sites/site.service';
 
 export interface Marker {
     lat: number;
     lng: number;
-    site: string;
-    sensor: string;
-    link: string;
+    siteName: string;
+    sensorName: string;
+    siteId: string;
+    sensorId: string;
 }
 
 @Component({
@@ -20,7 +22,7 @@ export class MapComponent implements OnDestroy {
     private zoom:number = 9;
     private markers:Marker[] = [];
 
-    constructor(private device : DeviceService, private http : HttpService) {
+    constructor(private device : DeviceService, private site : SiteService, private http : HttpService) {
         this.getData();
         this.http.backOnlineEventListener = { component : 'MapComponent', cb : () => this.getData()};
     }
@@ -35,29 +37,24 @@ export class MapComponent implements OnDestroy {
             devices => {
                 this.markers = [];
                 devices.forEach(device => {
-                    this.markers.push({
-                        lat: device.latitude,
-                        lng: device.longitude,
-                        site: device.siteId,
-                        sensor: device.name,
-                        link: 'http://refugedugouter.ffcam.fr/'
-                    });
+                    this.site.getSite(device.siteId).subscribe(
+                        site => {
+                            this.markers.push({
+                                lat: device.latitude,
+                                lng: device.longitude,
+                                siteName: site.name,
+                                sensorName: device.name,
+                                sensorId: device.id,
+                                siteId: device.siteId
+                            });
+                        }
+                    );
                 });
             }
         );
     }
 
-    public clickedMarker(label: string, index: number) : void {
-        // console.log(`clicked the marker: ${label || index}`);
-    }
+    public clickedMarker(label: string, index: number) : void {}
 
-    public mapClicked($event: any) : void {
-        // this.markers.push({
-        //     lat: $event.coords.lat,
-        //     lng: $event.coords.lng,
-        //     site: 'site',
-        //     sensor: 'sensor',
-        //     link: '#'
-        // });
-    }
+    public mapClicked($event: any) : void {}
 }
