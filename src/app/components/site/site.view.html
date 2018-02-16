@@ -61,17 +61,17 @@
                             Prévisions du gel sur 5 jours
                         </h2>
                         <div class="gelTab">
-                            <div class="allIndications">
+                            <div *ngIf="forecastSite?.length != 0" class="allIndications">
                                 <div class="indicationDay">
                                     <div class="indicationSquare">Jour</div>
                                     <div class="indicationSquare">A.M.</div>
                                     <div class="indicationSquare">P.M.</div>
                                 </div>
-                                <div title="Probabilité de gel d'indice {{forecast.morning?.trustIndication}}" class="indicationDay" *ngFor="let forecast of forecastSite">
+                                <div  class="indicationDay" *ngFor="let forecast of forecastSite">
                                     <div class="indicationSquare">
                                         {{forecast.date | date:'EEE'}}
                                     </div>
-                                    <div [routerLink]="'/sensor/'+forecast.morning?.deviceId" [ngClass]="{ 
+                                    <div title="Probabilité de gel d'indice {{forecast.morning?.trustIndication}}" [routerLink]="'/sensor/'+forecast.morning?.deviceId" [ngClass]="{ 
                                     'indicationSquare-0' : forecast.morning?.trustIndication == 0,
                                     'indicationSquare-1' : forecast.morning?.trustIndication == 1, 
                                     'indicationSquare-2' : forecast.morning?.trustIndication == 2,
@@ -79,7 +79,7 @@
                                     'indicationSquare-4 fa fa-exclamation-triangle' : forecast.morning?.trustIndication == 4}"
                                         class="indicationSquare">
                                     </div>
-                                    <div [routerLink]="'/sensor/'+forecast.afternoon?.deviceId" [ngClass]="{ 
+                                    <div title="Probabilité de gel d'indice {{forecast.afternoon?.trustIndication}}" [routerLink]="'/sensor/'+forecast.afternoon?.deviceId" [ngClass]="{ 
                                         'indicationSquare-0' : forecast.afternoon?.trustIndication == 0,
                                         'indicationSquare-1' : forecast.afternoon?.trustIndication == 1, 
                                         'indicationSquare-2' : forecast.afternoon?.trustIndication == 2,
@@ -89,7 +89,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="legendeProbaGel">
+                            <div *ngIf="forecastSite?.length != 0" class="legendeProbaGel">
                                 Légende pour la probabilité de gel
                                 <div class="row ">
                                     <div class="col-2 col-sm-2 legendeItem">
@@ -109,6 +109,12 @@
                                         Certaine</div>
                                 </div>
                             </div>
+                            <div class="msgError" *ngIf="forecastSite?.length == 0">
+                                <i class="fa fa-exclamation-triangle"></i>
+                                
+                                Les capteurs de ce site n'ont pas communiqué de données. Le calcul de la prévision du gel ne peut pas se faire sans données.
+    
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -120,10 +126,16 @@
                             Historique température
                         </h2>
                         <loading *ngIf="temperatureDataset == null"></loading>
-                        <chart *ngIf="temperatureDataset != null" [dataSet]="temperatureDataset" [type]="'temp'" [period]="period"></chart>
+                        <chart *ngIf="temperatureDataset != null && hasTemperatureData()" [dataSet]="temperatureDataset" [type]="'temp'" [period]="period"></chart>
+                        <div class="msgError" *ngIf="!hasTemperatureData()">
+                            <i class="fa fa-exclamation-triangle"></i>
+                            
+                            Les capteurs de ce site n'ont pas communiqué de données de température.
+
+                        </div>
                     </div>
                 </div>
-                <select class="select-site-period" (change)="reloadChart($event.target.value)">
+                <select *ngIf="hasTemperatureData() || hasHumidityData()" class="select-site-period" (change)="reloadChart($event.target.value)">
                     <option value="" disabled>Période courante</option>
                     <option value="year">Année</option>
                     <option value="quarter">Trimestre</option>
@@ -138,7 +150,13 @@
                             Historique humidité
                         </h2>
                         <loading *ngIf="humidityDataset == null"></loading>
-                        <chart *ngIf="humidityDataset != null" [dataSet]="humidityDataset" [type]="'humidity'" [period]="period"></chart>
+                        <chart *ngIf="humidityDataset != null && hasHumidityData()" [dataSet]="humidityDataset" [type]="'humidity'" [period]="period"></chart>
+                        <div class="msgError" *ngIf="!hasHumidityData()">
+                            <i class="fa fa-exclamation-triangle"></i>
+                            
+                            Les capteurs de ce site n'ont pas communiqué de données d'humidité.
+
+                        </div>
                     </div>
                 </div>
             </div>

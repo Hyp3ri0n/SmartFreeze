@@ -7,9 +7,7 @@ export interface Marker {
     lat: number;
     lng: number;
     siteName: string;
-    sensorName: string;
     siteId: string;
-    sensorId: string;
 }
 
 @Component({
@@ -22,7 +20,7 @@ export class MapComponent implements OnDestroy {
     private zoom:number = 9;
     private markers:Marker[] = [];
 
-    constructor(private device : DeviceService, private site : SiteService, private http : HttpService) {
+    constructor( private siteService : SiteService, private http : HttpService) {
         this.getData();
         this.http.backOnlineEventListener = { component : 'MapComponent', cb : () => this.getData()};
     }
@@ -33,22 +31,16 @@ export class MapComponent implements OnDestroy {
     }
 
     private getData() : void {
-        this.device.getDevices().subscribe(
-            devices => {
+        this.siteService.getSites().subscribe(
+            sites => {
                 this.markers = [];
-                devices.forEach(device => {
-                    this.site.getSite(device.siteId).subscribe(
-                        site => {
-                            this.markers.push({
-                                lat: device.latitude,
-                                lng: device.longitude,
-                                siteName: site.name,
-                                sensorName: device.name,
-                                sensorId: device.id,
-                                siteId: device.siteId
-                            });
-                        }
-                    );
+                sites.forEach(site => {
+                    this.markers.push({
+                        lat: site.latitude,
+                        lng: site.longitude,
+                        siteName: site.name,
+                        siteId: site.id
+                    });
                 });
             }
         );
