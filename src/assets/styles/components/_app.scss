@@ -11,7 +11,7 @@
   @extend .flex-shrink-height;
   @extend .flex-container-column;
 
-  background-color: $grey-lighter;
+  background-color: $grey-background;
   
   @include media-breakpoint-down(md) {
     flex: 1 1 0;
@@ -50,4 +50,12 @@ loading{
 
 .gel-icon {
   color: $mc-red;
+}
+
+h1{
+  font-weight: normal;
+}
+
+h2{
+  font-weight: normal;
 }

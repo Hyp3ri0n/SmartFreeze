@@ -22,7 +22,7 @@ export class AllSitesComponent {
     constructor(private siteService : SiteService, private http : HttpService) {
         this.getData();
         this.http.backOnlineEventListener = { component : 'AllSitesComponent', cb : () => this.getData()};
-        this.countActives = 0;
+        this.countActives = 2;
         this.gelFilter = false;
     }
 
@@ -64,7 +64,7 @@ export class AllSitesComponent {
                         sites.forEach(site => {
                             this.sites.push({
                                 ...site,
-                                isActive: false
+                                isActive: true
                             });
                         });
                     }

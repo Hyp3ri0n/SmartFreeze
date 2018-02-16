@@ -1,6 +1,9 @@
 <div class="app-container flex-container homePage">
 
+        <a [routerLink]="'/site/'+device?.siteId" class="back-nav">
+            <span class="arrow left"></span> Retour au site</a>
     <h1 class="titleDashboard">
+
         <span *ngIf="device?.isFavorite">
             <i class="fa fa-star"></i>
         </span>
@@ -86,7 +89,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-sm-12 col-md-4">  
+            <div class="col-12 col-sm-12 col-md-4">
                 <div class="cardDashboard wrapperForecast flex-container-column">
                     <h2 class="cardDashboard-header">
                         Prévisions du gel sur 5 jours
