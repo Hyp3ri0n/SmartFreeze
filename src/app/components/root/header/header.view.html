@@ -25,7 +25,7 @@
     </div>
 </div>
 <button (click)="go_clicked()" (clickOutside)="close()" class="alerts" type="button" title="Notifications">
-    <i class="side-icon fa fa-bell"></i>
+    <i class="side-icon fa fa-bell" [ngClass]="{'shake': newAlarmes}"></i>
     <span class="count-alerts">{{ alarmes.length }}</span>
 </button>
 <div class="alerts-pane" [style.display]="show">

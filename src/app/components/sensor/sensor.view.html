@@ -4,8 +4,8 @@
         <span class="arrow left"></span> Retour au site</a>
     <h1 class="titleDashboard">
 
-        <span *ngIf="device?.isFavorite">
-            <i class="fa fa-star"></i>
+        <span (click)="clicked_fav()">
+            <i class="fa fa-star" [ngClass]="{'fav-color' : !device?.isFavorite}"></i>
         </span>
         {{device?.name}}
     </h1>
@@ -135,7 +135,7 @@
                         </div>
                         <div class="cardInfoTextSensor">
                             <p>Site</p>
-                            <div class="color-red">{{ getSiteName(device?.siteId) }}</div>
+                            <div class="color-red">{{ siteName }}</div>
                         </div>
                     </div>
                 </div>

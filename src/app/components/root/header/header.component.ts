@@ -12,6 +12,7 @@ import { DeviceService, Device } from '../../../services/devices/device.service'
 
 export class HeaderComponent implements OnDestroy {
     private show: string = 'none';
+    private newAlarmes: boolean = false;
     private sites: Site[] = [];
     private devices: Device[] = [];
     public filteredSitesAutoComplete: Site[] = [];
@@ -21,10 +22,34 @@ export class HeaderComponent implements OnDestroy {
 
     private alarmes: Alarme[] = [];
 
-    // tslint:disable-next-line:max-line-length
-    constructor(private siteService: SiteService, private deviceService: DeviceService, private alarme: AlarmeService, private http: HttpService) {
+    constructor(private siteService: SiteService,
+                private deviceService: DeviceService,
+                private alarme: AlarmeService,
+                private http: HttpService) {
         this.getData();
         this.http.backOnlineEventListener = { component: 'HeaderComponent', cb: () => this.getData() };
+
+        setInterval(() => {
+            this.alarme.getLastAlarmes().subscribe(
+                alarmes => {
+                    let change : boolean = false;
+                    if (this.alarmes.length === alarmes.length) {
+                        for (let i = 0; i < alarmes.length ; i++) {
+                            if (this.alarmes[i].id !== alarmes[i].id) {
+                                change = true;
+                                break;
+                            }
+                        }
+                    } else {
+                        change = true;
+                    }
+                    if (change) {
+                        this.alarmes = alarmes;
+                        this.newAlarmes = true;
+                    }
+                }
+            );
+        }, 20000);
     }
 
     private filterListAutoComplete(): void {
@@ -63,21 +88,6 @@ export class HeaderComponent implements OnDestroy {
         elmtAutoComplete.style.display = "none";
     }
 
-    /*
-    private handleClick(event) : void {
-        var clickedComponent = event.target;
-        var inside = false;
-        do {
-            if (clickedComponent === this.elementRef.nativeElement) {
-                inside = true;
-            }
-           clickedComponent = clickedComponent.parentNode;
-        } while (clickedComponent);
-         if (!inside) {
-             this.filteredListAutoComplete = [];
-         }
-     }*/
-
     public ngOnDestroy(): void {
         this.http.removeBackOnlineListener('HeaderComponent');
     }
@@ -113,6 +123,7 @@ export class HeaderComponent implements OnDestroy {
     }
 
     private go_clicked(): void {
+        this.newAlarmes = false;
         if (this.show === 'none') {
             this.show = 'block';
         } else {
