@@ -117,7 +117,7 @@ export class SiteService {
             };
             this.http.request(MethodRequest.PUT, '/api/Sites/' + site.id, data).subscribe(
                 sucess => {
-                    observer.next('');
+                    observer.next('Modification réussie');
                 }
             );
         });
@@ -139,7 +139,17 @@ export class SiteService {
             };
             this.http.request(MethodRequest.POST, '/api/Sites', data).subscribe(
                 sucess => {
-                    observer.next('');
+                    observer.next('Création réussie');
+                }
+            );
+        });
+    }
+
+    public deleteSite(site: Site): Observable<String> {
+        return Observable.create((observer) => {
+            this.http.request(MethodRequest.DELETE, '/api/Sites/' + site.id, {}).subscribe(
+                sucess => {
+                    observer.next('Suppression réussie');
                 }
             );
         });

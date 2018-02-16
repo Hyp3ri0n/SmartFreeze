@@ -68,7 +68,15 @@ export class AdminSiteFormComponent implements OnInit, OnDestroy {
         console.log(this.site);
         this.siteService.setSite(this.site).subscribe(
             sucess => {
-                this.route.navigate(['site', {id: this.site.id}]);
+                this.route.navigate(['/site'], {replaceUrl: true, queryParams: {id : this.site.id}});
+            }
+        );
+    }
+
+    public deleteSite(): void {
+        this.siteService.deleteSite(this.site).subscribe(
+            sucess => {
+                this.route.navigate(['/admin'], {replaceUrl: true});
             }
         );
     }

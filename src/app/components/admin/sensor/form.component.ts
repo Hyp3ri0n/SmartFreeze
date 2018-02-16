@@ -61,6 +61,7 @@ export class AdminSensorFormComponent {
         this.siteService.getSite(siteId).subscribe(
             site => {
                 this.device.siteId = site.id;
+                this.device.altitude = site.altitude;
                 this.zones = site.zones;
             }
         );
@@ -78,6 +79,14 @@ export class AdminSensorFormComponent {
         this.deviceService.setDevice(this.device).subscribe(
             success => {
                 this.route.navigate(['sensor', {id: this.device.id}]);
+            }
+        );
+    }
+
+    private deleteDevice(): void {
+        this.deviceService.deleteDevice(this.device).subscribe(
+            success => {
+                /* */
             }
         );
     }
