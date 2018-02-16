@@ -20,24 +20,24 @@ import { WeatherSettings, TemperatureScale, ForecastMode, WeatherLayout } from '
 })
 
 export class SiteComponent {
-    private siteId : string;
-    private site : Site = null;
-    private alarmes : Alarme[] = [];
-    private humidityDataset : any[];
-    private temperatureDataset : any[];
-    private period:string;
-    private from:Date = new Date();
-    private to:Date;
+    private siteId: string;
+    private site: Site = null;
+    private alarmes: Alarme[] = [];
+    private humidityDataset: any[];
+    private temperatureDataset: any[];
+    private period: string;
+    private from: Date = new Date();
+    private to: Date;
     private forecastSite: ForecastDay[];
     private forecastWeek: ForecastWeek;
-    private settings : WeatherSettings = null;
-    private devicesName : any[];
+    private settings: WeatherSettings = null;
+    private devicesName: any[];
 
     constructor(private router: ActivatedRoute,
         private siteService: SiteService,
         private deviceService: DeviceService,
-        private previsionsService : PrevisionsService,
-        private alarmeService : AlarmeService,
+        private previsionsService: PrevisionsService,
+        private alarmeService: AlarmeService,
         private http: HttpService) {
 
         this.router.params.subscribe(
@@ -80,7 +80,7 @@ export class SiteComponent {
                     }
                 );
                 // Get devices records for charts
-                let subscribes : Observable<Telemetry[]>[] = [];
+                let subscribes: Observable<Telemetry[]>[] = [];
                 this.site.devices.forEach(device => {
                     subscribes.push(this.deviceService.getTelemetry(device.id, this.from, this.to));
                 });
@@ -98,7 +98,7 @@ export class SiteComponent {
                         telemetriesTab.forEach(telemDevice => {
                             let tmpTemperatures = [];
                             let tmpHumidity = [];
-                            let deviceId : string = '';
+                            let deviceId: string = '';
                             telemDevice.forEach(telemetry => {
                                 deviceId = telemetry.deviceId;
                                 tmpTemperatures.push({
@@ -129,6 +129,9 @@ export class SiteComponent {
                                 fill: false,
                                 showLine: true
                             });
+
+                            console.log(this.humidityDataset);
+                            console.log(this.temperatureDataset);
                         });
                     }
                 );
@@ -136,10 +139,10 @@ export class SiteComponent {
                 // Meteo Manager
                 this.settings = {
                     location: {
-                      latLng : {
-                          lat : this.site.latitude,
-                          lng : this.site.longitude
-                      }
+                        latLng: {
+                            lat: this.site.latitude,
+                            lng: this.site.longitude
+                        }
                     },
                     backgroundColor: 'transparent',
                     color: 'rgb(61, 61, 61)',
@@ -157,7 +160,7 @@ export class SiteComponent {
         );
     }
 
-    public showCaract():void {
+    public showCaract(): void {
         let elmtCaract = document.getElementById("caracteristiques");
         let elmtMeteo = document.getElementById("meteo");
 
@@ -180,9 +183,33 @@ export class SiteComponent {
         this.getData();
     }
 
-    private changedPeriod(value) :void {
+    private changedPeriod(value): void {
         let newValues = ChartUtil.getFirstDayOfPeriod(value);
         this.from = newValues.date;
         this.period = newValues.period;
+    }
+
+    private hasHumidityData(): boolean {
+        let humidityData: boolean = false;
+        if (this.humidityDataset != null) {
+            this.humidityDataset.forEach(hum => {
+                if (hum.data.length !== 0) {
+                    humidityData = true;
+                }
+            });
+        }
+        return humidityData;
+    }
+
+    private hasTemperatureData(): boolean {
+        let tempData: boolean = false;
+        if (this.temperatureDataset != null) {
+            this.temperatureDataset.forEach(tp => {
+                if (tp.data.length !== 0) {
+                    tempData = true;
+                }
+            });
+        }
+        return tempData;
     }
 }
