@@ -1,0 +1,57 @@
+.tableSearch {
+    background-color: $mc-white;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    overflow: auto;
+
+    .ng2-smart-title {
+        text-align: center;
+        font-size: 15px;
+    }
+
+    .ng2-smart-filter {
+        text-align: center;
+        font-size: 18px;
+    }
+
+    [_nghost-c1] {
+        @include media-breakpoint-down(md) {
+            display: block;
+            width: 100%;
+            height: auto !important;
+
+            table {
+                width: 100%;
+                display: block !important;
+                overflow: auto;
+            }
+        }
+
+        a {
+            color : $app-primary!important;
+        }
+    }
+
+    [_nghost-c1] table tbody tr {
+        &:nth-child(2n) {
+            background: rgba(0,0,0,.05);
+        }
+
+        td {
+            font-size: 13px;
+            padding: .5em 1.5em;
+        }
+    }
+
+    custom-view-component, ng-component {
+        display: flex;
+        width: 100%;
+        .gel-icon {
+            float: right;
+        }
+        .fa {
+            margin: auto;
+        }
+    }
+}

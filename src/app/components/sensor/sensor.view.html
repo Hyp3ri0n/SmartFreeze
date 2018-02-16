@@ -1,0 +1,215 @@
+<div class="app-container flex-container homePage">
+
+    <a [routerLink]="'/site/'+device?.siteId" class="back-nav">
+        <span class="arrow left"></span> Retour au site</a>
+    <h1 class="titleDashboard">
+
+        <span (click)="clicked_fav()">
+            <i class="fa fa-star" [ngClass]="{'fav-color' : !device?.isFavorite}"></i>
+        </span>
+        {{device?.name}}
+    </h1>
+    <div class="wrapperAllSite app-container">
+        <div class="row wrapperFirstLine">
+            <div class="col-12 col-sm-12 col-md-5">
+                <div class="cardDashboard wrapperAlarms">
+                    <div class="cardDashboard-header">
+                        Derniers Avertissements
+                    </div>
+                    <div class="tableWrapper">
+                        <loading *ngIf="alarmes == null"></loading>
+                        <table class="table" *ngIf="alarmes != null">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th></th>
+                                    <th>Description</th>
+                                    <th>Gravité</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let alarme of alarmes">
+                                    <td>{{alarme.occuredAt | date:'dd/MM/yyyy HH:mm'}}</td>
+                                    <td>
+                                        <i *ngIf="alarme.type == 1" class="fa fa-snowflake-o"></i>
+                                        <i *ngIf="alarme.type == 2" class="fa fa-thermometer-quarter"></i>
+                                        <i *ngIf="alarme.type == 3" class="fa fa-wrench"></i>
+                                        <span *ngIf="alarme.type == 4" class="fa-stack fa-lg">
+                                            <i class="fa fa-wifi fa-stack-1x"></i>
+                                            <i class="fa fa-ban fa-stack-2x text-danger"></i>
+                                        </span>
+                                    </td>
+                                    <td>{{alarme.shortDescription}}</td>
+                                    <td>
+                                        <span *ngIf="alarme.gravity == 1" class="label label-critique">Critique</span>
+                                        <span *ngIf="alarme.gravity == 2" class="label label-serieux">Sérieux</span>
+                                        <span *ngIf="alarme.gravity == 3" class="label label-info">Info</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-4">
+                <div class="cardDashboard wrapperForecast flex-container-column">
+                    <h2 class="cardDashboard-header">
+                        Prévisions du gel sur 5 jours
+                    </h2>
+                    <div class="gelTab">
+                        <div *ngIf="forecastSite?.length !== 0" class="allIndications">
+                            <div class="indicationDay">
+                                <div class="indicationSquare">Jour</div>
+                                <div class="indicationSquare">A.M.</div>
+                                <div class="indicationSquare">P.M.</div>
+                            </div>
+                            <div class="indicationDay" *ngFor="let forecast of forecastSite">
+                                <div class="indicationSquare">
+                                    {{forecast.date | date:'EEE'}}
+                                </div>
+                                <div title="Probabilité de gel d'indice {{forecast.morning?.trustIndication}}" [routerLink]="'/sensor/'+forecast.morning?.deviceId"
+                                    [ngClass]="{ 
+                                        'indicationSquare-0' : forecast.morning?.trustIndication == 0,
+                                        'indicationSquare-1' : forecast.morning?.trustIndication == 1, 
+                                        'indicationSquare-2' : forecast.morning?.trustIndication == 2,
+                                        'indicationSquare-3' : forecast.morning?.trustIndication == 3,
+                                        'indicationSquare-4 fa fa-exclamation-triangle' : forecast.morning?.trustIndication == 4}"
+                                    class="indicationSquare">
+                                </div>
+                                <div title="Probabilité de gel d'indice {{forecast.afternoon?.trustIndication}}" [routerLink]="'/sensor/'+forecast.afternoon?.deviceId"
+                                    [ngClass]="{ 
+                                            'indicationSquare-0' : forecast.afternoon?.trustIndication == 0,
+                                            'indicationSquare-1' : forecast.afternoon?.trustIndication == 1, 
+                                            'indicationSquare-2' : forecast.afternoon?.trustIndication == 2,
+                                            'indicationSquare-3' : forecast.afternoon?.trustIndication == 3,
+                                            'indicationSquare-4 fa fa-exclamation-triangle' : forecast.afternoon?.trustIndication == 4}"
+                                    class="indicationSquare">
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="forecastSite?.length !== 0" class="legendeProbaGel">
+                            Légende pour la probabilité de gel
+                            <div class="row ">
+                                <div class="col-2 col-sm-2 legendeItem">
+                                    <span class="indicationSquare indicationSquare-0"></span>
+                                    Aucune</div>
+                                <div class="col-2 col-sm-2 legendeItem">
+                                    <span class="indicationSquare indicationSquare-1"></span>
+                                    Faible</div>
+                                <div class="col-2 col-sm-2 legendeItem">
+                                    <span class="indicationSquare indicationSquare-2"></span>
+                                    Moyenne</div>
+                                <div class="col-2 col-sm-2 legendeItem">
+                                    <span class="indicationSquare indicationSquare-3"></span>
+                                    Forte</div>
+                                <div class="col-2 col-sm-2 legendeItem">
+                                    <span class="indicationSquare indicationSquare-4"></span>
+                                    Certaine</div>
+                            </div>
+                        </div>
+                        <div class="msgError" *ngIf="forecastSite?.length == 0">
+                            <i class="fa fa-exclamation-triangle"></i>
+                            
+                            Ce capteur n'a pas communiqué de données. Le calcul de la prévision du gel ne peut pas se faire sans données.
+
+                        </div>
+                    </div>
+                </div>
+                <div class="selectBoxGraphe">
+                    <select class="select-sensor-period" (change)="reloadChart($event.target.value)">
+                        <option value="" disabled>Période courante</option>
+                        <option value="year">Année</option>
+                        <option value="quarter">Trimestre</option>
+                        <option value="month">Mois</option>
+                        <option value="week">Semaine</option>
+                        <option value="day" selected>Jour</option>
+                        <option value="hour">Heure</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-3">
+                <div class="cardSummary">
+                    <div [routerLink]="'/site/'+device?.siteId" class="linkToSensor cardInfoSensor cardDashboard cardInfo">
+                        <div class="cardIcon   bg-red">
+                            <i class="fa fa-map-marker"></i>
+                        </div>
+                        <div class="cardInfoTextSensor">
+                            <p>Site</p>
+                            <div class="color-red">{{ siteName }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cardSummary">
+                    <div class="cardDashboard cardInfoSensor cardInfo">
+                        <div class="cardIcon   bg-green">
+                            <i class="fa fa-home"></i>
+                        </div>
+                        <div class="cardInfoTextSensor">
+                            <p>Zone</p>
+                            <div class="color-green">{{ device?.zone }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cardSummary">
+                    <div class="cardDashboard cardInfoSensor cardInfo">
+                        <div class="cardIcon   bg-blue">
+                            <i class="fa fa-wifi"></i>
+                        </div>
+                        <div class="cardInfoTextSensor">
+                            <p>Dernière communication</p>
+                            <div class="color-blue">{{device?.lastCommunication | date:'dd/MM/yyyy HH:mm' }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cardSummary">
+                    <div class="cardDashboard cardInfoSensor cardInfo">
+                        <div class="cardIcon   bg-orange">
+                            <i class="fa fa-battery-half"></i>
+                        </div>
+                        <div class="cardInfoTextSensor">
+                            <p>Batterie</p>
+                            <div class="color-orange">Bonne</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row wrapperSndLine wrapperCharts position-relative">
+            <select class="select-site-period select-mobile" (change)="reloadChart($event.target.value)">
+                <option value="" disabled>Période courante</option>
+                <option value="year">Année</option>
+                <option value="quarter">Trimestre</option>
+                <option value="month">Mois</option>
+                <option value="week">Semaine</option>
+                <option value="day" selected>Jour</option>
+                <option value="hour">Heure</option>
+            </select>
+            <div class="col-12 col-sm-12 col-md-4">
+                <div class="cardDashboard">
+                    <h2 class="cardDashboard-header ">
+                        Historique Température
+                    </h2>
+                    <loading *ngIf="temperatureDataset == null"></loading>
+                    <chart *ngIf="temperatureDataset != null" [dataSet]="temperatureDataset" [type]="'temp'" [period]="period"></chart>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-4">
+                <div class="cardDashboard">
+                    <h2 class="cardDashboard-header ">
+                        Historique Humidité
+                    </h2>
+                    <loading *ngIf="humidityDataset == null"></loading>
+                    <chart *ngIf="humidityDataset != null" [dataSet]="humidityDataset" [type]="'humidity'" [period]="period"></chart>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-4">
+                <div class="cardDashboard">
+                    <h2 class="cardDashboard-header ">
+                        Historique Pression
+                    </h2>
+                    <loading *ngIf="pressureDataset == null"></loading>
+                    <chart *ngIf="pressureDataset != null" [dataSet]="pressureDataset" [type]="'pressure'" [period]="period"></chart>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -9,16 +9,26 @@
             // our app is within the app folder
             app: 'app/',
             // angular bundles
-            '@angular/core': 'npm:@angular/core/bundles/core.umd.min.js',
-            '@angular/common': 'npm:@angular/common/bundles/common.umd.min.js',
-            '@angular/compiler': 'npm:@angular/compiler/bundles/compiler.umd.min.js',
-            '@angular/platform-browser': 'npm:@angular/platform-browser/bundles/platform-browser.umd.min.js',
-            '@angular/platform-browser-dynamic': 'npm:@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.min.js',
-            '@angular/http': 'npm:@angular/http/bundles/http.umd.min.js',
-            '@angular/router': 'npm:@angular/router/bundles/router.umd.min.js',
-            '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.min.js',
+            '@angular/core': 'npm:@angular/core.umd.min.js',
+            '@angular/common': 'npm:@angular/common.umd.min.js',
+            '@angular/common/http': 'npm:@angular/common-http.umd.min.js',
+            '@angular/compiler': 'npm:@angular/compiler.umd.min.js',
+            '@angular/platform-browser': 'npm:@angular/platform-browser.umd.min.js',
+            '@angular/platform-browser-dynamic': 'npm:@angular/platform-browser-dynamic.umd.min.js',
+            '@angular/http': 'npm:@angular/http.umd.min.js',
+            '@angular/router': 'npm:@angular/router.umd.min.js',
+            '@angular/forms': 'npm:@angular/forms.umd.min.js',
             // other libraries
-            'rxjs': 'npm:rxjs/'
+            'rxjs': 'npm:rxjs',
+            'tslib': 'npm:tslib.js',
+            '@agm/core': 'npm:@agm/core.umd.js',
+            '@agm/snazzy-info-window': 'npm:@agm/snazzy-info-window.umd.js',
+            'snazzy-info-window': 'npm:snazzy-info-window.min.js',
+            'chart.js': 'npm:Chart.bundle.min.js',
+            'ng2-smart-table': 'npm:table.umd.js',
+            'ng2-completer':'npm:ng2-completer.umd.js',
+            'lodash':'npm:lodash.min.js',
+            'angular-weather-widget': 'npm:angular-weather-widget.umd.min.js'
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {

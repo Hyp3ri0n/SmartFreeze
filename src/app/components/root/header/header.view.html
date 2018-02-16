@@ -1,0 +1,55 @@
+<div class="logo">
+    Requea
+</div>
+<div class="search-wrapper" [ngClass]="{'focused': focusInput }">
+    <i class="fa fa-search"></i>
+    <div class="input-wrapper" (click)="focusInput = true" (clickOutside)="focusInput = false">
+        <input [(ngModel)]="query" (click)="deleteItem()" (keyup)="filterListAutoComplete()" id="freesearch" class="d-md-none" name="freesearch"
+            value="" placeholder="Recherche capteur/site" />
+        <input [(ngModel)]="query" (click)="deleteItem()" (keyup)="filterListAutoComplete()" id="freesearch" class="d-none d-md-block"
+            name="freesearch" value="" placeholder="Rechercher un capteur/site" />
+    </div>
+    <div id="autoCompletePlace" class="form-control autocompleteSearchList">
+        <div *ngIf="filteredSitesAutoComplete.length > 0">
+            Sites
+            <div *ngFor="let site of filteredSitesAutoComplete">
+                <a [routerLink]="'/site/'+site.id" (click)="selectItem(site.name)">{{site.name}}</a>
+            </div>
+        </div>
+        <div *ngIf="filteredDevicesAutoComplete.length > 0">
+            Capteurs
+            <div *ngFor="let device of filteredDevicesAutoComplete">
+                <a [routerLink]="'/sensor/'+device.id" (click)="selectItem(device.name)">{{device.name}}</a>
+            </div>
+        </div>
+    </div>
+</div>
+<button (click)="go_clicked()" (clickOutside)="close()" class="alerts" type="button" title="Notifications">
+    <i class="side-icon fa fa-bell" [ngClass]="{'shake': newAlarmes}"></i>
+    <span class="count-alerts">{{ alarmes.length }}</span>
+</button>
+<div class="alerts-pane" [style.display]="show">
+    <table class="table">
+        <tbody>
+            
+                <tr *ngFor="let avert of alarmes">
+                    <td>
+                        <span *ngIf="avert.gravity == 1" class="label label-critique">Critique</span>
+                        <span *ngIf="avert.gravity == 2" class="label label-serieux">Sérieux</span>
+                        <span *ngIf="avert.gravity == 3" class="label label-info">Information</span>
+                    </td>
+                    <td class="alert-timestamp">{{ avert.occuredAt | date:'dd/MM/yyyy HH:mm' }}</td>
+                    <td class="alert-text">
+                        <a [routerLink]="'/sensor/'+avert.deviceId">{{ getDeviceByID(avert.deviceId) }}</a>
+                    </td>
+                    <td class="alert-text">{{ avert.shortDescription }}</td>
+                    <td>
+                        <a (click)="setAlerteAsView(avert.id)" title="Marquer comme lu">
+                            <i class="fa fa-eye-slash"></i>
+                        </a>
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+    <div class="btnAlertNotif"><button class="btn btn-primary" routerLink="alerts">Voir tout</button></div>
+</div>

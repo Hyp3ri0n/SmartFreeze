@@ -1,3 +1,105 @@
 home {
-    @extend .app-container;
+  @extend .app-container;
+}
+
+.tableWrapper .fa-external-link:hover {
+  color: $app-primary;
+}
+  
+.wrapperPrincipal{
+  flex: 1;
+
+  .mapHome{
+    width:100%; 
+    height:100%;
+    padding: 10px;
+  }
+
+  .wrapperLeft{
+    flex-flow: column nowrap;
+    display:flex;
+  
+    .wla {
+      display: flex;
+      flex-grow: 1;
+    }
+    
+    .wrapperSites{
+      flex : none;
+      overflow-x: auto;
+      display:flex;
+      flex-direction: row;
+      flex-wrap : nowrap;
+
+      .wrapperSite {
+        flex:none;
+        margin-right:5px;
+      }
+    }
+  }
+}
+  
+  .mapWrapper{
+    padding-left:0px;
+    @include media-breakpoint-down(md) {
+      padding-left: 10px;
+    }
+
+    div {
+      flex-direction: column;
+    }
+  }
+  
+.cardInfo {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  height: 100%;
+}
+
+agm-map {
+  @extend .app-container;
+  @extend .flex-container;
+  .si-content {
+    text-align: center;
+    font-weight: bold; 
+  }
+}
+
+.si-content-wrapper{
+  border-radius : 5px;
+  opacity : 0.90;
+  padding : 20px;
+}
+
+.si-has-border .si-content-wrapper{
+  border : none;
+}
+
+.si-frame{
+  border-radius : 5px;
+  opacity : 0.90; 
+}
+
+@include media-breakpoint-down(md) {
+  .homePage .dashboard-header .cardDashboard {
+    box-shadow: none;
+    border-radius: 0; 
+  }
+  .dashboard-header {
+    .col-6 {
+      border: none;
+
+      &:nth-child(2n) {
+        padding-left: 0;
+      }
+      &:nth-child(2n+1) {
+        padding-right: 0;
+      }
+    }
+  }
+
+  .wrapperAlarms {
+    overflow: auto;
+  }
 }

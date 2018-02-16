@@ -1,0 +1,359 @@
+$margin-card-dashboard : 5px;
+
+
+
+.homePage{
+    flex-direction:column;
+
+    .msgError{
+      padding: 10px;
+      font-style: italic;
+      text-align: center;
+      color: $grey-base;
+    }
+
+  .gelTab {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    flex: 1;
+  }
+
+  .allIndications{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    text-transform: uppercase;
+    font-size: 12px;
+
+    .indicationDay {
+        display:flex;
+        flex-direction:column;
+        text-align: center;
+    }
+  }
+
+  .legendeProbaGel{
+    text-transform: uppercase;
+    font-size: 12px;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    .row{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .indicationSquare{
+        width: 20px;
+        height : 20px;
+      }
+
+      .legendeItem{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+
+  .indicationSquare{
+    width: 40px;
+    height : 40px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border:1px solid $mc-white;
+  }
+
+  .indicationSquare-0{
+    background-color: $indic-0;  
+  }
+  .indicationSquare-1{
+    background-color: $indic-1;  
+  }
+  .indicationSquare-2{
+    background-color: $indic-2;   
+  }
+  .indicationSquare-3{
+    background-color: $indic-3;   
+  }
+  .indicationSquare-4{
+    background-color: $indic-4;     
+  }
+
+
+    .titleDashboard{
+        font-family: RobotoDraft, Roboto, 'Helvetica Neue', sans-serif;
+        font-size: 30px;
+        text-align: center;
+        padding:4px;
+        @include media-breakpoint-down(sm) {
+          padding-top: 5px;
+        }
+    }
+
+    .row{
+        margin-left:0px;
+        margin-right: 0px;
+      }
+
+      .wla{
+        display: flex;
+        flex-grow: 1;
+      }
+
+    .wrapperAlarms{
+        flex-grow : 1;
+        display : flex;
+        flex-direction:column;
+        margin-bottom:10px;
+
+        .tableWrapper{
+            flex : 1;
+            overflow : auto;
+        
+            .table{
+                font-size:12px;
+
+                .iconTab{
+                  display:flex;
+                  align-items: center;
+                  justify-content: center;
+                }
+                
+                .fa-snowflake-o{
+                    font-size:14px;
+                }
+                .fa-thermometer-quarter{
+                  font-size:14px;
+                }
+                .fa-wrench{
+                  font-size:14px;
+                }
+                .fa-wifi{
+                  font-size:14px;
+                }
+
+            }
+        
+        }
+    }
+
+    .label{
+        padding:4px;
+        color: $mc-white;
+        font-size: 12px;
+        text-transform: lowercase;
+        border-radius: 2px;
+        font-weight: bold;
+        text-align: center;
+          
+        .fa{
+            color:$mc-yellow;
+        }
+    }
+          
+    .label-serieux{
+        background-color: $mc-orange;
+    }
+          
+    .label-critique{
+        background-color: $mc-red; 
+    }
+          
+    .label-info{
+        background-color: $mc-teal ;
+    }
+    
+    .fa-star{
+        color:$mc-yellow;
+    }
+
+
+    .cardSummary{
+        margin-right:0px;
+        margin-left: 0px;
+        margin-top: 0px;
+        margin-bottom: 10px;
+        padding-right: 0px;
+        padding-left: 0px;
+
+    }
+    
+    .selectBoxGraphe{
+      display:flex;
+      align-items: center;
+      margin-bottom:10px;
+      margin-top:10px;
+      justify-content: center;
+      @include media-breakpoint-down(md) {
+        display: none;
+      }
+    }
+
+    .cardInfoSensor{
+      padding:2px;
+      text-align: left;
+      justify-content: left;
+      align-items: center;
+    }
+
+    @include media-breakpoint-up(sm) {
+      .cardInfo{
+          margin-right:2px;
+          margin-left:2px;
+      }
+    }
+
+    .cardDashboard{
+        border-radius: 3px;
+        box-shadow: 0 2px 5px 0 $cardShadow  ;
+        background-color : $mc-white;
+        padding: 10px;
+        font-family: RobotoDraft, Roboto, 'Helvetica Neue', sans-serif;
+        margin-bottom: $margin-card-dashboard;
+    
+        .cardDashboard-header{
+          text-transform: uppercase;
+          font-size: 15px;
+        }
+    }
+
+    
+
+  .cardSite{
+    padding-top:10px;
+    display: flex;
+    align-items: center;
+  }
+
+  .cardCapteurSite{
+    padding-left: 37px;
+    padding-bottom: 30px;
+  }
+
+  .cardInfo {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0px 30px;
+    @include media-breakpoint-down(sm) {
+      padding: 5px 0px 5px 10px;
+    }
+
+    .fa {
+      text-align: center;
+      width: 50px;
+    }
+  }
+  .cardIcon{
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+    line-height: 50px;
+    border-radius: 50%;
+    color: #fff;
+    display : flex;
+    align-items: center;
+    margin-right: 5px;
+    @include media-breakpoint-down(sm) {
+      height: 40px;
+      width: 40px;
+    }
+  }
+  .imgSiteCard{
+    object-fit: cover;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    line-height: 60px;
+    box-shadow: 0 2px 5px 0 $cardShadow  ;
+  }
+
+  .bg-green{
+    background-color: $mc-teal;
+  }
+
+  .bg-orange{
+    background-color: $mc-orange ;
+  }
+
+  .bg-blue{
+    background-color: $mc-light_blue;
+  }
+
+  .bg-red{
+    background-color: $mc-red ;
+  }
+
+  .cardInfoText{
+    font-size: 12px;
+    text-transform: uppercase;
+    height: 55px;
+    margin-bottom: 5px;
+    @include media-breakpoint-up(md) {
+      padding-left: 10px;
+    }
+    @include media-breakpoint-down(sm) {
+      height: 70px;
+    }
+    .color-green{
+      font-size: 25px;
+      color:$mc-teal;
+    }
+
+    .color-orange{
+      font-size: 25px;
+      color: $mc-orange ;
+    }
+  
+    .color-blue{
+      font-size: 25px;
+      color: $mc-light_blue;
+    }
+  
+    .color-red{
+      font-size: 25px;
+      color: $mc-red ;
+    }
+  }
+
+  .cardInfoTextSensor{
+      font-size: 13px;
+      text-transform: uppercase;
+      padding:5px;
+
+      p{
+          margin-bottom:0px;
+      }
+
+      .color-green{
+        font-size: 13px;
+        color:$mc-teal;
+        text-transform: capitalize;
+      }
+    
+      .color-orange{
+        font-size: 13px;
+        color: $mc-orange ;
+        text-transform: capitalize;
+      }
+      
+      .color-blue{
+        font-size: 13px;
+        color: $mc-light_blue;
+        text-transform: capitalize;
+      }
+      
+      .color-red{
+        font-size: 13px;
+        color: $mc-red ;
+        text-transform: capitalize;
+      }
+  }
+
+}

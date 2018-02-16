@@ -1,0 +1,99 @@
+<loading *ngIf="site == null" [model]="modelLoading"></loading>
+<div  *ngIf="site != null" class="container">
+    <div class="input-group">
+        <span class="input-group-addon">
+            <i class="fa fa-info-circle"></i>
+            ID
+        </span>
+        <input [(ngModel)]="site.id" id="id" type="text" class="form-control" name="ID" placeholder="ID" disabled>
+    </div>
+
+    <div class="input-group">
+        <span class="input-group-addon">
+            <i class="fa fa-tag"></i>
+            Nom
+        </span>
+        <input [(ngModel)]="site.name" id="name" type="text" class="form-control" name="Nom" placeholder="Nom" required>
+    </div>
+
+
+    <map-site [site]="site" class="app-container"></map-site>
+
+    <div class="row">
+        <div class="col-lg-7 input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-file"></i>
+                Description
+            </span>
+            <textarea [(ngModel)]="site.description" id="description" rows="3" class="form-control"></textarea>
+        </div>
+
+        <div class="col-lg-5 input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-puzzle-piece"></i>
+                Zones
+                <i (click)="addZone()" class="plusicon fa fa-plus-circle"></i>
+            </span>
+            <div class="zoneWrapper">
+                <div *ngFor="let zone of zones; let i = index; trackBy:trackByFn" class="input-group">
+                    <input [(ngModel)]="zones[i]" class="form-control" type="text" name="" placeholder="Entrez un nom de zone">
+                    <i class="deleteZonebtn fa fa-minus-square" (click)="removeZone(zone)"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-10 col-8 input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-home"></i>
+                Surface
+            </span>
+            <input [(ngModel)]="site.surfaceArea" id="surfaceArea" type="text" class="form-control" name="Surface" placeholder="Surface">
+        </div>
+        <div class="col-sm-2 col-4  input-group">
+            <input [(ngModel)]="site.surfaceAreaUnit" id="surfaceAreaUnit" type="text" class="form-control" name="Surface unit" placeholder="Surface unit" disabled>
+        </div>
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon">
+            <i class="fa fa-image"></i>
+            Image
+        </span>
+
+        <input [(ngModel)]="site.image" type="text" id="file" class="form-control">
+
+    </div>
+
+    <div class="btn-form-admin">
+        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#deleteSiteModal">
+            <i class="fa fa-trash"></i> Supprimer ce site </button>
+        <button (click)="sendModifications()" type="button" class="btn btn-primary">
+            <i class="fa fa-floppy-o"></i> Enregistrer les modifications</button>
+
+    </div>
+
+</div>
+
+<div class="modal fade" id="deleteSiteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Supprimer un site</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                Confirmer la suppression du site ?
+                <br/> Attention, cela provoquera la suppression de tous les capteurs rattachés !
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteSite()">Supprimer</button>
+            </div>
+        </div>
+    </div>
+</div>

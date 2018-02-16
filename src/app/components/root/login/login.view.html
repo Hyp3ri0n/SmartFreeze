@@ -1,0 +1,33 @@
+<div class="login">
+    <div class="text-center loginZone">
+
+        <h1> Bienvenue sur SmartFreeze </h1>
+
+        <h3>Choisissez votre environnement de démonstration</h3>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 zoneLabel">
+                    <label (click)="mountain_clicked()" class="label" for="refuge">
+                        <h5>SmartRefuges</h5>
+                        <img src="./assets/images/mountain.svg" />
+                        <input type="radio" name="appType" id="refuge" [checked]="currentContext == 0">
+                        <div class="label-checkbox"></div>
+                    </label>
+                </div>
+                <div class="col-sm-12 col-md-6 zoneLabel">
+                    <label (click)="field_clicked()" class="label" for="agri">
+                        <h5>SmartAgriculture</h5>
+                        <img src="./assets/images/agri.svg" />
+                        <input type="radio" name="appType" id="agri" [checked]="currentContext == 1">
+                        <div class="label-checkbox"></div>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <button (click)="go_clicked()" class="btn btn-1 log-in">
+            <span class="txt">Let's go</span>
+            <span class="arrow right">
+            </span>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,409 @@
+site {
+	@extend .app-container;
+}
+
+
+.wrapperAllSite {
+    flex-flow: column nowrap;
+    display: flex;
+    flex: 1;
+
+    //take 50% height for each row, keeping full page format
+    .wrapperFirstLine, .wrapperSndLine {
+        flex: 1;
+        @include media-breakpoint-down(sm) {
+            display: block;
+            padding: 0;
+            margin: 0;
+        }
+    }
+    .wrapperFirstLine > div, .wrapperSndLine > div {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    .wrapperCharts {
+        .cardDashboard-header {
+            flex: none;
+        }
+        chart {
+            display: flex;
+            flex:1;
+
+            canvas {
+                width: 100%;
+            }
+        }
+    }
+}
+
+.wrapperSndLine{
+    flex: none;
+    padding-bottom: 10px;
+
+    .cardDashboard{
+        flex:1;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        display: flex;
+    }
+}
+
+site {
+    @include media-breakpoint-up(sm) {
+        .wrapperCharts {
+            & > div:first-of-type {
+                padding-right: 0;
+                .cardDashboard {
+                    border-right: none;
+                }
+            }
+            & > div:last-of-type {
+                padding-left: 0;
+                .cardDashboard {
+                    border-left: none;
+                }
+            }
+        }
+    }
+    .site-row {
+        display: flex;
+        flex-flow: row nowrap;
+        .wrapperAllSite {
+            flex: 1;
+        }
+    }
+    .site-column {
+        display: flex;
+        flex-flow: column nowrap;
+        overflow: auto;
+
+        & > div {
+            padding-right: 0;
+            padding-left: 0;
+            width: 100%;
+            flex: 1;
+        }
+    }
+}
+
+.wrapperFirstLine{
+    margin-bottom:10px;
+    margin-top: 10px;
+    display:flex;
+
+    .wrapperAvertLest{
+        flex-flow: column nowrap;
+        display: flex;
+
+        .wla{
+            display: flex;
+            flex-grow: 1;
+        }
+    }
+
+    .middleWrapperFirstLine{
+
+        display:flex;
+        flex-direction: column;
+
+        .row{
+            flex:1;
+
+            .cardDashboard{
+                flex:1;
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .wrapperFirstLine > div, .wrapperSndLine > div, .wrapperPrincipal > div { 
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+.cardInfosSite{
+    display: flex;
+    max-width: 400px;
+    flex-flow: column nowrap;
+    margin: 10px 20px 10px;
+    max-height: 100%;
+
+    @include media-breakpoint-down(sm) {
+        flex-flow: row wrap;
+        order: 1;
+    }
+
+    .wrapperImg {
+        flex: none;
+        position: relative;
+
+        .fit-img {
+            object-fit: contain;
+            width: 100%;
+            border-top-right-radius: 3px;
+            border-top-left-radius: 3px;
+            box-shadow: 0 2px 5px 0 $cardShadow  ;
+        }
+
+        .buttonMoreInfos{
+            position: absolute;
+            bottom: -20px;
+            right: 0;
+            display : flex;
+            flex-direction: row; 
+
+            .icon{
+                width: 50px;
+                height: 50px;
+                font-size: 25px;
+                line-height: 50px;
+                border-radius: 50%;
+                margin: auto 10px;
+                color: #fff;
+                padding:10px;
+                display : flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                z-index: 1;
+            }
+
+            .btnCaract{
+                background-color: $mc-teal;
+            }
+            
+            .btnMeteo{
+                background-color: $mc-orange ;
+            }
+
+        }
+    }
+
+    .contentSite{
+        position: relative;
+        flex: 1;
+        overflow: hidden;
+
+        .title{
+            text-transform: uppercase;
+            font-size: 15px;
+            padding-top:10px;
+        }
+
+        .caracteristiques{
+            display:block;
+            font-family: RobotoDraft, Roboto, 'Helvetica Neue', sans-serif;
+            font-size: 12px;
+            overflow-y: auto;
+
+            div{
+                padding-top:5px;
+            }
+
+            p{
+                margin-bottom: 0px;
+            }
+        }
+
+        .meteo{
+            display:none;
+            flex-direction: column;
+        }
+
+    }
+
+}
+
+.meteo-content {
+    overflow: auto;
+}
+
+.wrapperSite .cardDashboard-header, .imgSiteCard, .linkToSensor  {
+    cursor: pointer;
+    &:hover {
+        color: $app-primary;
+    }
+}
+
+//All sites
+site, sensor {
+    .card {
+        height: 100%;
+    }
+}
+
+all-sites {
+     .card {
+         &.active-card {
+             .toggle-card {
+                 transition: max-height 1s;
+                 max-height: 500px;
+             }
+         }
+         .toggle-card {
+             overflow: hidden;
+             max-height: 0;
+             transition: max-height 0.7s;
+         }
+         .card-header {
+             display: flex;
+             flex-flow: row nowrap;
+             .card-title {
+                 flex: 1;
+             }
+         }
+         .card-icon, .gel-icon, .fav-icon {
+             flex: 0;
+             align-self: flex-end;
+             font-size: 24px;
+             margin-bottom: auto;
+             margin-top: 5px;
+         }
+         .card-icon {
+             cursor: pointer;
+             color: $app-primary;
+         }
+         .gel-icon {
+             color: $mc-red;
+             //margin-right: 10px;
+         }
+         .fav-icon {
+             color: $mc-yellow;
+             //margin-right: 10px;
+         }
+
+         .cardDashboard-header{
+            align-items: center;
+            justify-content: center;
+            display:flex;
+
+            .fa-exclamation-triangle{
+                margin-right:auto;
+                @include media-breakpoint-down(sm) {
+                    margin-right: 5px;
+                }
+            }
+            .fa-minus{
+                margin-left:auto;
+            }
+            .fa-plus{
+                margin-left:auto;
+            }
+         }
+
+         .btnSensor{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-size:12px;
+
+            p{
+                margin-bottom: 5px;
+            }
+        }
+
+        .sensorIcons{
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            margin-right:10px;
+        }
+
+        .card-body{
+            display:flex;
+            align-content: left;
+            flex-direction: column;
+        }
+       
+    
+        .card-item{
+            padding:5px;
+            display: flex;
+            flex-flow: row nowrap;
+                a {
+                    flex: 1;
+                }
+        }
+     }
+ 
+     .container-fluid {
+         position: relative;
+     }
+ 
+     .toggle-all, .switch-gel {
+         position: absolute;
+         top: 10px;
+     }
+     .toggle-all {
+         left: 20px;
+     }
+     .switch-gel {
+         right: 15px;
+         display: flex;
+         flex-flow: row nowrap;
+         .btn {
+             display: flex;
+             &:first-of-type {
+                 border-right: none;
+             }
+             &:last-of-type {
+                 border-left: none;
+             }
+         }
+     }
+ 
+     .filtered > :not(.hasAlarm) {
+         display: none;
+     }
+}
+
+.select-site-period {
+    position: absolute;
+    top: 20px;
+    padding: 2px;
+    z-index: 2;
+    @include media-breakpoint-up(sm) {
+        transform: translate(-50%, -50%);
+        left: 50%;
+    }
+    @include media-breakpoint-down(sm) {
+        right: 0;
+        top: 5px;
+    }
+}
+.site-hide {
+    display: none;
+}
+
+@include media-breakpoint-down(sm) {
+    all-sites {
+        .toggle-all, .switch-gel, .card-icon.fa-minus {
+            display: none;
+        }
+        .cardDashboard .cardDashboard-header {
+            flex-flow: row wrap;
+        }
+    }
+
+    site {
+        .site-row {
+            flex-flow: row wrap;
+            width: 100%;
+        }
+    }
+    .cardInfosSite {
+        width: 100%;
+        margin: 0;
+        display: block;
+    }
+    .wrapperAllSite {
+        order: 2;
+        width: 100%;
+    }
+    //.select-site-period {
+        //TODO placer le select en mobile
+    //}
+}

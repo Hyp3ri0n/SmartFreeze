@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpService } from '../../../services/http/http.service';
 
 @Component({
     selector: 'app-footer',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
 
 export class FooterComponent {
 
-    constructor() { /**/ }
+    constructor(private http : HttpService) { /**/ }
 }

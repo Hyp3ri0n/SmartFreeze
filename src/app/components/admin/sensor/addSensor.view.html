@@ -1,0 +1,77 @@
+<div class="modal fade" id="addSensorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Enregistrer un nouveau capteur</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-info-circle"></i>
+                                ID
+                            </span>
+                            <input [(ngModel)]="device.id" id="id" type="text" class="form-control" name="ID" placeholder="ID">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-10 input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-tag"></i>
+                                Nom
+                            </span>
+                            <input [(ngModel)]="device.name" id="name" type="text" class="form-control" name="Nom" placeholder="Nom">
+                        </div>
+
+                        <div class="col-xl-2 zoneCheckBox">
+                            <span>
+                                <i class="fa fa-heart"></i>
+                                Favoris
+                            </span>
+                            <label class=" switch">
+                                <input type="checkbox" [checked]="device.isFavorite" (change)="favorite_changed($event.target.checked)">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+
+                        <span class="input-group-addon">
+                            <i class="fa fa-map-marker"></i>
+                            Site
+                        </span>
+                        <select class="form-control" id="site" (change)="site_changed($event.target.value)">
+                            <ng-container *ngFor="let site of sites">
+                                <option [value]="site.id">{{site.name}}</option>
+                            </ng-container>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+
+                        <span class="input-group-addon">
+                            <i class="fa fa-home"></i>
+                            Zone
+                        </span>
+                        <select class="form-control" id="zone" (change)="zone_changed($event.target.value)">
+                            <ng-container *ngFor="let zone of zones">
+                                <option [value]="zone">{{zone}}</option>
+                            </ng-container>
+                        </select>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="send_device()">Ajouter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

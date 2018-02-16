@@ -1,0 +1,204 @@
+/********************************************/
+/*											*/
+/*				Base Imports				*/
+/*											*/
+/********************************************/
+
+// App variables
+@import "variables";			// Insert our variables here to force the change of brand-primary in bootstrap
+$primary: $app-primary;
+//--------------------------------
+
+// Bootstrap basis
+@import "bootstrap/functions";
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+@import "bootstrap/reboot";
+@import "bootstrap/utilities";
+//--------------------------------
+
+
+/********************************************/
+/*											*/
+/*					Base					*/
+/*											*/
+/********************************************/
+
+html, body, .app-container {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	min-height: 100%;
+}
+
+
+/********************************************/
+/*											*/
+/*					Scroll					*/
+/*											*/
+/********************************************/
+
+::-webkit-scrollbar {
+	background: transparent;
+	width: 3px;
+	height: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+	background: $grey-base;
+	opacity: .4;
+	border-radius: 0px;
+}
+
+::-webkit-scrollbar-track {
+	background: transparent;
+	border-radius: 0px;
+}
+
+::-webkit-scrollbar-track-piece {
+	background: transparent;
+}
+
+::-webkit-scrollbar-corner {
+	background: transparent;
+}
+
+
+/********************************************/
+/*											*/
+/*					Flex					*/
+/*											*/
+/********************************************/
+
+.flex-container {
+	display: flex;
+	flex: auto;
+	overflow: auto;
+}
+
+.flex-fix-width {
+	display: flex;
+	flex: none;
+	height: 100%;
+	width: auto;
+	overflow: auto;
+}
+
+.flex-fix-height {
+	display: flex;
+	flex: none;
+	width: 100%;
+	height: auto;
+	overflow: auto;
+}
+
+.flex-shrink-height {
+	display: flex;
+	flex: auto;
+	width: 100%;
+	height: auto;
+}
+
+.flex-shrink-width {
+	display: flex;
+	flex: auto;
+	height: 100%;
+	width: auto;
+}
+
+.flex-container-column {
+	display: flex;
+	flex-direction: column;
+}
+
+.flex-container-row {
+	display: flex;
+	flex-direction: row;
+}
+
+.no-padding-x {
+	padding-right: 0!important;
+	padding-left: 0!important;
+}
+
+.fill {
+	//position: relative;
+    min-height: 100%;
+    height: 100%;
+}
+
+h1.title {
+	margin: 10px auto 15px;
+	text-align: center;
+}
+
+h1, h2, h3, h4, h5 {
+	color: $grey-dark;
+}
+
+.btn {
+	cursor: pointer;
+}
+
+/********************************************/
+/*											*/
+/*			App Components Imports			*/
+/*											*/
+/********************************************/
+
+// Bootstrap components
+@import "bootstrap/root";
+@import "bootstrap/print";
+@import "bootstrap/type";
+@import "bootstrap/images";
+@import "bootstrap/code";
+@import "bootstrap/grid";
+@import "bootstrap/tables";
+@import "bootstrap/forms";
+@import "bootstrap/buttons";
+@import "bootstrap/transitions";
+@import "bootstrap/dropdown";
+@import "bootstrap/button-group";
+@import "bootstrap/input-group";
+@import "bootstrap/custom-forms";
+@import "bootstrap/nav";
+@import "bootstrap/navbar";
+@import "bootstrap/card";
+@import "bootstrap/breadcrumb";
+@import "bootstrap/pagination";
+@import "bootstrap/badge";
+@import "bootstrap/jumbotron";
+@import "bootstrap/alert";
+@import "bootstrap/progress";
+@import "bootstrap/media";
+@import "bootstrap/list-group";
+@import "bootstrap/close";
+@import "bootstrap/modal";
+@import "bootstrap/tooltip";
+@import "bootstrap/popover";
+@import "bootstrap/carousel";
+//------------------------------------
+
+/* app */
+@import "components/app";
+@import "components/footer";
+@import "components/header";
+@import "components/sidebar";
+@import "components/splashScreen";
+@import "components/login";
+@import "components/datatable";
+/* specific */
+@import "components/dashboard";
+@import "components/home";
+@import "components/search";
+@import "components/site";
+@import "components/sensor";
+@import "components/admin-form";
+@import "components/admin";
+
+
+

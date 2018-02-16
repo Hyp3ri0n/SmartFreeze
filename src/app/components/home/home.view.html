@@ -1,45 +1,146 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-12 col-md-6">
-            <div class="warnings">
-                <h1 class="heading">Avertissements</h1>
-                <div class="col-12">
-                    <h2 class="heading">Gel prévu</h2>
-                    <p>Refuge du Goûter à partir du 13/10/2017</p>
+<div class="app-container flex-container homePage">
+    <div class="row  wrapperFirstLine dashboard-header">
+        <div class="col-6 col-sm-6 col-md-3">
+            <div class="cardDashboard cardInfo">
+                <div class="cardIcon bg-red">
+                    <i class="fa fa-exclamation-triangle"></i>
                 </div>
-                <div class="col-12">
-                    <h2 class="heading">Dégel prévu</h2>
-                    <p>Refuge des Feneys à partir du 14/10/2017</p>
-                </div>
-                <div class="col-12">
-                    <h2 class="heading">Température inhabituelle</h2>
-                    <p>25°C - G2 Fondoir (Refuge du Goûter) 13/10/2017 13h40</p>
-                </div>
-                <div class="col-12">
-                    <h2 class="heading">Humidité inhabituelle</h2>
-                    <p>80% - G2 Fondoir (Refuge du Goûter) 13/10/2017 13h40</p>
-                </div>
-                <div class="col-12">
-                    <h2 class="heading">Matériel</h2>
-                    <p>Batterie faible - G2 Fondoir (Refuge du Goûter) 13/10/2017 13h40</p>
-                    <p>Passerelle P1 - Pas de communication 13/10/2017 13h40 </p>
-                </div>
-            </div>
-            <div class="sensors">
-                <h1 class="heading">Mes capteurs clés triés par refuge</h1>
-                <div class="col-sm-12 col-md-6">
-                    <h2 class="heading">Refuge du Goûter</h2>
-                    <a href="#">G2 - Fondoir</a>
-                    <a href="#">G4 - Dortoir 1</a>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <h2 class="heading">Refuge des Feneys</h2>
-                    <a href="#">F2 - Fondoir</a>
+                <div class="cardInfoText">
+                    <div class="color-red">{{ nbAlarmesCritiques }}</div>
+                    <p>Avertissements critiques</p>
                 </div>
             </div>
         </div>
-        <div class="col-sm-12 col-md-6">
-            <div class="home--map" id="home--map"></div>
+        <div class="col-6 col-sm-6 col-md-3">
+            <div class="cardDashboard cardInfo">
+                <div class="cardIcon bg-green">
+                    <i class="fa fa-map-marker"></i>
+                </div>
+                <div class="cardInfoText">
+                    <div class="color-green"> {{ nbSitesCritiques }} / {{ sites?.length }}</div>
+                    <p>Sites critiques</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-sm-6 col-md-3">
+            <div class="cardDashboard cardInfo">
+                <div class="cardIcon bg-orange">
+                    <i class="fa fa-location-arrow"></i>
+                </div>
+                <div class="cardInfoText">
+                    <div class="color-orange">{{ nbDevicesCritiques }} / {{ devices?.length }}</div>
+                    <p>Capteurs critiques</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-sm-6 col-md-3">
+            <div class="cardDashboard cardInfo">
+                <div class="cardIcon bg-blue">
+                    <i class="fa fa-history"></i>
+                </div>
+                <div class="cardInfoText">
+                    <div class="color-blue">{{alarmes?.length}}</div>
+                    <p>Avertissements depuis le début</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row wrapperPrincipal">
+        <div class="col-12 col-sm-12 col-md-7 wrapperLeft">
+            <div class="row wla">
+                <div class="cardDashboard wrapperAlarms">
+                    <h2 class="cardDashboard-header ">
+                        Avertissements
+                    </h2> 
+                    <div class="cardDashboard-body tableWrapper">
+                        <loading *ngIf="alarmes == null"></loading>
+                        <table class="table" *ngIf="alarmes != null">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Site</th>
+                                    <th>Zone</th>
+                                    <th></th>
+                                    <th>Description</th>
+                                    <th>Gravité</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let alarme of alarmes">
+                                    <td>{{alarme.occuredAt | date:'dd/MM/yyyy HH:mm'}}</td>
+                                    <td>
+                                        <a [routerLink]="'/site/'+alarme.siteId"><b>{{alarme.siteName}}</b></a>
+                                    </td>
+                                    <td>{{alarme.deviceZone}}</td>
+                                    <td class="iconTab">
+                                        <i *ngIf="alarme.type == 1" class="fa fa-snowflake-o"></i>
+                                        <i *ngIf="alarme.type == 2" class="fa fa-thermometer-quarter"></i>
+                                        <i *ngIf="alarme.type == 3" class="fa fa-wrench"></i>
+                                        <span *ngIf="alarme.type == 4" class="fa-stack fa-lg">
+                                            <i class="fa fa-wifi  fa-stack-1x"></i>
+                                            <i class="fa fa-ban fa-stack-2x text-danger"></i>
+                                        </span>
+                                    </td>
+                                    <td>{{alarme.shortDescription}}</td>
+                                    <td>
+                                        <span *ngIf="alarme.gravity == 1" class="label label-critique">Critique</span>
+                                        <span *ngIf="alarme.gravity == 2" class="label label-serieux">Sérieux</span>
+                                        <span *ngIf="alarme.gravity == 3" class="label label-info">Info</span>
+                                    </td>
+                                    <td>
+                                        <a class="fa fa-external-link" [routerLink]="'/sensor/'+alarme.deviceId" [title]="alarme.deviceName"></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row wrapperSites">
+                <loading *ngIf="sitesWithFavDevices == null" [model]="modelLoading"></loading>
+                <ng-container *ngIf="sitesWithFavDevices != null">
+                    <div class="wrapperSite" *ngFor="let site of sitesWithFavDevices">
+                        <div class="cardDashboard">
+                            <h2 [routerLink]="'/site/'+site.id" class="cardDashboard-header ">
+                                <i class="fa fa-external-link"></i> {{site.name}}
+                            </h2>
+                            <div class="cardDashboard-body cardSite row">
+                                <div [routerLink]="'/site/'+site.id" class="col-4 col-sm-4">
+                                    <img *ngIf="site?.image" class="imgSiteCard" [src]="site?.image">
+                                    <img *ngIf="!site?.image" class="imgSiteCard" src="./assets/images/default.jpg">
+                                </div>
+                                <div class="col-8 col-sm-8 cardCapteurSite">
+                                    <ng-container *ngFor="let device of site.devices">
+                                        <div [routerLink]="'/sensor/'+device.id" *ngIf="device.isFavorite">
+                                            <span class="label label-critique">{{device.name}}
+                                                <i class="fa fa-star"></i>
+                                            </span>
+                                        </div>
+                                        <div [routerLink]="'/sensor/'+device.id" *ngIf="!device.isFavorite">
+                                            <span class="label label-info">{{device.name}} </span>
+                                        </div>
+                                    </ng-container>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <div *ngIf="sitesWithFavDevices != null && sitesWithFavDevices.length == 0">Vous n'avez pas de capteurs clés.</div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-5 mapWrapper flex-container">
+            <div class="cardDashboard flex-container">
+                 <h2 class="cardDashboard-header ">
+                    Tous mes sites
+                </h2>
+                <div id="contentMap" class="cardDashboard-body flex-container">
+                    <map class="app-container" [style.height.px]="getContentHeight()" style="min-height: 300px;"></map>
+                </div>
+            </div>
         </div>
     </div>
 </div>

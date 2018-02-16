@@ -1,0 +1,17 @@
+.splashScreen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.splashScreen-title {
+  color: $mc-blue_grey; 
+  font-family: 'Great Vibes', cursive; 
+  font-size: 300px; 
+  font-weight: normal; 
+  line-height: 48px; 
+  margin: 0 0 50px; 
+  text-align: center; 
+  text-shadow: 1px 1px 2px $grey-base ;
+}

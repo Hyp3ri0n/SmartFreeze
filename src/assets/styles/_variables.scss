@@ -25,22 +25,37 @@ $mc-deep_orange :    rgb(255, 87, 34);
 $mc-brown       :    rgb(121, 85, 72);
 $mc-grey        :    rgb(158, 158, 158);
 $mc-blue_grey   :    rgb(96, 125, 139);
+$mc-white       :    rgb(255, 255, 255);
 
 /* Grey colors */
 
 $grey-darker    :   rgb(20, 20, 20);
-$grey-dark      :   rgb(45, 45, 45);
+// $grey-dark      :   rgb(45, 45, 45);
+$grey-dark      :   rgb(61, 61, 61);
 $grey-base      :   rgb(136, 136, 136);
 $grey-light     :   rgb(210, 210, 210);
 $grey-lighter   :   rgb(250, 250, 250);
-
-/* Primarys colors */
-
-$app-primary : #26a69a;
-$app-primary_lighter    :   lighten($app-primary, 30%);
-$app-primary_light      :   lighten($app-primary, 15%);
-$app-primary_dark       :   darken($app-primary, 15%);
-$app-primary_darker     :   darken($app-primary, 30%);
-
+$grey-background : #f0f0f0;
+$cardShadow : rgba(0, 0, 0, .06);
 
 // SIZES
+$size-header  : 3.5rem;
+$size-sidebar : 4rem;
+$size-sidebar-deployed : 10.0rem;
+$size-footer  : 1.5rem;
+
+//ALERT GRAVITY
+$gravity1: rgb(244, 67, 54);
+$gravity2: rgb(255, 152, 0);
+$gravity3: rgb(3, 169, 244);
+
+//TRANSPARENCY
+$black-transparency     :   rgba(0, 0, 0, .125);
+$black-transparency-low :   rgba(0, 0, 0, .03);
+
+//TRUSTINDICATOR COLOR 
+$indic-0 : rgb(180, 211, 6);
+$indic-1 : rgb(255, 252, 50);
+$indic-2 : #F9D80A;
+$indic-3 : #F9A904;
+$indic-4 : #F75C07;

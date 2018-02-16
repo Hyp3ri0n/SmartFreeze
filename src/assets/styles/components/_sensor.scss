@@ -1,0 +1,88 @@
+sensor {
+	@extend .app-container;
+}
+
+.back-nav {
+    position: absolute;
+    padding-left: 35px;
+	font-size: 18px;
+	margin-top:5px;
+
+    &:hover .arrow {
+        border-color: $app-primary_light;
+		box-shadow: 0.5vmin -0.5vmin 0 $app-primary;
+	}
+	
+	@include media-breakpoint-down(sm) {
+		display: none;
+	}
+}
+
+.arrow {
+	position: absolute;
+	top: 50%;
+	width: 20px;
+	height: 20px;
+	background: transparent;
+	border-top: 5px solid $app-primary;
+	border-right: 5px solid $app-primary;
+	box-shadow: 0 0 0 $grey-light;
+	transition: all 200ms ease;
+	margin-left:15px;
+
+    &.left {
+		left: 0;
+		transform: translate3d(0,-50%,0) rotate(-135deg);
+	}
+
+	&.right {
+		right: 0;
+		transform: translate3d(0,-50%,0) rotate(45deg);
+	}
+	
+	&:hover {
+		border-color: $app-primary_light;
+		box-shadow: 0.5vmin -0.5vmin 0 $app-primary;
+	}
+	
+	&:before {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-40%,-60%) rotate(45deg);
+		width: 200%;
+		height: 200%;
+	}
+}
+
+.select-sensor-period {
+	display: block;
+	margin: 5px auto;
+    padding: 2px;
+}
+
+.select-mobile {
+	display: none;
+	@include media-breakpoint-down(md) {
+		display: block;
+	}
+}
+
+
+
+.wrapperAllSite .cardSummary {
+	height: 25%;
+}
+
+.wrapperForecast {
+	height: 90%;
+}
+
+.fav-color {
+	color: $grey-dark !important;
+}
+
+.titleDashboard .fa-star {
+	cursor: pointer;
+}
