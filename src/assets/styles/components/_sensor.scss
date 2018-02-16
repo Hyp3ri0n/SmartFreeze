@@ -11,7 +11,11 @@ sensor {
     &:hover .arrow {
         border-color: $app-primary_light;
 		box-shadow: 0.5vmin -0.5vmin 0 $app-primary;
-    }
+	}
+	
+	@include media-breakpoint-down(sm) {
+		display: none;
+	}
 }
 
 .arrow {
@@ -57,6 +61,15 @@ sensor {
 	margin: 5px auto;
     padding: 2px;
 }
+
+.select-mobile {
+	display: none;
+	@include media-breakpoint-down(md) {
+		display: block;
+	}
+}
+
+
 
 .wrapperAllSite .cardSummary {
 	height: 25%;

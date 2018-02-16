@@ -119,6 +119,13 @@
     font-family: RobotoDraft, Roboto, 'Helvetica Neue', sans-serif;
     font-size:12px;
 
+    @include media-breakpoint-down(sm) {
+      .table {
+        display: block;
+        overflow: auto;
+      }
+    }
+
     .btnAlertNotif{
       display:flex;
 

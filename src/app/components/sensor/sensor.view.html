@@ -176,11 +176,20 @@
                 </div>
             </div>
         </div>
-        <div class="row wrapperSndLine wrapperCharts">
+        <div class="row wrapperSndLine wrapperCharts position-relative">
+            <select class="select-site-period select-mobile" (change)="reloadChart($event.target.value)">
+                <option value="" disabled>Période courante</option>
+                <option value="year">Année</option>
+                <option value="quarter">Trimestre</option>
+                <option value="month">Mois</option>
+                <option value="week">Semaine</option>
+                <option value="day" selected>Jour</option>
+                <option value="hour">Heure</option>
+            </select>
             <div class="col-12 col-sm-12 col-md-4">
                 <div class="cardDashboard">
                     <h2 class="cardDashboard-header ">
-                        Historique de la Température
+                        Historique Température
                     </h2>
                     <loading *ngIf="temperatureDataset == null"></loading>
                     <chart *ngIf="temperatureDataset != null" [dataSet]="temperatureDataset" [type]="'temp'" [period]="period"></chart>
@@ -189,7 +198,7 @@
             <div class="col-12 col-sm-12 col-md-4">
                 <div class="cardDashboard">
                     <h2 class="cardDashboard-header ">
-                        Historique de l'Humidité
+                        Historique Humidité
                     </h2>
                     <loading *ngIf="humidityDataset == null"></loading>
                     <chart *ngIf="humidityDataset != null" [dataSet]="humidityDataset" [type]="'humidity'" [period]="period"></chart>
@@ -198,7 +207,7 @@
             <div class="col-12 col-sm-12 col-md-4">
                 <div class="cardDashboard">
                     <h2 class="cardDashboard-header ">
-                        Historique de la Pression
+                        Historique Pression
                     </h2>
                     <loading *ngIf="pressureDataset == null"></loading>
                     <chart *ngIf="pressureDataset != null" [dataSet]="pressureDataset" [type]="'pressure'" [period]="period"></chart>
