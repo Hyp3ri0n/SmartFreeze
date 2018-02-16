@@ -6,7 +6,7 @@
                     <i class="fa fa-exclamation-triangle"></i>
                 </div>
                 <div class="cardInfoText">
-                    <div class="color-red">12</div>
+                    <div class="color-red">{{ getNbAlarmesCritiques() }}</div>
                     <p>Avertissements critiques</p>
                 </div>
             </div>
@@ -17,7 +17,7 @@
                     <i class="fa fa-map-marker"></i>
                 </div>
                 <div class="cardInfoText">
-                    <div class="color-green">4/7</div>
+                    <div class="color-green"> {{ getNbSitesCritiques() }} / {{ sites?.length }}</div>
                     <p>Sites critiques</p>
                 </div>
             </div>
@@ -28,8 +28,8 @@
                     <i class="fa fa-location-arrow"></i>
                 </div>
                 <div class="cardInfoText">
-                    <div class="color-orange">10/15</div>
-                    <p>Capteurs actifs</p>
+                    <div class="color-orange">{{ getNbDevicesCritiques() }} / {{ devices?.length }}</div>
+                    <p>Capteurs critiques</p>
                 </div>
             </div>
         </div>

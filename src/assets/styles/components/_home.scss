@@ -66,6 +66,20 @@ agm-map {
   }
 }
 
+.si-content-wrapper{
+  border-radius : 5px;
+  opacity : 0.90;
+  padding : 20px;
+}
+
+.si-has-border .si-content-wrapper{
+  border : none;
+}
+
+.si-frame{
+  border-radius : 5px;
+  opacity : 0.90; 
+}
 
 @include media-breakpoint-down(md) {
   .homePage .dashboard-header .cardDashboard {
