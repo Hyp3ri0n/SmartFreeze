@@ -6,7 +6,7 @@
                     <i class="fa fa-exclamation-triangle"></i>
                 </div>
                 <div class="cardInfoText">
-                    <div class="color-red">12</div>
+                    <div class="color-red">{{ getNbAlarmesCritiques() }}</div>
                     <p>Avertissements critiques</p>
                 </div>
             </div>
@@ -17,7 +17,7 @@
                     <i class="fa fa-map-marker"></i>
                 </div>
                 <div class="cardInfoText">
-                    <div class="color-green">4/7</div>
+                    <div class="color-green"> {{ getNbSitesCritiques() }} / {{ sites?.length }}</div>
                     <p>Sites critiques</p>
                 </div>
             </div>
@@ -28,8 +28,8 @@
                     <i class="fa fa-location-arrow"></i>
                 </div>
                 <div class="cardInfoText">
-                    <div class="color-orange">10/15</div>
-                    <p>Capteurs actifs</p>
+                    <div class="color-orange">{{ getNbDevicesCritiques() }} / {{ devices?.length }}</div>
+                    <p>Capteurs critiques</p>
                 </div>
             </div>
         </div>
@@ -73,15 +73,15 @@
                                     <tr *ngFor="let alarme of alarmes">
                                         <td>{{alarme.occuredAt | date:'dd/MM/yyyy HH:mm'}}</td>
                                         <td>
-                                            <b>{{alarme.siteName}}</b>
+                                            <a [routerLink]="'/site/'+alarme.siteId"><b>{{alarme.siteName}}</b></a>
                                         </td>
                                         <td>{{alarme.deviceZone}}</td>
-                                        <td>
+                                        <td class="iconTab">
                                             <i *ngIf="alarme.type == 1" class="fa fa-snowflake-o"></i>
                                             <i *ngIf="alarme.type == 2" class="fa fa-thermometer-quarter"></i>
                                             <i *ngIf="alarme.type == 3" class="fa fa-wrench"></i>
                                             <span *ngIf="alarme.type == 4" class="fa-stack fa-lg">
-                                                <i class="fa fa-wifi fa-stack-1x"></i>
+                                                <i class="fa fa-wifi  fa-stack-1x"></i>
                                                 <i class="fa fa-ban fa-stack-2x text-danger"></i>
                                             </span>
                                         </td>
@@ -92,7 +92,7 @@
                                             <span *ngIf="alarme.gravity == 3" class="label label-info">Info</span>
                                         </td>
                                         <td>
-                                            <i class="fa fa-external-link" [routerLink]="'/sensor/'+alarme.deviceId"></i>
+                                            <a class="fa fa-external-link" [routerLink]="'/sensor/'+alarme.deviceId" [title]="alarme.deviceName"></a>
                                         </td>
                                     </tr>
                                 </ng-container>
@@ -111,7 +111,8 @@
                             </h2>
                             <div class="cardDashboard-body cardSite row">
                                 <div [routerLink]="'/site/'+site.id" class="col-4 col-sm-4">
-                                    <img class="imgSiteCard" src="./assets/images/gouter.jpg">
+                                    <img *ngIf="site.image" class="imgSiteCard" [src]="site.image">
+                                    <img *ngIf="!site.image" class="imgSiteCard" src="./assets/images/default.jpg">
                                 </div>
                                 <div class="col-8 col-sm-8 cardCapteurSite">
                                     <ng-container *ngFor="let device of site.devices">

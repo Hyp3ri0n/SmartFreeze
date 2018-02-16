@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Site, SiteService } from '../../services/sites/site.service';
-import { Alarme } from '../../services/alarmes/alarme.service';
+import { Alarme, AlarmeService } from '../../services/alarmes/alarme.service';
 import { DeviceService, Telemetry, Device } from '../../services/devices/device.service';
 import { HttpService } from '../../services/http/http.service';
 import { Chart } from 'chart.js';
@@ -31,11 +31,13 @@ export class SiteComponent {
     private forecastSite: ForecastDay[];
     private forecastWeek: ForecastWeek;
     private settings : WeatherSettings = null;
+    private devicesName : any[];
 
     constructor(private router: ActivatedRoute,
         private siteService: SiteService,
         private deviceService: DeviceService,
         private previsionsService : PrevisionsService,
+        private alarmeService : AlarmeService,
         private http: HttpService) {
 
         this.router.params.subscribe(
@@ -43,6 +45,7 @@ export class SiteComponent {
                 this.siteId = params['id'];
             }
         );
+        this.devicesName = [];
         this.to = new Date();
         this.to.setHours(23, 59, 59, 999);
         this.changedPeriod('day');
@@ -70,10 +73,20 @@ export class SiteComponent {
             site => {
                 this.site = site;
                 // Get alarmes from devices
+                this.alarmes = null;
+                this.alarmeService.getAlarmesWithMoreInfoByDevices(this.site.devices).subscribe(
+                    alarmes => {
+                        this.alarmes = alarmes;
+                    }
+                );
                 // Get devices records for charts
                 let subscribes : Observable<Telemetry[]>[] = [];
                 this.site.devices.forEach(device => {
                     subscribes.push(this.deviceService.getTelemetry(device.id, this.from, this.to));
+                });
+                //get devices name
+                this.site.devices.forEach(device => {
+                    this.devicesName[device.id] = device.name;
                 });
                 // destroy chart component
                 this.temperatureDataset = null;
@@ -85,9 +98,9 @@ export class SiteComponent {
                         telemetriesTab.forEach(telemDevice => {
                             let tmpTemperatures = [];
                             let tmpHumidity = [];
-                            let device : string = '';
+                            let deviceId : string = '';
                             telemDevice.forEach(telemetry => {
-                                device = telemetry.deviceId;
+                                deviceId = telemetry.deviceId;
                                 tmpTemperatures.push({
                                     x: new Date(telemetry.occuredAt),
                                     y: telemetry.temperature
@@ -100,7 +113,7 @@ export class SiteComponent {
                             let color = ChartUtil.getRandomColor();
                             this.temperatureDataset.push({
                                 data: tmpTemperatures,
-                                label: device,
+                                label: this.devicesName[deviceId],
                                 borderColor: color,
                                 pointBackgroundColor: color,
                                 pointBorderColor: color,
@@ -109,7 +122,7 @@ export class SiteComponent {
                             });
                             this.humidityDataset.push({
                                 data: tmpHumidity,
-                                label: device,
+                                label: this.devicesName[deviceId],
                                 borderColor: color,
                                 pointBackgroundColor: color,
                                 pointBorderColor: color,

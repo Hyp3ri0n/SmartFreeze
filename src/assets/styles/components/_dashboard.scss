@@ -108,10 +108,26 @@ $margin-card-dashboard : 5px;
         
             .table{
                 font-size:12px;
+
+                .iconTab{
+                  display:flex;
+                  align-items: center;
+                  justify-content: center;
+                }
                 
-                .fa{
+                .fa-snowflake-o{
                     font-size:14px;
                 }
+                .fa-thermometer-quarter{
+                  font-size:14px;
+                }
+                .fa-wrench{
+                  font-size:14px;
+                }
+                .fa-wifi{
+                  font-size:14px;
+                }
+
             }
         
         }
@@ -232,6 +248,7 @@ $margin-card-dashboard : 5px;
 
   }
   .imgSiteCard{
+    object-fit: cover;
     width: 80px;
     height: 80px;
     border-radius: 50%;
