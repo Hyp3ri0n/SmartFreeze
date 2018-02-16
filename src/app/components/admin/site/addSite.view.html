@@ -19,7 +19,7 @@
                     </div>
                 
                 
-                    <map-site [site]="site"></map-site>
+                    <map-site *ngIf="showMaps" [site]="site"></map-site>
                 
                     <div class="row">
                         <div class="col-lg-7 input-group">

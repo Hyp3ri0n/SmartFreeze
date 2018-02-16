@@ -11,6 +11,7 @@ import { LoginService } from '../../root/login/login.service';
 
 export class AddSiteComponent {
 
+    private showMaps : boolean = false;
     private siteId : string = '';
     private site: Site;
     private zones: string[] = ['Nouvelle zone'];
@@ -30,8 +31,8 @@ export class AddSiteComponent {
             siteType :  1,
             hasActiveAlarms :  false,
             activeAlarmsCount :  0,
-            latitude : 0,
-            longitude : 0,
+            latitude : 46.4378,
+            longitude : 3.9331,
             altitude : 0,
             surfaceArea : 0,
             surfaceAreaUnit : this.login.getApplicationContext() === 1 ? 'hectar' : 'm2',
@@ -43,6 +44,10 @@ export class AddSiteComponent {
     public ngOnInit() : void {
         this.getData();
         this.http.backOnlineEventListener = {component: 'AddSiteComponent', cb : () => this.getData()};
+
+        setTimeout(() => {
+            this.showMaps = true;
+        }, 500);
     }
 
     public ngOnDestroy() : void {
