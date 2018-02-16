@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RenderSite } from '../search/renderSite.component';
-import { RenderSensor } from '../search/rendersensor.component';
+import { RenderSensor } from '../search/renderSensor.component';
 import { RenderDate } from '../search/renderDate.component';
 import { AlarmeService, Alarme, Gravity, Type } from '../../services/alarmes/alarme.service';
 import { RenderBoolean } from '../search/renderBoolean.component';
