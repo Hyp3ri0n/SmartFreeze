@@ -17,7 +17,8 @@
                         Derniers Avertissements
                     </div>
                     <div class="tableWrapper">
-                        <table class="table">
+                        <loading *ngIf="alarmes == null"></loading>
+                        <table class="table" *ngIf="alarmes != null">
                             <thead>
                                 <tr>
                                     <th>Date</th>
@@ -27,27 +28,24 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <loading *ngIf="alarmes == null" [model]="modelLoading"></loading>
-                                <ng-container *ngIf="alarmes != null">
-                                    <tr *ngFor="let alarme of alarmes">
-                                        <td>{{alarme.occuredAt | date:'dd/MM/yyyy HH:mm'}}</td>
-                                        <td>
-                                            <i *ngIf="alarme.type == 1" class="fa fa-snowflake-o"></i>
-                                            <i *ngIf="alarme.type == 2" class="fa fa-thermometer-quarter"></i>
-                                            <i *ngIf="alarme.type == 3" class="fa fa-wrench"></i>
-                                            <span *ngIf="alarme.type == 4" class="fa-stack fa-lg">
-                                                <i class="fa fa-wifi fa-stack-1x"></i>
-                                                <i class="fa fa-ban fa-stack-2x text-danger"></i>
-                                            </span>
-                                        </td>
-                                        <td>{{alarme.shortDescription}}</td>
-                                        <td>
-                                            <span *ngIf="alarme.gravity == 1" class="label label-critique">Critique</span>
-                                            <span *ngIf="alarme.gravity == 2" class="label label-serieux">Sérieux</span>
-                                            <span *ngIf="alarme.gravity == 3" class="label label-info">Info</span>
-                                        </td>
-                                    </tr>
-                                </ng-container>
+                                <tr *ngFor="let alarme of alarmes">
+                                    <td>{{alarme.occuredAt | date:'dd/MM/yyyy HH:mm'}}</td>
+                                    <td>
+                                        <i *ngIf="alarme.type == 1" class="fa fa-snowflake-o"></i>
+                                        <i *ngIf="alarme.type == 2" class="fa fa-thermometer-quarter"></i>
+                                        <i *ngIf="alarme.type == 3" class="fa fa-wrench"></i>
+                                        <span *ngIf="alarme.type == 4" class="fa-stack fa-lg">
+                                            <i class="fa fa-wifi fa-stack-1x"></i>
+                                            <i class="fa fa-ban fa-stack-2x text-danger"></i>
+                                        </span>
+                                    </td>
+                                    <td>{{alarme.shortDescription}}</td>
+                                    <td>
+                                        <span *ngIf="alarme.gravity == 1" class="label label-critique">Critique</span>
+                                        <span *ngIf="alarme.gravity == 2" class="label label-serieux">Sérieux</span>
+                                        <span *ngIf="alarme.gravity == 3" class="label label-info">Info</span>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

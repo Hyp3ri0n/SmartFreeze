@@ -13,7 +13,8 @@
                             Derniers Avertissements
                         </h2>
                         <div class="tableWrapper">
-                            <table class="table">
+                            <loading *ngIf="alarmes == null"></loading>
+                            <table class="table" *ngIf="alarmes != null">
                                 <thead>
                                     <tr>
                                         <th>Date</th>
@@ -25,31 +26,28 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <loading *ngIf="alarmes == null"></loading>
-                                    <ng-container *ngIf="alarmes != null">
-                                        <tr *ngFor="let alarme of alarmes">
-                                            <td>{{alarme.occuredAt | date:'dd/MM/yyyy HH:mm'}}</td>
-                                            <td>{{alarme.deviceZone}}</td>
-                                            <td>
-                                                <i *ngIf="alarme.type == 1" class="fa fa-snowflake-o"></i>
-                                                <i *ngIf="alarme.type == 2" class="fa fa-thermometer-quarter"></i>
-                                                <i *ngIf="alarme.type == 3" class="fa fa-wrench"></i>
-                                                <span *ngIf="alarme.type == 4" class="fa-stack fa-lg">
-                                                    <i class="fa fa-wifi fa-stack-1x"></i>
-                                                    <i class="fa fa-ban fa-stack-2x text-danger"></i>
-                                                </span>
-                                            </td>
-                                            <td>{{alarme.shortDescription}}</td>
-                                            <td>
-                                                <span *ngIf="alarme.gravity == 1" class="label label-critique">Critique</span>
-                                                <span *ngIf="alarme.gravity == 2" class="label label-serieux">Sérieux</span>
-                                                <span *ngIf="alarme.gravity == 3" class="label label-info">Info</span>
-                                            </td>
-                                            <td>
-                                                <a class="fa fa-external-link" [routerLink]="'/sensor/'+alarme.deviceId" [title]="alarme.deviceName"></a>
-                                            </td>
-                                        </tr>
-                                    </ng-container>
+                                    <tr *ngFor="let alarme of alarmes">
+                                        <td>{{alarme.occuredAt | date:'dd/MM/yyyy HH:mm'}}</td>
+                                        <td>{{alarme.deviceZone}}</td>
+                                        <td>
+                                            <i *ngIf="alarme.type == 1" class="fa fa-snowflake-o"></i>
+                                            <i *ngIf="alarme.type == 2" class="fa fa-thermometer-quarter"></i>
+                                            <i *ngIf="alarme.type == 3" class="fa fa-wrench"></i>
+                                            <span *ngIf="alarme.type == 4" class="fa-stack fa-lg">
+                                                <i class="fa fa-wifi fa-stack-1x"></i>
+                                                <i class="fa fa-ban fa-stack-2x text-danger"></i>
+                                            </span>
+                                        </td>
+                                        <td>{{alarme.shortDescription}}</td>
+                                        <td>
+                                            <span *ngIf="alarme.gravity == 1" class="label label-critique">Critique</span>
+                                            <span *ngIf="alarme.gravity == 2" class="label label-serieux">Sérieux</span>
+                                            <span *ngIf="alarme.gravity == 3" class="label label-info">Info</span>
+                                        </td>
+                                        <td>
+                                            <a class="fa fa-external-link" [routerLink]="'/sensor/'+alarme.deviceId" [title]="alarme.deviceName"></a>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -111,9 +109,7 @@
                             </div>
                             <div class="msgError" *ngIf="forecastSite?.length == 0">
                                 <i class="fa fa-exclamation-triangle"></i>
-                                
                                 Les capteurs de ce site n'ont pas communiqué de données. Le calcul de la prévision du gel ne peut pas se faire sans données.
-    
                             </div>
                         </div>
                     </div>
@@ -129,9 +125,7 @@
                         <chart *ngIf="temperatureDataset != null && hasTemperatureData()" [dataSet]="temperatureDataset" [type]="'temp'" [period]="period"></chart>
                         <div class="msgError" *ngIf="!hasTemperatureData()">
                             <i class="fa fa-exclamation-triangle"></i>
-                            
                             Les capteurs de ce site n'ont pas communiqué de données de température.
-
                         </div>
                     </div>
                 </div>
@@ -161,7 +155,7 @@
         </div>
         <div class="cardInfosSite">
             <div class="wrapperImg">
-                <img *ngIf="site.image" class="fit-img" [src]="site.image">
+                <img *ngIf="site.image" class="fit-img" [src]="site?.image">
                 <img *ngIf="!site.image" class="fit-img" src="./assets/images/default.jpg">
                 <div class="buttonMoreInfos">
                     <span (click)="showCaract()" class="icon btnCaract">

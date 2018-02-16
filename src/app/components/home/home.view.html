@@ -55,7 +55,8 @@
                         Avertissements
                     </h2> 
                     <div class="cardDashboard-body tableWrapper">
-                        <table class="table">
+                        <loading *ngIf="alarmes == null"></loading>
+                        <table class="table" *ngIf="alarmes != null">
                             <thead>
                                 <tr>
                                     <th>Date</th>
@@ -68,34 +69,31 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <loading *ngIf="alarmes == null" [model]="modelLoading"></loading>
-                                <ng-container *ngIf="alarmes != null">
-                                    <tr *ngFor="let alarme of alarmes">
-                                        <td>{{alarme.occuredAt | date:'dd/MM/yyyy HH:mm'}}</td>
-                                        <td>
-                                            <a [routerLink]="'/site/'+alarme.siteId"><b>{{alarme.siteName}}</b></a>
-                                        </td>
-                                        <td>{{alarme.deviceZone}}</td>
-                                        <td class="iconTab">
-                                            <i *ngIf="alarme.type == 1" class="fa fa-snowflake-o"></i>
-                                            <i *ngIf="alarme.type == 2" class="fa fa-thermometer-quarter"></i>
-                                            <i *ngIf="alarme.type == 3" class="fa fa-wrench"></i>
-                                            <span *ngIf="alarme.type == 4" class="fa-stack fa-lg">
-                                                <i class="fa fa-wifi  fa-stack-1x"></i>
-                                                <i class="fa fa-ban fa-stack-2x text-danger"></i>
-                                            </span>
-                                        </td>
-                                        <td>{{alarme.shortDescription}}</td>
-                                        <td>
-                                            <span *ngIf="alarme.gravity == 1" class="label label-critique">Critique</span>
-                                            <span *ngIf="alarme.gravity == 2" class="label label-serieux">Sérieux</span>
-                                            <span *ngIf="alarme.gravity == 3" class="label label-info">Info</span>
-                                        </td>
-                                        <td>
-                                            <a class="fa fa-external-link" [routerLink]="'/sensor/'+alarme.deviceId" [title]="alarme.deviceName"></a>
-                                        </td>
-                                    </tr>
-                                </ng-container>
+                                <tr *ngFor="let alarme of alarmes">
+                                    <td>{{alarme.occuredAt | date:'dd/MM/yyyy HH:mm'}}</td>
+                                    <td>
+                                        <a [routerLink]="'/site/'+alarme.siteId"><b>{{alarme.siteName}}</b></a>
+                                    </td>
+                                    <td>{{alarme.deviceZone}}</td>
+                                    <td class="iconTab">
+                                        <i *ngIf="alarme.type == 1" class="fa fa-snowflake-o"></i>
+                                        <i *ngIf="alarme.type == 2" class="fa fa-thermometer-quarter"></i>
+                                        <i *ngIf="alarme.type == 3" class="fa fa-wrench"></i>
+                                        <span *ngIf="alarme.type == 4" class="fa-stack fa-lg">
+                                            <i class="fa fa-wifi  fa-stack-1x"></i>
+                                            <i class="fa fa-ban fa-stack-2x text-danger"></i>
+                                        </span>
+                                    </td>
+                                    <td>{{alarme.shortDescription}}</td>
+                                    <td>
+                                        <span *ngIf="alarme.gravity == 1" class="label label-critique">Critique</span>
+                                        <span *ngIf="alarme.gravity == 2" class="label label-serieux">Sérieux</span>
+                                        <span *ngIf="alarme.gravity == 3" class="label label-info">Info</span>
+                                    </td>
+                                    <td>
+                                        <a class="fa fa-external-link" [routerLink]="'/sensor/'+alarme.deviceId" [title]="alarme.deviceName"></a>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -111,7 +109,7 @@
                             </h2>
                             <div class="cardDashboard-body cardSite row">
                                 <div [routerLink]="'/site/'+site.id" class="col-4 col-sm-4">
-                                    <img *ngIf="site.image" class="imgSiteCard" [src]="site.image">
+                                    <img *ngIf="site.image" class="imgSiteCard" [src]="site?.image">
                                     <img *ngIf="!site.image" class="imgSiteCard" src="./assets/images/default.jpg">
                                 </div>
                                 <div class="col-8 col-sm-8 cardCapteurSite">
