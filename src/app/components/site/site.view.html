@@ -25,7 +25,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <loading *ngIf="alarmes == null" [model]="modelLoading"></loading>
+                                    <loading *ngIf="alarmes == null"></loading>
                                     <ng-container *ngIf="alarmes != null">
                                         <tr *ngFor="let alarme of alarmes">
                                             <td>{{alarme.occuredAt | date:'dd/MM/yyyy HH:mm'}}</td>
@@ -158,7 +158,7 @@
                 </div>
             </div>
             <div class="contentSite cardDashboard">
-                <div id="caracteristiques" class="caracteristiques">
+                <div id="caracteristiques" class="caracteristiques app-container">
                     <h2 class="title">
                         Caractéristiques du site
                     </h2>

@@ -31,6 +31,7 @@ export class SiteComponent {
     private forecastSite: ForecastDay[];
     private forecastWeek: ForecastWeek;
     private settings : WeatherSettings = null;
+    private devicesName : any[];
 
     constructor(private router: ActivatedRoute,
         private siteService: SiteService,
@@ -44,6 +45,7 @@ export class SiteComponent {
                 this.siteId = params['id'];
             }
         );
+        this.devicesName = [];
         this.to = new Date();
         this.to.setHours(23, 59, 59, 999);
         this.changedPeriod('day');
@@ -82,6 +84,10 @@ export class SiteComponent {
                 this.site.devices.forEach(device => {
                     subscribes.push(this.deviceService.getTelemetry(device.id, this.from, this.to));
                 });
+                //get devices name
+                this.site.devices.forEach(device => {
+                    this.devicesName[device.id] = device.name;
+                });
                 // destroy chart component
                 this.temperatureDataset = null;
                 this.humidityDataset = null;
@@ -92,9 +98,9 @@ export class SiteComponent {
                         telemetriesTab.forEach(telemDevice => {
                             let tmpTemperatures = [];
                             let tmpHumidity = [];
-                            let device : string = '';
+                            let deviceId : string = '';
                             telemDevice.forEach(telemetry => {
-                                device = telemetry.deviceId;
+                                deviceId = telemetry.deviceId;
                                 tmpTemperatures.push({
                                     x: new Date(telemetry.occuredAt),
                                     y: telemetry.temperature
@@ -107,7 +113,7 @@ export class SiteComponent {
                             let color = ChartUtil.getRandomColor();
                             this.temperatureDataset.push({
                                 data: tmpTemperatures,
-                                label: device,
+                                label: this.devicesName[deviceId],
                                 borderColor: color,
                                 pointBackgroundColor: color,
                                 pointBorderColor: color,
@@ -116,7 +122,7 @@ export class SiteComponent {
                             });
                             this.humidityDataset.push({
                                 data: tmpHumidity,
-                                label: device,
+                                label: this.devicesName[deviceId],
                                 borderColor: color,
                                 pointBackgroundColor: color,
                                 pointBorderColor: color,
