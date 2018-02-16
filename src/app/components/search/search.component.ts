@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { validateConfig } from '@angular/router/src/config';
-import { RenderSensor } from './rendersensor.component';
+import { RenderSensor } from './renderSensor.component';
 import { RenderSite } from './renderSite.component';
 import { RenderBoolean } from './renderBoolean.component';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';

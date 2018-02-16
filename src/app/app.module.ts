@@ -37,7 +37,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { AlarmeService } from './services/alarmes/alarme.service';
 import { AddSensorComponent } from './components/admin/sensor/addSensor.component';
 import { AllSitesComponent } from './components/all-sites/allSites.component';
-import { RenderSensor } from './components/search/rendersensor.component';
+import { RenderSensor } from './components/search/renderSensor.component';
 import { RenderSite } from './components/search/renderSite.component';
 import { RenderBoolean } from './components/search/renderBoolean.component';
 import { RenderDate } from './components/search/renderDate.component';

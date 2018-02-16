@@ -10,10 +10,8 @@
     "app:build-electron": "gulp build-electron",
     "app:build-cordova": "gulp build-cordova",
     "app:watch-web": "gulp watch-web",
-    "electron:start": "electron dist/electron/www",
     "cordova:android-start": "cordova run android",
-    "ltserver:start": "lite-server --baseDir ./dist/www --port 3333",
-    "electron:pack-win64": "electron-packager ./dist/electron/www BaseProject --platform=win32 --arch=x64 --version=0.33.3"
+    "ltserver:start": "lite-server --baseDir ./dist/www --port 3333"
   },
   "dependencies": {
     "@agm/core": "^1.0.0-beta.2",

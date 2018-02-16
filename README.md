@@ -1,12 +1,12 @@
-# MultiApp-BaseProject
+# SmartFreeze
 
 ## Description
 
-This is a little repository that bring you a development environment to create a project with [Angular](https://angular.io/) that let you create either an web application, a desktop application or a phone application. You can generate them thanks to [Cordova](https://cordova.apache.org/) or [Electron](https://electron.atom.io/).
+// TODO
 
 ## Infos
 
-* [Bootstrap](http://getbootstrap.com/) : For the fron-end there is Bootstrap (style and grid).
+* [Bootstrap](http://getbootstrap.com/) : For the front-end there is Bootstrap (style and grid).
 * [Font-Awesome](http://fontawesome.io/) : To incorporate some icons there is font-awesome.
 * [Roboto](https://fonts.google.com/specimen/Roboto) : The font for the text is Roboto.
 
@@ -39,6 +39,8 @@ This is a little repository that bring you a development environment to create a
 
 Before anything, you need to download and install [NodeJS](https://nodejs.org/en/) with is npm package system.
 
+And if you want to generate cordova application, you have to download and install [Android Studio](https://developer.android.com/studio/index.html) with is all the sdk needed.
+
 ## 2 - Modules npm
 
 You will also need some modules from npm. Here is a list with their command to install them :
@@ -66,13 +68,11 @@ And finally, on another console, you can launch the lite-server start coding :
 
 To clean your project :
 > npm run app:clean-web  
-> npm run app:clean-electron  
 > npm run app:clean-cordova  
 > npm run app:clean-all  
 
 To build your project :
 > npm run app:build-web  
-> npm run app:build-electron  
 > npm run app:build-cordova  
 
 To launch watchers on sources :
@@ -81,20 +81,10 @@ To launch watchers on sources :
 To start lite-server :
 > npm run ltserve:start
 
-To start Electron to debug project :
-> npm run electron:start
-
 To start Cordova to debug project :
 > npm run cordova:android-start
 
-To generate your project on Electron :
-> npm run electron:pack-win64
-
 ------------------
-
-## Special thanks
-
-A big thanks to [@kolorobot](https://github.com/kolorobot) for his great [repo](https://github.com/kolorobot/angular2-typescript-gulp) that helped me a lot to understand all of this.
 
 ## License
 

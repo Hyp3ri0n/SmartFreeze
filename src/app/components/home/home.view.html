@@ -112,7 +112,7 @@
                             <div class="cardDashboard-body cardSite row">
                                 <div [routerLink]="'/site/'+site.id" class="col-4 col-sm-4">
                                     <img *ngIf="site.image" class="imgSiteCard" [src]="site.image">
-                                    <img *ngIf="!site.image" class="imgSiteCard" src="../../assets/images/default.jpg">
+                                    <img *ngIf="!site.image" class="imgSiteCard" src="./assets/images/default.jpg">
                                 </div>
                                 <div class="col-8 col-sm-8 cardCapteurSite">
                                     <ng-container *ngFor="let device of site.devices">
@@ -140,7 +140,7 @@
                     Tous mes sites
                 </h2>
                 <div id="contentMap" class="cardDashboard-body flex-container">
-                    <map class="app-container" [style.height.px]="getContentHeight()"></map>
+                    <map class="app-container" [style.height.px]="getContentHeight()" style="min-height: 300px;"></map>
                 </div>
             </div>
         </div>
