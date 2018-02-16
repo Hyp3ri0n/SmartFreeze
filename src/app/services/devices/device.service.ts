@@ -102,7 +102,8 @@ export class DeviceService {
                 zone: device.zone,
                 siteId: device.siteId,
                 latitude: device.latitude,
-                longitude: device.longitude
+                longitude: device.longitude,
+                altitude: device.altitude
             };
             this.http.request(MethodRequest.PUT, '/api/Devices/' + device.id, data).subscribe(
                 sucess => {
@@ -128,6 +129,16 @@ export class DeviceService {
             this.http.request(MethodRequest.POST, '/api/Devices', data).subscribe(
                 sucess => {
                     observer.next('');
+                }
+            );
+        });
+    }
+
+    public deleteDevice(device: Device): Observable<String> {
+        return Observable.create((observer) => {
+            this.http.request(MethodRequest.DELETE, '/api/Devices/' + device.id, {}).subscribe(
+                sucess => {
+                    observer.next('Suppression réussie');
                 }
             );
         });

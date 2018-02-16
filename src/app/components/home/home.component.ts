@@ -19,6 +19,10 @@ export class HomeComponent implements OnDestroy {
     private sites : Site[] = null;
     private devices : Device[] = null;
 
+    private nbAlarmesCritiques : number = 0;
+    private nbSitesCritiques : number = 0;
+    private nbDevicesCritiques : number = 0;
+
     // tslint:disable-next-line:max-line-length
     constructor(private siteService : SiteService, private deviceService : DeviceService, private alarmeService : AlarmeService, private http : HttpService) {
         this.getData();
@@ -53,21 +57,24 @@ export class HomeComponent implements OnDestroy {
         this.alarmeService.getAlarmesWithMoreInfo().subscribe(
             alarmes => {
                 this.alarmes = alarmes;
+                this.getNbAlarmesCritiques();
+                this.getNbDevicesCritiques();
+                this.getNbSitesCritiques();
             }
         );
     }
 
-    private getNbAlarmesCritiques() : number {
+    private getNbAlarmesCritiques() : void {
         let nbAlarmesCritiques = 0;
         this.alarmes.forEach(alarme => {
             if (alarme.gravity === Gravity.Critical) {
                 nbAlarmesCritiques++;
             }
        });
-       return nbAlarmesCritiques;
+       this.nbAlarmesCritiques = nbAlarmesCritiques;
     }
 
-    private getNbSitesCritiques() : number {
+    private getNbSitesCritiques() : void {
         let sitesCritiques : string[] = [];
 
         this.alarmes.forEach(alarme => {
@@ -77,10 +84,10 @@ export class HomeComponent implements OnDestroy {
                 }
             }
         });
-        return sitesCritiques.length;
+        this.nbSitesCritiques = sitesCritiques.length;
     }
 
-    private getNbDevicesCritiques() : number {
+    private getNbDevicesCritiques() : void {
         let devicesCritiques : string[] = [];
 
         this.alarmes.forEach(alarme => {
@@ -90,7 +97,7 @@ export class HomeComponent implements OnDestroy {
                 }
             }
         });
-        return devicesCritiques.length;
+        this.nbDevicesCritiques = devicesCritiques.length;
     }
 
     private getContentHeight() : number {
