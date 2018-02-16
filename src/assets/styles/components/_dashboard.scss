@@ -5,6 +5,13 @@ $margin-card-dashboard : 5px;
 .homePage{
     flex-direction:column;
 
+    .msgError{
+      padding: 10px;
+      font-style: italic;
+      text-align: center;
+      color: $grey-base;
+    }
+
   .gelTab {
     display: flex;
     flex-flow: column nowrap;
