@@ -58,7 +58,7 @@ export class AlertsComponent implements OnDestroy {
             actions: false,
             columns: {
                 occuredAt: {
-                    title: 'Date avertissement',
+                    title: 'Date',
                     filter: {
                         type: 'list',
                         config: {
@@ -118,7 +118,7 @@ export class AlertsComponent implements OnDestroy {
                     renderComponent: RenderDate
                 },
                 shortDescription: {
-                    title: 'Intitulé'
+                    title: 'Nom'
                 },
                 deviceName: {
                     title: 'Capteur',
@@ -131,7 +131,7 @@ export class AlertsComponent implements OnDestroy {
                     renderComponent: RenderSite
                 },
                 gravity: {
-                    title: 'Gravité',
+                    title: 'Importance',
                     filter: {
                         type: 'list',
                         config: {
@@ -180,7 +180,7 @@ export class AlertsComponent implements OnDestroy {
                     },
                 },
                 isActive: {
-                    title: 'Active',
+                    title: 'Active?',
                     filter: {
                         type: 'checkbox',
                         config: {
