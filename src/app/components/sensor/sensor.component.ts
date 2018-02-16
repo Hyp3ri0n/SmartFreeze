@@ -5,6 +5,8 @@ import { ChartUtil } from '../global/chart/chart.util';
 import { HttpService } from '../../services/http/http.service';
 import { PrevisionsService, ForecastDay, ForecastWeek } from '../../services/previsions/previsions.service';
 import { Alarme, AlarmeService } from '../../services/alarmes/alarme.service';
+import { SiteService, Site } from '../../services/sites/site.service';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
     selector: 'sensor',
@@ -24,11 +26,13 @@ export class SensorComponent {
     private forecastSite: ForecastDay[];
     private forecastWeek: ForecastWeek;
     private alarmes : Alarme[] = [];
+    private sites: Site[] = [];
 
     constructor(private router : ActivatedRoute,
         private deviceService : DeviceService,
         private previsionsService : PrevisionsService,
         private alarmeService : AlarmeService,
+        private siteService : SiteService,
         private http : HttpService) {
         this.router.params.subscribe(
             params => {
@@ -49,6 +53,16 @@ export class SensorComponent {
         this.http.removeBackOnlineListener('SensorComponent');
     }
 
+    private getSiteName(id : string) : string {
+        let siteName : string = "";
+        this.sites.forEach(site => {
+            if (site.id === id) {
+                siteName = site.name;
+            }
+        });
+        return siteName;
+    }
+
     private getData() : void {
         this.temperatureDataset = null;
         this.humidityDataset = null;
@@ -58,6 +72,13 @@ export class SensorComponent {
             previsions => {
                 this.forecastWeek = previsions;
                 this.forecastSite = this.forecastWeek.forecast;
+            }
+        );
+
+        this.sites = null;
+        this.siteService.getSites().subscribe(
+            sites => {
+                this.sites = sites;
             }
         );
 

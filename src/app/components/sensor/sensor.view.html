@@ -129,7 +129,7 @@
                         </div>
                         <div class="cardInfoTextSensor">
                             <p>Site</p>
-                            <div class="color-red">{{device?.siteId}}</div>
+                            <div class="color-red">{{ getSiteName(device?.siteId) }}</div>
                         </div>
                     </div>
                 </div>
@@ -140,7 +140,7 @@
                         </div>
                         <div class="cardInfoTextSensor">
                             <p>Zone</p>
-                            <div class="color-green">{{device?.zone}}</div>
+                            <div class="color-green">{{ device?.zone }}</div>
                         </div>
                     </div>
                 </div>
