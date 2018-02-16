@@ -135,15 +135,6 @@
                         </div>
                     </div>
                 </div>
-                <select *ngIf="hasTemperatureData() || hasHumidityData()" class="select-site-period" (change)="reloadChart($event.target.value)">
-                    <option value="" disabled>Période courante</option>
-                    <option value="year">Année</option>
-                    <option value="quarter">Trimestre</option>
-                    <option value="month">Mois</option>
-                    <option value="week">Semaine</option>
-                    <option value="day" selected>Jour</option>
-                    <option value="hour">Heure</option>
-                </select>
                 <div class="col-12 col-sm-12 col-md-6">
                     <div class="cardDashboard">
                         <h2 class="cardDashboard-header text-sm-right text-md-right">
@@ -153,12 +144,19 @@
                         <chart *ngIf="humidityDataset != null && hasHumidityData()" [dataSet]="humidityDataset" [type]="'humidity'" [period]="period"></chart>
                         <div class="msgError" *ngIf="!hasHumidityData()">
                             <i class="fa fa-exclamation-triangle"></i>
-                            
                             Les capteurs de ce site n'ont pas communiqué de données d'humidité.
-
                         </div>
                     </div>
                 </div>
+                <select [ngClass]="{'select-hide': hasTemperatureData() || hasHumidityData()}"class="select-site-period" (change)="reloadChart($event.target.value)">
+                    <option value="" disabled>Période courante</option>
+                    <option value="year">Année</option>
+                    <option value="quarter">Trimestre</option>
+                    <option value="month">Mois</option>
+                    <option value="week">Semaine</option>
+                    <option value="day" selected>Jour</option>
+                    <option value="hour">Heure</option>
+                </select>
             </div>
         </div>
         <div class="cardInfosSite">
@@ -169,7 +167,6 @@
                     <span (click)="showCaract()" class="icon btnCaract">
                         <i class=" fa fa-bars"> </i>
                     </span>
-
                     <span (click)="showMeteo()" class="icon btnMeteo">
                         <i class=" fa fa-cloud"> </i>
                     </span>
@@ -192,7 +189,6 @@
                             <b>Département : </b>{{site?.region + ' (' + site?.department + ')'}}</p>
                     </div>
                     <div>
-                        <!-- middleWrapperFirstLine -->
                         <h2 class="cardDashboard-header">
                             Les Capteurs
                         </h2>

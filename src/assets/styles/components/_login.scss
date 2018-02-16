@@ -2,11 +2,13 @@
     height: 100%;
 
     display: flex;
-    align-items: center;
-    justify-content: center;
+    @include media-breakpoint-up(sm) {
+        align-items: center;
+        justify-content: center;
+    }
 
     h1 {
-        color: $mc-blue_grey; 
+        color: $app-primary; 
         font-family: 'Rouge Script', cursive; 
         font-size: 50px; 
         font-weight: normal; 
@@ -14,6 +16,10 @@
         margin: 0 0 20px; 
         text-align: center; 
         text-shadow: 1px 1px 2px $grey-base ;
+
+        @include media-breakpoint-down(sm) {
+            margin: 0 0 10px;
+        }
     }
 
     h3 {
@@ -21,10 +27,22 @@
         font-style: italic;
         font-size: 17px;
         padding: 10px 0;
+        @include media-breakpoint-down(sm) {
+            display: none;
+        }
     }
 
-    .zoneLabel:first-of-type {
-        padding-bottom: 10px;
+    @include media-breakpoint-up(sm) {
+        .zoneLabel:first-of-type {
+            padding-bottom: 10px;
+        }
+    }
+    @include media-breakpoint-down(sm) {
+        .loginZone {
+            justify-content: space-around;
+            display: flex;
+            flex-flow: column;
+        }
     }
 
     .label {
@@ -98,8 +116,12 @@
         background-color: $black-transparency-low;
         padding : 10px 35px 10px 10px;
         border: 1px solid $black-transparency;
-        margin-top: 20px;
+        
         position: relative;
+
+        @include media-breakpoint-up(sm) {
+            margin-top: 20px;
+        }
         .round{
             padding : 5px;
         }
@@ -120,6 +142,11 @@
                 border-color: $app-primary_light;
                 box-shadow: 0.5vmin -0.5vmin 0 $app-primary;
             }
+        }
+
+        @include media-breakpoint-down(sm) {
+            margin: 0 auto;
+            width: 110px;
         }
     }
 
