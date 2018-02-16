@@ -73,7 +73,7 @@
                                     <tr *ngFor="let alarme of alarmes">
                                         <td>{{alarme.occuredAt | date:'dd/MM/yyyy HH:mm'}}</td>
                                         <td>
-                                            <b>{{alarme.siteName}}</b>
+                                            <a [routerLink]="'/site/'+alarme.siteId"><b>{{alarme.siteName}}</b></a>
                                         </td>
                                         <td>{{alarme.deviceZone}}</td>
                                         <td>
@@ -92,7 +92,7 @@
                                             <span *ngIf="alarme.gravity == 3" class="label label-info">Info</span>
                                         </td>
                                         <td>
-                                            <i class="fa fa-external-link" [routerLink]="'/sensor/'+alarme.deviceId"></i>
+                                            <a class="fa fa-external-link" [routerLink]="'/sensor/'+alarme.deviceId" [title]="alarme.deviceName"></a>
                                         </td>
                                     </tr>
                                 </ng-container>

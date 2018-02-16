@@ -24,66 +24,30 @@
                                     <th></th>
                                     <th>Description</th>
                                     <th>Gravité</th>
-                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>02/02/2018 15h04</td>
-
-                                    <td>
-                                        <i class="fa fa-snowflake-o"></i>
-                                    </td>
-                                    <td>Gel prévu dans 5 jours</td>
-                                    <td>
-                                        <span class="label label-serieux">Sérieux</span>
-                                    </td>
-                                    <td>
-                                        <i class="fa fa-external-link"></i>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>01/02/2018 18h04</td>
-
-                                    <td>
-                                        <i class="fa fa-snowflake-o"></i>
-                                    </td>
-                                    <td>Gel prévu dans 2 jours</td>
-                                    <td>
-                                        <span class="label label-critique">Critique</span>
-                                    </td>
-                                    <td>
-                                        <i class="fa fa-external-link"></i>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>26/01/2018 15h04</td>
-
-                                    <td>
-                                        <i class="fa fa-wrench"></i>
-                                    </td>
-                                    <td>Non réception depuis 1 jour</td>
-                                    <td>
-                                        <span class="label label-info">Information</span>
-                                    </td>
-                                    <td>
-                                        <i class="fa fa-external-link"></i>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>26/01/2018 15h04</td>
-
-                                    <td>
-                                        <i class="fa fa-thermometer-quarter"></i>
-                                    </td>
-                                    <td>Dégel prévu dans 10 jours</td>
-                                    <td>
-                                        <span class="label label-info">Information</span>
-                                    </td>
-                                    <td>
-                                        <i class="fa fa-external-link"></i>
-                                    </td>
-                                </tr>
+                                <loading *ngIf="alarmes == null" [model]="modelLoading"></loading>
+                                <ng-container *ngIf="alarmes != null">
+                                    <tr *ngFor="let alarme of alarmes">
+                                        <td>{{alarme.occuredAt | date:'dd/MM/yyyy HH:mm'}}</td>
+                                        <td>
+                                            <i *ngIf="alarme.type == 1" class="fa fa-snowflake-o"></i>
+                                            <i *ngIf="alarme.type == 2" class="fa fa-thermometer-quarter"></i>
+                                            <i *ngIf="alarme.type == 3" class="fa fa-wrench"></i>
+                                            <span *ngIf="alarme.type == 4" class="fa-stack fa-lg">
+                                                <i class="fa fa-wifi fa-stack-1x"></i>
+                                                <i class="fa fa-ban fa-stack-2x text-danger"></i>
+                                            </span>
+                                        </td>
+                                        <td>{{alarme.shortDescription}}</td>
+                                        <td>
+                                            <span *ngIf="alarme.gravity == 1" class="label label-critique">Critique</span>
+                                            <span *ngIf="alarme.gravity == 2" class="label label-serieux">Sérieux</span>
+                                            <span *ngIf="alarme.gravity == 3" class="label label-info">Info</span>
+                                        </td>
+                                    </tr>
+                                </ng-container>
                             </tbody>
                         </table>
                     </div>

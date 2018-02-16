@@ -4,6 +4,7 @@ import { DeviceService, Device } from '../../services/devices/device.service';
 import { ChartUtil } from '../global/chart/chart.util';
 import { HttpService } from '../../services/http/http.service';
 import { PrevisionsService, ForecastDay, ForecastWeek } from '../../services/previsions/previsions.service';
+import { Alarme, AlarmeService } from '../../services/alarmes/alarme.service';
 
 @Component({
     selector: 'sensor',
@@ -22,10 +23,12 @@ export class SensorComponent {
     private to:Date;
     private forecastSite: ForecastDay[];
     private forecastWeek: ForecastWeek;
+    private alarmes : Alarme[] = [];
 
     constructor(private router : ActivatedRoute,
         private deviceService : DeviceService,
         private previsionsService : PrevisionsService,
+        private alarmeService : AlarmeService,
         private http : HttpService) {
         this.router.params.subscribe(
             params => {
@@ -61,6 +64,13 @@ export class SensorComponent {
         this.deviceService.getDevice(this.deviceId).subscribe(
             device => {
                 this.device = device;
+                //Alarms
+                this.alarmeService.getAlarmesWithMoreInfoByDevices([this.device]).subscribe(
+                    alarmes => {
+                        this.alarmes = alarmes;
+                    }
+                );
+                //Charts
                 this.deviceService.getTelemetry(this.device.id, this.from, this.to).subscribe(
                     telemetriesTab => {
                         this.temperatureDataset = [];

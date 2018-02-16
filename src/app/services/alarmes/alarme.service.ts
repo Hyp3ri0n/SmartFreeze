@@ -143,4 +143,39 @@ export class AlarmeService {
             );
         });
     }
+
+    public getAlarmesWithMoreInfoByDevices(devices : Device[]) : Observable<any[]> {
+        return Observable.create((observer) => {
+            this.getAlarmes().subscribe(
+                alarms => {
+                    let data : any[] = [];
+                    alarms.forEach(alarm => {
+                        let device : Device = null;
+                        devices.forEach(d => {
+                            if (d.id === alarm.deviceId) {
+                                device = d;
+                                return;
+                            }
+                        });
+                        if (device != null) {
+                          data.push({
+                              id : alarm.id,
+                              description : alarm.description,
+                              isActive : alarm.isActive,
+                              occuredAt : alarm.occuredAt,
+                              type : alarm.type,
+                              gravity : alarm.gravity,
+                              shortDescription : alarm.shortDescription,
+                              deviceId: alarm.deviceId,
+                              deviceName: device.name,
+                              deviceZone: device.zone,
+                              siteId: alarm.siteId
+                          });
+                        }
+                        observer.next(data);
+                    });
+                }
+            );
+        });
+    }
 }

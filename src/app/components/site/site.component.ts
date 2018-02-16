@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Site, SiteService } from '../../services/sites/site.service';
-import { Alarme } from '../../services/alarmes/alarme.service';
+import { Alarme, AlarmeService } from '../../services/alarmes/alarme.service';
 import { DeviceService, Telemetry, Device } from '../../services/devices/device.service';
 import { HttpService } from '../../services/http/http.service';
 import { Chart } from 'chart.js';
@@ -36,6 +36,7 @@ export class SiteComponent {
         private siteService: SiteService,
         private deviceService: DeviceService,
         private previsionsService : PrevisionsService,
+        private alarmeService : AlarmeService,
         private http: HttpService) {
 
         this.router.params.subscribe(
@@ -70,6 +71,12 @@ export class SiteComponent {
             site => {
                 this.site = site;
                 // Get alarmes from devices
+                this.alarmes = null;
+                this.alarmeService.getAlarmesWithMoreInfoByDevices(this.site.devices).subscribe(
+                    alarmes => {
+                        this.alarmes = alarmes;
+                    }
+                );
                 // Get devices records for charts
                 let subscribes : Observable<Telemetry[]>[] = [];
                 this.site.devices.forEach(device => {
