@@ -54,7 +54,7 @@ export class HomeComponent implements OnDestroy {
             }
         );
         this.alarmes = null;
-        this.alarmeService.getAlarmesWithMoreInfo().subscribe(
+        this.alarmeService.getAlarmesWithMoreInfo(true).subscribe(
             alarmes => {
                 this.alarmes = alarmes;
                 this.getNbAlarmesCritiques();

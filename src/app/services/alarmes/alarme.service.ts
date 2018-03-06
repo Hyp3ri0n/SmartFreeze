@@ -51,9 +51,17 @@ export class AlarmeService {
         AlarmeService.gravities[Gravity.Serious] = "Sérieuse";
     }
 
-    public getAlarmes() : Observable<Alarme[]> {
+    public getAlarmes(activeAlarms? : boolean) : Observable<Alarme[]> {
         return Observable.create((observer) => {
-            this.http.request(MethodRequest.GET, '/api/Alarms', {}).subscribe(
+
+            let params = {};
+            if (activeAlarms !== undefined) {
+                params = {
+                    'isActive' : activeAlarms
+                };
+            }
+
+            this.http.request(MethodRequest.GET, '/api/Alarms', params).subscribe(
                 alarmes => {
                     observer.next(alarmes.items);
                 },
@@ -80,7 +88,7 @@ export class AlarmeService {
             let params = {
                 'rowsPerPage': '5',
                 'pageNumber': '1',
-                'ReadFilter': '2'
+                'isRead': false
             };
             this.http.request(MethodRequest.GET, '/api/Alarms', params).subscribe(
                 alarmes => {
@@ -94,13 +102,13 @@ export class AlarmeService {
         });
     }
 
-    public getAlarmesWithMoreInfo() : Observable<any[]> {
+    public getAlarmesWithMoreInfo(activeAlarms? : boolean) : Observable<any[]> {
         return Observable.create((observer) => {
             this.device.getDevices().subscribe(
                 devices => {
                     this.site.getSites().subscribe(
                         sites => {
-                            this.getAlarmes().subscribe(
+                            this.getAlarmes(activeAlarms).subscribe(
                                 alarms => {
                                     let data : any[] = [];
                                     alarms.forEach(alarm => {
