@@ -89,6 +89,8 @@ export class AlarmeService {
                 'rowsPerPage': '5',
                 'pageNumber': '1',
                 'isRead': false
+                'isRead': false,
+                'isActive': true
             };
             this.http.request(MethodRequest.GET, '/api/Alarms', params).subscribe(
                 alarmes => {
@@ -155,6 +157,7 @@ export class AlarmeService {
     public getAlarmesWithMoreInfoByDevices(devices : Device[]) : Observable<any[]> {
         return Observable.create((observer) => {
             this.getAlarmes().subscribe(
+            this.getAlarmes(true).subscribe(
                 alarms => {
                     let data : any[] = [];
                     alarms.forEach(alarm => {
