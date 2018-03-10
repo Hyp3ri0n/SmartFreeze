@@ -88,7 +88,6 @@ export class AlarmeService {
             let params = {
                 'rowsPerPage': '5',
                 'pageNumber': '1',
-                'isRead': false
                 'isRead': false,
                 'isActive': true
             };
@@ -156,7 +155,6 @@ export class AlarmeService {
 
     public getAlarmesWithMoreInfoByDevices(devices : Device[]) : Observable<any[]> {
         return Observable.create((observer) => {
-            this.getAlarmes().subscribe(
             this.getAlarmes(true).subscribe(
                 alarms => {
                     let data : any[] = [];
