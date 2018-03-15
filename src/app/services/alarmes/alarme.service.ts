@@ -51,6 +51,27 @@ export class AlarmeService {
         AlarmeService.gravities[Gravity.Serious] = "Sérieuse";
     }
 
+    public CountAlarms(activeAlarms? : boolean, readAlarms?: boolean, gravity?: Gravity, type?: Type) : Observable<number> {
+        let params = [];
+        if (activeAlarms !== undefined) {
+            params['isActive'] = activeAlarms;
+        }
+        if (readAlarms !== undefined) {
+            params['isRead'] = readAlarms;
+        }
+        if (gravity !== undefined) {
+            params['gravity'] = gravity;
+        }
+        if (type !== undefined) {
+            params['alarmType'] = type;
+        }
+
+        return Observable.create((observer) => {
+            this.http.request(MethodRequest.GET, '/api/Alarms/count', params)
+                .subscribe(count => observer.next(count), err => observer.next({test: 'TEST'}));
+        });
+    }
+
     public getAlarmes(activeAlarms? : boolean) : Observable<Alarme[]> {
         return Observable.create((observer) => {
 

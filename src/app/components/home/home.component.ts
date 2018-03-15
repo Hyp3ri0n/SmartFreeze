@@ -22,6 +22,7 @@ export class HomeComponent implements OnDestroy {
     private nbAlarmesCritiques : number = 0;
     private nbSitesCritiques : number = 0;
     private nbDevicesCritiques : number = 0;
+    private nbAlarmsFromBegining : number = 0;
 
     // tslint:disable-next-line:max-line-length
     constructor(private siteService : SiteService, private deviceService : DeviceService, private alarmeService : AlarmeService, private http : HttpService) {
@@ -62,6 +63,8 @@ export class HomeComponent implements OnDestroy {
                 this.getNbSitesCritiques();
             }
         );
+        this.alarmeService.CountAlarms()
+            .subscribe(count => this.nbAlarmsFromBegining = count);
     }
 
     private getNbAlarmesCritiques() : void {
