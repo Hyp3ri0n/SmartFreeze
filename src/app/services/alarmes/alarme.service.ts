@@ -51,9 +51,38 @@ export class AlarmeService {
         AlarmeService.gravities[Gravity.Serious] = "Sérieuse";
     }
 
-    public getAlarmes() : Observable<Alarme[]> {
+    public CountAlarms(activeAlarms? : boolean, readAlarms?: boolean, gravity?: Gravity, type?: Type) : Observable<number> {
+        let params = [];
+        if (activeAlarms !== undefined) {
+            params['isActive'] = activeAlarms;
+        }
+        if (readAlarms !== undefined) {
+            params['isRead'] = readAlarms;
+        }
+        if (gravity !== undefined) {
+            params['gravity'] = gravity;
+        }
+        if (type !== undefined) {
+            params['alarmType'] = type;
+        }
+
         return Observable.create((observer) => {
-            this.http.request(MethodRequest.GET, '/api/Alarms', {}).subscribe(
+            this.http.request(MethodRequest.GET, '/api/Alarms/count', params)
+                .subscribe(count => observer.next(count), err => observer.next({test: 'TEST'}));
+        });
+    }
+
+    public getAlarmes(activeAlarms? : boolean) : Observable<Alarme[]> {
+        return Observable.create((observer) => {
+
+            let params = {};
+            if (activeAlarms !== undefined) {
+                params = {
+                    'isActive' : activeAlarms
+                };
+            }
+
+            this.http.request(MethodRequest.GET, '/api/Alarms', params).subscribe(
                 alarmes => {
                     observer.next(alarmes.items);
                 },
@@ -80,7 +109,8 @@ export class AlarmeService {
             let params = {
                 'rowsPerPage': '5',
                 'pageNumber': '1',
-                'ReadFilter': '2'
+                'isRead': false,
+                'isActive': true
             };
             this.http.request(MethodRequest.GET, '/api/Alarms', params).subscribe(
                 alarmes => {
@@ -94,13 +124,13 @@ export class AlarmeService {
         });
     }
 
-    public getAlarmesWithMoreInfo() : Observable<any[]> {
+    public getAlarmesWithMoreInfo(activeAlarms? : boolean) : Observable<any[]> {
         return Observable.create((observer) => {
             this.device.getDevices().subscribe(
                 devices => {
                     this.site.getSites().subscribe(
                         sites => {
-                            this.getAlarmes().subscribe(
+                            this.getAlarmes(activeAlarms).subscribe(
                                 alarms => {
                                     let data : any[] = [];
                                     alarms.forEach(alarm => {
@@ -146,7 +176,7 @@ export class AlarmeService {
 
     public getAlarmesWithMoreInfoByDevices(devices : Device[]) : Observable<any[]> {
         return Observable.create((observer) => {
-            this.getAlarmes().subscribe(
+            this.getAlarmes(true).subscribe(
                 alarms => {
                     let data : any[] = [];
                     alarms.forEach(alarm => {
