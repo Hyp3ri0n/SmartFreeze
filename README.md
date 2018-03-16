@@ -2,7 +2,7 @@
 
 ## Description
 
-SmartFreeze is a web app based project that allow you to see and manage data from your devices linked to Requea. Thanks to this app you will be notified when there is some potential freeze expected in a near future (5 days top).
+SmartFreeze is a web app based project that allow you to manage and view your meteorological data gathered from LoRa sensors hosted by Requea. Thanks to this app you will be notified when some potential freeze is expected in a near future (5 days top).
 
 This project was made by a group of students during 2 weeks for their degree "Master 2 MIAGE" :
 * Fengjiao Chen
