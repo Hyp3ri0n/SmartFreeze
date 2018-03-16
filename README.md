@@ -2,20 +2,32 @@
 
 ## Description
 
-// TODO
+SmartFreeze is a web app based project that allow you to see and manage data from your devices linked to Requea. Thanks to this app you will be notified when there is some potential freeze expected in a near future (5 days top).
+
+This project was made by a group of students during 2 weeks for their degree "Master 2 MIAGE" :
+* Fengjiao Chen
+* Aurélien Fernandes
+* Léa Garcia
+* Caella Maminirina
+* Alexis Martinier
+* Luc Ortiz
+* Arielle Raveloarison
+* Clarck Robinson
+* Hugo Vaillant
 
 ## Infos
 
 * [Bootstrap](http://getbootstrap.com/) : For the front-end there is Bootstrap (style and grid).
 * [Font-Awesome](http://fontawesome.io/) : To incorporate some icons there is font-awesome.
-* [Roboto](https://fonts.google.com/specimen/Roboto) : The font for the text is Roboto.
+* [Roboto](https://fonts.google.com/specimen/Roboto) : The font for the text is Roboto (from Google).
+* [Cordova](https://cordova.apache.org/) : For the generation of mobile's applications.
 
 ## Architecture
 
-|-- dist&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Folder that contains the build of the app (will be generated | same structure as "./src")  
-|-- node_modules&nbsp;&nbsp;&nbsp;&nbsp;// Folder that contains all the modules (will be generated)  
-|-- src&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Folder that contains all the sources (development environment)  
-|-- resources&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Folder that contains all the resources for Cordova and Electron  
+|-- dist&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Folder that contains the build of the app (will be generated | same structure as "./src")  
+|-- node_modules&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Folder that contains all the modules (will be generated)  
+|-- resources&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Folder that contains all the resources for Cordova  
+|-- src&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Folder that contains all the sources (development environment)  
 |&nbsp;&nbsp;&nbsp;&nbsp;|-- app  
 |&nbsp;&nbsp;&nbsp;&nbsp;|-- assets  
 |&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|-- fonts  
@@ -25,19 +37,19 @@
 |&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|--libs  
 |&nbsp;&nbsp;&nbsp;&nbsp;|--main.js  
 |&nbsp;&nbsp;&nbsp;&nbsp;|--index.html  
-|&nbsp;&nbsp;&nbsp;&nbsp;|--package.json&nbsp;// This file is needed by electron  
-|-- bs-config.json&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Config for the lite-server  
-|-- gulpfile.js&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Gulpfile which contains tasks  
-|-- package.json&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Config for npm dependencies, etc...  
-|-- readme.md&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Me :)  
-|-- tsconfig.json&nbsp;&nbsp;&nbsp;&nbsp;// Config for the compiler  
-|-- tslint.json&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Config for tslint module (the format of ".ts" files)  
+|&nbsp;&nbsp;&nbsp;&nbsp;|--package.json&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// This file is needed by electron  
+|-- bs-config.json&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Config for the lite-server  
+|-- gulpfile.js&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Gulpfile which contains tasks  
+|-- package.json&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Config for npm dependencies, etc...  
+|-- readme.md&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Me :)  
+|-- tsconfig.json&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Config for the compiler  
+|-- tslint.json&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Config for tslint module (the format of ".ts" files)  
 
 ------------------
 
 ## 1 - Software needed
 
-Before anything, you need to download and install [NodeJS](https://nodejs.org/en/) with is npm package system.
+Before anything, you need to download and install [NodeJS](https://nodejs.org/en/) with its own npm package system.
 
 And if you want to generate cordova application, you have to download and install [Android Studio](https://developer.android.com/studio/index.html) with is all the sdk needed.
 
